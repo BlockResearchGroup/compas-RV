@@ -2,6 +2,18 @@
 
 Implementation of RhinoVAULT using COMPAS
 
+> [!NOTE]  
+> This package contains the source code of the Rhino plugin RhinoVAULT.
+> Its functionality is meant to be used inside Rhino 8 only.
+> In anymother environment it will simply not work.
+
+> [!WARNING]  
+> This plugin is under active development,
+> and uses the still somewhat unstable CPython infrastructure
+> of Rhino 8 through the new ScriptEditor.
+> Therefore, unexpected errors may occur here and there.
+> Please let us know via the [Issue Tracker](https://github.com/BlockResearchGroup/compas-RV/issues) if you have problems.
+
 ## Installation
 
 Stable releases can be installed from PyPI.
