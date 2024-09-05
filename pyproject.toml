@@ -1,0 +1,132 @@
+[build-system]
+requires = ["setuptools>=66.0"]
+build-backend = "setuptools.build_meta"
+
+# ============================================================================
+# project info
+# ============================================================================
+
+[project]
+name = "compas_rv"
+description = "COMPAS RhinoVAULT"
+keywords = []
+authors = [{ name = "tom van mele", email = "tom.v.mele@gmail.com" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.9"
+dynamic = ['dependencies', 'optional-dependencies', 'version']
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Topic :: Scientific/Engineering",
+    "Operating System :: Unix",
+    "Operating System :: POSIX",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+]
+
+[project.urls]
+Homepage = "https://blockresearchgroup.github.io/compas_rv"
+Documentation = "https://blockresearchgroup.github.io/compas_rv"
+Repository = "https://github.com/blockresearchgroup/compas_rv"
+Changelog = "https://github.com/blockresearchgroup/compas_rv/blob/main/CHANGELOG.md"
+Issues = "https://github.com/blockresearchgroup/compas_rv/issues"
+Forum = "https://forum.compas-framework.org/"
+
+# ============================================================================
+# setuptools config
+# ============================================================================
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.dynamic]
+version = { attr = "compas_rv.__version__" }
+dependencies = { file = "requirements.txt" }
+optional-dependencies = { dev = { file = "requirements-dev.txt" } }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# ============================================================================
+# replace pytest.ini
+# ============================================================================
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests", "src/compas_rv"]
+python_files = ["test_*.py", "*_test.py", "test.py"]
+addopts = ["-ra", "--strict-markers", "--doctest-glob=*.rst", "--tb=short"]
+doctest_optionflags = [
+    "NORMALIZE_WHITESPACE",
+    "IGNORE_EXCEPTION_DETAIL",
+    "ALLOW_UNICODE",
+    "ALLOW_BYTES",
+    "NUMBER",
+]
+
+# ============================================================================
+# replace bumpversion.cfg
+# ============================================================================
+
+[tool.bumpversion]
+current_version = "0.1.0"
+message = "Bump version to {new_version}"
+commit = true
+tag = true
+
+[[tool.bumpversion.files]]
+filename = "src/compas_rv/__init__.py"
+search = "{current_version}"
+replace = "{new_version}"
+
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.md"
+search = "Unreleased"
+replace = "[{new_version}] {now:%Y-%m-%d}"
+
+# ============================================================================
+# replace setup.cfg
+# ============================================================================
+
+[tool.black]
+line-length = 179
+
+[tool.ruff]
+line-length = 179
+indent-width = 4
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["I001"]
+"tests/*" = ["I001"]
+"tasks.py" = ["I001"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+known-first-party = [
+    "compas",
+    "compas_ags",
+    "compas_fd",
+    "compas_rhino",
+    "compas_rui",
+    "compas_rv",
+    "compas_session",
+    "compas_tna",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.pycodestyle]
+max-doc-length = 179
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
