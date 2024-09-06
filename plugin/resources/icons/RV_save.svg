@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Linear_Gradient_18);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10 {
+        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-10 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: url(#Linear_Gradient_16);
+      }
+
+      .cls-3 {
+        fill: url(#Linear_Gradient_19);
+      }
+
+      .cls-4, .cls-12, .cls-13, .cls-14 {
+        fill: none;
+      }
+
+      .cls-11, .cls-12, .cls-13 {
+        stroke-linejoin: round;
+      }
+
+      .cls-11, .cls-12, .cls-13, .cls-15 {
+        stroke-linecap: round;
+      }
+
+      .cls-11, .cls-15 {
+        stroke: #000;
+      }
+
+      .cls-11, .cls-7, .cls-9 {
+        fill: #fff;
+      }
+
+      .cls-12, .cls-13 {
+        stroke: #1d1d1b;
+      }
+
+      .cls-5 {
+        fill: #1d1d1b;
+      }
+
+      .cls-13, .cls-14 {
+        stroke-width: 1.05px;
+      }
+
+      .cls-6 {
+        fill: #0092d2;
+      }
+
+      .cls-16 {
+        opacity: .75;
+      }
+
+      .cls-14 {
+        stroke: #fff;
+      }
+
+      .cls-14, .cls-15 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-15 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-7 {
+        filter: url(#outer-glow-1);
+      }
+
+      .cls-8 {
+        fill: url(#Linear_Gradient_17);
+      }
+
+      .cls-10 {
+        fill: #000;
+      }
+    </style>
+    <filter id="outer-glow-1" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="2"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="8.37" y1="2.62" x2="28.87" y2="23.13" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#ccc"/>
+    </linearGradient>
+    <linearGradient id="Linear_Gradient_16" data-name="Linear Gradient 16" x1="10.5" y1="27.65" x2="10.5" y2="13.47" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ada057"/>
+      <stop offset="1" stop-color="#ddd088"/>
+    </linearGradient>
+    <linearGradient id="Linear_Gradient_17" data-name="Linear Gradient 17" x1="10.53" y1="19.5" x2="10.53" y2="13.35" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c9cbcc"/>
+      <stop offset="1" stop-color="#e6e8e8"/>
+    </linearGradient>
+    <linearGradient id="Linear_Gradient_18" data-name="Linear Gradient 18" x1="9.47" y1="30.02" x2="9.47" y2="24.82" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#868b8e"/>
+      <stop offset="1" stop-color="#abadb0"/>
+    </linearGradient>
+    <linearGradient id="Linear_Gradient_19" data-name="Linear Gradient 19" x1="9.56" y1="25.14" x2="9.56" y2="30.41" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#1d1d1b"/>
+    </linearGradient>
+  </defs>
+  <g id="bounding_box" data-name="bounding box">
+    <rect class="cls-4" y="0" width="32" height="32"/>
+  </g>
+  <g id="RV-logo">
+    <polygon class="cls-7" points="34 6.95 34.6 6.56 34.93 6.04 47.98 7.09 61.07 6.04 61.4 6.55 62 6.95 54.68 14.92 48.96 25.95 47.98 25.96 47.04 25.95 41.29 14.91 34 6.95"/>
+    <polyline class="cls-15" points="30.5 7 30.5 21.5 9.5 21.5 9.5 1.5 25 1.5"/>
+    <g>
+      <path class="cls-6" d="M16.32,13.97h-1.04v2.83h-1.93v-8h3.15c.95,0,1.69.21,2.23.63.53.42.8,1.02.8,1.78,0,.56-.11,1.02-.34,1.38-.23.37-.58.66-1.06.89l1.67,3.23v.08h-2.07l-1.41-2.83ZM15.27,12.48h1.22c.37,0,.64-.1.83-.29.19-.19.28-.46.28-.81s-.09-.62-.28-.81c-.19-.2-.46-.29-.82-.29h-1.22v2.2Z"/>
+      <path class="cls-6" d="M23.69,14.62l1.59-5.82h2.15l-2.69,8h-2.11l-2.67-8h2.14l1.59,5.82Z"/>
+    </g>
+    <polygon class="cls-11" points="25.5 1.5 25.5 6.5 30.5 6.5 25.5 1.5"/>
+    <g class="cls-16">
+      <path class="cls-2" d="M2.41,12.52h16.21c.42,0,.88.5.88.92v15.99c0,.48-.5,1.05-.98,1.05h-1.39s-.95-.94-.95-.94l-9.89.93-.99.02h-1.83s-1.98-1.99-1.98-1.99v-14.92c0-.46.45-1.05.91-1.05Z"/>
+      <rect class="cls-8" x="5.25" y="12.88" width="10.56" height="7.56"/>
+      <polyline class="cls-14" points="5.77 12 5.77 19.88 15.28 19.88 15.28 12"/>
+      <rect class="cls-9" x="2.08" y="13.05" width="17.02" height="1.06"/>
+      <rect class="cls-9" x="17.92" y="15.16" width="1.05" height="1.06"/>
+    </g>
+    <path class="cls-12" d="M2.44,12.52h16.18c.42,0,.88.5.88.92v15.99c0,.48-.5,1.06-.98,1.05l-1.14-.02-1.05-1.06h-2.11l-4.22,1.06-4.68.02h-1.81l-1.97-1.99v-14.93c0-.46.44-1.05.91-1.05Z"/>
+    <rect class="cls-9" x="2.08" y="15.16" width="1.05" height="1.06"/>
+    <rect class="cls-5" x="2.08" y="14.11" width="1.05" height="1.05"/>
+    <path class="cls-1" d="M6.3,24.67v5.28h3.17v-5.28h-3.17ZM4.72,24.67v5.81l9.5.02v-5.82c0-.25-.28-.53-.53-.53H5.25c-.25,0-.53.28-.53.53Z"/>
+    <path class="cls-3" d="M5.25,24.67v5.74h8.62v-5.74H5.25ZM6.3,25.72v3.17h6.34v-3.17h-6.34Z"/>
+    <path class="cls-13" d="M4.72,24.69v5.81h9.5v-5.94c0-.19-.2-.43-.4-.43H5.12c-.23,0-.4.33-.4.55Z"/>
+    <rect class="cls-5" x="6.3" y="24.67" width="3.17" height="5.28"/>
+    <rect class="cls-5" x="17.92" y="14.11" width="1.05" height="1.05"/>
+    <polygon class="cls-10" points="4.19 21.5 4.19 13.05 5.25 13.05 5.25 20.44 15.81 20.44 15.81 13.05 16.86 13.05 16.86 21.5 4.19 21.5"/>
+  </g>
+</svg>
