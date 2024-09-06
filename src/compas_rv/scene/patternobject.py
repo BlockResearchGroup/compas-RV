@@ -37,7 +37,7 @@ class RhinoPatternObject(RUIMeshObject):
 
     def draw(self):
         for vertex in self.mesh.vertices():
-            if self.mesh.vertex_attribute(vertex, "is_anchor"):
+            if self.mesh.vertex_attribute(vertex, "is_support"):
                 self.vertexcolor[vertex] = self.anchorcolor
             elif self.mesh.vertex_attribute(vertex, "is_fixed"):
                 self.vertexcolor[vertex] = self.fixedcolor
@@ -51,17 +51,17 @@ class RhinoPatternObject(RUIMeshObject):
         vertices = []
 
         if self.show_free:
-            vertices += list(self.mesh.vertices_where(is_anchor=False, is_fixed=False))
+            vertices += list(self.mesh.vertices_where(is_support=False, is_fixed=False))
         if self.show_fixed:
             vertices += list(self.mesh.vertices_where(is_fixed=True))
         if self.show_anchors:
-            vertices += list(self.mesh.vertices_where(is_anchor=True))
+            vertices += list(self.mesh.vertices_where(is_support=True))
 
         if vertices:
             self.show_vertices = vertices
 
         for vertex in self.mesh.vertices():
-            if self.mesh.vertex_attribute(vertex, "is_anchor"):
+            if self.mesh.vertex_attribute(vertex, "is_support"):
                 self.vertexcolor[vertex] = self.anchorcolor
             elif self.mesh.vertex_attribute(vertex, "is_fixed"):
                 self.vertexcolor[vertex] = self.fixedcolor

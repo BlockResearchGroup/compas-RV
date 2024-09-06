@@ -14,7 +14,7 @@ from .thrustobject import RhinoThrustObject
 
 @plugin(category="factories", pluggable_name="register_scene_objects", requires=["Rhino"])
 def register_scene_objects_rhino():
-    register(ForceDiagram, RhinoForceObject, context="Rhino")
-    register(FormDiagram, RhinoFormObject, context="Rhino")
     register(Pattern, RhinoPatternObject, context="Rhino")
+    register(FormDiagram, RhinoFormObject, context="Rhino")
     register(ThrustDiagram, RhinoThrustObject, context="Rhino")
+    register(ForceDiagram, RhinoForceObject, context="Rhino")

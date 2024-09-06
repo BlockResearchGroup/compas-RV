@@ -36,32 +36,35 @@ class RhinoThrustObject(RUIMeshObject):
         return settings
 
     def draw(self):
+        faces = []
+        if self.show_faces:
+            faces += list(self.mesh.faces_where(_is_loaded=True))
+        if faces:
+            self.show_faces = faces
+
         for vertex in self.mesh.vertices():
-            if self.mesh.vertex_attribute(vertex, "is_anchor"):
+            if self.mesh.vertex_attribute(vertex, "is_support"):
                 self.vertexcolor[vertex] = self.anchorcolor
             elif self.mesh.vertex_attribute(vertex, "is_fixed"):
                 self.vertexcolor[vertex] = self.fixedcolor
             else:
                 self.vertexcolor[vertex] = self.freecolor
 
-        super().draw()
-        return self.guids
+        return super().draw()
 
     def draw_vertices(self):
         vertices = []
-
         if self.show_free:
-            vertices += list(self.mesh.vertices_where(is_anchor=False, is_fixed=False))
+            vertices += list(self.mesh.vertices_where(is_support=False, is_fixed=False))
         if self.show_fixed:
             vertices += list(self.mesh.vertices_where(is_fixed=True))
         if self.show_anchors:
-            vertices += list(self.mesh.vertices_where(is_anchor=True))
-
+            vertices += list(self.mesh.vertices_where(is_support=True))
         if vertices:
             self.show_vertices = vertices
 
         for vertex in self.mesh.vertices():
-            if self.mesh.vertex_attribute(vertex, "is_anchor"):
+            if self.mesh.vertex_attribute(vertex, "is_support"):
                 self.vertexcolor[vertex] = self.anchorcolor
             elif self.mesh.vertex_attribute(vertex, "is_fixed"):
                 self.vertexcolor[vertex] = self.fixedcolor
@@ -69,3 +72,36 @@ class RhinoThrustObject(RUIMeshObject):
                 self.vertexcolor[vertex] = self.freecolor
 
         return super().draw_vertices()
+
+    def draw_edges(self):
+        edges = []
+        if self.show_edges:
+            edges += list(self.mesh.edges_where(_is_edge=True))
+        if edges:
+            self.show_edges = edges
+
+        return super().draw_edges()
+
+    def draw_faces(self):
+        faces = []
+        if self.show_faces:
+            faces += list(self.mesh.faces_where(_is_loaded=True))
+        if faces:
+            self.show_faces = faces
+
+        return super().draw_faces()
+
+    def draw_reactions(self):
+        pass
+
+    def draw_residuals(self):
+        pass
+
+    def draw_selfweight(self):
+        pass
+
+    def draw_loads(self):
+        pass
+
+    def draw_pipes(self):
+        pass

@@ -1,5 +1,10 @@
+# from functools import partial
+from itertools import groupby
+
 from compas.datastructures import Mesh
+from compas.geometry import Line
 from compas.geometry import angle_vectors
+from compas_fd.solvers import fd_numpy
 
 
 class Pattern(Mesh):
@@ -17,6 +22,7 @@ class Pattern(Mesh):
                 "z": 0.0,
                 "constraints": None,
                 "is_fixed": False,
+                "is_support": False,
             }
         )
         self.default_edge_attributes.update(
@@ -76,15 +82,15 @@ class Pattern(Mesh):
         None
 
         """
-        from compas_fd.solvers import fd_numpy
-
         vertex_index = self.vertex_index()
         xyz = self.vertices_attributes("xyz")
         loads = [[0.0, 0.0, 0.0] for _ in xyz]
+        anchors = [vertex_index[key] for key in self.vertices_where(is_support=True)]
         fixed = [vertex_index[key] for key in self.vertices_where(is_fixed=True)]
+        supports = list(set(anchors + fixed))
         edges = [(vertex_index[u], vertex_index[v]) for u, v in self.edges()]
         q = self.edges_attribute("q")
-        result = fd_numpy(vertices=xyz, fixed=fixed, edges=edges, forcedensities=q, loads=loads)
+        result = fd_numpy(vertices=xyz, fixed=supports, edges=edges, forcedensities=q, loads=loads)
         for key in self.vertices():
             index = vertex_index[key]
             self.vertex_attributes(key, "xyz", result.vertices[index])
@@ -141,3 +147,50 @@ class Pattern(Mesh):
         if edges[-1][1] != edges[0][0]:
             vertices.append(edges[-1][1])
         return vertices
+
+    def split_boundary(self):
+        """Split the boundary into openings based on the location of the anchors.
+
+        The algorithm assumes that the first boundary of the mesh is the exterior boundary.
+
+        Returns
+        -------
+        list[list[int]]
+
+        """
+        boundaries = self.vertices_on_boundaries()
+        exterior = boundaries[0]
+        if exterior[-1] == exterior[0]:
+            del exterior[-1]
+        anchors = list(self.vertices_where(is_support=True))
+        anchors = sorted(anchors, key=lambda a: exterior.index(a))
+        index = exterior.index(anchors[0])
+        exterior = exterior[index:] + exterior[:index]
+        exterior.append(exterior[0])
+        openings = []
+        i = 0
+        for anchor in anchors[1:]:
+            j = exterior.index(anchor)
+            openings.append(exterior[i : j + 1])
+            i = j
+        openings.append(exterior[j:])
+        return [opening for opening in openings if len(opening) > 2]
+
+    def compute_sag(self, opening):
+        """Compute the sag of the opening as the ratio of the rise of the opening over its span.
+
+        Parameters
+        ----------
+        opening : list[int]
+
+        Returns
+        -------
+        float
+
+        """
+        start = self.vertex_point(opening[0])
+        end = self.vertex_point(opening[-1])
+        span = Line(start, end)
+        distances = [self.vertex_point(vertex).distance_to_line(span) for vertex in opening[1:-1]]
+        rise = max(distances)
+        return rise / span.length
