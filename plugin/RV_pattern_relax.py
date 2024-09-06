@@ -2,24 +2,29 @@
 
 import rhinoscriptsyntax as rs  # type: ignore
 
+import compas_rv.settings
+from compas.scene import Scene
 from compas_rv.datastructures import Pattern
+from compas_rv.scene import RhinoPatternObject
 from compas_session.namedsession import NamedSession
 
 
 def RunCommand(is_interactive):
 
     session = NamedSession(name="RhinoVAULT")
-    scene = session.scene()
+    scene: Scene = session.scene()
 
-    pattern = scene.find_by_itemtype(itemtype=Pattern)
+    pattern: RhinoPatternObject = scene.find_by_itemtype(itemtype=Pattern)
     if not pattern:
         return
 
     # =============================================================================
-    # Update openings
+    # Pattern relax
     # =============================================================================
 
     rs.UnselectAllObjects()
+
+    pattern.mesh.relax()
 
     # =============================================================================
     # Update scene
@@ -42,8 +47,8 @@ def RunCommand(is_interactive):
     # Save session
     # =============================================================================
 
-    if session.CONFIG["autosave.events"]:
-        session.record(eventname="Identify Boundaries")
+    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+        session.record(eventname="Relax the Pattern")
 
 
 # =============================================================================

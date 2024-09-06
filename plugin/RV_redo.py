@@ -1,5 +1,7 @@
 #! python3
 
+import rhinoscriptsyntax as rs  # type: ignore
+
 from compas_session.namedsession import NamedSession
 
 
@@ -12,7 +14,11 @@ def RunCommand(is_interactive):
     if session.redo():
         scene.clear()
         scene = session.scene()
+
+        rs.EnableRedraw(False)
         scene.draw()
+        rs.EnableRedraw(True)
+        rs.Redraw()
 
 
 # =============================================================================

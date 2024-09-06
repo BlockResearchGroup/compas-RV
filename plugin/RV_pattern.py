@@ -5,6 +5,7 @@ import rhinoscriptsyntax as rs  # type: ignore
 import compas_rhino
 import compas_rhino.conversions
 import compas_rhino.objects
+import compas_rv.settings
 from compas_rv.datastructures import Pattern
 from compas_session.namedsession import NamedSession
 
@@ -126,7 +127,7 @@ def RunCommand(is_interactive):
     # Save session
     # =============================================================================
 
-    if session.CONFIG["autosave.events"]:
+    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
         session.record(eventname="Make Pattern")
 
 

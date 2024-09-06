@@ -2,6 +2,7 @@
 
 import rhinoscriptsyntax as rs  # type: ignore
 
+import compas_rv.settings
 from compas_rv.datastructures import Pattern
 from compas_session.namedsession import NamedSession
 
@@ -16,7 +17,7 @@ def RunCommand(is_interactive):
         return
 
     # =============================================================================
-    # Update openings
+    # Modify pattern vertices
     # =============================================================================
 
     rs.UnselectAllObjects()
@@ -42,8 +43,8 @@ def RunCommand(is_interactive):
     # Save session
     # =============================================================================
 
-    if session.CONFIG["autosave.events"]:
-        session.record(eventname="Identify Openings")
+    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+        session.record(eventname="Modify Form Diagram")
 
 
 # =============================================================================

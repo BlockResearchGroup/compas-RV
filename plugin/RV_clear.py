@@ -2,6 +2,7 @@
 
 import rhinoscriptsyntax as rs  # type: ignore
 
+import compas_rv.settings
 from compas_session.namedsession import NamedSession
 
 
@@ -19,7 +20,7 @@ def RunCommand(is_interactive):
     if result == 6:
         scene.clear()
 
-        if session.CONFIG["autosave.events"]:
+        if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
             session.record(eventname="Clear")
 
 

@@ -2,9 +2,7 @@
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-import compas_rhino
-import compas_rhino.conversions
-import compas_rhino.objects
+import compas_rv.settings
 from compas.scene import Scene
 from compas_rv.datastructures import Pattern
 from compas_rv.scene import RhinoPatternObject
@@ -39,7 +37,7 @@ def RunCommand(is_interactive):
     anchors = list(set(fixed) | set(leaves))
 
     if anchors:
-        pattern.mesh.vertices_attribute(name="is_anchor", value=True, keys=anchors)
+        pattern.mesh.vertices_attribute(name="is_support", value=True, keys=anchors)
 
         pattern.clear()
         pattern.draw()
@@ -68,7 +66,7 @@ def RunCommand(is_interactive):
         rs.Redraw()
 
         vertices = pattern.select_vertices()
-        pattern.mesh.vertices_attribute(name="is_anchor", value=True, keys=vertices)
+        pattern.mesh.vertices_attribute(name="is_support", value=True, keys=vertices)
 
     elif option == "Remove":
 
@@ -83,7 +81,7 @@ def RunCommand(is_interactive):
         rs.Redraw()
 
         vertices = pattern.select_vertices()
-        pattern.mesh.vertices_attribute(name="is_anchor", value=False, keys=vertices)
+        pattern.mesh.vertices_attribute(name="is_support", value=False, keys=vertices)
 
     # =============================================================================
     # Update scene
@@ -106,8 +104,8 @@ def RunCommand(is_interactive):
     # Save session
     # =============================================================================
 
-    if session.CONFIG["autosave.events"]:
-        session.record(eventname="Identify Supports")
+    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+        session.record(eventname="Update Pattern Supports")
 
 
 # =============================================================================

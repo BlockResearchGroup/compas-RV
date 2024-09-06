@@ -1,9 +1,7 @@
 #! python3
 
-import ast
-
-import rhinoscriptsyntax as rs  # type: ignore
-
+import compas_rv.settings
+from compas_rui.forms import SettingsForm
 from compas_session.namedsession import NamedSession
 
 
@@ -11,19 +9,11 @@ def RunCommand(is_interactive):
 
     session = NamedSession(name="RhinoVAULT")
 
-    names = sorted(list(session.CONFIG.keys()))
-    values = [session.CONFIG[name] for name in names]
+    form = SettingsForm(settings=compas_rv.settings.SETTINGS, use_tab=True)
+    if form.show():
+        print(form.settings)
 
-    values = rs.PropertyListBox(names, values, message="Update Config", title="FormFinder")
-
-    if values:
-        for name, value in zip(names, values):
-            try:
-                session.CONFIG[name] = ast.literal_eval(value)
-            except (ValueError, TypeError):
-                session.CONFIG[name] = value
-
-    if session.CONFIG["autosave.events"]:
+    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
         session.record(eventname="Update Settings")
 
 
