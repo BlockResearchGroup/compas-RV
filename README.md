@@ -4,7 +4,7 @@
 
 RhinoVAULT is a plugin for Rhino for form finding of funicular force networks with vertical loads using Thurst Network Analysis. The current version of this plugin is based on COMPAS 2 and is available for Rhino 8.
 
-> [!WARNING]  
+> [!WARNING]
 > This plugin is under active development,
 > and uses the still somewhat unstable CPython infrastructure
 > of Rhino 8 through the new ScriptEditor.
@@ -17,17 +17,31 @@ To install RhinoVAULT, use Rhino's package manager Yak.
 
 ![RhinoVAULT installation with Yak](resources/images/RhinoVAULT_yak.png)
 
-After installing the package, you can check if all requirements are installed using the command `RV_reqs_check`.
+## COMPAS Packages
 
-If (some of) the requi install RhinoVAULT's requirements by running the command `RV_reqs_install` inside Rhino. Just type `RV_reqs_install` at Rhino's command prompt...
-This will install the requirements using Rhino's built in installation mechanism for Python packages (`# r: ...`).
+RhinoVAULT uses the following COMPAS packages:
 
-> [!NOTE]  
-> Advanced users may prefer to install the requirements manually,
-using `pip`, or may even hem them installed already.
+* [compas](https://github.com/compas-dev/compas)
+* [compas_ags](https://github.com/blockresearchgroup/compas_fd)
+* [compas_fd](https://github.com/blockresearchgroup/compas_fd)
+* [compas_rui](https://github.com/blockresearchgroup/compas_rui)
+* [compas_session](https://github.com/blockresearchgroup/compas_session)
+* [compas_tna](https://github.com/blockresearchgroup/compas_dr)
 
-> [!WARNING]  
-> `pip` based installations and `# r: ...` based installations should not be mixed, since this will create conflicts between packages and package versions.
+After installing RhinoVAULT with Yak, you can check if all requirements are installed using the command `RV_reqs_check`.
+
+### Basic Users
+
+Missing requirements can be installed automatically using the command `RV_reqs_install`.
+This command uses Rhino's built in installation mechanism for Python packages (`# r: ...`).
+
+### Advanced Users
+
+If you use Rhino for scripting, and if you have other COMPAS packages installed, or plan to install them in the future, we recommend to install RhinoVAULT's requirements manually using `pip`.
+
+> [!WARNING]
+> `pip` based installations and `# r: ...` based installations should not be mixed,
+> since this will create conflicts between packages and package versions.
 
 ## User Interface
 
