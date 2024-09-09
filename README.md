@@ -1,5 +1,9 @@
 # COMPAS RhinoVAULT
 
+![RhinoVAULT](compas-RV.jpg)
+
+RhinoVAULT is a plugin for Rhino for form finding of funicular force networks with vertical loads using Thurst Network Analysis. The current version of this plugin is based on COMPAS 2 and is available for Rhino 8.
+
 > [!WARNING]  
 > This plugin is under active development,
 > and uses the still somewhat unstable CPython infrastructure
@@ -7,13 +11,11 @@
 > Therefore, unexpected errors may occur here and there.
 > Please let us know via the [Issue Tracker](https://github.com/BlockResearchGroup/compas-RV/issues) if you have problems.
 
-RhinoVAULT is a plugin for Rhino for form finding of funicular force networks with vertical loads using Thurst Network Analysis. The current version of this plugin is based on COMPAS 2 and is available for Rhino 8.
-
 ## Installation
 
 To install RhinoVAULT, use Rhino's package manager Yak.
 
-![RhinoVAULT installation with Yak](RhinoVAULT_yak.png)
+![RhinoVAULT installation with Yak](resources/images/RhinoVAULT_yak.png)
 
 After installing the package, you can check if all requirements are installed using the command `RV_reqs_check`.
 
@@ -55,9 +57,9 @@ RhinoVAULT defines the following commands:
 * `RV_reqs_install`
 
 These commands can be executed at the Rhino Command Prompt (simply start typing the command name),
-or using the RhinoVAULT toolbar. If the toolbar is not yet visible, you can enable it here:
+or using the RhinoVAULT toolbar.
 
-![RhinoVAULT enable toolbar](RhinoVAULT_toolbar.png)
+![RhinoVAULT toolbar](resources/images/RhinoVAULT_toolbar.png)
 
 ## Documentation
 
