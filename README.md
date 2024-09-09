@@ -1,12 +1,5 @@
 # COMPAS RhinoVAULT
 
-Implementation of RhinoVAULT using COMPAS
-
-> [!NOTE]  
-> This package contains the source code of the Rhino plugin RhinoVAULT.
-> Its functionality is meant to be used inside Rhino 8 only.
-> In any other environment it will simply not work.
-
 > [!WARNING]  
 > This plugin is under active development,
 > and uses the still somewhat unstable CPython infrastructure
@@ -14,25 +7,61 @@ Implementation of RhinoVAULT using COMPAS
 > Therefore, unexpected errors may occur here and there.
 > Please let us know via the [Issue Tracker](https://github.com/BlockResearchGroup/compas-RV/issues) if you have problems.
 
+RhinoVAULT is a plugin for Rhino for form finding of funicular force networks with vertical loads using Thurst Network Analysis. The current version of this plugin is based on COMPAS 2 and is available for Rhino 8.
+
 ## Installation
 
 To install RhinoVAULT, use Rhino's package manager Yak.
 
-![RhinoVAULT installation with Yak](RhinoVAULT-yak.png)
+![RhinoVAULT installation with Yak](RhinoVAULT_yak.png)
 
-After installing the package, install RhinoVAULT's requirements by running the command `RV_install` inside Rhino. Just type `RV_install` at Rhino's command prompt...
+After installing the package, you can check if all requirements are installed using the command `RV_reqs_check`.
+
+If (some of) the requi install RhinoVAULT's requirements by running the command `RV_reqs_install` inside Rhino. Just type `RV_reqs_install` at Rhino's command prompt...
 This will install the requirements using Rhino's built in installation mechanism for Python packages (`# r: ...`).
 
-Advanced users may prefer to install the requirements manually,
+> [!NOTE]  
+> Advanced users may prefer to install the requirements manually,
 using `pip`, or may even hem them installed already.
 
 > [!WARNING]  
 > `pip` based installations and `# r: ...` based installations should not be mixed, since this will create conflicts between packages and package versions.
 
+## User Interface
+
+RhinoVAULT defines the following commands:
+
+* `RV`
+* `RV_pattern`
+* `RV_pattern_modify`
+* `RV_pattern_relax`
+* `RV_pattern_supports`
+* `RV_pattern_boundaries`
+* `RV_form`
+* `RV_force`
+* `RV_tna_horizontal`
+* `RV_tna_vertical`
+* `RV_form_modify`
+* `RV_force_modify`
+* `RV_thrust_modify`
+* `RV_scene_clear`
+* `RV_scene_redraw`
+* `RV_session_undo`
+* `RV_session_redo`
+* `RV_session_open`
+* `RV_session_save`
+* `RV_settings`
+* `RV_reqs_check`
+* `RV_reqs_install`
+
+These commands can be executed at the Rhino Command Prompt (simply start typing the command name),
+or using the RhinoVAULT toolbar. If the toolbar is not yet visible, you can enable it here:
+
+![RhinoVAULT enable toolbar](RhinoVAULT_toolbar.png)
+
 ## Documentation
 
-For further "getting started" instructions, a tutorial, examples, and an API reference,
-please check out the online documentation here: [RhinoVAULT Gitbook](https://blockresearchgroup.gitbook.io/RhinoVAULT)
+For further "getting started" instructions, a tutorial, examples, and an detailed description of the individual commands and the user interface, please check out the online documentation here: [RhinoVAULT Gitbook](https://blockresearchgroup.gitbook.io/RhinoVAULT)
 
 ## Issue Tracker
 
