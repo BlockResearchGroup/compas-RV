@@ -28,13 +28,18 @@ def RunCommand(is_interactive):
 
     kmax = compas_rv.settings.SETTINGS["TNA"]["vertical.kmax"]
     zmax = compas_rv.settings.SETTINGS["TNA"]["vertical.zmax"]
+    zmax = rs.GetReal("Set maximum height (zmax)", number=zmax, minimum=0)
+
+    # warn the user about nonsensical values
 
     _, scale = vertical_from_zmax(form, zmax, kmax=kmax)
 
     # store scale in force diagram
 
-    thrust = form.copy(cls=ThrustDiagram)
+    thrust: ThrustDiagram = form.copy(cls=ThrustDiagram)
     thrust.name = "ThrustDiagram"
+
+    form.vertices_attribute(name="z", value=0)
 
     # =============================================================================
     # Update scene
@@ -43,7 +48,7 @@ def RunCommand(is_interactive):
     thrustobj = scene.find_by_itemtype(itemtype=ThrustDiagram)
 
     if not thrustobj:
-        thrustobj = scene.add(thrust)
+        thrustobj = scene.add(thrust, name=thrust.name)
     else:
         thrustobj.mesh = thrust
 

@@ -8,8 +8,7 @@ from compas.geometry import bounding_box
 from compas.scene import Scene
 from compas_rv.datastructures import ForceDiagram
 from compas_rv.datastructures import FormDiagram
-
-# from compas_rv.datastructures import ThrustDiagram
+from compas_rv.scene import RhinoForceObject
 from compas_rv.scene import RhinoFormObject
 from compas_session.namedsession import NamedSession
 
@@ -22,6 +21,16 @@ def RunCommand(is_interactive):
     formobj: RhinoFormObject = scene.find_by_itemtype(itemtype=FormDiagram)
     if not formobj:
         return
+
+    forceobj: RhinoForceObject = scene.find_by_itemtype(itemtype=ForceDiagram)
+    if forceobj:
+        scene.remove(forceobj)
+
+        rs.UnselectAllObjects()
+        rs.EnableRedraw(False)
+        scene.redraw()
+        rs.EnableRedraw(True)
+        rs.Redraw()
 
     # =============================================================================
     # Init the force diagram
@@ -47,7 +56,7 @@ def RunCommand(is_interactive):
     # Update scene
     # =============================================================================
 
-    scene.add(force, show_faces=False, show_edges=True)
+    scene.add(force, name=force.name)
 
     rs.UnselectAllObjects()
     rs.EnableRedraw(False)

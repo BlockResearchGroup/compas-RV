@@ -57,7 +57,7 @@ def RunCommand(is_interactive):
 
         pattern.show_free = True
         pattern.show_fixed = True
-        pattern.show_anchors = True
+        pattern.show_supports = True
 
         rs.EnableRedraw(False)
         pattern.clear_vertices()
@@ -72,7 +72,7 @@ def RunCommand(is_interactive):
 
         pattern.show_free = False
         pattern.show_fixed = False
-        pattern.show_anchors = True
+        pattern.show_supports = True
 
         rs.EnableRedraw(False)
         pattern.clear_vertices()
@@ -89,7 +89,7 @@ def RunCommand(is_interactive):
 
     rs.UnselectAllObjects()
 
-    pattern.show_anchors = True
+    pattern.show_supports = True
     pattern.show_fixed = True
     pattern.show_free = False
     pattern.show_edges = False

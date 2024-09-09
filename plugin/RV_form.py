@@ -10,7 +10,6 @@ from compas.geometry import sum_vectors
 from compas.scene import Scene
 from compas_rv.datastructures import FormDiagram
 from compas_rv.datastructures import Pattern
-from compas_rv.datastructures import ThrustDiagram
 from compas_rv.scene import RhinoPatternObject
 from compas_session.namedsession import NamedSession
 
@@ -32,6 +31,10 @@ def RunCommand(is_interactive):
 
     form = FormDiagram.from_pattern(pattern.mesh)
     form.name = "FormDiagram"
+
+    # make sure form is in XY
+
+    form.vertices_attribute(name="z", value=0)
 
     # flip the diagram if the normals are pointing down
 
@@ -66,7 +69,7 @@ def RunCommand(is_interactive):
 
     pattern.show = False
 
-    scene.add(form)
+    scene.add(form, name=form.name)
 
     rs.UnselectAllObjects()
     rs.EnableRedraw(False)

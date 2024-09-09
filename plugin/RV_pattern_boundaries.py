@@ -128,7 +128,7 @@ def RunCommand(is_interactive):
 
     rs.UnselectAllObjects()
 
-    pattern.show_anchors = True
+    pattern.show_supports = True
     pattern.show_fixed = True
     pattern.show_free = False
     pattern.show_edges = False

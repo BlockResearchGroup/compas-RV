@@ -13,7 +13,7 @@ class RhinoPatternObject(RUIMeshObject):
 
     def __init__(
         self,
-        show_anchors=True,
+        show_supports=True,
         show_fixed=True,
         show_free=False,
         disjoint=True,
@@ -21,7 +21,7 @@ class RhinoPatternObject(RUIMeshObject):
     ):
         super().__init__(disjoint=disjoint, **kwargs)
 
-        self.show_anchors = show_anchors
+        self.show_supports = show_supports
         self.show_fixed = show_fixed
         self.show_free = show_free
 
@@ -29,7 +29,7 @@ class RhinoPatternObject(RUIMeshObject):
     def settings(self):
         settings = super().settings
 
-        settings["show_anchors"] = self.show_anchors
+        settings["show_supports"] = self.show_supports
         settings["show_fixed"] = self.show_fixed
         settings["show_free"] = self.show_free
 
@@ -54,7 +54,7 @@ class RhinoPatternObject(RUIMeshObject):
             vertices += list(self.mesh.vertices_where(is_support=False, is_fixed=False))
         if self.show_fixed:
             vertices += list(self.mesh.vertices_where(is_fixed=True))
-        if self.show_anchors:
+        if self.show_supports:
             vertices += list(self.mesh.vertices_where(is_support=True))
 
         if vertices:
