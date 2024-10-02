@@ -28,20 +28,9 @@ RhinoVAULT uses the following COMPAS packages:
 * [compas_session](https://github.com/blockresearchgroup/compas_session)
 * [compas_tna](https://github.com/blockresearchgroup/compas_dr)
 
-After installing RhinoVAULT with Yak, you can check if all requirements are installed using the command `RV_reqs_check`.
-
-### Basic Users
-
-Missing requirements can be installed automatically using the command `RV_reqs_install`.
-This command uses Rhino's built in installation mechanism for Python packages (`# r: ...`).
-
-### Advanced Users
-
-If you use Rhino for scripting, and if you have other COMPAS packages installed, or plan to install them in the future, we recommend to install RhinoVAULT's requirements manually using `pip`.
-
-> [!WARNING]
-> `pip` based installations and `# r: ...` based installations should not be mixed,
-> since this will create conflicts between packages and package versions.
+After installing RhinoVAULT with Yak, these requirements will be installed automatically if they are not yet available.
+Note that the tool ,ight be unresponsive for a few seconds while this happens.
+The packages are installed in a separate virtual environment named `rhinovault`.
 
 ## User Interface
 
@@ -67,8 +56,6 @@ RhinoVAULT defines the following commands:
 * `RV_session_open`
 * `RV_session_save`
 * `RV_settings`
-* `RV_reqs_check`
-* `RV_reqs_install`
 
 These commands can be executed at the Rhino Command Prompt (simply start typing the command name),
 or using the RhinoVAULT toolbar.
