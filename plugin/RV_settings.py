@@ -1,4 +1,7 @@
 #! python3
+# venv: rhinovault
+# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+
 
 import compas_rv.settings
 from compas_rui.forms import SettingsForm
@@ -63,7 +66,7 @@ def RunCommand(is_interactive):
                     setattr(thrust, name, value.value)
 
     if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
-        session.record(eventname="Update Settings")
+        session.record(name="Update Settings")
 
 
 # =============================================================================

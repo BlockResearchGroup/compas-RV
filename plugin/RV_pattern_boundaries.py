@@ -1,4 +1,7 @@
 #! python3
+# venv: rhinovault
+# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -144,7 +147,7 @@ def RunCommand(is_interactive):
     # =============================================================================
 
     if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
-        session.record(eventname="Update Pattern Boundaries")
+        session.record(name="Update Pattern Boundaries")
 
 
 # =============================================================================

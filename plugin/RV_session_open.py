@@ -1,4 +1,7 @@
 #! python3
+# venv: rhinovault
+# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+
 
 import compas_rv.settings
 from compas_rui.forms import FileForm
@@ -16,13 +19,13 @@ def RunCommand(is_interactive):
     scene = session.scene()
     scene.clear()
 
-    session.open(filepath)
+    session.load(filepath)
 
     scene = session.scene()
     scene.draw()
 
     if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
-        session.record(eventname="Open Session")
+        session.record(name="Open Session")
 
 
 # =============================================================================

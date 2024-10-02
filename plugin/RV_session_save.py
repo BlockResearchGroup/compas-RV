@@ -1,4 +1,7 @@
 #! python3
+# venv: rhinovault
+# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+
 
 from compas_rui.forms import FileForm
 from compas_session.namedsession import NamedSession
@@ -12,7 +15,7 @@ def RunCommand(is_interactive):
     if not filepath:
         return
 
-    session.save(filepath)
+    session.dump(filepath)
 
 
 # =============================================================================
