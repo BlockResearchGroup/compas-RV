@@ -1,5 +1,5 @@
 compas >= 2.4
-compas_ags >= 1.2.1
+# compas_ags >= 1.2.1
 compas_fd >= 0.5
 # compas_pattern
 # compas_skeleton
