@@ -13,18 +13,3 @@ If you use RhinoVAULT for projects, publications or other applications, please c
     url = {https://github.com/BlockResearchGroup/compas-RV},
 }
 ```
-
-***
-
-## References
-
-Please refer to the following publications that lays the foundation for RhinoVAULT.
-
-### Thrust Network Analysis (TNA)
-
-* Block, P. C. V. (2009). _Thrust Network Analysis: Exploring three-dimensional equilibrium_ (Doctoral dissertation, Massachusetts Institute of Technology, Department of Architecture). Massachusetts Institute of Technology. [http://hdl.handle.net/1721.1/49539](http://hdl.handle.net/1721.1/49539)
-
-### Implementation of TNA
-
-* Rippmann, M., Lachauer, L., & Block, P. (2012). Interactive vault design. _International Journal of Space Structures, 27_(4), 219–230. [https://doi.org/10.1260/0266-3511.27.4.219](https://doi.org/10.1260/0266-3511.27.4.219)
-* Rippmann, M., & Block, P. (2013). Funicular shell design exploration. In _Proceedings of the 33rd Annual Conference of the ACADIA_ (Waterloo/Buffalo/Nottingham, Canada).

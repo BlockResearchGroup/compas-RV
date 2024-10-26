@@ -5,7 +5,11 @@
 * [About](README.md)
 * [Getting Started](introduction/getting-started.md)
 * [Tutorial](introduction/tutorial.md)
-* [Thrust Network Analysis](introduction/tna.md)
+
+## Theoretical Background
+
+* [Thrust Network Analysis](theoretical-background/tna.md)
+* [RhinoVAULT](theoretical-background/rhinovault.md)
 
 ## Manual
 
