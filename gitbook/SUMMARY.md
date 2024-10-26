@@ -34,6 +34,8 @@
 
 ## Additional information
 
+* [Release notes](additional-information/release-notes/README.md)
+  * [Version 0.2.5.9042 WIP](additional-information/release-notes/version-0.2.5.9042-wip.md)
 * [Legal Terms](additional/legal.md)
 * [Citing RhinoVAULT](additional/citing.md)
 * [FAQ](additional/faq.md)
