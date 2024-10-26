@@ -24,61 +24,17 @@ RhinoVAULT is a plugin that is specifically developed for Rhino 8 and above, bui
 
 ## COMPAS
 
-The core functionality of RhinoVAULT is based on the following COMPAS packages and can be used in any environment that supports Python. The core pipeline is set up flexibly without any dependencies to a specific CAD software; CAD software simply functions as the visualisation canvas and UI.
+RhinoVAULT uses the following COMPAS packages. After installing RhinoVAULT with Yak, these requirements will be installed automatically if they are not yet available. Note that the tool ,ight be unresponsive for a few seconds while this happens. The packages are installed in a separate virtual environment named `rhinovault`.
 
 * [compas](https://github.com/compas-dev/compas)
-  * Base data structures
-  * File support
-  * Numerical solvers
-  * Geometry processing
-* [compas\_tna](https://github.com/blockresearchgroup/compas\_tna)
-  * Form, Force and Thrust Diagrams
-  * Horizontal equilibrium
-  * Vertical equilibrium
-
-For the design of force patterns in Form Diagrams, we use
-
-* [compas\_singular](https://github.com/BlockResearchGroup/compas\_singular)
-  * Pattern design based on topological features and placement of singularities in quad meshes.
-* [compas\_skeleton](https://github.com/blockresearchgroup/compas\_skeleton)
-  * Pattern design based on line skeletons.
-* [compas\_triangle](https://github.com/blockresearchgroup/compas\_triangle)
-  * Pattern design based on Constrained/Conforming Delaunay Triangulations.
-
-CAD integration packages make this core functionality available in specific software like Blender or Rhino. The current release of RhinoVAULT provides only a plugin for Rhino (Blender and Grasshopper integration is under development and will be available soon):
-
-* [compas\_rhino](https://github.com/compas-dev/compas)
-  * Geometry and data structure conversions.
-  * Drawing functionality.
-  * Selections and interaction.
-* [compas\_cloud](https://github.com/BlockResearchGroup/compas\_cloud)
-  * Remote Procedure Calls
+* [compas\_ags](https://github.com/blockresearchgroup/compas\_fd)
+* [compas\_fd](https://github.com/blockresearchgroup/compas\_fd)
+* [compas\_rui](https://github.com/blockresearchgroup/compas\_rui)
+* [compas\_session](https://github.com/blockresearchgroup/compas\_session)
+* [compas\_tna](https://github.com/blockresearchgroup/compas\_dr)
 
 ***
 
 ## Open Source
 
 The development of RhinoVAULT is hosted on Github and is entirely open source, and we very much welcome your feedback. Please use the [issue tracker](https://github.com/BlockResearchGroup/compas-RV/issues) of the RhinoVAULT GitHub repository or the [COMPAS forum](https://forum.compas-framework.org/) to submit information about bugs, technical problems, or feature requests.
-
-***
-
-## Disclaimer
-
-The development of RhinoVAULT is currently led by the Block Research Group at ETH Zurich, with many other contributors from the research community. It is shared freely under the MIT License in the hope that you will enjoy it and use it for original and creative work. It can be freely shared and used for academic and commercial purposes, but with proper attribution.
-
-If you use RhinoVAULT for projects, publications or other applications, please cite:
-
-```
-@misc{compas-RV,
-    title = {{RhinoVAULT}: Funicular Form Finding for Rhinoceros},
-    author = {Tom Van Mele, Juney Lee, Li Chen},
-    year = {2024},
-    doi = {},
-    url = {https://github.com/BlockResearchGroup/compas-RV},
-}
-```
-
-Please refer to the original paper that laid the foundation for RhinoVAULT:
-
-* Rippmann, M., Lachauer, L. and Block, P. Interactive Vault Design, International Journal of Space Structures 27 (4): 219-230, 2012 &#x20;
-* Rippmann, M. and Block, P. Funicular Shell Design Exploration, Proceedings of the 33rd Annual Conference of the ACADIA Waterloo/Buffalo/Nottingham, Canada 2013    &#x20;
