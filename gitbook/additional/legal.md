@@ -10,7 +10,7 @@ The Software is provided “as is”. ETH Zurich does not make any warranty of a
 * warranty of accuracy of results, of the quality and performance of the Software
 * warranty of noninfringement of the intellectual property rights of third parties.
 
-The tool was developed to support the user in the form finding process of vaulted compression structures in the early design phase. It is obvious that prior to any realization of structures based on designs obtained with RV2, a detailed structural analysis is necessary.
+The tool was developed to support the user in the form finding process of vaulted compression structures in the early design phase. It is obvious that prior to any realization of structures based on designs obtained with RhinoVAULT, a detailed structural analysis is necessary.
 
 ### 8. Liability
 
@@ -32,4 +32,4 @@ This Agreement as well as any and all matters arising out of it shall exclusivel
 
 If any dispute, controversy or difference arises between the Parties hereto in connection with or out of this Agreement, the parties hereto shall first attempt to settle it amicably. Should settlement not be achieved, the Courts of Zurich-City shall have exclusive jurisdiction.
 
-**By using RV2, you indicate your acceptance of these legal terms.**
+**By using RhinoVAULT, you indicate your acceptance of these legal terms.**
