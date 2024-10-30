@@ -30,11 +30,9 @@ class RhinoFormObject(RUIMeshObject):
         self.show_faces = False
         self.show_edges = True
         self.show_vertices = True
-
         self.show_supports = show_supports
         self.show_fixed = show_fixed
         self.show_free = show_free
-
         self.show_angles = show_angles
 
     @property
@@ -44,26 +42,11 @@ class RhinoFormObject(RUIMeshObject):
         settings["show_supports"] = self.show_supports
         settings["show_fixed"] = self.show_fixed
         settings["show_free"] = self.show_free
-
         settings["show_angles"] = self.show_angles
 
         return settings
 
     def draw(self):
-        faces = []
-        if self.show_faces:
-            faces += list(self.mesh.faces_where(_is_loaded=True))
-        if faces:
-            self.show_faces = faces
-
-        for vertex in self.mesh.vertices():
-            if self.mesh.vertex_attribute(vertex, "is_support"):
-                self.vertexcolor[vertex] = self.anchorcolor
-            elif self.mesh.vertex_attribute(vertex, "is_fixed"):
-                self.vertexcolor[vertex] = self.fixedcolor
-            else:
-                self.vertexcolor[vertex] = self.freecolor
-
         return super().draw()
 
     def draw_vertices(self):
@@ -112,6 +95,3 @@ class RhinoFormObject(RUIMeshObject):
             pass
 
         return super().draw_faces()
-
-    def draw_angles(self):
-        pass
