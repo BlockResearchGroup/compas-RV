@@ -9,15 +9,17 @@ from compas.scene.descriptors.color import ColorAttribute
 from compas.scene.descriptors.colordict import ColorDictAttribute
 from compas_rui.scene import RUIMeshObject
 from compas_rv.datastructures import ThrustDiagram
+from compas_rv.session import RVSession
 
 
 class RhinoThrustObject(RUIMeshObject):
+    session = RVSession()
+
     mesh: ThrustDiagram
 
     vertexcolor = ColorDictAttribute(default=Color.purple())
     edgecolor = ColorDictAttribute(default=Color.purple().darkened(50))
     facecolor = ColorDictAttribute(default=Color.purple().lightened(25))
-
     freecolor = ColorAttribute(default=Color.purple())
     anchorcolor = ColorAttribute(default=Color.red())
     fixedcolor = ColorAttribute(default=Color.cyan())
@@ -34,73 +36,31 @@ class RhinoThrustObject(RUIMeshObject):
         show_supports=True,
         show_fixed=True,
         show_free=False,
-        show_reactions=True,
-        show_residuals=False,
-        show_loads=False,
-        show_selfweight=False,
-        show_forces=False,
         loadgroup=None,
         selfweightgroup=None,
         forcegroup=None,
         reactiongroup=None,
         residualgroup=None,
-        scale_loads=1,
-        scale_forces=1e-2,
-        scale_residuals=0.1,
-        scale_selfweight=1,
-        tol_vectors=1e-3,
-        tol_pipes=1e-3,
         **kwargs,
     ):
         super().__init__(disjoint=disjoint, **kwargs)
 
         self.show_faces = True
         self.show_edges = False
-
         self.show_supports = show_supports
         self.show_fixed = show_fixed
         self.show_free = show_free
-
-        self.show_reactions = show_reactions
-        self.show_residuals = show_residuals
-        self.show_loads = show_loads
-        self.show_selfweight = show_selfweight
-        self.show_forces = show_forces
-
         self.loadgroup = loadgroup
         self.selfweightgroup = selfweightgroup
         self.forcegroup = forcegroup
         self.reactiongroup = reactiongroup
         self.residualgroup = residualgroup
 
-        self.scale_loads = scale_loads
-        self.scale_forces = scale_forces
-        self.scale_residuals = scale_residuals
-        self.scale_selfweight = scale_selfweight
-
-        self.tol_vectors = tol_vectors
-        self.tol_pipes = tol_pipes
-
     @property
     def settings(self):
         settings = super().settings
-
         settings["show_supports"] = self.show_supports
         settings["show_free"] = self.show_free
-        settings["show_forces"] = self.show_forces
-        settings["show_residuals"] = self.show_residuals
-        settings["show_reactions"] = self.show_reactions
-        settings["show_loads"] = self.show_loads
-        settings["show_selfweight"] = self.show_selfweight
-
-        settings["scale_loads"] = self.scale_loads
-        settings["scale_forces"] = self.scale_forces
-        settings["scale_residuals"] = self.scale_residuals
-        settings["scale_selfweight"] = self.scale_selfweight
-
-        settings["tol_vectors"] = self.tol_vectors
-        settings["tol_pipes"] = self.tol_pipes
-
         settings["freecolor"] = self.freecolor
         settings["anchorcolor"] = self.anchorcolor
         settings["residualcolor"] = self.residualcolor
@@ -109,7 +69,6 @@ class RhinoThrustObject(RUIMeshObject):
         settings["selfweightcolor"] = self.selfweightcolor
         settings["compressioncolor"] = self.compressioncolor
         settings["tensioncolor"] = self.tensioncolor
-
         return settings
 
     def draw(self):
@@ -129,15 +88,13 @@ class RhinoThrustObject(RUIMeshObject):
 
         super().draw()
 
-        if self.show_reactions:
+        if self.session.settings.drawing.thrust.show_reactions:
             self.draw_reactions()
-        if self.show_residuals:
-            self.draw_residuals()
-        if self.show_loads:
+        if self.session.settings.drawing.thrust.show_loads:
             self.draw_loads()
-        if self.show_selfweight:
+        if self.session.settings.drawing.thrust.show_selfweight:
             self.draw_selfweight()
-        if self.show_forces:
+        if self.session.settings.drawing.thrust.show_forces:
             self.draw_forces()
 
         return self.guids
@@ -190,14 +147,18 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_loads(self):
         guids = []
 
+        scale = self.session.settings.drawing.thrust.scale_loads
+        color = self.loadcolor
+        tol = self.session.settings.drawing.thrust.tol_vectors
+
         for vertex in self.mesh.vertices_where(is_support=False):
             load = self.mesh.vertex_attributes(vertex, ["px", "py", "pz"])
 
             if load is not None:
-                vector = Vector(*load) * self.scale_loads
-                if vector.length > self.tol_vectors:
+                vector = Vector(*load) * scale
+                if vector.length > tol:
                     name = "{}.vertex.{}.load".format(self.mesh.name, vertex)
-                    attr = self.compile_attributes(name=name, color=self.loadcolor, arrow="end")
+                    attr = self.compile_attributes(name=name, color=color, arrow="end")
                     point = self.mesh.vertex_point(vertex)
                     line = Line.from_point_and_vector(point, vector)
                     guid = sc.doc.Objects.AddLine(compas_rhino.conversions.line_to_rhino(line), attr)
@@ -215,6 +176,10 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_selfweight(self):
         guids = []
 
+        scale = self.session.settings.drawing.thrust.scale_selfweight
+        color = self.selfweightcolor
+        tol = self.session.settings.drawing.thrust.tol_vectors
+
         for vertex in self.mesh.vertices_where(is_support=False):
             thickness = self.mesh.vertex_attribute(vertex, "t")
 
@@ -222,11 +187,11 @@ class RhinoThrustObject(RUIMeshObject):
                 area = self.mesh.vertex_area(vertex)
                 weight = area * thickness
                 point = self.mesh.vertex_point(vertex)
-                vector = Vector(0, 0, -weight * self.scale_selfweight)
-                if vector.length > self.tol_vectors:
+                vector = Vector(0, 0, -weight * scale)
+                if vector.length > tol:
                     line = Line.from_point_and_vector(point, vector)
                     name = "{}.vertex.{}.selfweight".format(self.mesh.name, vertex)
-                    attr = self.compile_attributes(name=name, color=self.selfweightcolor, arrow="end")
+                    attr = self.compile_attributes(name=name, color=color, arrow="end")
                     guid = sc.doc.Objects.AddLine(compas_rhino.conversions.line_to_rhino(line), attr)
                     guids.append(guid)
 
@@ -242,14 +207,17 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_forces(self):
         guids = []
 
+        scale = self.session.settings.drawing.thrust.scale_forces
+        tol = self.session.settings.drawing.thrust.tol_pipes
+
         for edge in self.mesh.edges():
             force = self.mesh.edge_attribute(edge, "_f")
 
             if force != 0:
                 line = self.mesh.edge_line(edge)
-                radius = abs(force) * self.scale_forces
+                radius = abs(force) * scale
                 color = self.compressioncolor
-                if radius > self.tol_pipes:
+                if radius > tol:
                     pipe = Cylinder.from_line_and_radius(line, radius)
                     name = "{}.edge.{}.force".format(self.mesh.name, edge)
                     attr = self.compile_attributes(name=name, color=color)
@@ -268,11 +236,14 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_reactions(self):
         guids = []
 
+        scale = self.session.settings.drawing.thrust.scale_reactions
+        tol = self.session.settings.drawing.thrust.tol_vectors
+
         for vertex in self.mesh.vertices_where(is_support=True):
             residual = Vector(*self.mesh.vertex_attributes(vertex, ["_rx", "_ry", "_rz"]))
 
-            vector = residual * self.scale_residuals
-            if vector.length > self.tol_vectors:
+            vector = residual * scale
+            if vector.length > tol:
                 name = "{}.vertex.{}.reaction".format(self.mesh.name, vertex)
                 attr = self.compile_attributes(name=name, color=self.reactioncolor, arrow="end")
                 point = self.mesh.vertex_point(vertex)
@@ -292,11 +263,14 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_residuals(self):
         guids = []
 
+        scale = self.session.settings.drawing.thrust.scale_residuals
+        tol = self.session.settings.drawing.thrust.tol_vectors
+
         for vertex in self.mesh.vertices_where(is_support=False):
             residual = Vector(*self.mesh.vertex_attributes(vertex, ["_rx", "_ry", "_rz"]))
 
-            vector = residual * -self.scale_residuals
-            if vector.length > self.tol_vectors:
+            vector = residual * -scale
+            if vector.length > tol:
                 name = "{}.vertex.{}.residual".format(self.mesh.name, vertex)
                 attr = self.compile_attributes(name=name, color=self.residualcolor, arrow="end")
                 point = self.mesh.vertex_point(vertex)
