@@ -7,7 +7,7 @@ from compas.tolerance import TOL
 
 class SubdMesh(Mesh):
     def __init__(self, *args, **kwargs):
-        super(SubdMesh, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.default_edge_attributes.update(
             {

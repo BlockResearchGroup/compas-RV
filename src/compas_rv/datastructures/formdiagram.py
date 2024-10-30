@@ -1,7 +1,7 @@
 from compas_tna.diagrams import FormDiagram
 
 from .diagram import Diagram
-from .pattern import Pattern  # noqa: F401
+from .pattern import Pattern
 
 
 class FormDiagram(Diagram, FormDiagram):
@@ -10,8 +10,7 @@ class FormDiagram(Diagram, FormDiagram):
     """
 
     @classmethod
-    def from_pattern(cls, pattern):
-        # type: (Pattern) -> FormDiagram
+    def from_pattern(cls, pattern: Pattern) -> "FormDiagram":
         """Construct a form diagram from a pattern.
 
         Parameters

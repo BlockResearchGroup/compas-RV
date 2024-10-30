@@ -13,7 +13,8 @@ class Pattern(Mesh):
     """
 
     def __init__(self, *args, **kwargs):
-        super(Pattern, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
+
         self.attributes.update({"openings": {}})
         self.default_vertex_attributes.update(
             {
