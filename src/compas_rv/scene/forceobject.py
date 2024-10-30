@@ -11,7 +11,6 @@ class RhinoForceObject(RUIMeshObject):
     vertexcolor = ColorDictAttribute(default=Color.blue())
     edgecolor = ColorDictAttribute(default=Color.blue().darkened(50))
     facecolor = ColorDictAttribute(default=Color.blue().lightened(25))
-
     freecolor = ColorAttribute(default=Color.white())
     anchorcolor = ColorAttribute(default=Color.red())
     fixedcolor = ColorAttribute(default=Color.blue())
@@ -43,7 +42,6 @@ class RhinoForceObject(RUIMeshObject):
         settings["show_supports"] = self.show_supports
         settings["show_fixed"] = self.show_fixed
         settings["show_free"] = self.show_free
-
         settings["show_angles"] = self.show_angles
 
         return settings
@@ -73,6 +71,3 @@ class RhinoForceObject(RUIMeshObject):
                 self.vertexcolor[vertex] = self.freecolor
 
         return super().draw_vertices()
-
-    def draw_angles(self):
-        pass
