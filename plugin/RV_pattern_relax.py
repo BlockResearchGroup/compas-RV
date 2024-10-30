@@ -1,23 +1,19 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-import compas_rv.settings
-from compas.scene import Scene
 from compas_rv.datastructures import Pattern
 from compas_rv.scene import RhinoPatternObject
-from compas_session.namedsession import NamedSession
+from compas_rv.session import RVSession
 
 
-def RunCommand(is_interactive):
+def RunCommand():
+    session = RVSession()
 
-    session = NamedSession(name="RhinoVAULT")
-    scene: Scene = session.scene()
-
-    pattern: RhinoPatternObject = scene.find_by_itemtype(itemtype=Pattern)
+    pattern: RhinoPatternObject = session.scene.find_by_itemtype(Pattern)
     if not pattern:
         return
 
@@ -35,22 +31,18 @@ def RunCommand(is_interactive):
 
     rs.UnselectAllObjects()
 
-    pattern.show_supports = True
-    pattern.show_fixed = True
-    pattern.show_free = False
+    pattern.show_vertices = list(set(list(pattern.mesh.vertices_where(is_support=True)) + list(pattern.mesh.vertices_where(is_fixed=True))))
     pattern.show_edges = False
+    pattern.show_faces = True
 
-    rs.EnableRedraw(False)
     pattern.clear()
     pattern.draw()
-    rs.EnableRedraw(True)
-    rs.Redraw()
 
     # =============================================================================
     # Save session
     # =============================================================================
 
-    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+    if session.settings.autosave:
         session.record(name="Relax the Pattern")
 
 
@@ -59,4 +51,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()

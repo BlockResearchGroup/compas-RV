@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -8,18 +8,14 @@ import rhinoscriptsyntax as rs  # type: ignore
 import compas_rhino
 import compas_rhino.conversions
 import compas_rhino.objects
-import compas_rv.settings
 from compas_rv.datastructures import Pattern
-from compas_session.namedsession import NamedSession
+from compas_rv.session import RVSession
 
 
-def RunCommand(is_interactive):
+def RunCommand():
+    session = RVSession()
 
-    session = NamedSession(name="RhinoVAULT")
-
-    scene = session.scene()
-
-    patternobj = scene.find_by_itemtype(itemtype=Pattern)
+    patternobj = session.scene.find_by_itemtype(Pattern)
 
     if patternobj:
         result = rs.MessageBox(
@@ -28,12 +24,12 @@ def RunCommand(is_interactive):
             title="RhinoVAULT",
         )
         if result == 6:
-            scene.clear()
+            session.scene.clear()
         else:
             return
 
     else:
-        scene.clear()
+        session.scene.clear()
 
     # =============================================================================
     # Make a Force "Pattern"
@@ -42,7 +38,6 @@ def RunCommand(is_interactive):
     option = rs.GetString(message="CableMesh From", strings=["RhinoLines", "RhinoMesh", "RhinoSurface", "MeshGrid", "Triangulation"])
 
     if option == "RhinoLines":
-
         guids = compas_rhino.objects.select_lines("Select lines")
         if not guids:
             return
@@ -56,7 +51,6 @@ def RunCommand(is_interactive):
         rs.HideObjects(guids)
 
     elif option == "RhinoMesh":
-
         guid = compas_rhino.objects.select_mesh("Select a mesh")
         if not guid:
             return
@@ -67,7 +61,6 @@ def RunCommand(is_interactive):
         rs.HideObject(guid)
 
     elif option == "RhinoSurface":
-
         guid = compas_rhino.objects.select_surface("Select a surface")
         if not guid:
             return
@@ -93,7 +86,6 @@ def RunCommand(is_interactive):
         rs.HideObject(guid)
 
     elif option == "MeshGrid":
-
         DX = rs.GetInteger(message="X Size", number=10)
         if not DX:
             return
@@ -113,7 +105,6 @@ def RunCommand(is_interactive):
         pattern = Pattern.from_meshgrid(dx=DX, nx=NX, dy=DY, ny=NY)
 
     elif option == "Triangulation":
-
         raise NotImplementedError
 
     else:
@@ -123,14 +114,14 @@ def RunCommand(is_interactive):
     # Update scene
     # =============================================================================
 
-    scene.add(pattern, name=pattern.name)
-    scene.draw()
+    session.scene.add(pattern, name=pattern.name)
+    session.scene.draw()
 
     # =============================================================================
     # Save session
     # =============================================================================
 
-    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+    if session.settings.autosave:
         session.record(name="Make Pattern")
 
 
@@ -139,4 +130,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()

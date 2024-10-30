@@ -1,30 +1,25 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
-import compas_rv.settings
 from compas_rui.forms import FileForm
-from compas_session.namedsession import NamedSession
+from compas_rv.session import RVSession
 
 
-def RunCommand(is_interactive):
-
-    session = NamedSession(name="RhinoVAULT")
+def RunCommand():
+    session = RVSession()
 
     filepath = FileForm.open(session.basedir)
     if not filepath:
         return
 
-    scene = session.scene()
-    scene.clear()
-
+    session.scene.clear()
     session.load(filepath)
 
-    scene = session.scene()
-    scene.draw()
+    session.scene.draw()
 
-    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+    if session.settings.autosave:
         session.record(name="Open Session")
 
 
@@ -33,4 +28,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()

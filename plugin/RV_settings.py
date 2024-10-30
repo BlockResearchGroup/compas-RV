@@ -1,72 +1,62 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+
+import rhinoscriptsyntax as rs  # type: ignore
+
+from compas_rui.forms import NamedValuesForm
+from compas_rv.session import RVSession
 
 
-import compas_rv.settings
-from compas_rui.forms import SettingsForm
-from compas_rv.datastructures import ForceDiagram
-from compas_rv.datastructures import FormDiagram
-from compas_rv.datastructures import ThrustDiagram
-from compas_rv.scene import RhinoForceObject
-from compas_rv.scene import RhinoFormObject
-from compas_rv.scene import RhinoThrustObject
-from compas_session.namedsession import NamedSession
+def update_settings(model, title):
+    names = [name for name, info in model.model_fields.items()]
+    values = [getattr(model, name) for name in names]
+    form = NamedValuesForm(names, values, title=title)
+    if form.show():
+        for name, value in form.attributes.items():
+            setattr(model, name, value)
 
 
-def RunCommand(is_interactive):
+def RunCommand():
+    session = RVSession()
 
-    session = NamedSession(name="RhinoVAULT")
-    scene = session.scene()
+    options1 = ["TNA", "Drawing"]
+    option1 = rs.GetString(message="Settings Section", strings=options1)
+    if not option1:
+        return
 
-    form: RhinoFormObject = scene.find_by_itemtype(itemtype=FormDiagram)
-    force: RhinoForceObject = scene.find_by_itemtype(itemtype=ForceDiagram)
-    thrust: RhinoThrustObject = scene.find_by_itemtype(itemtype=ThrustDiagram)
+    if option1 == "TNA":
+        options2 = ["Horizontal", "Vertical"]
+        option2 = rs.GetString(message="Settings Section", strings=options2)
+        if not option2:
+            return
 
-    if form:
-        if "FormDiagram" in compas_rv.settings.SETTINGS:
-            for key, value in compas_rv.settings.SETTINGS["FormDiagram"].items():
-                name = "_".join(key.split("."))
-                if hasattr(form, name):
-                    value.set(getattr(form, name))
+        title = f"{option1} {option2}"
 
-    if force:
-        if "ForceDiagram" in compas_rv.settings.SETTINGS:
-            for key, value in compas_rv.settings.SETTINGS["ForceDiagram"].items():
-                name = "_".join(key.split("."))
-                if hasattr(force, name):
-                    value.set(getattr(force, name))
+        if option2 == "Horizontal":
+            update_settings(session.settings.tna.horizontal, title=title)
 
-    if thrust:
-        if "ThrustDiagram" in compas_rv.settings.SETTINGS:
-            for key, value in compas_rv.settings.SETTINGS["ThrustDiagram"].items():
-                name = "_".join(key.split("."))
-                if hasattr(thrust, name):
-                    value.set(getattr(thrust, name))
+        elif option2 == "Vertical":
+            update_settings(session.settings.tna.vertical, title=title)
 
-    settingsform = SettingsForm(settings=compas_rv.settings.SETTINGS, use_tab=True)
-    if settingsform.show():
+    elif option1 == "Drawing":
+        options2 = ["FormDiagram", "ForceDiagram", "ThrustDiagram"]
+        option2 = rs.GetString(message="Settings Section", strings=options2)
+        if not option2:
+            return
 
-        if form:
-            if "FormDiagram" in compas_rv.settings.SETTINGS:
-                for key, value in compas_rv.settings.SETTINGS["FormDiagram"].items():
-                    name = "_".join(key.split("."))
-                    setattr(form, name, value.value)
+        title = f"{option1} {option2}"
 
-        if force:
-            if "ForceDiagram" in compas_rv.settings.SETTINGS:
-                for key, value in compas_rv.settings.SETTINGS["ForceDiagram"].items():
-                    name = "_".join(key.split("."))
-                    setattr(force, name, value.value)
+        if option2 == "FormDiagram":
+            pass
 
-        if thrust:
-            if "ThrustDiagram" in compas_rv.settings.SETTINGS:
-                for key, value in compas_rv.settings.SETTINGS["ThrustDiagram"].items():
-                    name = "_".join(key.split("."))
-                    setattr(thrust, name, value.value)
+        elif option2 == "ForceDiagram":
+            pass
 
-    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
-        session.record(name="Update Settings")
+        elif option2 == "ThrustDiagram":
+            update_settings(session.settings.drawing.thrust, title=title)
+
+    session.scene.redraw()
 
 
 # =============================================================================
@@ -74,4 +64,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()

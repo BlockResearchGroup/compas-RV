@@ -1,18 +1,15 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-import compas_rv.settings
-from compas_session.namedsession import NamedSession
+from compas_rv.session import RVSession
 
 
-def RunCommand(is_interactive):
-
-    session = NamedSession(name="RhinoVAULT")
-    scene = session.scene()
+def RunCommand():
+    session = RVSession()
 
     result = rs.MessageBox(
         "Note that this will remove all RhinoVAULT data and objects. Do you wish to proceed?",
@@ -21,9 +18,9 @@ def RunCommand(is_interactive):
     )
 
     if result == 6:
-        scene.clear()
+        session.scene.clear()
 
-        if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+        if session.settings.autosave:
             session.record(name="Clear")
 
 
@@ -32,4 +29,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()

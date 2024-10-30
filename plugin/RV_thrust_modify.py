@@ -1,22 +1,19 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-import compas_rv.settings
 from compas_rv.datastructures import ThrustDiagram
 from compas_rv.scene import RhinoThrustObject
-from compas_session.namedsession import NamedSession
+from compas_rv.session import RVSession
 
 
-def RunCommand(is_interactive):
+def RunCommand():
+    session = RVSession()
 
-    session = NamedSession(name="RhinoVAULT")
-    scene = session.scene()
-
-    thrust: RhinoThrustObject = scene.find_by_itemtype(itemtype=ThrustDiagram)
+    thrust: RhinoThrustObject = session.scene.find_by_itemtype(ThrustDiagram)
     if not thrust:
         return
 
@@ -32,7 +29,6 @@ def RunCommand(is_interactive):
         return
 
     if option == "VertexAttributes":
-
         thrust.show_vertices = True
         thrust.show_free = True
         thrust.show_fixed = True
@@ -56,7 +52,6 @@ def RunCommand(is_interactive):
         thrust.update_vertex_attributes(vertices)
 
     elif option == "EdgeAttributes":
-
         thrust.show_edges = True
 
         rs.EnableRedraw(False)
@@ -93,7 +88,7 @@ def RunCommand(is_interactive):
     # Save session
     # =============================================================================
 
-    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+    if session.settings.autosave:
         session.record(name="Modify Thrust Diagram")
 
 
@@ -102,4 +97,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()

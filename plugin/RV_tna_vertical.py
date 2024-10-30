@@ -1,57 +1,52 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-import compas_rv.settings
-from compas.scene import Scene
 from compas_rv.datastructures import FormDiagram
 from compas_rv.datastructures import ThrustDiagram
 from compas_rv.scene import RhinoFormObject
-from compas_session.namedsession import NamedSession
+from compas_rv.scene import RhinoThrustObject
+from compas_rv.session import RVSession
 from compas_tna.equilibrium import vertical_from_zmax
 
 
-def RunCommand(is_interactive):
+def RunCommand():
+    session = RVSession()
 
-    session = NamedSession(name="RhinoVAULT")
-    scene: Scene = session.scene()
-
-    formobj: RhinoFormObject = scene.find_by_itemtype(itemtype=FormDiagram)
+    formobj: RhinoFormObject = session.scene.find_by_itemtype(FormDiagram)
     if not formobj:
         return
-
-    form: FormDiagram = formobj.mesh
 
     # =============================================================================
     # Compute horizontal
     # =============================================================================
 
-    kmax = compas_rv.settings.SETTINGS["TNA"]["vertical.kmax"]
-    zmax = compas_rv.settings.SETTINGS["TNA"]["vertical.zmax"]
+    kmax = session.settings.tna.vertical.kmax
+    zmax = session.settings.tna.vertical.zmax
     zmax = rs.GetReal("Set maximum height (zmax)", number=zmax, minimum=0)
 
     # warn the user about nonsensical values
 
-    _, scale = vertical_from_zmax(form, zmax, kmax=kmax)
+    _, scale = vertical_from_zmax(formobj.mesh, zmax, kmax=kmax)
 
     # store scale in force diagram
 
-    thrust: ThrustDiagram = form.copy(cls=ThrustDiagram)
+    thrust: ThrustDiagram = formobj.mesh.copy(cls=ThrustDiagram)
     thrust.name = "ThrustDiagram"
 
-    form.vertices_attribute(name="z", value=0)
+    formobj.mesh.vertices_attribute(name="z", value=0)
 
     # =============================================================================
     # Update scene
     # =============================================================================
 
-    thrustobj = scene.find_by_itemtype(itemtype=ThrustDiagram)
+    thrustobj = session.scene.find_by_itemtype(ThrustDiagram)
 
     if not thrustobj:
-        thrustobj = scene.add(thrust, name=thrust.name)
+        thrustobj: RhinoThrustObject = session.scene.add(thrust, name=thrust.name)
     else:
         thrustobj.mesh = thrust
 
@@ -66,7 +61,7 @@ def RunCommand(is_interactive):
     # Save session
     # =============================================================================
 
-    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+    if session.settings.autosave:
         session.record(name="TNA Vertical")
 
 
@@ -75,4 +70,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()

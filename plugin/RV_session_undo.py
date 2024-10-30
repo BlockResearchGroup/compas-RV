@@ -1,27 +1,21 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
-import rhinoscriptsyntax as rs  # type: ignore
-
-from compas_session.namedsession import NamedSession
+from compas_rv.session import RVSession
 
 
-def RunCommand(is_interactive):
+def RunCommand():
+    session = RVSession()
 
-    session = NamedSession(name="RhinoVAULT")
+    oldscene = session.scene
 
-    scene = session.scene()
+    if not session.undo():
+        return
 
-    if session.undo():
-        scene.clear()
-        scene = session.scene()
-
-        rs.EnableRedraw(False)
-        scene.draw()
-        rs.EnableRedraw(True)
-        rs.Redraw()
+    oldscene.clear()
+    session.scene.draw()
 
 
 # =============================================================================
@@ -29,4 +23,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()

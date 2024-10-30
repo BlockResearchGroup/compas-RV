@@ -1,15 +1,14 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
 from compas_rui.forms import FileForm
-from compas_session.namedsession import NamedSession
+from compas_rv.session import RVSession
 
 
-def RunCommand(is_interactive):
-
-    session = NamedSession(name="RhinoVAULT")
+def RunCommand():
+    session = RVSession()
 
     filepath = FileForm.save(session.basedir, "RhinoVAULT.json")
     if not filepath:
@@ -23,4 +22,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()

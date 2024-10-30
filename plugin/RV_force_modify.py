@@ -1,22 +1,19 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-import compas_rv.settings
 from compas_rv.datastructures import ForceDiagram
 from compas_rv.scene import RhinoForceObject
-from compas_session.namedsession import NamedSession
+from compas_rv.session import RVSession
 
 
-def RunCommand(is_interactive):
+def RunCommand():
+    session = RVSession()
 
-    session = NamedSession(name="RhinoVAULT")
-    scene = session.scene()
-
-    force: RhinoForceObject = scene.find_by_itemtype(itemtype=ForceDiagram)
+    force: RhinoForceObject = session.scene.find_by_itemtype(ForceDiagram)
     if not force:
         return
 
@@ -32,7 +29,6 @@ def RunCommand(is_interactive):
         return
 
     if option == "VertexAttributes":
-
         force.show_free = True
         force.show_fixed = True
         force.show_supports = True
@@ -47,7 +43,6 @@ def RunCommand(is_interactive):
         force.update_vertex_attributes(vertices)
 
     elif option == "EdgeAttributes":
-
         force.show_edges = True
 
         rs.EnableRedraw(False)
@@ -83,7 +78,7 @@ def RunCommand(is_interactive):
     # Save session
     # =============================================================================
 
-    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+    if session.settings.autosave:
         session.record(name="Modify Force Diagram")
 
 
@@ -92,4 +87,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()

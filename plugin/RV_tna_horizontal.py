@@ -1,57 +1,50 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-import compas_rv.settings
 from compas.geometry import Box
 from compas.geometry import bounding_box
-from compas.scene import Scene
 from compas_rv.datastructures import ForceDiagram
 from compas_rv.datastructures import FormDiagram
 from compas_rv.scene import RhinoForceObject
 from compas_rv.scene import RhinoFormObject
-from compas_session.namedsession import NamedSession
+from compas_rv.session import RVSession
 from compas_tna.equilibrium import horizontal_nodal
 
 
-def RunCommand(is_interactive):
+def RunCommand():
+    session = RVSession()
 
-    session = NamedSession(name="RhinoVAULT")
-    scene: Scene = session.scene()
-
-    formobj: RhinoFormObject = scene.find_by_itemtype(itemtype=FormDiagram)
+    formobj: RhinoFormObject = session.scene.find_by_itemtype(FormDiagram)
     if not formobj:
         return
 
-    forceobj: RhinoForceObject = scene.find_by_itemtype(itemtype=ForceDiagram)
+    forceobj: RhinoForceObject = session.scene.find_by_itemtype(ForceDiagram)
     if not forceobj:
         return
-
-    form: FormDiagram = formobj.mesh
-    force: ForceDiagram = forceobj.mesh
 
     # =============================================================================
     # Compute horizontal
     # =============================================================================
 
-    kmax = compas_rv.settings.SETTINGS["TNA"]["horizontal.kmax"]
-    alpha = compas_rv.settings.SETTINGS["TNA"]["horizontal.alpha"]
+    kmax = session.settings.tna.horizontal.kmax
+    alpha = session.settings.tna.horizontal.alpha
 
-    horizontal_nodal(form, force, kmax=kmax, alpha=alpha)
+    horizontal_nodal(formobj.mesh, forceobj.mesh, kmax=kmax, alpha=alpha)
 
-    bbox_form = Box.from_bounding_box(bounding_box(form.vertices_attributes("xyz")))
-    bbox_force = Box.from_bounding_box(bounding_box(force.vertices_attributes("xyz")))
+    bbox_form = Box.from_bounding_box(bounding_box(formobj.mesh.vertices_attributes("xyz")))
+    bbox_force = Box.from_bounding_box(bounding_box(forceobj.mesh.vertices_attributes("xyz")))
 
     y_form = bbox_form.ymin + 0.5 * (bbox_form.ymax - bbox_form.ymin)
     y_force = bbox_force.ymin + 0.5 * (bbox_force.ymax - bbox_force.ymin)
     dx = 1.3 * (bbox_form.xmax - bbox_form.xmin) + (bbox_form.xmin - bbox_force.xmin)
     dy = y_form - y_force
 
-    force.translate([dx, dy, 0])
-    force.update_angle_deviations()
+    forceobj.mesh.translate([dx, dy, 0])
+    forceobj.mesh.update_angle_deviations()
 
     # =============================================================================
     # Update scene
@@ -67,7 +60,7 @@ def RunCommand(is_interactive):
 
     rs.UnselectAllObjects()
     rs.EnableRedraw(False)
-    scene.redraw()
+    session.scene.redraw()
     rs.EnableRedraw(True)
     rs.Redraw()
 
@@ -75,7 +68,7 @@ def RunCommand(is_interactive):
     # Save session
     # =============================================================================
 
-    if compas_rv.settings.SETTINGS["Session"]["autosave.events"]:
+    if session.settings.autosave:
         session.record(name="TNA Horizontal")
 
 
@@ -84,4 +77,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()
