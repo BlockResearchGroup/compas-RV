@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="RV-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: .5px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-1, .cls-7, .cls-3, .cls-4, .cls-5 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3, .cls-4, .cls-5 {
+        stroke: blue;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-width: .75px;
+      }
+
+      .cls-2, .cls-6 {
+        fill: aqua;
+        stroke: aqua;
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-4 {
+        stroke-width: .25px;
+      }
+
+      .cls-9 {
+        filter: url(#drop-shadow-8);
+      }
+
+      .cls-9, .cls-10 {
+        fill: #fff;
+      }
+
+      .cls-10 {
+        filter: url(#drop-shadow-9);
+      }
+
+      .cls-6 {
+        stroke-width: .3px;
+      }
+
+      .cls-11 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-12 {
+        opacity: .5;
+      }
+    </style>
+    <filter id="drop-shadow-7" x="-31.14" y="3.34" width="32.4" height="27.36" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1"/>
+      <feGaussianBlur result="blur" stdDeviation=".7"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="drop-shadow-8" x="-4.08" y="1.84" width="40.08" height="28.32" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur-2" stdDeviation="2"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clippath">
+      <rect class="cls-7" x="-32" width="32" height="32"/>
+    </clipPath>
+    <filter id="drop-shadow-9" x="-36" y="-1.52" width="40.08" height="35.52" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur-3" stdDeviation="2"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur-3" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clippath-1">
+      <path class="cls-7" d="M62,14.97l-1.25-3.56-1.42-3.37-1.61-2.33-1.75-.19-.46.8-.28.21-.23-.32-3.41-2.97-3.59-1.24-3.59,1.24-3.41,2.97-.23.31-.29-.22-.45-.78-1.75.19-1.61,2.33-1.42,3.37-1.25,3.56,3.17-2.74,3.01-2.23,1.8-.81,1.6,5.16,1.71,7.44,1.66,8.21h2.1l1.66-8.21,1.71-7.44,1.6-5.16,1.8.81,3.01,2.23,3.17,2.74ZM64,0v32h-32V0h32Z"/>
+    </clipPath>
+  </defs>
+  <polygon class="cls-9" points="19.27 21.57 30 24.16 21.5 18.28 20.13 17 19.06 15.69 18.24 14.28 16 7.85 13.76 14.28 12.94 15.69 11.87 17 10.49 18.28 2 24.16 12.72 21.57 14.93 21.33 17.07 21.33 19.27 21.57"/>
+  <g class="cls-11">
+    <polygon class="cls-10" points="-3 19.92 -2 9.57 -2.9 9 -3.53 8.33 -3.9 7.56 -16 4.56 -28.1 7.56 -28.47 8.33 -29.1 9 -30 9.57 -29 19.92 -17.96 28 -16.65 27.68 -15.35 27.68 -14.04 28 -3 19.92"/>
+  </g>
+  <g class="cls-8">
+    <g class="cls-12">
+      <image width="418" height="367" transform="translate(-2.16 -21.92) scale(.24)" xlink:href="data:image/png;base64,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"/>
+    </g>
+  </g>
+  <g id="POLYLINE">
+    <line class="cls-4" x1="12.22" y1="20.7" x2="14.62" y2="20.26"/>
+  </g>
+  <g id="POLYLINE-2" data-name="POLYLINE">
+    <line class="cls-4" x1="11.1" y1="19.04" x2="12.79" y2="17.7"/>
+  </g>
+  <g id="POLYLINE-3" data-name="POLYLINE">
+    <line class="cls-4" x1="14.87" y1="14.33" x2="14.17" y2="15.95"/>
+  </g>
+  <g id="POLYLINE-4" data-name="POLYLINE">
+    <line class="cls-4" x1="17.13" y1="14.33" x2="17.83" y2="15.95"/>
+  </g>
+  <g id="POLYLINE-5" data-name="POLYLINE">
+    <line class="cls-4" x1="19.78" y1="20.7" x2="17.38" y2="20.26"/>
+  </g>
+  <g id="POLYLINE-6" data-name="POLYLINE">
+    <line class="cls-4" x1="20.9" y1="19.04" x2="19.21" y2="17.7"/>
+  </g>
+  <g id="POLYLINE-7" data-name="POLYLINE">
+    <line class="cls-4" x1="30" y1="24.16" x2="19.78" y2="20.7"/>
+  </g>
+  <g id="POLYLINE-8" data-name="POLYLINE">
+    <line class="cls-4" x1="12.22" y1="20.7" x2="2" y2="24.16"/>
+  </g>
+  <g id="POLYLINE-9" data-name="POLYLINE">
+    <line class="cls-4" x1="30" y1="24.16" x2="20.9" y2="19.04"/>
+  </g>
+  <g id="POLYLINE-10" data-name="POLYLINE">
+    <line class="cls-4" x1="11.1" y1="19.04" x2="2" y2="24.16"/>
+  </g>
+  <g id="POLYLINE-11" data-name="POLYLINE">
+    <line class="cls-4" x1="16" y1="7.84" x2="17.13" y2="14.33"/>
+  </g>
+  <g id="POLYLINE-12" data-name="POLYLINE">
+    <line class="cls-4" x1="16" y1="7.84" x2="14.87" y2="14.33"/>
+  </g>
+  <g id="POLYLINE-13" data-name="POLYLINE">
+    <line class="cls-1" x1="17.38" y1="20.26" x2="14.62" y2="20.26"/>
+  </g>
+  <g id="POLYLINE-14" data-name="POLYLINE">
+    <line class="cls-1" x1="19.21" y1="17.7" x2="17.83" y2="15.95"/>
+  </g>
+  <g id="POLYLINE-15" data-name="POLYLINE">
+    <line class="cls-1" x1="14.17" y1="15.95" x2="12.79" y2="17.7"/>
+  </g>
+  <g>
+    <g id="POLYLINE-16" data-name="POLYLINE">
+      <line class="cls-3" x1="14.62" y1="20.26" x2="12.79" y2="17.7"/>
+    </g>
+    <g id="POLYLINE-17" data-name="POLYLINE">
+      <line class="cls-3" x1="12.22" y1="20.7" x2="11.1" y2="19.04"/>
+    </g>
+    <g id="POLYLINE-18" data-name="POLYLINE">
+      <line class="cls-3" x1="14.17" y1="15.95" x2="17.83" y2="15.95"/>
+    </g>
+    <g id="POLYLINE-19" data-name="POLYLINE">
+      <line class="cls-3" x1="14.87" y1="14.33" x2="17.13" y2="14.33"/>
+    </g>
+    <g id="POLYLINE-20" data-name="POLYLINE">
+      <line class="cls-3" x1="20.9" y1="19.04" x2="19.78" y2="20.7"/>
+    </g>
+    <g id="POLYLINE-21" data-name="POLYLINE">
+      <line class="cls-3" x1="19.21" y1="17.7" x2="17.38" y2="20.26"/>
+    </g>
+    <g id="POLYLINE-22" data-name="POLYLINE">
+      <line class="cls-3" x1="19.78" y1="20.7" x2="19.28" y2="21.57"/>
+    </g>
+    <g id="POLYLINE-23" data-name="POLYLINE">
+      <line class="cls-3" x1="17.38" y1="20.26" x2="17.07" y2="21.33"/>
+    </g>
+    <g id="POLYLINE-24" data-name="POLYLINE">
+      <line class="cls-3" x1="14.62" y1="20.26" x2="14.93" y2="21.33"/>
+    </g>
+    <g id="POLYLINE-25" data-name="POLYLINE">
+      <line class="cls-3" x1="12.22" y1="20.7" x2="12.72" y2="21.57"/>
+    </g>
+    <g id="POLYLINE-26" data-name="POLYLINE">
+      <line class="cls-3" x1="21.5" y1="18.28" x2="20.9" y2="19.04"/>
+    </g>
+    <g id="POLYLINE-27" data-name="POLYLINE">
+      <line class="cls-3" x1="20.13" y1="17" x2="19.21" y2="17.7"/>
+    </g>
+    <g id="POLYLINE-28" data-name="POLYLINE">
+      <line class="cls-3" x1="19.06" y1="15.68" x2="17.83" y2="15.95"/>
+    </g>
+    <g id="POLYLINE-29" data-name="POLYLINE">
+      <line class="cls-3" x1="18.24" y1="14.28" x2="17.13" y2="14.33"/>
+    </g>
+    <g id="POLYLINE-30" data-name="POLYLINE">
+      <line class="cls-3" x1="11.1" y1="19.04" x2="10.5" y2="18.28"/>
+    </g>
+    <g id="POLYLINE-31" data-name="POLYLINE">
+      <line class="cls-3" x1="12.79" y1="17.7" x2="11.87" y2="17"/>
+    </g>
+    <g id="POLYLINE-32" data-name="POLYLINE">
+      <line class="cls-3" x1="14.17" y1="15.95" x2="12.94" y2="15.68"/>
+    </g>
+    <g id="POLYLINE-33" data-name="POLYLINE">
+      <line class="cls-3" x1="14.87" y1="14.33" x2="13.76" y2="14.28"/>
+    </g>
+  </g>
+  <g>
+    <g id="POLYLINE-34" data-name="POLYLINE">
+      <line class="cls-5" x1="30" y1="24.16" x2="19.28" y2="21.57"/>
+    </g>
+    <g id="POLYLINE-35" data-name="POLYLINE">
+      <line class="cls-5" x1="12.72" y1="21.57" x2="2" y2="24.16"/>
+    </g>
+    <g id="POLYLINE-36" data-name="POLYLINE">
+      <line class="cls-5" x1="30" y1="24.16" x2="21.5" y2="18.28"/>
+    </g>
+    <g id="POLYLINE-37" data-name="POLYLINE">
+      <line class="cls-5" x1="16" y1="7.84" x2="18.24" y2="14.28"/>
+    </g>
+    <g id="POLYLINE-38" data-name="POLYLINE">
+      <line class="cls-5" x1="10.5" y1="18.28" x2="2" y2="24.16"/>
+    </g>
+    <g id="POLYLINE-39" data-name="POLYLINE">
+      <line class="cls-5" x1="16" y1="7.84" x2="13.76" y2="14.28"/>
+    </g>
+    <g id="POLYLINE-40" data-name="POLYLINE">
+      <line class="cls-5" x1="19.28" y1="21.57" x2="17.07" y2="21.33"/>
+    </g>
+    <g id="POLYLINE-41" data-name="POLYLINE">
+      <line class="cls-5" x1="17.07" y1="21.33" x2="14.93" y2="21.33"/>
+    </g>
+    <g id="POLYLINE-42" data-name="POLYLINE">
+      <line class="cls-5" x1="14.93" y1="21.33" x2="12.72" y2="21.57"/>
+    </g>
+    <g id="POLYLINE-43" data-name="POLYLINE">
+      <line class="cls-5" x1="21.5" y1="18.28" x2="20.13" y2="17"/>
+    </g>
+    <g id="POLYLINE-44" data-name="POLYLINE">
+      <line class="cls-5" x1="19.06" y1="15.68" x2="20.13" y2="17"/>
+    </g>
+    <g id="POLYLINE-45" data-name="POLYLINE">
+      <line class="cls-5" x1="18.24" y1="14.28" x2="19.06" y2="15.68"/>
+    </g>
+    <g id="POLYLINE-46" data-name="POLYLINE">
+      <line class="cls-5" x1="11.87" y1="17" x2="10.5" y2="18.28"/>
+    </g>
+    <g id="POLYLINE-47" data-name="POLYLINE">
+      <line class="cls-5" x1="12.94" y1="15.68" x2="11.87" y2="17"/>
+    </g>
+    <g id="POLYLINE-48" data-name="POLYLINE">
+      <line class="cls-5" x1="13.76" y1="14.28" x2="12.94" y2="15.68"/>
+    </g>
+  </g>
+  <g id="POINT">
+    <line class="cls-4" x1="19.78" y1="20.7" x2="19.78" y2="20.7"/>
+  </g>
+  <g id="POINT-2" data-name="POINT">
+    <line class="cls-4" x1="12.22" y1="20.7" x2="12.22" y2="20.7"/>
+  </g>
+  <g id="POINT-3" data-name="POINT">
+    <line class="cls-4" x1="20.9" y1="19.04" x2="20.9" y2="19.04"/>
+  </g>
+  <g id="POINT-4" data-name="POINT">
+    <line class="cls-4" x1="14.62" y1="20.26" x2="14.62" y2="20.26"/>
+  </g>
+  <g id="POINT-5" data-name="POINT">
+    <line class="cls-4" x1="17.38" y1="20.26" x2="17.38" y2="20.26"/>
+  </g>
+  <g id="POINT-6" data-name="POINT">
+    <line class="cls-4" x1="19.21" y1="17.7" x2="19.21" y2="17.7"/>
+  </g>
+  <g id="POINT-7" data-name="POINT">
+    <line class="cls-4" x1="17.13" y1="14.33" x2="17.13" y2="14.33"/>
+  </g>
+  <g id="POINT-8" data-name="POINT">
+    <line class="cls-4" x1="17.83" y1="15.95" x2="17.83" y2="15.95"/>
+  </g>
+  <g id="POINT-9" data-name="POINT">
+    <line class="cls-4" x1="11.1" y1="19.04" x2="11.1" y2="19.04"/>
+  </g>
+  <g id="POINT-10" data-name="POINT">
+    <line class="cls-4" x1="12.79" y1="17.7" x2="12.79" y2="17.7"/>
+  </g>
+  <g id="POINT-11" data-name="POINT">
+    <line class="cls-4" x1="14.17" y1="15.95" x2="14.17" y2="15.95"/>
+  </g>
+  <g id="POINT-12" data-name="POINT">
+    <line class="cls-4" x1="14.87" y1="14.33" x2="14.87" y2="14.33"/>
+  </g>
+  <g id="POINT-13" data-name="POINT">
+    <line class="cls-4" x1="19.28" y1="21.57" x2="19.28" y2="21.57"/>
+  </g>
+  <g id="POINT-14" data-name="POINT">
+    <line class="cls-1" x1="2" y1="24.16" x2="2" y2="24.16"/>
+  </g>
+  <g id="POINT-15" data-name="POINT">
+    <line class="cls-1" x1="30" y1="24.16" x2="30" y2="24.16"/>
+  </g>
+  <g id="POINT-16" data-name="POINT">
+    <line class="cls-4" x1="18.24" y1="14.28" x2="18.24" y2="14.28"/>
+  </g>
+  <g id="POINT-17" data-name="POINT">
+    <line class="cls-4" x1="10.5" y1="18.28" x2="10.5" y2="18.28"/>
+  </g>
+  <g id="POINT-18" data-name="POINT">
+    <line class="cls-1" x1="16" y1="7.84" x2="16" y2="7.84"/>
+  </g>
+  <g id="POINT-19" data-name="POINT">
+    <line class="cls-4" x1="17.07" y1="21.33" x2="17.07" y2="21.33"/>
+  </g>
+  <g id="POINT-20" data-name="POINT">
+    <line class="cls-4" x1="14.93" y1="21.33" x2="14.93" y2="21.33"/>
+  </g>
+  <g id="POINT-21" data-name="POINT">
+    <line class="cls-4" x1="12.72" y1="21.57" x2="12.72" y2="21.57"/>
+  </g>
+  <g id="POINT-22" data-name="POINT">
+    <line class="cls-4" x1="21.5" y1="18.28" x2="21.5" y2="18.28"/>
+  </g>
+  <g id="POINT-23" data-name="POINT">
+    <line class="cls-4" x1="20.13" y1="17" x2="20.13" y2="17"/>
+  </g>
+  <g id="POINT-24" data-name="POINT">
+    <line class="cls-4" x1="19.06" y1="15.68" x2="19.06" y2="15.68"/>
+  </g>
+  <g id="POINT-25" data-name="POINT">
+    <line class="cls-4" x1="11.87" y1="17" x2="11.87" y2="17"/>
+  </g>
+  <g id="POINT-26" data-name="POINT">
+    <line class="cls-4" x1="12.94" y1="15.68" x2="12.94" y2="15.68"/>
+  </g>
+  <g id="POINT-27" data-name="POINT">
+    <line class="cls-4" x1="13.76" y1="14.28" x2="13.76" y2="14.28"/>
+  </g>
+  <circle class="cls-2" cx="2" cy="24.16" r=".5"/>
+  <circle class="cls-2" cx="13.76" cy="14.28" r=".5"/>
+  <circle class="cls-2" cx="18.24" cy="14.28" r=".5"/>
+  <circle class="cls-2" cx="21.5" cy="18.28" r=".5"/>
+  <circle class="cls-2" cx="19.28" cy="21.57" r=".5"/>
+  <circle class="cls-2" cx="10.49" cy="18.28" r=".5"/>
+  <circle class="cls-2" cx="12.72" cy="21.57" r=".5"/>
+  <circle class="cls-6" cx="12.94" cy="15.69" r=".5"/>
+  <circle class="cls-6" cx="19.06" cy="15.69" r=".5"/>
+  <circle class="cls-6" cx="20.13" cy="17" r=".5"/>
+  <circle class="cls-6" cx="11.87" cy="17" r=".5"/>
+  <circle class="cls-6" cx="14.93" cy="21.33" r=".5"/>
+  <circle class="cls-6" cx="17.07" cy="21.33" r=".5"/>
+  <circle class="cls-2" cx="16" cy="7.85" r=".5"/>
+  <circle class="cls-2" cx="30" cy="24.16" r=".5"/>
+</svg>

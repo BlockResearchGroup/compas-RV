@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: red;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        stroke-width: .75px;
+      }
+
+      .cls-5, .cls-6, .cls-7, .cls-8 {
+        fill: none;
+      }
+
+      .cls-5, .cls-7, .cls-8 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-5, .cls-8 {
+        stroke: #b3b3b3;
+      }
+
+      .cls-9 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-11 {
+        fill: url(#radial-gradient-2);
+        filter: url(#drop-shadow-7);
+      }
+
+      .cls-7 {
+        stroke: #000;
+      }
+
+      .cls-3 {
+        filter: url(#drop-shadow-5);
+      }
+
+      .cls-8 {
+        stroke-width: .5px;
+      }
+
+      .cls-4 {
+        filter: url(#drop-shadow-6);
+      }
+
+      .cls-12 {
+        fill: #b3b3b3;
+      }
+
+      .cls-13 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-6" x="-32" y="0" width="32" height="32"/>
+    </clipPath>
+    <filter id="drop-shadow-5" x="-36.16" y="-.08" width="40.32" height="32.16" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="2"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clippath-1">
+      <rect class="cls-6" y="0" width="32" height="32"/>
+    </clipPath>
+    <filter id="drop-shadow-6" x="-4.16" y="-.08" width="40.32" height="32.16" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur-2" stdDeviation="2"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <radialGradient id="radial-gradient" cx="16.84" cy="12.27" fx="16.84" fy="12.27" r="29.96" gradientUnits="userSpaceOnUse">
+      <stop offset=".14" stop-color="#fff"/>
+      <stop offset="1" stop-color="#000"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="48" cy="16" fx="48" fy="16" r="35.54" xlink:href="#radial-gradient"/>
+    <filter id="drop-shadow-7" x="27.92" y="-.08" width="40.08" height="32.16" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur-3" stdDeviation="2"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur-3" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="shadow">
+    <g class="cls-13">
+      <polygon class="cls-3" points="-15.52 25.96 -15.04 25.96 -12.84 19.76 -10.14 14.57 -6.26 10.46 -2 6.96 -2.23 6.73 -2.47 6.5 -2.7 6.27 -2.93 6.04 -9.38 7.08 -16 7.62 -22.62 7.08 -29.07 6.04 -29.3 6.27 -29.53 6.5 -29.77 6.73 -30 6.96 -25.74 10.46 -21.86 14.57 -19.16 19.76 -16.96 25.96 -16.48 25.96 -15.52 25.96"/>
+    </g>
+    <g class="cls-10">
+      <polygon class="cls-4" points="16.48 25.96 16.96 25.96 19.16 19.76 21.86 14.57 25.74 10.46 30 6.96 29.77 6.73 29.53 6.5 29.3 6.27 29.07 6.04 22.62 7.08 16 7.62 9.38 7.08 2.93 6.04 2.7 6.27 2.47 6.5 2.23 6.73 2 6.96 6.26 10.46 10.14 14.57 12.84 19.76 15.04 25.96 15.52 25.96 16.48 25.96"/>
+      <polygon class="cls-9" points="16.48 25.96 16.96 25.96 19.16 19.76 21.86 14.57 25.74 10.46 30 6.96 29.77 6.73 29.53 6.5 29.3 6.27 29.07 6.04 22.62 7.08 16 7.62 9.38 7.08 2.93 6.04 2.7 6.27 2.47 6.5 2.23 6.73 2 6.96 6.26 10.46 10.14 14.57 12.84 19.76 15.04 25.96 15.52 25.96 16.48 25.96"/>
+    </g>
+    <path class="cls-11" d="M62,6.96l-4.26,3.5-3.88,4.11-.92-2.45-.93-1.66-1.41-1.42-2.6-1.42,6.62-.54,6.45-1.04.23.23.23.23.24.23.23.23ZM42.14,14.57l2.7,5.19,2.2,6.2h1.92l2.2-6.2,2.7-5.19-3.29.98-2.57.27-2.43-.27-3.43-.98ZM34.7,6.27l-.23.23-.24.23-.23.23,4.26,3.5,3.88,4.11.92-2.45.93-1.66,1.41-1.42,2.6-1.42-6.62-.54-6.45-1.04-.23.23Z"/>
+  </g>
+  <g id="pattern">
+    <g>
+      <g id="POLYLINE">
+        <polygon class="cls-12" points="16 7.62 16.5 12.13 15.5 12.13 16 7.62 16 7.62"/>
+      </g>
+      <g id="POLYLINE-2" data-name="POLYLINE">
+        <line class="cls-5" x1="19.18" y1="13.45" x2="16" y2="12.13"/>
+      </g>
+      <g id="POLYLINE-3" data-name="POLYLINE">
+        <line class="cls-5" x1="21.86" y1="14.57" x2="19.18" y2="13.45"/>
+      </g>
+      <g id="POLYLINE-4" data-name="POLYLINE">
+        <path class="cls-12" d="M10.14,14.57l5.72-2.78c.19-.09.41-.01.5.17.1.2,0,.45-.21.52,0,0-6,2.09-6,2.09h0Z"/>
+      </g>
+      <path class="cls-12" d="M5.43,8.48s2.41,1.28,2.42,1.28c0,0,5.29,3.44,5.29,3.44.34.21-.02.74-.34.49,0,0-5.05-3.79-5.05-3.79.03.02-2.32-1.44-2.31-1.43h0Z"/>
+      <path class="cls-12" d="M7.65,7.69c2.35.63,5.99,1.14,8.41,1.61.4.07.27.69-.13.59-2.39-.64-5.98-1.4-8.29-2.2h0Z"/>
+      <g id="POLYLINE-5" data-name="POLYLINE">
+        <line class="cls-8" x1="6.26" y1="10.46" x2="7.65" y2="9.84"/>
+      </g>
+      <g id="POLYLINE-6" data-name="POLYLINE">
+        <line class="cls-8" x1="7.65" y1="9.84" x2="8.72" y2="9.1"/>
+      </g>
+      <g id="POLYLINE-7" data-name="POLYLINE">
+        <line class="cls-8" x1="8.72" y1="9.1" x2="9.2" y2="8.14"/>
+      </g>
+      <g id="POLYLINE-8" data-name="POLYLINE">
+        <path class="cls-12" d="M2.47,6.5l13.68,5.29c.19.07.29.29.21.49-.08.2-.31.29-.5.21,0,0-13.39-5.98-13.39-5.98h0Z"/>
+      </g>
+      <g id="POLYLINE-9" data-name="POLYLINE">
+        <line class="cls-8" x1="9.2" y1="8.14" x2="9.38" y2="7.08"/>
+      </g>
+      <g id="POLYLINE-10" data-name="POLYLINE">
+        <line class="cls-8" x1="12.84" y1="19.76" x2="14.43" y2="19.16"/>
+      </g>
+      <g id="POLYLINE-11" data-name="POLYLINE">
+        <path class="cls-12" d="M13.26,13.37s1.48,5.74,1.48,5.76c0,0,.93,6.83.93,6.83,0,0-1.26-6.84-1.25-6.76,0,0-1.74-5.67-1.74-5.67-.12-.38.48-.55.58-.16h0Z"/>
+      </g>
+      <g id="POLYLINE-12" data-name="POLYLINE">
+        <line class="cls-8" x1="14.43" y1="19.16" x2="16" y2="18.86"/>
+      </g>
+      <g id="POLYLINE-13" data-name="POLYLINE">
+        <path class="cls-12" d="M16.37,12.13l-.37,13.83-.38-13.83c-.01-.5.76-.5.75,0h0Z"/>
+      </g>
+      <g id="POLYLINE-14" data-name="POLYLINE">
+        <path class="cls-12" d="M15.86,11.78l13.45-5.19-13.16,5.88c-.45.21-.76-.52-.29-.69h0Z"/>
+      </g>
+      <g id="POLYLINE-15" data-name="POLYLINE">
+        <line class="cls-8" x1="16" y1="18.86" x2="17.57" y2="19.16"/>
+      </g>
+      <g id="POLYLINE-16" data-name="POLYLINE">
+        <path class="cls-12" d="M16.48,25.96l.93-6.83.07.16-.06-.18,1.47-5.74c.09-.38.7-.22.58.16,0,0-1.74,5.67-1.74,5.67,0-.05-.12-.21-.03-.24.12-.03.04.17.04.22,0,0-1.25,6.78-1.25,6.78h0Z"/>
+      </g>
+      <g id="POLYLINE-17" data-name="POLYLINE">
+        <line class="cls-8" x1="17.57" y1="19.16" x2="19.16" y2="19.76"/>
+      </g>
+      <g id="POLYLINE-18" data-name="POLYLINE">
+        <line class="cls-8" x1="22.62" y1="7.08" x2="22.8" y2="8.14"/>
+      </g>
+      <g id="POLYLINE-19" data-name="POLYLINE">
+        <line class="cls-8" x1="22.8" y1="8.14" x2="23.28" y2="9.1"/>
+      </g>
+      <path class="cls-12" d="M24.35,7.69c-.93.41-7.15,1.9-8.29,2.2-.39.1-.53-.52-.13-.59,1.19-.22,7.44-1.26,8.41-1.61h0Z"/>
+      <g id="POLYLINE-20" data-name="POLYLINE">
+        <line class="cls-8" x1="23.28" y1="9.1" x2="24.35" y2="9.84"/>
+      </g>
+      <g id="POLYLINE-21" data-name="POLYLINE">
+        <line class="cls-8" x1="24.35" y1="9.84" x2="25.74" y2="10.46"/>
+      </g>
+      <path class="cls-12" d="M19,13.21l5.29-3.44h.09s-.09,0-.09,0l2.41-1.28-2.32,1.44s-.08.07-.11.04c-.03-.05.09-.04.11-.04,0,0-5.05,3.79-5.05,3.79-.32.24-.68-.28-.34-.49h0Z"/>
+    </g>
+    <g id="POLYLINE-22" data-name="POLYLINE">
+      <line class="cls-7" x1="2" y1="6.96" x2="2.23" y2="6.73"/>
+    </g>
+    <g id="POLYLINE-23" data-name="POLYLINE">
+      <line class="cls-7" x1="2" y1="6.96" x2="6.26" y2="10.46"/>
+    </g>
+    <g id="POLYLINE-24" data-name="POLYLINE">
+      <line class="cls-7" x1="2.23" y1="6.73" x2="2.47" y2="6.5"/>
+    </g>
+    <g id="POLYLINE-25" data-name="POLYLINE">
+      <line class="cls-7" x1="2.47" y1="6.5" x2="2.7" y2="6.27"/>
+    </g>
+    <g id="POLYLINE-26" data-name="POLYLINE">
+      <line class="cls-7" x1="2.7" y1="6.27" x2="2.93" y2="6.04"/>
+    </g>
+    <g id="POLYLINE-27" data-name="POLYLINE">
+      <line class="cls-7" x1="2.93" y1="6.04" x2="9.38" y2="7.08"/>
+    </g>
+    <g id="POLYLINE-28" data-name="POLYLINE">
+      <line class="cls-7" x1="6.26" y1="10.46" x2="10.14" y2="14.57"/>
+    </g>
+    <g id="POLYLINE-29" data-name="POLYLINE">
+      <line class="cls-7" x1="9.38" y1="7.08" x2="16" y2="7.62"/>
+    </g>
+    <g id="POLYLINE-30" data-name="POLYLINE">
+      <line class="cls-7" x1="10.14" y1="14.57" x2="12.84" y2="19.76"/>
+    </g>
+    <g id="POLYLINE-31" data-name="POLYLINE">
+      <line class="cls-7" x1="12.84" y1="19.76" x2="15.04" y2="25.96"/>
+    </g>
+    <g id="POLYLINE-32" data-name="POLYLINE">
+      <line class="cls-7" x1="16" y1="7.62" x2="22.62" y2="7.08"/>
+    </g>
+    <g id="POLYLINE-33" data-name="POLYLINE">
+      <line class="cls-7" x1="16.96" y1="25.96" x2="19.16" y2="19.76"/>
+    </g>
+    <g id="POLYLINE-34" data-name="POLYLINE">
+      <line class="cls-7" x1="19.16" y1="19.76" x2="21.86" y2="14.57"/>
+    </g>
+    <g id="POLYLINE-35" data-name="POLYLINE">
+      <line class="cls-7" x1="21.86" y1="14.57" x2="25.74" y2="10.46"/>
+    </g>
+    <g id="POLYLINE-36" data-name="POLYLINE">
+      <line class="cls-7" x1="22.62" y1="7.08" x2="29.07" y2="6.04"/>
+    </g>
+    <g id="POLYLINE-37" data-name="POLYLINE">
+      <line class="cls-7" x1="25.74" y1="10.46" x2="30" y2="6.96"/>
+    </g>
+    <g id="POLYLINE-38" data-name="POLYLINE">
+      <line class="cls-7" x1="29.07" y1="6.04" x2="29.3" y2="6.27"/>
+    </g>
+    <g id="POLYLINE-39" data-name="POLYLINE">
+      <line class="cls-7" x1="29.3" y1="6.27" x2="29.53" y2="6.5"/>
+    </g>
+    <g id="POLYLINE-40" data-name="POLYLINE">
+      <line class="cls-7" x1="29.77" y1="6.73" x2="30" y2="6.96"/>
+    </g>
+    <g id="POLYLINE-41" data-name="POLYLINE">
+      <line class="cls-7" x1="15.04" y1="25.96" x2="16.96" y2="25.96"/>
+    </g>
+  </g>
+  <g id="top">
+    <circle class="cls-1" cx="29.53" cy="6.5" r="1"/>
+    <circle class="cls-1" cx="2.47" cy="6.5" r="1"/>
+    <circle class="cls-1" cx="16" cy="25.96" r="1"/>
+    <g>
+      <circle cx="5.62" cy="19.15" r="2"/>
+      <path class="cls-2" d="M5.83,20.15h-.24v-1.56c-.06.06-.14.11-.23.17s-.18.1-.26.13v-.24c.14-.06.26-.14.36-.23s.17-.18.22-.27h.16v2Z"/>
+    </g>
+    <g>
+      <circle cx="25.28" cy="19.16" r="2"/>
+      <path class="cls-2" d="M25.93,19.92v.24h-1.32c0-.06,0-.12.03-.17.03-.09.09-.18.16-.26s.18-.19.32-.3c.22-.18.36-.32.44-.42s.11-.2.11-.29c0-.1-.03-.18-.1-.25s-.16-.1-.27-.1c-.12,0-.21.04-.28.11s-.11.17-.11.29l-.25-.03c.02-.19.08-.33.19-.43s.26-.15.45-.15.34.05.45.16.17.24.17.39c0,.08-.02.16-.05.24s-.09.16-.16.24-.2.2-.38.35c-.15.12-.24.21-.28.25s-.08.09-.1.13h.98Z"/>
+    </g>
+    <g>
+      <circle cx="16" cy="3.68" r="2"/>
+      <path class="cls-2" d="M15.36,4.13l.24-.03c.03.14.07.23.14.29s.15.09.24.09c.11,0,.21-.04.29-.12s.12-.18.12-.29-.04-.2-.11-.27-.16-.11-.28-.11c-.05,0-.1,0-.17.03l.03-.21s.03,0,.04,0c.1,0,.19-.03.28-.08s.12-.14.12-.25c0-.09-.03-.16-.09-.22s-.14-.09-.23-.09-.17.03-.23.09-.1.15-.12.26l-.24-.04c.03-.16.1-.29.2-.37s.23-.13.39-.13c.11,0,.2.02.3.07s.16.11.21.19.07.16.07.25-.02.16-.07.23-.11.12-.2.17c.12.03.21.08.27.17s.1.19.1.32c0,.17-.06.32-.19.43s-.28.18-.47.18c-.17,0-.31-.05-.43-.15s-.18-.23-.19-.4Z"/>
+    </g>
+  </g>
+</svg>
