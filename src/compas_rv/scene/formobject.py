@@ -69,8 +69,7 @@ class RhinoFormObject(RUIMeshObject):
                 vertices += list(self.mesh.vertices_where(is_fixed=True))
             if self.show_supports:
                 vertices += list(self.mesh.vertices_where(is_support=True))
-            if vertices:
-                self.show_vertices = vertices
+            self.show_vertices = vertices
 
         for vertex in self.mesh.vertices():
             if self.mesh.vertex_attribute(vertex, "is_support"):
