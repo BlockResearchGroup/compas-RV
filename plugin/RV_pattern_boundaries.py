@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -67,11 +67,9 @@ def RunCommand():
 
         pattern.mesh.relax()
 
-    rs.EnableRedraw(False)
     compas_rhino.objects.delete_objects(guids, purge=True)
     pattern.clear()
     pattern.draw()
-    rs.EnableRedraw(True)
     rs.Redraw()
 
     # =============================================================================
@@ -116,12 +114,10 @@ def RunCommand():
 
                     pattern.mesh.relax()
 
-            rs.EnableRedraw(False)
             compas_rhino.objects.delete_objects(guids, purge=True)
             pattern.clear()
             pattern.draw()
             guids = draw_labels(pattern, openings)
-            rs.EnableRedraw(True)
             rs.Redraw()
 
     compas_rhino.objects.delete_objects(guids, purge=True)

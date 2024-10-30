@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -31,19 +31,13 @@ def RunCommand():
     form = FormDiagram.from_pattern(pattern.mesh)
     form.name = "FormDiagram"
 
-    # make sure form is in XY
-
     form.vertices_attribute(name="z", value=0)
-
-    # flip the diagram if the normals are pointing down
 
     normals = [form.face_normal(face) for face in form.faces_where(_is_loaded=True)]
     scale = 1 / len(normals)
     normal = scale_vector(sum_vectors(normals), scale)
     if normal[2] < 0:
         form.flip_cycles()
-
-    # add also the fixed vertices as anchors
 
     form.vertices_attribute("is_fixed", False)
 
@@ -53,8 +47,6 @@ def RunCommand():
         for vertex in fixed:
             if form.has_vertex(vertex):
                 form.vertex_attribute(vertex, "is_support", True)
-
-    # init the thrust diagram
 
     bbox = Box.from_bounding_box(bounding_box(form.vertices_attributes("xyz")))
     diagonal = bbox.points[2] - bbox.points[0]
@@ -66,14 +58,13 @@ def RunCommand():
     # Update scene
     # =============================================================================
 
+    rs.UnselectAllObjects()
+
     pattern.show = False
 
     session.scene.add(form, name=form.name)
-
-    rs.UnselectAllObjects()
-    rs.EnableRedraw(False)
     session.scene.redraw()
-    rs.EnableRedraw(True)
+
     rs.Redraw()
 
     # =============================================================================

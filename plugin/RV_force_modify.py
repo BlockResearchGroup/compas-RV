@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -29,30 +29,16 @@ def RunCommand():
         return
 
     if option == "VertexAttributes":
-        force.show_free = True
-        force.show_fixed = True
-        force.show_supports = True
-
-        rs.EnableRedraw(False)
-        force.clear_vertices()
-        force.draw_vertices()
-        rs.EnableRedraw(True)
-        rs.Redraw()
-
-        vertices = force.select_vertices()
-        force.update_vertex_attributes(vertices)
+        selectable = list(force.mesh.vertices())
+        selected = force.select_vertices(selectable)
+        if selected:
+            force.update_vertex_attributes(selected)
 
     elif option == "EdgeAttributes":
-        force.show_edges = True
-
-        rs.EnableRedraw(False)
-        force.clear_edges()
-        force.draw_edges()
-        rs.EnableRedraw(True)
-        rs.Redraw()
-
-        edges = force.select_edges()
-        force.update_edge_attributes(edges)
+        selectable = list(force.mesh.edges_where(_is_edge=True))
+        selected = force.select_edges(selectable)
+        if selected:
+            force.update_edge_attributes(selected)
 
     else:
         raise NotImplementedError
@@ -63,15 +49,14 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
+    force.show_vertices = True
     force.show_free = False
     force.show_fixed = True
     force.show_supports = True
     force.show_edges = True
-
-    rs.EnableRedraw(False)
     force.clear()
     force.draw()
-    rs.EnableRedraw(True)
+
     rs.Redraw()
 
     # =============================================================================

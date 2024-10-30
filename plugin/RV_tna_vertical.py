@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -43,6 +43,8 @@ def RunCommand():
     # Update scene
     # =============================================================================
 
+    rs.UnselectAllObjects()
+
     thrustobj = session.scene.find_by_itemtype(ThrustDiagram)
 
     if not thrustobj:
@@ -50,11 +52,8 @@ def RunCommand():
     else:
         thrustobj.mesh = thrust
 
-    rs.UnselectAllObjects()
-    rs.EnableRedraw(False)
     thrustobj.clear()
     thrustobj.draw()
-    rs.EnableRedraw(True)
     rs.Redraw()
 
     # =============================================================================

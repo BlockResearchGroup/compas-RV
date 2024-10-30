@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -29,39 +29,16 @@ def RunCommand():
         return
 
     if option == "VertexAttributes":
-        thrust.show_vertices = True
-        thrust.show_free = True
-        thrust.show_fixed = True
-        thrust.show_supports = True
-
-        rs.EnableRedraw(False)
-        thrust.clear_vertices()
-        thrust.draw_vertices()
-        rs.EnableRedraw(True)
-        rs.Redraw()
-
-        vertices = thrust.select_vertices()
-        thrust.show_vertices = vertices
-
-        rs.EnableRedraw(False)
-        thrust.clear_vertices()
-        thrust.draw_vertices()
-        rs.EnableRedraw(True)
-        rs.Redraw()
-
-        thrust.update_vertex_attributes(vertices)
+        selectable = list(thrust.mesh.vertices())
+        selected = thrust.select_vertices(selectable)
+        if selected:
+            thrust.update_vertex_attributes(selected)
 
     elif option == "EdgeAttributes":
-        thrust.show_edges = True
-
-        rs.EnableRedraw(False)
-        thrust.clear_edges()
-        thrust.draw_edges()
-        rs.EnableRedraw(True)
-        rs.Redraw()
-
-        edges = thrust.select_edges()
-        thrust.update_edge_attributes(edges)
+        selectable = list(thrust.mesh.edges_where(_is_edge=True))
+        selected = thrust.select_edges(selectable)
+        if selected:
+            thrust.update_edge_attributes(selected)
 
     else:
         raise NotImplementedError
@@ -77,11 +54,9 @@ def RunCommand():
     thrust.show_fixed = True
     thrust.show_supports = True
     thrust.show_edges = True
-
-    rs.EnableRedraw(False)
     thrust.clear()
     thrust.draw()
-    rs.EnableRedraw(True)
+
     rs.Redraw()
 
     # =============================================================================

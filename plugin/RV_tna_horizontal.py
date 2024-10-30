@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -59,9 +59,8 @@ def RunCommand():
     #     compas_rhino.display_message("Horizontal equilibrium NOT found! Consider running more iterations.\nMaximum angle deviation: {}".format(max_angle))
 
     rs.UnselectAllObjects()
-    rs.EnableRedraw(False)
+
     session.scene.redraw()
-    rs.EnableRedraw(True)
     rs.Redraw()
 
     # =============================================================================

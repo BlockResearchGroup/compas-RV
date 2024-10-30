@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -24,11 +24,7 @@ def RunCommand():
     forceobj: RhinoForceObject = session.scene.find_by_itemtype(ForceDiagram)
     if forceobj:
         session.scene.remove(forceobj)
-
-        rs.UnselectAllObjects()
-        rs.EnableRedraw(False)
         session.scene.redraw()
-        rs.EnableRedraw(True)
         rs.Redraw()
 
     # =============================================================================
@@ -53,12 +49,11 @@ def RunCommand():
     # Update scene
     # =============================================================================
 
-    session.scene.add(force, name=force.name)
-
     rs.UnselectAllObjects()
-    rs.EnableRedraw(False)
+
+    session.scene.add(force, name=force.name)
     session.scene.redraw()
-    rs.EnableRedraw(True)
+
     rs.Redraw()
 
     # =============================================================================

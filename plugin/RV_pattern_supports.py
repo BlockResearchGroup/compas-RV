@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -54,7 +54,7 @@ def RunCommand():
 
     if option == "Add":
         selectable = list(pattern.mesh.vertices())
-        selected = pattern.select_vertices(selectable, message="Select Pattern Vertices")
+        selected = pattern.select_vertices(selectable)
         if selected:
             pattern.mesh.vertices_attribute(name="is_support", value=True, keys=selected)
 

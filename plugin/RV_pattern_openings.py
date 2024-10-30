@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -25,15 +25,6 @@ def RunCommand():
     # =============================================================================
     # Update scene
     # =============================================================================
-
-    rs.UnselectAllObjects()
-
-    pattern.show_vertices = list(set(list(pattern.mesh.vertices_where(is_support=True)) + list(pattern.mesh.vertices_where(is_fixed=True))))
-    pattern.show_edges = False
-    pattern.show_faces = True
-
-    pattern.clear()
-    pattern.draw()
 
     # =============================================================================
     # Save session

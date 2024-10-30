@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas, compas_rui, compas_rv, compas_session, compas_tna
+# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -29,39 +29,16 @@ def RunCommand():
         return
 
     if option == "VertexAttributes":
-        form.show_vertices = True
-        form.show_free = True
-        form.show_fixed = True
-        form.show_supports = True
-
-        rs.EnableRedraw(False)
-        form.clear_vertices()
-        form.draw_vertices()
-        rs.EnableRedraw(True)
-        rs.Redraw()
-
-        vertices = form.select_vertices()
-        form.show_vertices = vertices
-
-        rs.EnableRedraw(False)
-        form.clear_vertices()
-        form.draw_vertices()
-        rs.EnableRedraw(True)
-        rs.Redraw()
-
-        form.update_vertex_attributes(vertices)
+        selectable = list(form.mesh.vertices())
+        selected = form.select_vertices(selectable)
+        if selected:
+            form.update_vertex_attributes(selected)
 
     elif option == "EdgeAttributes":
-        form.show_edges = True
-
-        rs.EnableRedraw(False)
-        form.clear_edges()
-        form.draw_edges()
-        rs.EnableRedraw(True)
-        rs.Redraw()
-
-        edges = form.select_edges()
-        form.update_edge_attributes(edges)
+        selectable = list(form.mesh.edges_where(_is_edge=True))
+        selected = form.select_edges(selectable)
+        if selected:
+            form.update_edge_attributes(selected)
 
     else:
         raise NotImplementedError
@@ -77,11 +54,9 @@ def RunCommand():
     form.show_fixed = True
     form.show_supports = True
     form.show_edges = True
-
-    rs.EnableRedraw(False)
     form.clear()
     form.draw()
-    rs.EnableRedraw(True)
+
     rs.Redraw()
 
     # =============================================================================
