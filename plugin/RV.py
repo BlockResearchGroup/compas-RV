@@ -1,23 +1,52 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.4, compas_rui, compas_session, compas_tna>=0.5
+# r: compas, compas_rui, compas_rv, compas_session, compas_tna
 
 
-import compas_rv
-from compas_rui.forms import AboutForm
+import pathlib
+
+import Eto.Drawing  # type: ignore
+import Eto.Forms  # type: ignore
+import Rhino  # type: ignore
+import Rhino.UI  # type: ignore
+import System  # type: ignore
+
+pluginfile = Rhino.PlugIns.PlugIn.PathFromId(System.Guid("a6dc4669-0e8e-40ea-8d71-b9b0f4764ec1"))
+shared = pathlib.Path(str(pluginfile)).parent / "shared"
 
 
-def RunCommand(is_interactive):
+class SplashForm(Eto.Forms.Dialog[bool]):
+    def __init__(self, title, url, width=800, height=400):
+        super().__init__()
 
-    form = AboutForm(
-        title=compas_rv.title,
-        description=compas_rv.description,
-        version=compas_rv.__version__,
-        website=compas_rv.website,
-        copyright=compas_rv.__copyright__,
-        license=compas_rv.__license__,
-    )
+        self.Title = title
+        self.Padding = Eto.Drawing.Padding(0)
+        self.Resizable = False
+        self.ClientSize = Eto.Drawing.Size(width, height)
+        self.WindowStyle = Eto.Forms.WindowStyle.NONE  # type: ignore
 
+        webview = Eto.Forms.WebView()
+        webview.Size = Eto.Drawing.Size(width, height)
+        webview.Url = System.Uri(url)
+        webview.BrowserContextMenuEnabled = False
+        webview.DocumentLoading += self.action
+
+        layout = Eto.Forms.DynamicLayout()
+        layout.BeginVertical()
+        layout.AddRow(webview)
+        layout.EndVertical()
+        self.Content = layout
+
+    def action(self, sender, e):
+        if e.Uri.Scheme == "action" and e.Uri.Host == "close":
+            self.Close()
+
+    def show(self):
+        return self.ShowModal(Rhino.UI.RhinoEtoApp.MainWindow)
+
+
+def RunCommand():
+    form = SplashForm(title="RhinoVAULT", url=str(shared / "index.html"))
     form.show()
 
 
@@ -26,4 +55,4 @@ def RunCommand(is_interactive):
 # =============================================================================
 
 if __name__ == "__main__":
-    RunCommand(True)
+    RunCommand()
