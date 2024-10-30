@@ -14,7 +14,6 @@ from compas_rv.session import RVSession
 
 class RhinoThrustObject(RUIMeshObject):
     session = RVSession()
-
     mesh: ThrustDiagram
 
     vertexcolor = ColorDictAttribute(default=Color.purple())
@@ -100,15 +99,16 @@ class RhinoThrustObject(RUIMeshObject):
         return self.guids
 
     def draw_vertices(self):
-        vertices = []
-        if self.show_free:
-            vertices += list(self.mesh.vertices_where(is_support=False, is_fixed=False))
-        if self.show_fixed:
-            vertices += list(self.mesh.vertices_where(is_fixed=True))
-        if self.show_supports:
-            vertices += list(self.mesh.vertices_where(is_support=True))
-        if vertices:
-            self.show_vertices = vertices
+        if self.show_vertices is True:
+            vertices = []
+            if self.show_free:
+                vertices += list(self.mesh.vertices_where(is_support=False, is_fixed=False))
+            if self.show_fixed:
+                vertices += list(self.mesh.vertices_where(is_fixed=True))
+            if self.show_supports:
+                vertices += list(self.mesh.vertices_where(is_support=True))
+            if vertices:
+                self.show_vertices = vertices
 
         for vertex in self.mesh.vertices():
             if self.mesh.vertex_attribute(vertex, "is_support"):
@@ -121,14 +121,10 @@ class RhinoThrustObject(RUIMeshObject):
         return super().draw_vertices()
 
     def draw_edges(self):
-        edges = []
-        if self.show_edges:
-            edges += list(self.mesh.edges_where(_is_edge=True))
-        if edges:
-            self.show_edges = edges
-
-        for edge in self.mesh.edges_where(_is_edge=True):
-            pass
+        if self.show_edges is True:
+            edges = list(self.mesh.edges_where(_is_edge=True))
+            if edges:
+                self.show_edges = edges
 
         return super().draw_edges()
 
@@ -138,9 +134,6 @@ class RhinoThrustObject(RUIMeshObject):
             faces += list(self.mesh.faces_where(_is_loaded=True))
         if faces:
             self.show_faces = faces
-
-        for face in self.mesh.faces_where(_is_loaded=True):
-            pass
 
         return super().draw_faces()
 

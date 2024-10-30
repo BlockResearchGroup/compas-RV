@@ -19,11 +19,11 @@ class TNASettings(BaseModel):
 
 
 class FormDrawingSettings(BaseModel):
-    pass
+    show_angles: bool = False
 
 
 class ForceDrawingSettings(BaseModel):
-    pass
+    show_angles: bool = False
 
 
 class ThrustDrawingSettings(BaseModel):

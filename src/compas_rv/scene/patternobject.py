@@ -2,9 +2,11 @@ from compas.colors import Color
 from compas.scene.descriptors.color import ColorAttribute
 from compas_rui.scene import RUIMeshObject
 from compas_rv.datastructures import Pattern
+from compas_rv.session import RVSession
 
 
 class RhinoPatternObject(RUIMeshObject):
+    session = RVSession()
     mesh: Pattern
 
     freecolor = ColorAttribute(default=Color.white())
@@ -17,11 +19,6 @@ class RhinoPatternObject(RUIMeshObject):
         **kwargs,
     ):
         super().__init__(disjoint=disjoint, **kwargs)
-
-    @property
-    def settings(self):
-        settings = super().settings
-        return settings
 
     def draw_vertices(self):
         for vertex in self.mesh.vertices():
