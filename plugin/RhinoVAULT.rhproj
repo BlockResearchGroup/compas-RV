@@ -8,7 +8,7 @@
   "id": "a6dc4669-0e8e-40ea-8d71-b9b0f4764ec1",
   "identity": {
     "name": "COMPAS-RhinoVAULT",
-    "version": "0.2.6-beta",
+    "version": "0.2.7-beta",
     "publisher": {
       "email": "tom.v.mele@gmail.com",
       "name": "Tom Van Mele",
@@ -567,16 +567,18 @@
       }
     }
   ],
-  "libraries": [
+  "resources": [
     {
-      "type": "uri",
-      "library": {
-        "base": "file:///Users/vanmelet/Code/compas-RV/src/compas_rv/",
-        "language": {
-          "id": "*.*.python",
-          "version": "3.*.*"
-        }
-      }
+      "id": "52d6574a-52d7-4a41-95bb-23a4d3431df8",
+      "uri": "file:///Users/vanmelet/Code/compas-RV/resources/splash/styles.css"
+    },
+    {
+      "id": "6274b5df-61f5-46f6-9004-2bd6d8847561",
+      "uri": "file:///Users/vanmelet/Code/compas-RV/resources/splash/compas-RV.jpg"
+    },
+    {
+      "id": "e3e38935-bcef-4e4b-86fc-517b99921b79",
+      "uri": "file:///Users/vanmelet/Code/compas-RV/resources/splash/index.html"
     }
   ]
 }
