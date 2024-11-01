@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui>=0.3, compas_rv>=0.1, compas_session>=0.4.1, compas_tna>=0.5
+# r: compas>=2.5, compas_rui>=0.3.1, compas_session>=0.4.1, compas_tna>=0.5
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -57,6 +57,13 @@ def RunCommand():
             update_settings(session.settings.drawing.thrust, title=title)
 
     session.scene.redraw()
+
+    # =============================================================================
+    # Save session
+    # =============================================================================
+
+    if session.settings.autosave:
+        session.record(name="Update settings")
 
 
 # =============================================================================
