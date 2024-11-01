@@ -1,7 +1,7 @@
 # COMPAS RhinoVAULT
 
 > [!NOTE]
-> The current version of COMPAS-RhinoVAULT on the Yak package server is `0.2.5`.
+> The current version of COMPAS-RhinoVAULT on the Yak package server is `0.3`.
 > Note that this is still a pre-release!
 
 ![RhinoVAULT](compas-RV.jpg)
@@ -18,4 +18,15 @@ If you find a bug or if you have a problem with running the code, please file an
 
 ## Developer Guide
 
-Under construction...
+1. Create a dev environment with `conda` using `environment.yml`.
+
+2. Overwrite all requirements of `requirements.txt` with editable source installs.
+
+3. Overwrite all requirements in the site-env `rhinovault` in Rhino with editable installs from local source.
+   For example, for `compas`
+
+    ```bash
+    conda activate rhinovault-dev
+    cd path/to/local/compas
+    python -m pip install -e . --target ~/.rhinocode/py39-rh8/site-envs/rhinovault-828OGCEY
+    ```

@@ -1,0 +1,9 @@
+name: rhinovault-dev
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - compas
+  - pip:
+      - -e .[dev]
