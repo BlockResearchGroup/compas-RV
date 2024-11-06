@@ -2,7 +2,6 @@
 # venv: rhinovault
 # r: compas>=2.5, compas_rui>=0.3.1, compas_session>=0.4.1, compas_tna>=0.5
 
-
 from compas_rv.session import RVSession
 
 
