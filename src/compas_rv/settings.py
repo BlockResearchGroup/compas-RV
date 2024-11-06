@@ -17,7 +17,7 @@ class DrawingSettings(BaseModel):
     show_angles: bool = False
     show_reactions: bool = True
     show_residuals: bool = False
-    show_forces: bool = False
+    show_pipes: bool = False
     show_loads: bool = False
     show_selfweight: bool = False
     show_pipes: bool = False

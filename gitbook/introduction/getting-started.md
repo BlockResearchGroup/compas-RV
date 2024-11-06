@@ -21,7 +21,7 @@ COMPAS Masonry is **only available for Rhino 8.**
 * Select "COMPAS RhinoVAULT" from the list.
 * Install.
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>COMPAS RhinoVAULT can be installed using Yak, the package manager of Rhino.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/RV_package-manager.png" alt=""><figcaption><p>COMPAS RhinoVAULT can be installed using Yak, the package manager of Rhino.</p></figcaption></figure>
 
 ***
 
@@ -52,9 +52,9 @@ COMPAS RhinoVAULT defines the following Rhino commands:
 
 These commands can be executed at the Rhino Command Prompt (simply start typing the command name), or using the RhinoVAULT toolbar.
 
-<figure><img src="../.gitbook/assets/RV_RV_command-line.png" alt=""><figcaption><p>Accessing RhinoVAULT commands from the command line.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/RV_command-line.png" alt=""><figcaption><p>Accessing RhinoVAULT commands from the command line.</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/RV_RV_toolbar.png" alt=""><figcaption><p>RhinoVAULT toolbar</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/RV_toolbar.png" alt=""><figcaption><p>RhinoVAULT toolbar</p></figcaption></figure>
 
 If the toolbar is not visible after installing RhinoVAULT, you can load it from the "Toolbars" page. To open the "Toolbars" page, type `Toolbars` on the Rhino command line.
 
