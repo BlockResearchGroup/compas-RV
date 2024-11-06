@@ -2,7 +2,6 @@
 # venv: rhinovault
 # r: compas>=2.5, compas_rui>=0.3.1, compas_session>=0.4.1, compas_tna>=0.5
 
-
 import rhinoscriptsyntax as rs  # type: ignore
 
 from compas.geometry import Box
@@ -10,17 +9,18 @@ from compas.geometry import bounding_box
 from compas.geometry import scale_vector
 from compas.geometry import sum_vectors
 from compas_rv.datastructures import FormDiagram
-from compas_rv.datastructures import Pattern
-from compas_rv.scene import RhinoPatternObject
+from compas_rv.datastructures import ThrustDiagram
 from compas_rv.session import RVSession
 
 
 def RunCommand():
     session = RVSession()
 
-    pattern: RhinoPatternObject = session.scene.find_by_itemtype(Pattern)
+    pattern = session.find_pattern()
     if not pattern:
         return
+
+    session.clear_all_diagrams()
 
     # =============================================================================
     # Init the form diagram
@@ -28,31 +28,34 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    form = FormDiagram.from_pattern(pattern.mesh)
-    form.name = "FormDiagram"
+    formdiagram = FormDiagram.from_pattern(pattern.mesh)
+    formdiagram.name = "FormDiagram"
 
-    form.vertices_attribute(name="z", value=0)
+    formdiagram.vertices_attribute(name="z", value=0)
 
-    normals = [form.face_normal(face) for face in form.faces_where(_is_loaded=True)]
+    normals = [formdiagram.face_normal(face) for face in formdiagram.faces_where(_is_loaded=True)]
     scale = 1 / len(normals)
     normal = scale_vector(sum_vectors(normals), scale)
     if normal[2] < 0:
-        form.flip_cycles()
+        formdiagram.flip_cycles()
 
-    form.vertices_attribute("is_fixed", False)
+    formdiagram.vertices_attribute("is_fixed", False)
 
     fixed = list(pattern.mesh.vertices_where(is_fixed=True))
 
     if fixed:
         for vertex in fixed:
-            if form.has_vertex(vertex):
-                form.vertex_attribute(vertex, "is_support", True)
+            if formdiagram.has_vertex(vertex):
+                formdiagram.vertex_attribute(vertex, "is_support", True)
 
-    bbox = Box.from_bounding_box(bounding_box(form.vertices_attributes("xyz")))
+    thrustdiagram: ThrustDiagram = formdiagram.copy(cls=ThrustDiagram)
+    thrustdiagram.name = "ThrustDiagram"
+
+    # set an initial value for zmax
+    bbox = Box.from_bounding_box(bounding_box(formdiagram.vertices_attributes("xyz")))
     diagonal = bbox.points[2] - bbox.points[0]
     zmax = 0.25 * diagonal.length
-
-    session.settings.tna.vertical.zmax = zmax
+    session.settings.tna.vertical_zmax = zmax
 
     # =============================================================================
     # Update scene
@@ -62,14 +65,12 @@ def RunCommand():
 
     pattern.show = False
 
-    session.scene.add(form, name=form.name)
+    session.scene.add(formdiagram, name=formdiagram.name)
+    session.scene.add(thrustdiagram, name=thrustdiagram.name, show=False)
+
     session.scene.redraw()
 
     rs.Redraw()
-
-    # =============================================================================
-    # Save session
-    # =============================================================================
 
     if session.settings.autosave:
         session.record(name="Init Form Diagram")

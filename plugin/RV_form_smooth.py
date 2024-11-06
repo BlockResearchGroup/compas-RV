@@ -4,6 +4,7 @@
 
 import rhinoscriptsyntax as rs  # type: ignore
 
+from compas.itertools import flatten
 from compas_rv.session import RVSession
 
 
@@ -15,36 +16,28 @@ def RunCommand():
         return
 
     # =============================================================================
-    # Modify form vertices
+    # Pattern relax
     # =============================================================================
 
     rs.UnselectAllObjects()
 
-    options = ["VertexAttributes", "EdgeAttributes"]
-    option = rs.GetString("Modify the Form Diagram", strings=options)
-    if not option:
+    anchors = list(form.diagram.vertices_where(is_support=True))
+    fixed = list(form.diagram.vertices_where(is_fixed=True))
+    fixed = anchors + fixed
+
+    options = ["True", "False"]
+    option = rs.GetString("Press Enter to smooth or ESC to exit. Keep all boundaries fixed?", strings=options)
+    if option is None:
         return
 
-    if option == "VertexAttributes":
-        form.show_vertices = list(form.diagram.vertices())
-        form.redraw_vertices()
+    if option == "True":
+        # perhaps just redefine "vertices_on_boundaries"?
+        fixed += list(flatten(form.diagram.vertices_on_boundaries()))
+        fixed += list(flatten([form.diagram.face_vertices(face) for face in form.diagram.faces_where(_is_loaded=False)]))
 
-        selected = form.select_vertices()
+    fixed = list(set(fixed))
 
-        if selected:
-            form.update_vertex_attributes(selected)
-
-    elif option == "EdgeAttributes":
-        form.show_edges = list(form.diagram.edges_where(_is_edge=True))
-        form.redraw_edges()
-
-        selected = form.select_edges()
-
-        if selected:
-            form.update_edge_attributes(selected)
-
-    else:
-        raise NotImplementedError
+    form.diagram.smooth_area(fixed=fixed)
 
     # =============================================================================
     # Update scene
@@ -61,7 +54,7 @@ def RunCommand():
     form.redraw()
 
     if session.settings.autosave:
-        session.record(name="Modify Form Diagram")
+        session.record(name="Smooth the FormDiagram")
 
 
 # =============================================================================

@@ -15,36 +15,12 @@ def RunCommand():
         return
 
     # =============================================================================
-    # Modify form vertices
+    # Pattern relax
     # =============================================================================
 
     rs.UnselectAllObjects()
 
-    options = ["VertexAttributes", "EdgeAttributes"]
-    option = rs.GetString("Modify the Form Diagram", strings=options)
-    if not option:
-        return
-
-    if option == "VertexAttributes":
-        form.show_vertices = list(form.diagram.vertices())
-        form.redraw_vertices()
-
-        selected = form.select_vertices()
-
-        if selected:
-            form.update_vertex_attributes(selected)
-
-    elif option == "EdgeAttributes":
-        form.show_edges = list(form.diagram.edges_where(_is_edge=True))
-        form.redraw_edges()
-
-        selected = form.select_edges()
-
-        if selected:
-            form.update_edge_attributes(selected)
-
-    else:
-        raise NotImplementedError
+    form.mesh.relax()
 
     # =============================================================================
     # Update scene
@@ -61,7 +37,7 @@ def RunCommand():
     form.redraw()
 
     if session.settings.autosave:
-        session.record(name="Modify Form Diagram")
+        session.record(name="Relax the FormDiagram")
 
 
 # =============================================================================
