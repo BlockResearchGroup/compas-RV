@@ -2,17 +2,15 @@
 # venv: rhinovault
 # r: compas>=2.5, compas_rui>=0.3.1, compas_session>=0.4.1, compas_tna>=0.5
 
-
 import rhinoscriptsyntax as rs  # type: ignore
 
-from compas_rv.datastructures import Pattern
 from compas_rv.session import RVSession
 
 
 def RunCommand():
     session = RVSession()
 
-    pattern = session.scene.find_by_itemtype(Pattern)
+    pattern = session.find_pattern()
     if not pattern:
         return
 
@@ -20,14 +18,10 @@ def RunCommand():
     # Update openings
     # =============================================================================
 
-    rs.UnselectAllObjects()
+    raise NotImplementedError
 
     # =============================================================================
     # Update scene
-    # =============================================================================
-
-    # =============================================================================
-    # Save session
     # =============================================================================
 
     if session.settings.autosave:

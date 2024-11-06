@@ -2,7 +2,6 @@
 # venv: rhinovault
 # r: compas>=2.5, compas_rui>=0.3.1, compas_session>=0.4.1, compas_tna>=0.5
 
-
 import rhinoscriptsyntax as rs  # type: ignore
 
 import compas_rhino
@@ -15,7 +14,7 @@ from compas_rv.session import RVSession
 def RunCommand():
     session = RVSession()
 
-    patternobj = session.scene.find_by_itemtype(Pattern)
+    patternobj = session.find_pattern(warn=False)
 
     if patternobj:
         result = rs.MessageBox(
@@ -116,10 +115,6 @@ def RunCommand():
 
     session.scene.add(pattern, name=pattern.name)
     session.scene.draw()
-
-    # =============================================================================
-    # Save session
-    # =============================================================================
 
     if session.settings.autosave:
         session.record(name="Make Pattern")

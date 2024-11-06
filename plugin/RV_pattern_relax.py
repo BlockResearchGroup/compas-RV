@@ -2,18 +2,15 @@
 # venv: rhinovault
 # r: compas>=2.5, compas_rui>=0.3.1, compas_session>=0.4.1, compas_tna>=0.5
 
-
 import rhinoscriptsyntax as rs  # type: ignore
 
-from compas_rv.datastructures import Pattern
-from compas_rv.scene import RhinoPatternObject
 from compas_rv.session import RVSession
 
 
 def RunCommand():
     session = RVSession()
 
-    pattern: RhinoPatternObject = session.scene.find_by_itemtype(Pattern)
+    pattern = session.find_pattern()
     if not pattern:
         return
 
@@ -35,12 +32,7 @@ def RunCommand():
     pattern.show_edges = False
     pattern.show_faces = True
 
-    pattern.clear()
-    pattern.draw()
-
-    # =============================================================================
-    # Save session
-    # =============================================================================
+    pattern.redraw()
 
     if session.settings.autosave:
         session.record(name="Relax the Pattern")

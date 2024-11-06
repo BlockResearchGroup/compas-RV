@@ -9,8 +9,6 @@ import compas_rhino.drawing
 import compas_rhino.objects
 from compas.geometry import centroid_points
 from compas.itertools import pairwise
-from compas_rv.datastructures import Pattern
-from compas_rv.scene import RhinoPatternObject
 from compas_rv.session import RVSession
 
 
@@ -30,7 +28,7 @@ def draw_labels(pattern, openings):
 def RunCommand():
     session = RVSession()
 
-    pattern: RhinoPatternObject = session.scene.find_by_itemtype(Pattern)
+    pattern = session.find_pattern()
     if not pattern:
         return
 
@@ -68,9 +66,7 @@ def RunCommand():
         pattern.mesh.relax()
 
     compas_rhino.objects.delete_objects(guids, purge=True)
-    pattern.clear()
-    pattern.draw()
-    rs.Redraw()
+    pattern.redraw()
 
     # =============================================================================
     # Update openings
@@ -115,8 +111,7 @@ def RunCommand():
                     pattern.mesh.relax()
 
             compas_rhino.objects.delete_objects(guids, purge=True)
-            pattern.clear()
-            pattern.draw()
+            pattern.redraw()
             guids = draw_labels(pattern, openings)
             rs.Redraw()
 
@@ -132,12 +127,7 @@ def RunCommand():
     pattern.show_edges = False
     pattern.show_faces = True
 
-    pattern.clear()
-    pattern.draw()
-
-    # =============================================================================
-    # Save session
-    # =============================================================================
+    pattern.redraw()
 
     if session.settings.autosave:
         session.record(name="Update Pattern Boundaries")
