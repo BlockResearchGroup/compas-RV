@@ -1,3 +1,5 @@
+import rhinoscriptsyntax as rs  # type: ignore
+
 from compas.colors import Color
 from compas.scene.descriptors.color import ColorAttribute
 from compas_rui.scene import RUIMeshObject
@@ -30,3 +32,23 @@ class RhinoPatternObject(RUIMeshObject):
                 self.vertexcolor[vertex] = self.freecolor
 
         return super().draw_vertices()
+
+    def redraw_vertices(self):
+        self.clear_vertices()
+        self.draw_vertices()
+        rs.Redraw()
+
+    def redraw_edges(self):
+        self.clear_edges()
+        self.draw_edges()
+        rs.Redraw()
+
+    def redraw_faces(self):
+        self.clear_faces()
+        self.draw_faces()
+        rs.Redraw()
+
+    def redraw(self):
+        self.clear()
+        self.draw()
+        rs.Redraw()

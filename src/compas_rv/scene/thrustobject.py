@@ -1,3 +1,4 @@
+import rhinoscriptsyntax as rs  # type: ignore
 import scriptcontext as sc  # type: ignore
 
 import compas_rhino.conversions
@@ -70,6 +71,14 @@ class RhinoThrustObject(RUIMeshObject):
         settings["tensioncolor"] = self.tensioncolor
         return settings
 
+    @property
+    def diagram(self) -> ThrustDiagram:
+        return self.mesh
+
+    @diagram.setter
+    def diagram(self, diagram: ThrustDiagram) -> None:
+        self.mesh = diagram
+
     def draw(self):
         faces = []
         if self.show_faces:
@@ -87,13 +96,13 @@ class RhinoThrustObject(RUIMeshObject):
 
         super().draw()
 
-        if self.session.settings.drawing.thrust.show_reactions:
+        if self.session.settings.drawing.show_reactions:
             self.draw_reactions()
-        if self.session.settings.drawing.thrust.show_loads:
+        if self.session.settings.drawing.show_loads:
             self.draw_loads()
-        if self.session.settings.drawing.thrust.show_selfweight:
+        if self.session.settings.drawing.show_selfweight:
             self.draw_selfweight()
-        if self.session.settings.drawing.thrust.show_forces:
+        if self.session.settings.drawing.show_forces:
             self.draw_forces()
 
         return self.guids
@@ -139,9 +148,9 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_loads(self):
         guids = []
 
-        scale = self.session.settings.drawing.thrust.scale_loads
+        scale = self.session.settings.drawing.scale_loads
         color = self.loadcolor
-        tol = self.session.settings.drawing.thrust.tol_vectors
+        tol = self.session.settings.drawing.tol_vectors
 
         for vertex in self.mesh.vertices_where(is_support=False):
             load = self.mesh.vertex_attributes(vertex, ["px", "py", "pz"])
@@ -168,9 +177,9 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_selfweight(self):
         guids = []
 
-        scale = self.session.settings.drawing.thrust.scale_selfweight
+        scale = self.session.settings.drawing.scale_selfweight
         color = self.selfweightcolor
-        tol = self.session.settings.drawing.thrust.tol_vectors
+        tol = self.session.settings.drawing.tol_vectors
 
         for vertex in self.mesh.vertices_where(is_support=False):
             thickness = self.mesh.vertex_attribute(vertex, "t")
@@ -199,8 +208,8 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_forces(self):
         guids = []
 
-        scale = self.session.settings.drawing.thrust.scale_forces
-        tol = self.session.settings.drawing.thrust.tol_pipes
+        scale = self.session.settings.drawing.scale_forces
+        tol = self.session.settings.drawing.tol_pipes
 
         for edge in self.mesh.edges():
             force = self.mesh.edge_attribute(edge, "_f")
@@ -228,16 +237,16 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_reactions(self):
         guids = []
 
-        scale = self.session.settings.drawing.thrust.scale_reactions
-        tol = self.session.settings.drawing.thrust.tol_vectors
+        scale = self.session.settings.drawing.scale_reactions
+        tol = self.session.settings.drawing.tol_vectors
 
         for vertex in self.mesh.vertices_where(is_support=True):
             residual = Vector(*self.mesh.vertex_attributes(vertex, ["_rx", "_ry", "_rz"]))
-
             vector = residual * scale
+
             if vector.length > tol:
                 name = "{}.vertex.{}.reaction".format(self.mesh.name, vertex)
-                attr = self.compile_attributes(name=name, color=self.reactioncolor, arrow="end")
+                attr = self.compile_attributes(name=name, color=self.reactioncolor, arrow="start")
                 point = self.mesh.vertex_point(vertex)
                 line = Line.from_point_and_vector(point, vector)
                 guid = sc.doc.Objects.AddLine(compas_rhino.conversions.line_to_rhino(line), attr)
@@ -255,13 +264,13 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_residuals(self):
         guids = []
 
-        scale = self.session.settings.drawing.thrust.scale_residuals
-        tol = self.session.settings.drawing.thrust.tol_vectors
+        scale = self.session.settings.drawing.scale_residuals
+        tol = self.session.settings.drawing.tol_vectors
 
         for vertex in self.mesh.vertices_where(is_support=False):
             residual = Vector(*self.mesh.vertex_attributes(vertex, ["_rx", "_ry", "_rz"]))
 
-            vector = residual * -scale
+            vector = residual * scale
             if vector.length > tol:
                 name = "{}.vertex.{}.residual".format(self.mesh.name, vertex)
                 attr = self.compile_attributes(name=name, color=self.residualcolor, arrow="end")
@@ -278,3 +287,23 @@ class RhinoThrustObject(RUIMeshObject):
 
         self._guids += guids
         return guids
+
+    def redraw_vertices(self):
+        self.clear_vertices()
+        self.draw_vertices()
+        rs.Redraw()
+
+    def redraw_edges(self):
+        self.clear_edges()
+        self.draw_edges()
+        rs.Redraw()
+
+    def redraw_faces(self):
+        self.clear_faces()
+        self.draw_faces()
+        rs.Redraw()
+
+    def redraw(self):
+        self.clear()
+        self.draw()
+        rs.Redraw()
