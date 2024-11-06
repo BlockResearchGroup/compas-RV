@@ -93,7 +93,7 @@ class RhinoThrustObject(RUIMeshObject):
             self.draw_loads()
         if self.session.settings.drawing.thrust.show_selfweight:
             self.draw_selfweight()
-        if self.session.settings.drawing.thrust.show_forces:
+        if self.session.settings.drawing.thrust.show_pipes:
             self.draw_forces()
 
         return self.guids
