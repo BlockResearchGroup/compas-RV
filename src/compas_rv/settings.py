@@ -15,17 +15,19 @@ class TNASettings(BaseModel):
 
 class DrawingSettings(BaseModel):
     show_angles: bool = False
+    show_forces: bool = False
+
     show_reactions: bool = True
     show_residuals: bool = False
     show_pipes: bool = False
     show_loads: bool = False
     show_selfweight: bool = False
-    show_pipes: bool = False
+
     show_thickness: bool = False
 
     scale_reactions: float = 0.1
     scale_residuals: float = 1.0
-    scale_forces: float = 1.0
+    scale_pipes: float = 1.0
     scale_loads: float = 1.0
     scale_selfweight: float = 1.0
 

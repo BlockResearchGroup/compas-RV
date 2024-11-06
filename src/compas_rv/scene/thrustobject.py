@@ -102,8 +102,8 @@ class RhinoThrustObject(RUIMeshObject):
             self.draw_loads()
         if self.session.settings.drawing.show_selfweight:
             self.draw_selfweight()
-        if self.session.settings.drawing.show_forces:
-            self.draw_forces()
+        if self.session.settings.drawing.show_pipes:
+            self.draw_pipes()
 
         return self.guids
 
@@ -205,10 +205,10 @@ class RhinoThrustObject(RUIMeshObject):
         self._guids += guids
         return guids
 
-    def draw_forces(self):
+    def draw_pipes(self):
         guids = []
 
-        scale = self.session.settings.drawing.scale_forces
+        scale = self.session.settings.drawing.scale_pipes
         tol = self.session.settings.drawing.tol_pipes
 
         for edge in self.mesh.edges():
