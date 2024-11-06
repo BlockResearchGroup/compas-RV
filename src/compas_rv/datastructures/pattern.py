@@ -1,6 +1,3 @@
-# from functools import partial
-from itertools import groupby
-
 from compas.datastructures import Mesh
 from compas.geometry import Line
 from compas.geometry import angle_vectors
