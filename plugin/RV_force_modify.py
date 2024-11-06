@@ -2,46 +2,80 @@
 # venv: rhinovault
 # r: compas>=2.5, compas_rui>=0.3.1, compas_session>=0.4.1, compas_tna>=0.5
 
-
 import rhinoscriptsyntax as rs  # type: ignore
 
-from compas_rv.datastructures import ForceDiagram
-from compas_rv.scene import RhinoForceObject
 from compas_rv.session import RVSession
 
 
 def RunCommand():
     session = RVSession()
 
-    force: RhinoForceObject = session.scene.find_by_itemtype(ForceDiagram)
+    form = session.find_formdiagram()
+    if not form:
+        return
+
+    force = session.find_forcediagram()
     if not force:
         return
 
     # =============================================================================
-    # Modify pattern vertices
+    # Modify force vertices
     # =============================================================================
 
     rs.UnselectAllObjects()
 
-    options = ["VertexAttributes", "EdgeAttributes"]
+    options = ["VertexAttributes", "EdgeAttributes", "MoveVertices"]
     option = rs.GetString("Modify the Force Diagram", strings=options)
+
     if not option:
         return
 
     if option == "VertexAttributes":
-        selectable = list(force.mesh.vertices())
-        selected = force.select_vertices(selectable)
+        force.show_vertices = list(force.diagram.vertices())
+        force.redraw_vertices()
+
+        selected = force.select_vertices()
+
         if selected:
             force.update_vertex_attributes(selected)
 
     elif option == "EdgeAttributes":
-        selectable = list(force.mesh.edges_where(_is_edge=True))
-        selected = force.select_edges(selectable)
+        force.show_edges = list(force.diagram.edges())
+        force.redraw_edges()
+
+        selected = force.select_edges()
+
         if selected:
             force.update_edge_attributes(selected)
 
+    elif option == "MoveVertices":
+        force.show_vertices = list(force.diagram.vertices())
+        force.redraw_vertices()
+
+        selected = force.select_vertices()
+
+        if not selected:
+            return
+
+        directions = ["X", "Y", "XY", "Free"]
+        direction = rs.GetString(message="", strings=directions)
+
+        if not direction:
+            return
+
+        if direction in ("X", "Y", "XY"):
+            force.move_vertices_direction(selected, direction=direction)
+
+        else:
+            force.move_vertices(selected)
+
+        # update angle deviations
+
     else:
         raise NotImplementedError
+
+    if session.settings.autoupdate:
+        rs.MessageBox("Automatic equilibrium updates are not available yet.", title="Info")
 
     # =============================================================================
     # Update scene
@@ -54,14 +88,8 @@ def RunCommand():
     force.show_fixed = True
     force.show_supports = True
     force.show_edges = True
-    force.clear()
-    force.draw()
 
-    rs.Redraw()
-
-    # =============================================================================
-    # Save session
-    # =============================================================================
+    force.redraw()
 
     if session.settings.autosave:
         session.record(name="Modify Force Diagram")
