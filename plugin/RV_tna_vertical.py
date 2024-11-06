@@ -5,10 +5,7 @@
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-from compas_rv.datastructures import FormDiagram
 from compas_rv.datastructures import ThrustDiagram
-from compas_rv.scene import RhinoFormObject
-from compas_rv.scene import RhinoThrustObject
 from compas_rv.session import RVSession
 from compas_tna.equilibrium import vertical_from_zmax
 
@@ -16,28 +13,52 @@ from compas_tna.equilibrium import vertical_from_zmax
 def RunCommand():
     session = RVSession()
 
-    formobj: RhinoFormObject = session.scene.find_by_itemtype(FormDiagram)
-    if not formobj:
+    form = session.find_formdiagram()
+    if not form:
+        return
+
+    force = session.find_forcediagram()
+    if not force:
+        return
+
+    thrust = session.find_thrustdiagram()
+    if not thrust:
         return
 
     # =============================================================================
     # Compute horizontal
     # =============================================================================
 
-    kmax = session.settings.tna.vertical.kmax
-    zmax = session.settings.tna.vertical.zmax
+    # density
+    kmax = session.settings.tna.vertical_kmax
+    zmax = session.settings.tna.vertical_zmax
     zmax = rs.GetReal("Set maximum height (zmax)", number=zmax, minimum=0)
 
-    # warn the user about nonsensical values
+    if zmax is None:
+        return
 
-    _, scale = vertical_from_zmax(formobj.mesh, zmax, kmax=kmax)
+    session.settings.tna.vertical_zmax = zmax
+
+    # copy the vertical coordinates of the thrust diagram
+    # onto the form diagram
+    for vertex in thrust.diagram.vertices_where(is_support=True):
+        z = thrust.diagram.vertex_attribute(vertex, "z")
+        form.diagram.vertex_attribute(vertex, "z", z)
+
+    # can we not use the thrust diagram here
+    _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax)
 
     # store scale in force diagram
+    print(scale)
 
-    thrust: ThrustDiagram = formobj.mesh.copy(cls=ThrustDiagram)
-    thrust.name = "ThrustDiagram"
+    thrustdiagram: ThrustDiagram = form.diagram.copy(cls=ThrustDiagram)
+    thrustdiagram.name = "ThrustDiagram"
 
-    formobj.mesh.vertices_attribute(name="z", value=0)
+    # flatten the formdiagram again
+    form.diagram.vertices_attribute(name="z", value=0)
+
+    # show the thrust diagram
+    thrust.show = True
 
     # =============================================================================
     # Update scene
@@ -45,20 +66,8 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    thrustobj = session.scene.find_by_itemtype(ThrustDiagram)
-
-    if not thrustobj:
-        thrustobj: RhinoThrustObject = session.scene.add(thrust, name=thrust.name)
-    else:
-        thrustobj.mesh = thrust
-
-    thrustobj.clear()
-    thrustobj.draw()
-    rs.Redraw()
-
-    # =============================================================================
-    # Save session
-    # =============================================================================
+    thrust.diagram = thrustdiagram
+    thrust.redraw()
 
     if session.settings.autosave:
         session.record(name="TNA Vertical")
