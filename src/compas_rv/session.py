@@ -1,5 +1,17 @@
+import rhinoscriptsyntax as rs  # type: ignore
+
+from compas.scene import Scene
+from compas.scene import SceneObject
 from compas_rv.settings import RVSettings
 from compas_session.session import Session
+
+
+def find_all_by_itemtype(scene: Scene, itemtype) -> list[SceneObject]:
+    sceneobjects = []
+    for obj in scene.objects:
+        if isinstance(obj.item, itemtype):
+            sceneobjects.append(obj)
+    return sceneobjects
 
 
 class RVSession(Session):
@@ -25,3 +37,100 @@ class RVSession(Session):
         for sceneobject in self.scene.objects:
             if hasattr(sceneobject, "clear_conduits"):
                 sceneobject.clear_conduits()
+
+    def find_pattern(self, warn=True):
+        from compas_rv.datastructures import Pattern
+        from compas_rv.scene import RhinoPatternObject
+
+        form: RhinoPatternObject = self.scene.find_by_itemtype(Pattern)
+        if form:
+            return form
+        if warn:
+            rs.MessageBox("There is no Pattern.", title="Warning")
+
+    def find_formdiagram(self, warn=True):
+        from compas_rv.datastructures import FormDiagram
+        from compas_rv.scene import RhinoFormObject
+
+        form: RhinoFormObject = self.scene.find_by_itemtype(FormDiagram)
+        if form:
+            return form
+        if warn:
+            rs.MessageBox("There is no FormDiagram.", title="Warning")
+
+    def find_forcediagram(self, warn=True):
+        from compas_rv.datastructures import ForceDiagram
+        from compas_rv.scene import RhinoForceObject
+
+        force: RhinoForceObject = self.scene.find_by_itemtype(ForceDiagram)
+        if force:
+            return force
+        if warn:
+            rs.MessageBox("There is no ForceDiagram.", title="Warning")
+
+    def find_thrustdiagram(self, warn=True):
+        from compas_rv.datastructures import ThrustDiagram
+        from compas_rv.scene import RhinoThrustObject
+
+        thrust: RhinoThrustObject = self.scene.find_by_itemtype(ThrustDiagram)
+        if thrust:
+            return thrust
+        if warn:
+            rs.MessageBox("There is no ThrustDiagram.", title="Warning")
+
+    def clear_all_patterns(self, redraw=True):
+        from compas_rv.datastructures import Pattern
+
+        for obj in find_all_by_itemtype(self.scene, Pattern):
+            obj.clear()
+            self.scene.remove(obj)
+        if redraw:
+            self.scene.redraw()
+            rs.Redraw()
+
+    def clear_all_diagrams(self, redraw=True):
+        from compas_rv.datastructures import ForceDiagram
+        from compas_rv.datastructures import FormDiagram
+        from compas_rv.datastructures import ThrustDiagram
+
+        sceneobjects = []
+        sceneobjects += find_all_by_itemtype(self.scene, FormDiagram)
+        sceneobjects += find_all_by_itemtype(self.scene, ForceDiagram)
+        sceneobjects += find_all_by_itemtype(self.scene, ThrustDiagram)
+
+        for obj in sceneobjects:
+            obj.clear()
+            self.scene.remove(obj)
+        if redraw:
+            self.scene.redraw()
+            rs.Redraw()
+
+    def clear_all_formdiagrams(self, redraw=True):
+        from compas_rv.datastructures import FormDiagram
+
+        for obj in find_all_by_itemtype(self.scene, FormDiagram):
+            obj.clear()
+            self.scene.remove(obj)
+        if redraw:
+            self.scene.redraw()
+            rs.Redraw()
+
+    def clear_all_forcediagrams(self, redraw=True):
+        from compas_rv.datastructures import ForceDiagram
+
+        for obj in find_all_by_itemtype(self.scene, ForceDiagram):
+            obj.clear()
+            self.scene.remove(obj)
+        if redraw:
+            self.scene.redraw()
+            rs.Redraw()
+
+    def clear_all_thrustdiagrams(self, redraw=True):
+        from compas_rv.datastructures import ThrustDiagram
+
+        for obj in find_all_by_itemtype(self.scene, ThrustDiagram):
+            obj.clear()
+            self.scene.remove(obj)
+        if redraw:
+            self.scene.redraw()
+            rs.Redraw()
