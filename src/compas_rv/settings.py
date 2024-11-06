@@ -1,39 +1,29 @@
 from pydantic import BaseModel
+from pydantic import Field
 
 from compas_session.settings import Settings
 
 
-class HorizontalSettings(BaseModel):
-    kmax: int = 100
-    alpha: float = 100
-
-
-class VerticalSettings(BaseModel):
-    kmax: int = 300
-    zmax: float = 4.0
-
-
 class TNASettings(BaseModel):
-    horizontal: HorizontalSettings = HorizontalSettings()
-    vertical: VerticalSettings = VerticalSettings()
+    horizontal_kmax: int = 100
+    horizontal_alpha: float = 100
+    horizontal_max_angle: float = Field(default=5.0, title="Maximum Angle Deviation", description="The maximum allowed angle between corresponding edges.")
+
+    vertical_kmax: int = 300
+    vertical_zmax: float = 4.0
 
 
-class FormDrawingSettings(BaseModel):
+class DrawingSettings(BaseModel):
     show_angles: bool = False
-
-
-class ForceDrawingSettings(BaseModel):
-    show_angles: bool = False
-
-
-class ThrustDrawingSettings(BaseModel):
     show_reactions: bool = True
     show_residuals: bool = False
     show_forces: bool = False
     show_loads: bool = False
     show_selfweight: bool = False
+    show_pipes: bool = False
+    show_thickness: bool = False
 
-    scale_reactions: float = 1.0
+    scale_reactions: float = 0.1
     scale_residuals: float = 1.0
     scale_forces: float = 1.0
     scale_loads: float = 1.0
@@ -43,12 +33,8 @@ class ThrustDrawingSettings(BaseModel):
     tol_pipes: float = 1e-2
 
 
-class DrawingSettings(BaseModel):
-    form: FormDrawingSettings = FormDrawingSettings()
-    force: ForceDrawingSettings = ForceDrawingSettings()
-    thrust: ThrustDrawingSettings = ThrustDrawingSettings()
-
-
 class RVSettings(Settings):
+    autoupdate: bool = False
+
     tna: TNASettings = TNASettings()
     drawing: DrawingSettings = DrawingSettings()
