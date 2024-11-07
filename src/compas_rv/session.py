@@ -89,18 +89,9 @@ class RVSession(Session):
             rs.Redraw()
 
     def clear_all_diagrams(self, redraw=True):
-        from compas_rv.datastructures import ForceDiagram
-        from compas_rv.datastructures import FormDiagram
-        from compas_rv.datastructures import ThrustDiagram
-
-        sceneobjects = []
-        sceneobjects += find_all_by_itemtype(self.scene, FormDiagram)
-        sceneobjects += find_all_by_itemtype(self.scene, ForceDiagram)
-        sceneobjects += find_all_by_itemtype(self.scene, ThrustDiagram)
-
-        for obj in sceneobjects:
-            obj.clear()
-            self.scene.remove(obj)
+        self.clear_all_formdiagrams(redraw=False)
+        self.clear_all_forcediagrams(redraw=False)
+        self.clear_all_thrustdiagrams(redraw=False)
         if redraw:
             self.scene.redraw()
             rs.Redraw()
@@ -134,3 +125,7 @@ class RVSession(Session):
         if redraw:
             self.scene.redraw()
             rs.Redraw()
+
+    def confirm(message):
+        result = rs.MessageBox(message, buttons=4 | 32 | 256 | 0, title="Confirmation")
+        return result == 6
