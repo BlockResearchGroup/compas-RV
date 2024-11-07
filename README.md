@@ -1,7 +1,7 @@
 # COMPAS RhinoVAULT
 
 > [!NOTE]
-> The current version of COMPAS-RhinoVAULT on the Yak package server is `0.3`.
+> The current version of COMPAS-RhinoVAULT on the Yak package server is `0.4.12`.
 > Note that this is still a pre-release!
 
 ![RhinoVAULT](compas-RV.jpg)
