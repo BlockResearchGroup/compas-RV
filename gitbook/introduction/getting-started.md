@@ -27,7 +27,7 @@ COMPAS Masonry is **only available for Rhino 8.**
 
 After the installation, you should see the RhinoVAULT toolbar in the Rhino workspace.&#x20;
 
-<figure><img src="../.gitbook/assets/RV_toolbar (2).png" alt=""><figcaption><p>RhinoVAULT toolbar</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/RV_toolbar (1).png" alt=""><figcaption><p>RhinoVAULT toolbar</p></figcaption></figure>
 
 If the toolbar is not visible after installing RhinoVAULT, you can load it from the "Toolbars" page. To open the "Toolbars" page, type `Toolbars` on the Rhino command line.
 

@@ -18,7 +18,7 @@
 * [2. Boundary Conditions](manual/boundary-conditions.md)
 * [3. Form diagram](manual/diagrams.md)
 * [4. Force diagram](manual/equilibrium.md)
-* [5. Horizontal equilibrium](manual/5.-horizontal-equilibrium.md)
+* [5. Horizontal equilibrium](manual/horizontal-equilibrium.md)
 * [6. Vertical equilibrium](manual/fitting.md)
 * [7. Modify diagrams](manual/supports.md)
 * [8. Settings](manual/settings.md)

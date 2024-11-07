@@ -12,7 +12,7 @@ The relationship between: the compression equilibrium shape, the thrust network 
 
 The workflow of RhinoVAULT is based on the theoretical framework and workflow of TNA, which can be broken down into 7 main steps, and 2 auxiliary steps.
 
-<figure><img src="../.gitbook/assets/RV_workflow (2).jpg" alt=""><figcaption><p>RhinoVAULT workflow</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/RV_workflow.jpg" alt=""><figcaption><p>RhinoVAULT workflow</p></figcaption></figure>
 
 ### 1. Create and Modify Pattern
 
