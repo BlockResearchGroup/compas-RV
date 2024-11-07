@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: red;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-5 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-6, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2 {
+        filter: url(#outer-glow-3);
+      }
+
+      .cls-3 {
+        filter: url(#drop-shadow-5);
+      }
+
+      .cls-4 {
+        filter: url(#outer-glow-2);
+      }
+
+      .cls-7 {
+        fill: #b3b3b3;
+      }
+
+      .cls-5 {
+        stroke: #b3b3b3;
+      }
+
+      .cls-8 {
+        fill: url(#radial-gradient);
+        opacity: .5;
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <filter id="outer-glow-2" x="-35.2" y="-1.6" width="38.4" height="35.76" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="2"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="outer-glow-3" x="-3.12" y="-1.52" width="38.16" height="35.52" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur-2" stdDeviation="2"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clippath">
+      <rect class="cls-6" x="32" width="32" height="32"/>
+    </clipPath>
+    <filter id="drop-shadow-5" x="27.84" y="-.08" width="40.32" height="32.16" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur-3" stdDeviation="2"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur-3" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <radialGradient id="radial-gradient" cx="16.34" cy="11.22" fx="16.34" fy="11.22" r="38.34" gradientUnits="userSpaceOnUse">
+      <stop offset=".11" stop-color="#fff"/>
+      <stop offset="1" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.2, SVG Export Plug-In . SVG Version: 1.2.0 Build 154)  -->
+  <g>
+    <g id="shadow">
+      <polygon class="cls-4" points="-29 6.52 -29 6.52 -29 6.52 -16 4.56 -3 6.52 -3 6.52 -3 6.52 -3 19.92 -16.01 28 -16.01 28 -16.01 28 -29 19.92 -29 6.52"/>
+      <polygon class="cls-2" points="3 6.52 3 6.52 3 6.52 16 4.56 29 6.52 29 6.52 29 6.52 29 19.92 15.99 28 15.99 28 15.99 28 3 19.92 3 6.52"/>
+      <g class="cls-9">
+        <polygon class="cls-3" points="48.48 25.96 48.96 25.96 51.16 19.76 53.86 14.57 57.74 10.46 62 6.96 61.77 6.73 61.53 6.5 61.3 6.27 61.07 6.04 54.62 7.08 48 7.62 41.38 7.08 34.93 6.04 34.7 6.27 34.47 6.5 34.23 6.73 34 6.96 38.26 10.46 42.14 14.57 44.84 19.76 47.04 25.96 47.52 25.96 48.48 25.96"/>
+      </g>
+    </g>
+    <g id="fill_x5F_gradient">
+      <polygon class="cls-8" points="3 6.52 3 6.52 3 6.52 16 4.56 29 6.52 29 6.52 29 6.52 29 19.92 15.99 28 15.99 28 15.99 28 3 19.92 3 6.52"/>
+    </g>
+    <g id="RV-logo">
+      <g>
+        <polygon class="cls-5" points="3 6.52 3 6.52 3 6.52 16 4.56 29 6.52 29 6.52 29 6.52 29 19.92 15.99 28 15.99 28 15.99 28 3 19.92 3 6.52"/>
+        <path class="cls-7" d="M16.35,12.13l-.36,15.87-.39-15.87c0-.5.76-.5.75,0h0Z"/>
+        <path class="cls-7" d="M16,4.56l.35,7.57c0,.21-.15.38-.36.39-.22.01-.41-.17-.39-.39,0,0,.4-7.56.4-7.56h0Z"/>
+        <path class="cls-7" d="M16.18,12.45l-13.18,7.47,12.79-8.12c.42-.27.82.4.39.64h0Z"/>
+        <path class="cls-7" d="M29,6.52l-12.86,5.95c-.19.09-.41,0-.5-.18-.09-.19,0-.43.2-.51,0,0,13.16-5.27,13.16-5.27h0Z"/>
+        <path class="cls-7" d="M15.84,12.48L3,6.52l13.14,5.27c.46.18.15.9-.3.69h0Z"/>
+        <path class="cls-7" d="M29,19.92l-13.2-7.46c-.18-.1-.24-.33-.14-.51.1-.19.35-.25.53-.13,0,0,12.81,8.11,12.81,8.11h0Z"/>
+      </g>
+    </g>
+    <g id="pattern_2">
+      <g>
+        <polygon class="cls-7" points="9.74 9.6 3 13.22 9.49 9.17 9.74 9.6 9.74 9.6"/>
+        <polygon class="cls-7" points="9.5 5.54 9.87 9.37 9.37 9.39 9.5 5.54 9.5 5.54"/>
+        <polygon class="cls-7" points="22.51 9.17 29 13.22 22.26 9.6 22.51 9.17 22.51 9.17"/>
+        <polygon class="cls-7" points="22.5 5.54 22.64 9.39 22.14 9.37 22.5 5.54 22.5 5.54"/>
+        <polygon class="cls-7" points="9.5 23.96 15.87 19.84 16.13 20.27 9.5 23.96 9.5 23.96"/>
+        <polygon class="cls-7" points="22.5 23.96 15.87 20.27 16.13 19.84 22.5 23.96 22.5 23.96"/>
+        <polygon class="cls-7" points="9.72 15.9 15.99 28 9.28 16.13 9.72 15.9 9.72 15.9"/>
+        <polygon class="cls-7" points="3 6.52 9.71 15.87 9.3 16.16 3 6.52 3 6.52"/>
+        <polygon class="cls-7" points="22.71 16.13 16.01 28 22.27 15.9 22.71 16.13 22.71 16.13"/>
+        <polygon class="cls-7" points="29 6.52 22.7 16.16 22.29 15.87 29 6.52 29 6.52"/>
+        <polygon class="cls-7" points="15.97 7.9 29 6.52 16.03 8.39 15.97 7.9 15.97 7.9"/>
+        <polygon class="cls-7" points="3 6.52 16.03 7.9 15.97 8.39 3 6.52 3 6.52"/>
+      </g>
+    </g>
+    <g id="top">
+      <circle class="cls-1" cx="29" cy="6.52" r="1"/>
+      <circle class="cls-1" cx="3" cy="6.52" r="1"/>
+      <circle class="cls-1" cx="15.99" cy="28" r="1"/>
+    </g>
+  </g>
+</svg>
