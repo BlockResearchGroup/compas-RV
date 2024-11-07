@@ -13,15 +13,16 @@
 
 ## Manual
 
-* [User Interface](manual/user-interface.md)
-* [Pattern](manual/patterns.md)
-* [Boundary Conditions](manual/boundary-conditions.md)
-* [Form diagram](manual/diagrams.md)
-* [Force diagram](manual/equilibrium.md)
-* [Horizontal equilibrium](manual/horizontal-equilibrium.md)
-* [Vertical equilibrium](manual/fitting.md)
-* [Modify diagrams](manual/supports.md)
-* [Settings](manual/settings.md)
+* [Workflow & UI](manual/user-interface.md)
+* [1. Pattern](manual/patterns.md)
+* [2. Boundary Conditions](manual/boundary-conditions.md)
+* [3. Form diagram](manual/diagrams.md)
+* [4. Force diagram](manual/equilibrium.md)
+* [5. Horizontal equilibrium](manual/5.-horizontal-equilibrium.md)
+* [6. Vertical equilibrium](manual/fitting.md)
+* [7. Modify diagrams](manual/supports.md)
+* [8. Settings](manual/settings.md)
+* [9. Utilities](manual/9.-utilities.md)
 
 ## Examples
 
