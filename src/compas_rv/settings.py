@@ -27,7 +27,7 @@ class DrawingSettings(BaseModel):
 
     scale_reactions: float = 0.1
     scale_residuals: float = 1.0
-    scale_pipes: float = 1.0
+    scale_pipes: float = 0.01
     scale_loads: float = 1.0
     scale_selfweight: float = 1.0
 
