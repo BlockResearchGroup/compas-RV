@@ -1,6 +1,6 @@
 # Thrust Network Analysis
 
-<figure><img src="../.gitbook/assets/TNA.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/RV_TNA.png" alt=""><figcaption></figcaption></figure>
 
 **Thrust Network Analysis (TNA)**, a methodology for generating compression-only vaulted surfaces and networks was developed by Prof. Philippe Block as part of his PhD (2009) at MIT, under the guidance of Prof. John Ochsendorf. The method finds possible funicular solutions under gravitational loading within a defined envelope. Using projective geometry, duality theory and linear optimization, it provides a graphical and intuitive method, adopting the same advantages of techniques such as graphic statics, but offering a viable extension to fully three-dimensional problems.‌
 

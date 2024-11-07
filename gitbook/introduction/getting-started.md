@@ -21,40 +21,13 @@ COMPAS Masonry is **only available for Rhino 8.**
 * Select "COMPAS RhinoVAULT" from the list.
 * Install.
 
-<figure><img src="../.gitbook/assets/RV_package-manager.png" alt=""><figcaption><p>COMPAS RhinoVAULT can be installed using Yak, the package manager of Rhino.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/RV_package-manager.jpg" alt=""><figcaption><p>Rhino package manager</p></figcaption></figure>
 
 ***
 
-## Toolbar
+After the installation, you should see the RhinoVAULT toolbar in the Rhino workspace.&#x20;
 
-COMPAS RhinoVAULT defines the following Rhino commands:
-
-* `RV`
-* `RV_pattern`
-* `RV_pattern_modify`
-* `RV_pattern_relax`
-* `RV_pattern_supports`
-* `RV_pattern_boundaries`
-* `RV_form`
-* `RV_force`
-* `RV_tna_horizontal`
-* `RV_tna_vertical`
-* `RV_form_modify`
-* `RV_force_modify`
-* `RV_thrust_modify`
-* `RV_scene_clear`
-* `RV_scene_redraw`
-* `RV_session_undo`
-* `RV_session_redo`
-* `RV_session_open`
-* `RV_session_save`
-* `RV_settings`
-
-These commands can be executed at the Rhino Command Prompt (simply start typing the command name), or using the RhinoVAULT toolbar.
-
-<figure><img src="../.gitbook/assets/RV_command-line.png" alt=""><figcaption><p>Accessing RhinoVAULT commands from the command line.</p></figcaption></figure>
-
-<figure><img src="../.gitbook/assets/RV_toolbar.png" alt=""><figcaption><p>RhinoVAULT toolbar</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/RV_toolbar (1).png" alt=""><figcaption><p>RhinoVAULT toolbar</p></figcaption></figure>
 
 If the toolbar is not visible after installing RhinoVAULT, you can load it from the "Toolbars" page. To open the "Toolbars" page, type `Toolbars` on the Rhino command line.
 
@@ -66,9 +39,13 @@ If the toolbar is not visible after installing RhinoVAULT, you can load it from 
 
 To check the installation, simply press the left-most button on the toolbar. This will install any missing COMPAS packages and display a "Splash" screen when the installation is completed. Close the screen by agreeing to the [legal terms](../additional-information/legal-terms.md) of using COMPAS-RhinoVAULT.
 
-Note that installing the packages (and the dependencies of the packages) may take some time, so don't worry if the the dialog doesn't pop up immediately.
 
-<figure><img src="../.gitbook/assets/RV_popup.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/RV_popup.png" alt=""><figcaption><p>RhinoVAULT splash screen</p></figcaption></figure>
+
+{% hint style="info" %}
+Note that installing the packages (and the dependencies of the packages) may take some time, so don't worry if the the dialog doesn't pop up immediately.
+{% endhint %}
 
 ***
 

@@ -1,2 +1,2 @@
-# Horizontal equilibrium
+# 5. Horizontal equilibrium
 
