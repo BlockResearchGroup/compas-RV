@@ -14,43 +14,63 @@ The workflow of RhinoVAULT is based on the theoretical framework and workflow of
 
 <figure><img src="../.gitbook/assets/RV_workflow.jpg" alt=""><figcaption><p>RhinoVAULT workflow</p></figcaption></figure>
 
+{% stepper %}
+{% step %}
 ### 1. Create and Modify Pattern
 
 A `Pattern` describes the topology of the `formdiagram`. A `pattern` is a collection of vertices interconnected by lines or "edges".  RhinoVAULT provides several methods for generating a `Pattern` and various mechanisms to modify and refine its geometry.
+{% endstep %}
 
-### 2. Define Boundary Conditions
+{% step %}
+### Define Boundary Conditions
 
 In this step, additional information is added to the `Pattern`, such as identification of the support vertices and refinement of the geometry of the unsupported boundaries.
+{% endstep %}
 
-### 3. Create Form Diagram
+{% step %}
+### Create Form Diagram
 
 Once the support vertices have been defined and the boundaries have been properly modified, the `FormDiagram` can be created from the `pattern`.
+{% endstep %}
 
-### 4. Create Force Diagram
+{% step %}
+### Create Force Diagram
 
 Once the `FormDiagram` has been successfully created, the `ForceDiagram` can be created. In its initial state, the `ForceDiagram` is the topological dual of the `FormDiagram`; the two diagrams are not yet reciprocal. &#x20;
+{% endstep %}
 
-### 5. Horizontal Equilibrium
+{% step %}
+### Horizontal Equilibrium
 
 In order for the `FormDiagram` and the `ForceDiagram` to be reciprocal, the edges of one diagram needs to be perpendicular to the corresponding edge in the other diagram. Horizontal equilibrium solver iteratively repositions the vertices of the `FormDiagram` and/or `ForceDiagram` until the perpendicularity criteria (within desired angle tolerance) is met.
+{% endstep %}
 
-### 6. Vertical Equilibrium
+{% step %}
+### Vertical Equilibrium
 
 Once the `FormDiagram` and `ForceDiagram` are reciprocal (in other words, in horizontal equilibrium), the geometry of the `ThrustDiagram` can be computed. The `ThrustDiagram` is equivalent to the `FormDiagram` with the updated z coordinates of its vertices (therefore updated self-weight at each vertex).&#x20;
 
 Given a desired target height of the eventual `ThrustDiagram`, vertical equilibrium solver iteratively re-scales the `ThrustDiagram` in the z-axis, until the highest vertex of the `ThrustDigram` lies at the desired target height.
+{% endstep %}
 
-### 7. Modify Diagrams
+{% step %}
+### Modify Diagrams
 
 Once the vertical equilibrium has been computed, the three diagrams can be interactively modified by the user to continue form finding explorations.
+{% endstep %}
 
-### 8. Utilities
+{% step %}
+### Utilities
 
-There are several utility functions povided by RhinoVAULT: opening and saving RhinoVAULT session files; redo and undo; redraw scene; and clear scene.
+There are several utility functions provided by RhinoVAULT: opening and saving RhinoVAULT session files; redo and undo; redraw scene; and clear scene.
+{% endstep %}
 
-### 9. Settings
+{% step %}
+### Settings
 
 Settings allows you to modify various parameters for the solving algorithms and display options.
+{% endstep %}
+{% endstepper %}
 
 ***
 
