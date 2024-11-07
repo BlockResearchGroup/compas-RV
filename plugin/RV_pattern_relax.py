@@ -20,6 +20,11 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
+    supports = len(list(pattern.mesh.vertices_where(is_support=True)))
+    if supports < 4:
+        if not session.confirm(f"You only have {supports} supports. Do you wan to proceed?"):
+            return
+
     pattern.mesh.relax()
 
     # =============================================================================

@@ -17,12 +17,7 @@ def RunCommand():
     patternobj = session.find_pattern(warn=False)
 
     if patternobj:
-        result = rs.MessageBox(
-            "This will remove all current RhinoVAULT data and objects. Do you wish to proceed?",
-            buttons=4 | 32 | 256 | 0,
-            title="RhinoVAULT",
-        )
-        if result == 6:
+        if session.confirm("This will remove all current RhinoVAULT data and objects. Do you wish to proceed?"):
             session.scene.clear()
         else:
             return
