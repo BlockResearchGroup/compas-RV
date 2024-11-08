@@ -4,9 +4,9 @@ A `Pattern` object is a mesh datastructure that describes the topology of the st
 
 ## 2a. Identify Supports
 
-|                                                 |                                                                                                                                                                                                                         |
-| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|  ![](<../.gitbook/assets/RV\_supports (2).svg>) | <p><strong>Rhino command name</strong></p><p><code>RV_pattern_supports</code></p><p></p><p><strong>source fil</strong>e</p><p><a href="../../plugin/RV_pattern_supports.py"><code>RV_pattern_supports.py</code></a></p> |
+|                                                 |                                                                                                                                                                                                                         |   |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
+|  ![](<../.gitbook/assets/RV\_supports (2).svg>) | <p><strong>Rhino command name</strong></p><p><code>RV_pattern_supports</code></p><p></p><p><strong>source file</strong></p><p><a href="../../plugin/RV_pattern_supports.py"><code>RV_pattern_supports.py</code></a></p> |   |
 
 In RhinoVAULT, a _support_ is defined as a vertex of the structure that is fixed, and can have external horizontal reactions. `RV_pattern_supports` allows user to _Add_ ore _Remove_ supports from the `Pattern`. The vertices can be selected using these modes:
 
@@ -20,9 +20,9 @@ In RhinoVAULT, a _support_ is defined as a vertex of the structure that is fixed
 
 ## 2b. Relax Pattern
 
-|                                                                         |                                                                                                                                                                                                                         |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <img src="../.gitbook/assets/RV_relax.svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_pattern_supports</code></p><p></p><p><strong>source fil</strong>e</p><p><a href="../../plugin/RV_pattern_supports.py"><code>RV_pattern_supports.py</code></a></p> |
+|                                                                         |                                                                                                                                                                                                                         |   |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
+| <img src="../.gitbook/assets/RV_relax.svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_pattern_supports</code></p><p></p><p><strong>source file</strong></p><p><a href="../../plugin/RV_pattern_supports.py"><code>RV_pattern_supports.py</code></a></p> |   |
 
 
 
@@ -30,7 +30,7 @@ In RhinoVAULT, a _support_ is defined as a vertex of the structure that is fixed
 
 ## 2c. Update Boundaries
 
-|                                                                                  |                                                                                                                                                                                                                                |
-| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| <img src="../.gitbook/assets/RV_boundaries (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_pattern_bnoundaries</code></p><p></p><p><strong>source fil</strong>e</p><p><a href="../../plugin/RV_pattern_boundaries.py"><code>RV_pattern_boundaries.py</code></a></p> |
+|                                                                                  |                                                                                                                                                                                                                                |   |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | - |
+| <img src="../.gitbook/assets/RV_boundaries (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_pattern_bnoundaries</code></p><p></p><p><strong>source file</strong></p><p><a href="../../plugin/RV_pattern_boundaries.py"><code>RV_pattern_boundaries.py</code></a></p> |   |
 

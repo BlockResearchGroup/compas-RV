@@ -8,7 +8,7 @@ RhinoVAULT offers several methods for generating a `Pattern`. Each method has a 
 
 |                                                                           |                                                                                                                                                                                              |   |
 | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
-| <img src="../.gitbook/assets/RV_pattern.svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_pattern</code></p><p></p><p><strong>source fil</strong>e</p><p><a href="../../plugin/RV_pattern.py"><code>RV_pattern.py</code></a></p> |   |
+| <img src="../.gitbook/assets/RV_pattern.svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_pattern</code></p><p></p><p><strong>source file</strong></p><p><a href="../../plugin/RV_pattern.py"><code>RV_pattern.py</code></a></p> |   |
 
 There are many ways to generate a topological pattern. Each method has pros and cons, and the desired design or workflow will help determine which method is more appropriate.
 
@@ -70,6 +70,6 @@ Not implemented.
 
 |                                                                                  |                                                                                                                                                                                         |   |
 | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
-| <img src="../.gitbook/assets/RV_pattern-modify.svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p>RV_pattern_modify</p><p></p><p><strong>source fil</strong>e</p><p><a href="../../plugin/RV_pattern_modify.py">RV_pattern_modify.py</a></p> |   |
+| <img src="../.gitbook/assets/RV_pattern-modify.svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p>RV_pattern_modify</p><p></p><p><strong>source file</strong></p><p><a href="../../plugin/RV_pattern_modify.py">RV_pattern_modify.py</a></p> |   |
 
 Not implemented.
