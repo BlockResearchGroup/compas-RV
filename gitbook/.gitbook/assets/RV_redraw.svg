@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-dasharray: 1.22 1.22;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .cls-2 {
+        stroke-dasharray: 1.23 1.23;
+      }
+    </style>
+    <filter id="drop-shadow-10" x="-33.16" y="1" width="34.32" height="30" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="1"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.2, SVG Export Plug-In . SVG Version: 1.2.0 Build 154)  -->
+  <g>
+    <g id="RV-logo">
+      <g>
+        <path class="cls-3" d="M8.98,24.47c-.19-.16-.38-.33-.56-.5"/>
+        <path class="cls-2" d="M7.58,23.07c-.92-1.09-1.62-2.36-2.06-3.75"/>
+        <path class="cls-3" d="M5.34,18.73c-.06-.24-.12-.49-.16-.73"/>
+      </g>
+      <g>
+        <path class="cls-3" d="M24.42,23.08c-2.02,2.4-5.04,3.92-8.42,3.92-2.67,0-5.12-.95-7.02-2.53"/>
+        <polygon points="18.61 22.26 27 16 28.23 26.4 18.61 22.26"/>
+      </g>
+      <g>
+        <path class="cls-3" d="M23.05,7.56c.19.16.38.33.56.5"/>
+        <path class="cls-1" d="M24.45,8.95c.91,1.09,1.61,2.35,2.05,3.74"/>
+        <path class="cls-3" d="M26.66,13.28c.06.24.11.49.16.73"/>
+      </g>
+      <g>
+        <path class="cls-3" d="M7.58,8.92c2.02-2.4,5.04-3.92,8.42-3.92,2.68,0,5.14.96,7.05,2.56"/>
+        <polygon points="13.39 9.74 5 16 3.77 5.6 13.39 9.74"/>
+      </g>
+    </g>
+  </g>
+</svg>
