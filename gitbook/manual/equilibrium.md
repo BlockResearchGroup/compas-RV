@@ -1,8 +1,8 @@
 # 4. Force diagram
 
-|                                                                                    |                                                                                                                                                                                          |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <img src="../.gitbook/assets/RV_ForceDiagram (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_force</code></p><p></p><p><strong>source file</strong></p><p><a href="../../plugin/RV_force.py"><code>RV_pattern.py</code></a></p> |
+|                                                                                    |                                                                        |                                                                                                           |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| <img src="../.gitbook/assets/RV_ForceDiagram (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_force</code></p> | <p><strong>source file</strong></p><p><a href="../../plugin/RV_force.py"><code>RV_force.py</code></a></p> |
 
 Once the `FormDiagram` has been successfully created, the `ForceDiagram` can be created. When it is first created, the `ForceDiagram` is the dual diagram of the `FormDiagram`.&#x20;
 
