@@ -20,6 +20,8 @@ $$
 
 Note that using `alpha` efficiently requires a bit of practice and experience. Since the Form Diagram defines the intended  layout of horizontal forces and RV2 has many tools for designing force layouts that provide a good starting point for form finding explorations, it is usually a good idea to start with `alpha = 100`. However, once you have the horizontal equilibrium under control, playing around with lower `alpha` values can have a significant influence on finding nicely balanced force distributions.
 
+***
+
 ## Iterations
 
 Computing horizontal equilibrium is an iterative process. The default number of iterations is `100`. For sensible force layouts, this value should go a long way. However, there are many cases in which more iterations are required. For example, if the Form Diagram has multiple open/unsupported edges, and especially if those edges have a low "sag" value, more iterations will typically be required to reduce all angle deviations between corresponding edges to less than 5 degrees.
@@ -27,6 +29,8 @@ Computing horizontal equilibrium is an iterative process. The default number of 
 Computing horizontal equilibrium is quite fast. Therefore, don't hesitate to set the number of iterations to `1000` or more if the need arises. However, don't go completely overboard either (`10000` iterations is quite excessive in most cases), because the calculation has no stoppage criterion, since it tends to be more computationally expensive to check for convergence than to just run all the requested iterations.
 
 Furthermore, resolving all angle deviations is not an absolute requirement, and is in many cases unnecessary. For example, the angle deviations between very short edges tend to be quite persistent as they are dominated by edges with (much) longer lengths during the calculation process. Since short edges in the Force Diagram also represent (relatively) small horizontal forces, these deviations can often be ignored.
+
+***
 
 ## Refreshrate
 
