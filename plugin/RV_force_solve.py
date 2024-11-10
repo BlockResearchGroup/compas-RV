@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
+# r: compas_session==0.4.5, compas_tna==0.5.2
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -10,9 +10,9 @@ from compas_rv.session import RVSession
 def RunCommand():
     session = RVSession()
 
-    form = session.find_formdiagram()
-    if not form:
-        print("There is no FormDiagram in the scene.")
+    force = session.find_forcediagram()
+    if not force:
+        print("There is no ForceDiagram in the scene.")
         return
 
     # =============================================================================
@@ -21,7 +21,7 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    form.diagram.solve_fd()
+    force.diagram.solve_fd()
 
     # =============================================================================
     # Update scene
@@ -29,13 +29,13 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    form.show_vertices = True
-    form.show_free = False
-    form.show_fixed = True
-    form.show_supports = True
-    form.show_edges = True
+    force.show_vertices = True
+    force.show_free = False
+    force.show_fixed = True
+    force.show_supports = True
+    force.show_edges = True
 
-    form.redraw()
+    force.redraw()
 
     if session.settings.autosave:
         session.record(name="Relax the FormDiagram")
