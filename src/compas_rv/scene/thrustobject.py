@@ -60,15 +60,8 @@ class RhinoThrustObject(RUIMeshObject):
     def settings(self):
         settings = super().settings
         settings["show_supports"] = self.show_supports
+        settings["show_fixed"] = self.show_fixed
         settings["show_free"] = self.show_free
-        settings["freecolor"] = self.freecolor
-        settings["anchorcolor"] = self.anchorcolor
-        settings["residualcolor"] = self.residualcolor
-        settings["reactioncolor"] = self.reactioncolor
-        settings["loadcolor"] = self.loadcolor
-        settings["selfweightcolor"] = self.selfweightcolor
-        settings["compressioncolor"] = self.compressioncolor
-        settings["tensioncolor"] = self.tensioncolor
         return settings
 
     @property
@@ -80,36 +73,43 @@ class RhinoThrustObject(RUIMeshObject):
         self.mesh = diagram
 
     def compute_pipe_colors(self, tol=1e-3) -> None:
-
-        edges = list(self.mesh.edges())
-
-        forces = [self.mesh.edge_attribute(edge, "_f") for edge in edges]
+        edges = list(self.diagram.edges())
+        forces = [self.diagram.edge_attribute(edge, "_f") for edge in edges]
         magnitudes = [abs(f) for f in forces]
         fmin = min(magnitudes)
         fmax = max(magnitudes)
+
         if fmax - fmin < tol:
+            # the size of the range is already checked here
+            # no need to do this again in the loop
             return
+
         colors = []
-
         for force, magnitude in zip(forces, magnitudes):
-            if fmin != fmax:
-                colors.append(Color.from_i((magnitude - fmin) / (fmax - fmin)))
+            # this will need to be updated when we include tension edges
+            colors.append(Color.from_i((magnitude - fmin) / (fmax - fmin)))
 
-        pipe_colors = dict(zip(edges, colors))
+        return dict(zip(edges, colors))
 
-        return pipe_colors
+    # =============================================================================
+    # Clear
+    # =============================================================================
+
+    # =============================================================================
+    # Draw
+    # =============================================================================
 
     def draw(self):
         faces = []
         if self.show_faces:
-            faces += list(self.mesh.faces_where(_is_loaded=True))
+            faces += list(self.diagram.faces_where(_is_loaded=True))
         if faces:
             self.show_faces = faces
 
-        for vertex in self.mesh.vertices():
-            if self.mesh.vertex_attribute(vertex, "is_support"):
+        for vertex in self.diagram.vertices():
+            if self.diagram.vertex_attribute(vertex, "is_support"):
                 self.vertexcolor[vertex] = self.anchorcolor
-            elif self.mesh.vertex_attribute(vertex, "is_fixed"):
+            elif self.diagram.vertex_attribute(vertex, "is_fixed"):
                 self.vertexcolor[vertex] = self.fixedcolor
             else:
                 self.vertexcolor[vertex] = self.freecolor
@@ -131,17 +131,17 @@ class RhinoThrustObject(RUIMeshObject):
         if self.show_vertices is True:
             vertices = []
             if self.show_free:
-                vertices += list(self.mesh.vertices_where(is_support=False, is_fixed=False))
+                vertices += list(self.diagram.vertices_where(is_support=False, is_fixed=False))
             if self.show_fixed:
-                vertices += list(self.mesh.vertices_where(is_fixed=True))
+                vertices += list(self.diagram.vertices_where(is_fixed=True))
             if self.show_supports:
-                vertices += list(self.mesh.vertices_where(is_support=True))
+                vertices += list(self.diagram.vertices_where(is_support=True))
             self.show_vertices = vertices
 
-        for vertex in self.mesh.vertices():
-            if self.mesh.vertex_attribute(vertex, "is_support"):
+        for vertex in self.diagram.vertices():
+            if self.diagram.vertex_attribute(vertex, "is_support"):
                 self.vertexcolor[vertex] = self.anchorcolor
-            elif self.mesh.vertex_attribute(vertex, "is_fixed"):
+            elif self.diagram.vertex_attribute(vertex, "is_fixed"):
                 self.vertexcolor[vertex] = self.fixedcolor
             else:
                 self.vertexcolor[vertex] = self.freecolor
@@ -150,7 +150,7 @@ class RhinoThrustObject(RUIMeshObject):
 
     def draw_edges(self):
         if self.show_edges is True:
-            edges = list(self.mesh.edges_where(_is_edge=True))
+            edges = list(self.diagram.edges_where(_is_edge=True))
             if edges:
                 self.show_edges = edges
 
@@ -159,7 +159,7 @@ class RhinoThrustObject(RUIMeshObject):
     def draw_faces(self):
         faces = []
         if self.show_faces:
-            faces += list(self.mesh.faces_where(_is_loaded=True))
+            faces += list(self.diagram.faces_where(_is_loaded=True))
         if faces:
             self.show_faces = faces
 
@@ -172,15 +172,15 @@ class RhinoThrustObject(RUIMeshObject):
         color = self.loadcolor
         tol = self.session.settings.drawing.tol_vectors
 
-        for vertex in self.mesh.vertices_where(is_support=False):
-            load = self.mesh.vertex_attributes(vertex, ["px", "py", "pz"])
+        for vertex in self.diagram.vertices_where(is_support=False):
+            load = self.diagram.vertex_attributes(vertex, ["px", "py", "pz"])
 
             if load is not None:
                 vector = Vector(*load) * scale
                 if vector.length > tol:
-                    name = "{}.vertex.{}.load".format(self.mesh.name, vertex)
+                    name = "{}.vertex.{}.load".format(self.diagram.name, vertex)
                     attr = self.compile_attributes(name=name, color=color, arrow="start")
-                    point = self.mesh.vertex_point(vertex)
+                    point = self.diagram.vertex_point(vertex)
                     line = Line.from_point_and_vector(point, vector)
                     guid = sc.doc.Objects.AddLine(compas_rhino.conversions.line_to_rhino(line), attr)
                     guids.append(guid)
@@ -201,17 +201,17 @@ class RhinoThrustObject(RUIMeshObject):
         color = self.selfweightcolor
         tol = self.session.settings.drawing.tol_vectors
 
-        for vertex in self.mesh.vertices_where(is_support=False):
-            thickness = self.mesh.vertex_attribute(vertex, "t")
+        for vertex in self.diagram.vertices_where(is_support=False):
+            thickness = self.diagram.vertex_attribute(vertex, "t")
 
             if thickness:
-                area = self.mesh.vertex_area(vertex)
+                area = self.diagram.vertex_area(vertex)
                 weight = area * thickness
-                point = self.mesh.vertex_point(vertex)
+                point = self.diagram.vertex_point(vertex)
                 vector = Vector(0, 0, -weight * scale)
                 if vector.length > tol:
                     line = Line.from_point_and_vector(point, vector)
-                    name = "{}.vertex.{}.selfweight".format(self.mesh.name, vertex)
+                    name = "{}.vertex.{}.selfweight".format(self.diagram.name, vertex)
                     attr = self.compile_attributes(name=name, color=color, arrow="end")
                     guid = sc.doc.Objects.AddLine(compas_rhino.conversions.line_to_rhino(line), attr)
                     guids.append(guid)
@@ -233,20 +233,20 @@ class RhinoThrustObject(RUIMeshObject):
 
         pipe_colors = self.compute_pipe_colors()
 
-        for edge in self.mesh.edges():
-            force = self.mesh.edge_attribute(edge, "_f")
+        for edge in self.diagram.edges():
+            force = self.diagram.edge_attribute(edge, "_f")
 
             if force != 0:
-                line = self.mesh.edge_line(edge)
+                line = self.diagram.edge_line(edge)
                 radius = abs(force) * scale
 
                 color = self.compressioncolor
                 if self.session.settings.drawing.show_forces:
-                    color=pipe_colors[edge]
+                    color = pipe_colors[edge]
 
                 if radius > tol:
                     pipe = Cylinder.from_line_and_radius(line, radius)
-                    name = "{}.edge.{}.force".format(self.mesh.name, edge)
+                    name = "{}.edge.{}.force".format(self.diagram.name, edge)
                     attr = self.compile_attributes(name=name, color=color)
                     guid = sc.doc.Objects.AddBrep(compas_rhino.conversions.cylinder_to_rhino_brep(pipe), attr)
                     guids.append(guid)
@@ -266,14 +266,14 @@ class RhinoThrustObject(RUIMeshObject):
         scale = self.session.settings.drawing.scale_reactions
         tol = self.session.settings.drawing.tol_vectors
 
-        for vertex in self.mesh.vertices_where(is_support=True):
-            residual = Vector(*self.mesh.vertex_attributes(vertex, ["_rx", "_ry", "_rz"]))
+        for vertex in self.diagram.vertices_where(is_support=True):
+            residual = Vector(*self.diagram.vertex_attributes(vertex, ["_rx", "_ry", "_rz"]))
             vector = residual * scale
 
             if vector.length > tol:
-                name = "{}.vertex.{}.reaction".format(self.mesh.name, vertex)
+                name = "{}.vertex.{}.reaction".format(self.diagram.name, vertex)
                 attr = self.compile_attributes(name=name, color=self.reactioncolor, arrow="start")
-                point = self.mesh.vertex_point(vertex)
+                point = self.diagram.vertex_point(vertex)
                 line = Line.from_point_and_vector(point, vector)
                 guid = sc.doc.Objects.AddLine(compas_rhino.conversions.line_to_rhino(line), attr)
                 guids.append(guid)
@@ -293,14 +293,14 @@ class RhinoThrustObject(RUIMeshObject):
         scale = self.session.settings.drawing.scale_residuals
         tol = self.session.settings.drawing.tol_vectors
 
-        for vertex in self.mesh.vertices_where(is_support=False):
-            residual = Vector(*self.mesh.vertex_attributes(vertex, ["_rx", "_ry", "_rz"]))
+        for vertex in self.diagram.vertices_where(is_support=False):
+            residual = Vector(*self.diagram.vertex_attributes(vertex, ["_rx", "_ry", "_rz"]))
 
             vector = residual * scale
             if vector.length > tol:
-                name = "{}.vertex.{}.residual".format(self.mesh.name, vertex)
+                name = "{}.vertex.{}.residual".format(self.diagram.name, vertex)
                 attr = self.compile_attributes(name=name, color=self.residualcolor, arrow="end")
-                point = self.mesh.vertex_point(vertex)
+                point = self.diagram.vertex_point(vertex)
                 line = Line.from_point_and_vector(point, vector)
                 guid = sc.doc.Objects.AddLine(compas_rhino.conversions.line_to_rhino(line), attr)
                 guids.append(guid)
@@ -314,22 +314,34 @@ class RhinoThrustObject(RUIMeshObject):
         self._guids += guids
         return guids
 
+    # =============================================================================
+    # Redraw
+    # =============================================================================
+
     def redraw_vertices(self):
+        rs.EnableRedraw(False)
         self.clear_vertices()
         self.draw_vertices()
+        rs.EnableRedraw(True)
         rs.Redraw()
 
     def redraw_edges(self):
+        rs.EnableRedraw(False)
         self.clear_edges()
         self.draw_edges()
+        rs.EnableRedraw(True)
         rs.Redraw()
 
     def redraw_faces(self):
+        rs.EnableRedraw(False)
         self.clear_faces()
         self.draw_faces()
+        rs.EnableRedraw(True)
         rs.Redraw()
 
     def redraw(self):
+        rs.EnableRedraw(False)
         self.clear()
         self.draw()
+        rs.EnableRedraw(True)
         rs.Redraw()
