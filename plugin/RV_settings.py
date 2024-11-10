@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
+# r: compas_session==0.4.5, compas_tna==0.5.2
 
 import rhinoscriptsyntax as rs  # type: ignore
 from pydantic import BaseModel
@@ -34,20 +34,22 @@ def RunCommand():
     session = RVSession()
 
     options = ["RhinoVault", "ThrustNetworkAnalysis", "Drawing"]
-    option = rs.GetString(message="Settings Section", strings=options)
-    if not option:
-        return
 
-    if option == "RhinoVault":
-        update_settings(session.settings, title=option)
+    while True:
+        option = rs.GetString(message="Choose a settings section, or escape/cancel to exit.", strings=options)
+        if not option:
+            break
 
-    elif option == "ThrustNetworkAnalysis":
-        update_settings(session.settings.tna, title=option)
+        if option == "RhinoVault":
+            update_settings(session.settings, title=option)
 
-    elif option == "Drawing":
-        update_settings(session.settings.drawing, title=option)
+        elif option == "ThrustNetworkAnalysis":
+            update_settings(session.settings.tna, title=option)
 
-    session.scene.redraw()
+        elif option == "Drawing":
+            update_settings(session.settings.drawing, title=option)
+
+        session.scene.redraw()
 
     if session.settings.autosave:
         session.record(name="Update settings")
