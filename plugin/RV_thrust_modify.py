@@ -4,7 +4,14 @@
 
 import rhinoscriptsyntax as rs  # type: ignore
 
+from numpy import array
+
+from compas_fd.solvers.fd_numerical_data import FDNumericalData
 from compas_rv.session import RVSession
+from compas_rv.solvers import InteractiveScaleHorizontal
+from compas_tna.equilibrium import vertical_from_q
+from compas_tna.equilibrium.diagrams import update_z
+from compas_tna.loads import LoadUpdater
 
 
 def RunCommand():
@@ -31,7 +38,7 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    options = ["VertexAttributes", "EdgeAttributes", "FaceAttributes", "MoveSupports"]
+    options = ["VertexAttributes", "EdgeAttributes", "FaceAttributes", "MoveSupports", "ScaleForces"]
     option = rs.GetString("Modify the Thrust Diagram", strings=options)
     if not option:
         return
@@ -58,6 +65,22 @@ def RunCommand():
         selected = thrust.select_vertices()
         if selected:
             thrust.move_vertices_direction(selected, direction="Z")
+
+    # interactively change the scale of the force diagram
+    # recompute vertical equilibrium accordingly
+    # use vertical_from_q
+
+    elif option == "ScaleForces":
+        scalehorizontal = InteractiveScaleHorizontal(thrust.diagram)
+        if scalehorizontal():
+            force.diagram.attributes["scale"] = scalehorizontal.scale
+
+            for index, vertex in enumerate(thrust.diagram.vertices()):
+                thrust.diagram.vertex_attribute(vertex, "z", scalehorizontal.numdata.xyz[index, 2])
+
+            for index, edge in enumerate(thrust.diagram.edges_where(_is_edge=True)):
+                form.diagram.edge_attribute(edge, "q", scalehorizontal.numdata.q[index, 0])
+                thrust.diagram.edge_attribute(edge, "q", scalehorizontal.numdata.q[index, 0])
 
     else:
         raise NotImplementedError
