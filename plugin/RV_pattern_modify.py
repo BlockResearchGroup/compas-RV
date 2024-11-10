@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
+# r: compas_session==0.4.5, compas_tna==0.5.2
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -29,18 +29,14 @@ def RunCommand():
     if option == "VertexAttributes":
         pattern.show_vertices = list(pattern.mesh.vertices())
         pattern.redraw_vertices()
-
         selected = pattern.select_vertices()
-
         if selected:
             pattern.update_vertex_attributes(selected)
 
     elif option == "EdgeAttributes":
         pattern.show_edges = list(pattern.mesh.edges())
         pattern.redraw_edges()
-
         selected = pattern.select_edges()
-
         if selected:
             pattern.update_edge_attributes(selected)
 
