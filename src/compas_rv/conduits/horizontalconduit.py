@@ -1,15 +1,16 @@
 import System  # type: ignore
+from Rhino.Geometry import Line  # type: ignore
+from Rhino.Geometry import Point3d  # type: ignore
+from System.Collections.Generic import List  # type: ignore
 
 from compas_rhino.conduits import BaseConduit
 
-from Rhino.Geometry import Point3d
-from Rhino.Geometry import Line
-
-from System.Collections.Generic import List
+# this needs to be reorganised
+# there is not need to update anything since we don't go via RPC anymore
+# the data IS live when probably associated with the conduit
 
 
 class HorizontalConduit(BaseConduit):
-
     def __init__(self, lines, **kwargs):
         super(HorizontalConduit, self).__init__(**kwargs)
         self._default_thickness = 1.0
