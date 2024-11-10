@@ -16,19 +16,7 @@ The Force Diagram is the dual of the Form Diagram, in the sense that both diagra
 
 Initially, the Force Diagram is created as the "centroidal dual" of the Form Diagram. This means that the geometry of the Force Diagram is defined by placing its vertices at the centroids of their corresponding faces in the Form Diagram.
 
-<figure><img src="../.gitbook/assets/forcediagram-dual.jpg" alt=""><figcaption></figcaption></figure>
-
-***
-
-## Reciprocal Diagrams
-
-In order for the Form and Force Diagram to describe the distribution of horizontal thrust in a three-dimensional network of compression forces in equilibrium with vertical loads applied to its nodes, they need to be not only dual, but also reciprocal.&#x20;
-
-Two diagrams are reciprocal if they are dual, and if their corresponding edges are at a constant angle with each other. Typically, corresponding edges are required to be parallel, or perpendicular, but any other constant angle is sufficient as well.
-
-In RhinoVAULT, the Form and Force Diagram are considered reciprocal if corresponding edges are perpendicular.
-
-<figure><img src="../.gitbook/assets/forcediagram-reciprocal.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/forcediagram-dual.jpg" alt=""><figcaption><p>The initial form and force diagrams are topologically dual, but not yet reciprocal</p></figcaption></figure>
 
 ***
 

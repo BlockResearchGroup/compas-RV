@@ -8,6 +8,28 @@ This function geometrically reconfigures the the edges of the ForceDiagram, such
 
 ***
 
+## Reciprocal Diagrams
+
+In order for the Form and Force Diagram to describe the distribution of horizontal thrust in a three-dimensional network of compression forces in equilibrium with vertical loads applied to its nodes, they need to be not only dual, but also reciprocal.&#x20;
+
+Two diagrams are reciprocal if they are dual, and if their corresponding edges are at a constant angle with each other. Typically, corresponding edges are required to be parallel, or perpendicular, but any other constant angle is sufficient as well.
+
+In RhinoVAULT, the Form and Force Diagram are considered reciprocal if corresponding edges are perpendicular.
+
+
+
+<figure><img src="../.gitbook/assets/forcediagram-reciprocal.jpg" alt=""><figcaption><p>After horizontal equilibrium has been found, the form and force diagrams are now reciprocal.</p></figcaption></figure>
+
+***
+
+## Horizontal Forces
+
+Once the Form and Force Diagram are reciprocal they describe the horizontal equilibrium of the corresponding three-dimensional force network. The edges of the Form Diagram define the directions and points of application of the forces, whereas the edges of the Force Diagram define the distribution of force magnitudes along those directions.
+
+The magnitudes of horizontal forces are equal to the lengths of the edges in the Force Diagram, multiplied with a scaling factor.&#x20;
+
+***
+
 ## Algorithm Parameters
 
 ### Alpha
