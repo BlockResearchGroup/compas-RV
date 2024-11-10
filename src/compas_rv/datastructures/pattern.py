@@ -1,6 +1,7 @@
 from compas.datastructures import Mesh
 from compas.geometry import Line
 from compas.geometry import angle_vectors
+from compas.itertools import pairwise
 from compas_fd.solvers import fd_numpy
 
 
@@ -191,3 +192,56 @@ class Pattern(Mesh):
         distances = [self.vertex_point(vertex).distance_to_line(span) for vertex in opening[1:-1]]
         rise = max(distances)
         return rise / span.length
+
+    def init_openings(self, minsag: float = 0.05) -> tuple[list[list[int]], list[float]]:
+        """Initialise the boundary openings by imposing a minimal sag.
+
+        Parameters
+        ----------
+        minsag : float, optional
+            Minimal value for boundary sag.
+
+        Returns
+        -------
+        tuple[list[list[int]], list[float]]
+
+        """
+        openings = self.split_boundary()
+
+        targets = []
+        for opening in openings:
+            sag = self.compute_sag(opening)
+            sag = max(sag, minsag)
+            targets.append(sag)
+
+        self.relax()
+        self.match_opening_sag_targets(openings, targets)
+
+        return openings, targets
+
+    def match_opening_sag_targets(self, openings: list[list[int]], targets: list[float]) -> None:
+        """Iteratively update the force densities in the opneing edges to match the target sag values.
+
+        Parameters
+        ----------
+        openings : list[list[int]]
+            The vertices of the openings.
+        targets : list[float]
+            The target sag values.
+
+        """
+        count = 0
+        while count < 10:
+            count += 1
+            current = [self.compute_sag(opening) for opening in openings]
+
+            if all((sag - target) ** 2 < 0.01 for sag, target in zip(current, targets)):
+                break
+
+            for sag, target, opening in zip(current, targets, openings):
+                scale = sag / target
+                for u, v in pairwise(opening):
+                    q = self.edge_attribute((u, v), name="q")
+                    self.edge_attribute((u, v), name="q", value=scale * q)
+
+            self.relax()
