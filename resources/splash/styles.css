@@ -28,45 +28,51 @@ img{
 a:link{
 
     -webkit-app-region: no-drag;
-    color: lightgrey;
+    top: 73%;
+    color: rgb(80, 80, 80);
     text-decoration: none;
 }
 
 a:visited{
-    color: lightgrey;
+    color: rgb(80, 80, 80);
 }
 
 
 #links{
     position: absolute;
-    top: 60%;
-    left: 6%;
-    line-height: 1.5;
+    color: rgb(80, 80, 80);
+    top: 73%;
+    right: 5%;
+    text-align: right;
+    font-size: x-small;
     /* margin-top: 30%; */
 }
 
 #terms{
     position: absolute;
-    top: 81%;
-    left: 6%;
-    font-size: xx-small;
+    color: rgb(80, 80, 80);
+    top: 83%;
+    right: 5%;
+    font-size: x-small;
 }
 
 #terms a:link{
-    color: lightgrey;
+    color: rgb(80, 80, 80);
     text-decoration: underline;
 }
 
 #exit{
     position: absolute;
-    right: 3%;
-    top: 3%;
+    right: 5%;
+    top: 5%;
     -webkit-app-region: no-drag;
     cursor: pointer;
 }
 
 #agree{
     /* font-family: Arial; */
+    right: 5%;
+    text-align: right;
     font-size: large;
     font-weight: bolder;
 }
