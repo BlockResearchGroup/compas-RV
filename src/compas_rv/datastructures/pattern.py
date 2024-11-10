@@ -193,7 +193,7 @@ class Pattern(Mesh):
         rise = max(distances)
         return rise / span.length
 
-    def init_openings(self, minsag: float = 0.05) -> tuple[list[list[int]], list[float]]:
+    def init_openings(self, minsag: float = 0.1) -> tuple[list[list[int]], list[float]]:
         """Initialise the boundary openings by imposing a minimal sag.
 
         Parameters
@@ -235,11 +235,12 @@ class Pattern(Mesh):
             count += 1
             current = [self.compute_sag(opening) for opening in openings]
 
-            if all((sag - target) ** 2 < 0.01 for sag, target in zip(current, targets)):
+            if all(abs(sag - target) < 0.01 for sag, target in zip(current, targets)):
                 break
 
             for sag, target, opening in zip(current, targets, openings):
                 scale = sag / target
+
                 for u, v in pairwise(opening):
                     q = self.edge_attribute((u, v), name="q")
                     self.edge_attribute((u, v), name="q", value=scale * q)

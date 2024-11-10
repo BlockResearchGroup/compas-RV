@@ -8,7 +8,6 @@ import rhinoscriptsyntax as rs  # type: ignore
 import compas_rhino.drawing
 import compas_rhino.objects
 from compas.geometry import centroid_points
-from compas.itertools import pairwise
 from compas_rv.session import RVSession
 
 
@@ -38,34 +37,7 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    openings = pattern.mesh.split_boundary()
-    guids = draw_labels(pattern, openings)
-
-    targets = []
-    for opening in openings:
-        sag = pattern.mesh.compute_sag(opening)
-        sag = max(sag, 0.05)
-        targets.append(sag)
-
-    pattern.mesh.relax()
-
-    count = 0
-    while count < 10:
-        count += 1
-        current = [pattern.mesh.compute_sag(opening) for opening in openings]
-
-        if all((sag - target) ** 2 < 0.01 for sag, target in zip(current, targets)):
-            break
-
-        for sag, target, opening in zip(current, targets, openings):
-            scale = sag / target
-            for u, v in pairwise(opening):
-                q = pattern.mesh.edge_attribute((u, v), name="q")
-                pattern.mesh.edge_attribute((u, v), name="q", value=scale * q)
-
-        pattern.mesh.relax()
-
-    compas_rhino.objects.delete_objects(guids, purge=True)
+    openings, targets = pattern.mesh.init_openings(minsag=0.1)
     pattern.redraw()
 
     # =============================================================================
@@ -77,7 +49,7 @@ def RunCommand():
     guids = draw_labels(pattern, openings)
 
     options1 = ["All"] + [f"Boundary_{index}" for index in range(len(openings))]
-    options2 = [f"Sag_{i * 5}" for i in range(1, 11)]
+    options2 = [f"Sag_{i * 10}" for i in range(1, 5)]
 
     while True:
         option1 = rs.GetString("Select boundary", strings=options1)
@@ -91,24 +63,12 @@ def RunCommand():
             if not option2:
                 break
 
+            target = float(option2.split("_")[-1]) / 100
+
             for n in N:
-                targets[n] = float(option2.split("_")[-1]) / 100
+                targets[n] = target
 
-                count = 0
-                while count < 10:
-                    count += 1
-                    current = [pattern.mesh.compute_sag(opening) for opening in openings]
-
-                    if all((sag - target) ** 2 < 0.001 for sag, target in zip(current, targets)):
-                        break
-
-                    for sag, target, opening in zip(current, targets, openings):
-                        scale = sag / target
-                        for edge in pairwise(opening):
-                            q = pattern.mesh.edge_attribute(edge, name="q")
-                            pattern.mesh.edge_attribute(edge, name="q", value=scale * q)
-
-                    pattern.mesh.relax()
+            pattern.mesh.match_opening_sag_targets(openings, targets)
 
             compas_rhino.objects.delete_objects(guids, purge=True)
             pattern.redraw()
