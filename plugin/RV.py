@@ -15,7 +15,7 @@ shared = pathlib.Path(str(pluginfile)).parent / "shared"
 
 
 class SplashForm(Eto.Forms.Dialog[bool]):
-    def __init__(self, title, url, width=800, height=400):
+    def __init__(self, title, url, width=800, height=450):
         super().__init__()
 
         self.Title = title
