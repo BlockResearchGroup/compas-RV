@@ -1,3 +1,5 @@
+from compas.geometry import Box
+from compas.geometry import bounding_box
 from compas.geometry import cross_vectors
 from compas.geometry import length_vector
 from compas.geometry import subtract_vectors
@@ -6,11 +8,9 @@ from .formdiagram import FormDiagram
 
 
 class ThrustDiagram(FormDiagram):
-    """
-    Data structure for thrust diagrams.
-    """
+    """Data structure for thrust diagrams."""
 
-    def vertex_tributary_area(self, vertex):
+    def vertex_tributary_area(self, vertex: int) -> float:
         """
         Compute the tributary area of a vertex taking into account only the loaded faces.
 
@@ -43,7 +43,7 @@ class ThrustDiagram(FormDiagram):
                     area += length_vector(cross_vectors(v1, v3))
         return 0.25 * area
 
-    def vertex_lumped_stress(self, vertex):
+    def vertex_lumped_stress(self, vertex: int) -> float:
         """
         Compute an approximation of the compressive stress at a vertex.
 
@@ -90,3 +90,16 @@ class ThrustDiagram(FormDiagram):
                 count += 1
 
         return stress / count
+
+    def compute_zmax(self) -> float:
+        """Compute a suitable value for zmax based on the length of the diagonal of the bounding box of the projection of the diagram in XY.
+
+        Returns
+        -------
+        float
+            Maximum Z coordinate.
+
+        """
+        bbox = Box.from_bounding_box(bounding_box(self.vertices_attributes("xyz")))
+        diagonal = bbox.points[2] - bbox.points[0]
+        return 0.25 * diagonal.length
