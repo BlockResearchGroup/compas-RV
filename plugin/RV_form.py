@@ -1,13 +1,9 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
+# r: compas_session==0.4.5, compas_tna==0.5.2
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-from compas.geometry import Box
-from compas.geometry import bounding_box
-from compas.geometry import scale_vector
-from compas.geometry import sum_vectors
 from compas_rv.datastructures import FormDiagram
 from compas_rv.datastructures import ThrustDiagram
 from compas_rv.session import RVSession
@@ -42,17 +38,14 @@ def RunCommand():
     formdiagram.name = "FormDiagram"
 
     formdiagram.vertices_attribute(name="z", value=0)
+    formdiagram.flip_cycles_if_normal_down()
 
-    normals = [formdiagram.face_normal(face) for face in formdiagram.faces_where(_is_loaded=True)]
-    scale = 1 / len(normals)
-    normal = scale_vector(sum_vectors(normals), scale)
-    if normal[2] < 0:
-        formdiagram.flip_cycles()
-
+    # i find this part very messy
+    # fixed should either stay fixed
+    # or simply not exist
+    # but it should not be auto-converted into supports
     formdiagram.vertices_attribute("is_fixed", False)
-
     fixed = list(pattern.mesh.vertices_where(is_fixed=True))
-
     if fixed:
         for vertex in fixed:
             if formdiagram.has_vertex(vertex):
@@ -62,10 +55,7 @@ def RunCommand():
     thrustdiagram.name = "ThrustDiagram"
 
     # set an initial value for zmax
-    bbox = Box.from_bounding_box(bounding_box(formdiagram.vertices_attributes("xyz")))
-    diagonal = bbox.points[2] - bbox.points[0]
-    zmax = 0.25 * diagonal.length
-    session.settings.tna.vertical_zmax = zmax
+    session.settings.tna.vertical_zmax = thrustdiagram.compute_zmax()
 
     # =============================================================================
     # Update scene
@@ -77,12 +67,10 @@ def RunCommand():
 
     session.scene.add(formdiagram, name=formdiagram.name)
     session.scene.add(thrustdiagram, name=thrustdiagram.name, show=False)
-
     session.scene.redraw()
-
     rs.Redraw()
 
-    print('FormDiagram successfully created.')
+    print("FormDiagram successfully created.")
 
     if session.settings.autosave:
         session.record(name="Init Form Diagram")
