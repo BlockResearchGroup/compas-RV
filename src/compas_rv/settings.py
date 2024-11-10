@@ -15,7 +15,7 @@ class TNASettings(BaseModel):
 
 
 class DrawingSettings(BaseModel):
-    show_angles: bool = False
+    show_angles: bool = True
     show_forces: bool = False
 
     show_reactions: bool = True
