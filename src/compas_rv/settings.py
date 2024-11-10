@@ -8,6 +8,7 @@ class TNASettings(BaseModel):
     horizontal_kmax: int = 100
     horizontal_alpha: float = 100
     horizontal_max_angle: float = Field(default=5.0, title="Maximum Angle Deviation", description="The maximum allowed angle between corresponding edges.")
+    horizontal_refreshrate: int = 5
 
     vertical_kmax: int = 300
     vertical_zmax: float = 4.0
