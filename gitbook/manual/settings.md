@@ -20,11 +20,21 @@ Description
 
 
 
+* autosave on by default
+* autoupdate off by default
+
 
 
 ### ThrustNetworkAnalysis
 
 
+
+* horizontal\_kmax
+* horizontal\_alpha
+* horizontal\_max\_angle
+* horizontal\_refreshrate
+* vertical\_kmax
+* vertical\_zmax
 
 
 
@@ -32,7 +42,18 @@ Description
 
 
 
-
-
-
+* show\_angles
+* show\_forces
+* show\_reactions
+* show\_residuals
+* show\_pipes
+* show\_loads
+* show\_selfweight
+* show\_thickness
+* scale\_reactions
+* scale\_pipes
+* scale\_loads
+* scale\_selfweight
+* tol\_vectors
+* tol\_pipes
 
