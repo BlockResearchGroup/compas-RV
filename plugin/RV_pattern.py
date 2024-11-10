@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
+# r: compas_session==0.4.5, compas_tna==0.5.2
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -108,7 +108,7 @@ def RunCommand():
     session.scene.add(pattern, name=pattern.name)
     session.scene.draw()
 
-    print('Pattern successfully created.')
+    print("Pattern successfully created.")
 
     if session.settings.autosave:
         session.record(name="Make Pattern")
