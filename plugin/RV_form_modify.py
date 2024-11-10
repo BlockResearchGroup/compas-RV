@@ -1,11 +1,9 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
+# r: compas_session==0.4.5, compas_tna==0.5.2
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-from compas.geometry import Box
-from compas.geometry import bounding_box
 from compas_rv.datastructures import ForceDiagram
 from compas_rv.session import RVSession
 
@@ -117,7 +115,6 @@ def RunCommand():
             form.show_faces = list(form.diagram.faces_where(_is_loaded=True))
             form.redraw_faces()
             selected = form.select_faces_manual()
-
             if selected:
                 for face in selected:
                     if form.diagram.has_face(face):
@@ -169,7 +166,6 @@ def RunCommand():
 
         forcediagram.update_position()
         forcediagram.update_angle_deviations()
-
         # forcediagram.solve_fd()  # this is very experimental
 
         force.diagram = forcediagram
