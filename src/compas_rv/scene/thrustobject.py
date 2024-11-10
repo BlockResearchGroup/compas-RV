@@ -79,6 +79,26 @@ class RhinoThrustObject(RUIMeshObject):
     def diagram(self, diagram: ThrustDiagram) -> None:
         self.mesh = diagram
 
+    def compute_pipe_colors(self, tol=1e-3) -> None:
+
+        edges = list(self.mesh.edges())
+
+        forces = [self.mesh.edge_attribute(edge, "_f") for edge in edges]
+        magnitudes = [abs(f) for f in forces]
+        fmin = min(magnitudes)
+        fmax = max(magnitudes)
+        if fmax - fmin < tol:
+            return
+        colors = []
+
+        for force, magnitude in zip(forces, magnitudes):
+            if fmin != fmax:
+                colors.append(Color.from_i((magnitude - fmin) / (fmax - fmin)))
+
+        pipe_colors = dict(zip(edges, colors))
+
+        return pipe_colors
+
     def draw(self):
         faces = []
         if self.show_faces:
@@ -211,13 +231,19 @@ class RhinoThrustObject(RUIMeshObject):
         scale = self.session.settings.drawing.scale_pipes
         tol = self.session.settings.drawing.tol_pipes
 
+        pipe_colors = self.compute_pipe_colors()
+
         for edge in self.mesh.edges():
             force = self.mesh.edge_attribute(edge, "_f")
 
             if force != 0:
                 line = self.mesh.edge_line(edge)
                 radius = abs(force) * scale
+
                 color = self.compressioncolor
+                if self.session.settings.drawing.show_forces:
+                    color=pipe_colors[edge]
+
                 if radius > tol:
                     pipe = Cylinder.from_line_and_radius(line, radius)
                     name = "{}.edge.{}.force".format(self.mesh.name, edge)
