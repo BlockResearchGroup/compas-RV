@@ -22,6 +22,14 @@ class RhinoPatternObject(RUIMeshObject):
     ):
         super().__init__(disjoint=disjoint, **kwargs)
 
+    # =============================================================================
+    # Clear
+    # =============================================================================
+
+    # =============================================================================
+    # Draw
+    # =============================================================================
+
     def draw_vertices(self):
         for vertex in self.mesh.vertices():
             if self.mesh.vertex_attribute(vertex, "is_support"):
@@ -33,22 +41,34 @@ class RhinoPatternObject(RUIMeshObject):
 
         return super().draw_vertices()
 
+    # =============================================================================
+    # Redraw
+    # =============================================================================
+
     def redraw_vertices(self):
+        rs.EnableRedraw(False)
         self.clear_vertices()
         self.draw_vertices()
+        rs.EnableRedraw(True)
         rs.Redraw()
 
     def redraw_edges(self):
+        rs.EnableRedraw(False)
         self.clear_edges()
         self.draw_edges()
+        rs.EnableRedraw(True)
         rs.Redraw()
 
     def redraw_faces(self):
+        rs.EnableRedraw(False)
         self.clear_faces()
         self.draw_faces()
+        rs.EnableRedraw(True)
         rs.Redraw()
 
     def redraw(self):
+        rs.EnableRedraw(False)
         self.clear()
         self.draw()
+        rs.EnableRedraw(True)
         rs.Redraw()
