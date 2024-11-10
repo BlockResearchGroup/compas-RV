@@ -27,7 +27,7 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    options = ["Dropdowns", "Supports", "Loads", "Openings", "Boundaries", "EdgeConstraints", "ForceDensities"]
+    options = ["Dropdowns", "Supports", "Loads", "Openings", "EdgeConstraints", "ForceDensities"]
     option = rs.GetString("Modify the Form Diagram", strings=options)
     if not option:
         return
@@ -127,13 +127,6 @@ def RunCommand():
 
         elif action == "DeleteVertex":
             raise NotImplementedError
-
-    # Boundaries
-    # scale the sag of the boundaries
-    # NOTE: perhaps not needed if interactive Q scaling is available
-
-    elif option == "Boundaries":
-        raise NotImplementedError
 
     # Edge constraints
     # min/max length

@@ -32,18 +32,16 @@ def RunCommand():
     # Compute horizontal
     # =============================================================================
 
-    # density
     kmax = session.settings.tna.vertical_kmax
     zmax = session.settings.tna.vertical_zmax
-    zmax = rs.GetReal("Set maximum height (zmax)", number=zmax, minimum=0)
 
+    zmax = rs.GetReal("Set maximum height (zmax)", number=zmax, minimum=0)
     if zmax is None:
         return
 
     session.settings.tna.vertical_zmax = zmax
 
-    # copy the vertical coordinates of the thrust diagram
-    # onto the form diagram
+    # copy the vertical coordinates of the thrust diagram onto the form diagram
     for vertex in thrust.diagram.vertices_where(is_support=True):
         z = thrust.diagram.vertex_attribute(vertex, "z")
         form.diagram.vertex_attribute(vertex, "z", z)

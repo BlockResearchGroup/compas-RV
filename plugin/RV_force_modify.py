@@ -26,7 +26,7 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    options = ["VertexAttributes", "EdgeAttributes", "MoveVertices", "Scale"]
+    options = ["VertexAttributes", "EdgeAttributes", "MoveVertices"]
     option = rs.GetString("Modify the Force Diagram", strings=options)
 
     if not option:
@@ -58,9 +58,6 @@ def RunCommand():
                     force.move_vertices_direction(selected, direction=direction)
                 else:
                     force.move_vertices(selected)
-
-    elif option == "Scale":
-        raise NotImplementedError
 
     else:
         raise NotImplementedError
