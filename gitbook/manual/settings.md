@@ -32,20 +32,20 @@ These are the parameters related to [Horizontal equilibrium](horizontal-equilibr
 
 ### Drawing
 
+These are the visualization parameters for various RhinoVAULT elements.
 
-
-* show\_angles
-* show\_forces
-* show\_reactions
-* show\_residuals
-* show\_pipes
-* show\_loads
-* show\_selfweight
-* show\_thickness
-* scale\_reactions
-* scale\_pipes
-* scale\_loads
-* scale\_selfweight
-* tol\_vectors
-* tol\_pipes
-
+* **show\_angles** - This is set to `True` by default.
+* **show\_forces** - This is set to `False` by default.
+* **show\_reactions** - This is set to `True` by default.
+* **show\_residuals** - This is set to `False` by default.
+* **show\_pipes** - This is set to `False` by default.
+* **show\_loads** - This is set to `False` by default.
+* **show\_selfweight** - This is set to `False` by default.
+* **show\_thickness** - This is set to `False` by default.
+* **scale\_reactions** - This value is set to 0.1 by default.
+* **scale\_residuals** - This value is set to 1.0 by default.
+* **scale\_pipes** - This is value is set to 0.01 by default.
+* **scale\_loads** - This value is set to 1.0 by default.
+* **scale\_selfweight** - This value is set to 1.0 by default.
+* **tol\_vectors** - This value is set to 0.001 by default.
+* **tol\_pipes** - This value is set to 0.01 by default.
