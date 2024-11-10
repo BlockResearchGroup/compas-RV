@@ -1,8 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
-
-import rhinoscriptsyntax as rs  # type: ignore
+# r: compas_session==0.4.5, compas_tna==0.5.2
 
 from compas_rv.session import RVSession
 
@@ -10,12 +8,7 @@ from compas_rv.session import RVSession
 def RunCommand():
     session = RVSession()
 
-    result = rs.MessageBox(
-        "Note that this will remove all RhinoVAULT data and objects. Do you wish to proceed?",
-        buttons=4 | 32 | 256 | 0,
-        title="Clear RhinoVAULT",
-    )
-    if result == 6:
+    if session.confirm("Note that this will remove all RhinoVAULT data and objects. Do you wish to proceed?"):
         session.scene.clear()
 
         if session.settings.autosave:
