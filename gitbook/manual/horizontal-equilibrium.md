@@ -8,15 +8,7 @@ This function geometrically reconfigures the the edges of the ForceDiagram, such
 
 ***
 
-## Deviation Angles
-
-
-
-
-
-***
-
-## Sub functions
+## Algorithm Parameters
 
 ### Alpha
 
@@ -34,8 +26,6 @@ $$
 
 Note that using `alpha` efficiently requires a bit of practice and experience. Since the Form Diagram defines the intended  layout of horizontal forces and RV2 has many tools for designing force layouts that provide a good starting point for form finding explorations, it is usually a good idea to start with `alpha = 100`. However, once you have the horizontal equilibrium under control, playing around with lower `alpha` values can have a significant influence on finding nicely balanced force distributions.
 
-***
-
 ### Iterations
 
 Computing horizontal equilibrium is an iterative process. The default number of iterations is `100`. For sensible force layouts, this value should go a long way. However, there are many cases in which more iterations are required. For example, if the Form Diagram has multiple open/unsupported edges, and especially if those edges have a low "sag" value, more iterations will typically be required to reduce all angle deviations between corresponding edges to less than 5 degrees.
@@ -44,10 +34,19 @@ Computing horizontal equilibrium is quite fast. Therefore, don't hesitate to set
 
 Furthermore, resolving all angle deviations is not an absolute requirement, and is in many cases unnecessary. For example, the angle deviations between very short edges tend to be quite persistent as they are dominated by edges with (much) longer lengths during the calculation process. Since short edges in the Force Diagram also represent (relatively) small horizontal forces, these deviations can often be ignored.
 
-***
-
 ### Refreshrate
 
 The iterations of the horizontal equilibrium calculation process is dynamically visualised. The rate at which the diagrams are updated is controlled by the refreshrate. The default value is `10`, which means that the diagrams are updated every 10 iterations.
 
 For large diagrams the dynamic visualisation slows down the calculations a little bit. In these cases, and/or for high numbers of iterations (`> 1000`), it is therefore advisable to set the refreshrate to a higher value. For example, if the number of iterations is `1000`, then a refresh rate of `100` seems more appropriate.
+
+
+
+***
+
+## Deviation Angles
+
+
+
+
+

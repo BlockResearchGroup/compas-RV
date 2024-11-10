@@ -21,7 +21,9 @@
 * [4. Force diagram](manual/equilibrium.md)
 * [5. Horizontal equilibrium](manual/horizontal-equilibrium.md)
 * [6. Vertical equilibrium](manual/fitting.md)
-* [7. Modify diagrams](manual/supports.md)
+* [7a. Modify FormDiagram](manual/supports.md)
+* [7b. Modify ForceDiagram](manual/supports-1.md)
+* [7c. Modify ThrustDiagram](manual/supports-2.md)
 * [8. Settings](manual/settings.md)
 * [9. Utilities](manual/9.-utilities.md)
 
