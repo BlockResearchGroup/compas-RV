@@ -5,7 +5,6 @@ import scriptcontext as sc  # type: ignore
 import compas_rhino.conversions
 import compas_rhino.objects
 from compas.colors import Color
-from compas.colors import ColorMap
 from compas.scene.descriptors.color import ColorAttribute
 from compas_rui.scene import RUIMeshObject
 from compas_rv.datastructures import Diagram
@@ -72,13 +71,19 @@ class RhinoDiagramObject(RUIMeshObject):
         magnitudes = [abs(f) for f in forces]
         fmin = min(magnitudes)
         fmax = max(magnitudes)
+
         if fmax - fmin < tol:
+            # size of the range of forces is already checked here
+            # no need to check again in the loop
             return
+
         colors = []
 
         for force, magnitude in zip(forces, magnitudes):
-            if fmin != fmax:
-                colors.append(Color.from_i((magnitude - fmin) / (fmax - fmin)))
+            # this will need to be updated once we allow for tension forces
+            # or we have to exclude tension forces from the calculation
+            # and give tension edges their own style
+            colors.append(Color.from_i((magnitude - fmin) / (fmax - fmin)))
 
         return colors
 
@@ -158,6 +163,8 @@ class RhinoDiagramObject(RUIMeshObject):
             if self.session.settings.drawing.show_forces:
                 if edge in edge_color:
                     self.edgecolor[edge] = edge_color[edge]
+            else:
+                self.edgecolor.clear()  # not sure why this is not recognised
 
         return super().draw_edges()
 
@@ -221,26 +228,36 @@ class RhinoDiagramObject(RUIMeshObject):
     # =============================================================================
 
     def redraw(self):
+        rs.EnableRedraw(False)
         self.clear()
         self.draw()
+        rs.EnableRedraw(True)
         rs.Redraw()
 
     def redraw_vertices(self):
+        rs.EnableRedraw(False)
         self.clear_vertices()
         self.draw_vertices()
+        rs.EnableRedraw(True)
         rs.Redraw()
 
     def redraw_edges(self):
+        rs.EnableRedraw(False)
         self.clear_edges()
         self.draw_edges()
+        rs.EnableRedraw(True)
         rs.Redraw()
 
     def redraw_faces(self):
+        rs.EnableRedraw(False)
         self.clear_faces()
         self.draw_faces()
+        rs.EnableRedraw(True)
         rs.Redraw()
 
     def redraw_angles(self):
+        rs.EnableRedraw(False)
         self.clear_angles()
         self.draw_angles()
+        rs.EnableRedraw(True)
         rs.Redraw()
