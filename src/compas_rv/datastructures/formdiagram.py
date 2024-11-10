@@ -1,3 +1,5 @@
+from compas.geometry import scale_vector
+from compas.geometry import sum_vectors
 from compas_fd.solvers import fd_numpy
 from compas_tna.diagrams import FormDiagram
 
@@ -86,3 +88,11 @@ class FormDiagram(Diagram, FormDiagram):
         for key in self.vertices():
             index = vertex_index[key]
             self.vertex_attributes(key, "xyz", result.vertices[index])
+
+    def flip_cycles_if_normal_down(self):
+        """Flip the cycles of the diagram if the average normal points downward."""
+        normals = [self.face_normal(face) for face in self.faces_where(_is_loaded=True)]
+        scale = 1 / len(normals)
+        normal = scale_vector(sum_vectors(normals), scale)
+        if normal[2] < 0:
+            self.flip_cycles()
