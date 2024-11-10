@@ -75,14 +75,11 @@ class RhinoDiagramObject(RUIMeshObject):
         if fmax - fmin < tol:
             return
         colors = []
-        # colormap = ColorMap.from_two_colors(Color.green(), Color.blue())
-        colormap = ColorMap.from_three_colors(Color.blue(), Color.green(), Color.red())
+
         for force, magnitude in zip(forces, magnitudes):
-            if force > 0:
-                color = colormap(magnitude, minval=fmin, maxval=fmax)
-                colors.append(color)
-            else:
-                colors.append(Color.red())
+            if fmin != fmax:
+                colors.append(Color.from_i((magnitude - fmin) / (fmax - fmin)))
+
         return colors
 
     # =============================================================================
