@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
+# r: compas_session==0.4.5, compas_tna==0.5.2
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -39,34 +39,25 @@ def RunCommand():
     if option == "VertexAttributes":
         thrust.show_vertices = list(thrust.diagram.vertices())
         thrust.redraw_vertices()
-
         selected = thrust.select_vertices()
-
         if selected:
             thrust.update_vertex_attributes(selected)
 
     elif option == "EdgeAttributes":
         thrust.show_edges = list(thrust.diagram.edges_where(_is_edge=True))
         thrust.redraw_edges()
-
         selected = thrust.select_edges()
-
         if selected:
             thrust.update_edge_attributes(selected)
 
     elif option == "MoveSupports":
         form.show_vertices = False
         form.redraw_vertices()
-
         thrust.show_vertices = list(thrust.diagram.vertices_where(is_support=True))
         thrust.redraw_vertices()
-
         selected = thrust.select_vertices()
-
-        if not selected:
-            return
-
-        thrust.move_vertices_direction(selected, direction="Z")
+        if selected:
+            thrust.move_vertices_direction(selected, direction="Z")
 
     else:
         raise NotImplementedError
