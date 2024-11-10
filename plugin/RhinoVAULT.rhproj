@@ -8,7 +8,7 @@
   "id": "a6dc4669-0e8e-40ea-8d71-b9b0f4764ec1",
   "identity": {
     "name": "COMPAS-RhinoVAULT",
-    "version": "0.4.12-beta",
+    "version": "0.5.14-beta",
     "publisher": {
       "email": "juney@cmu.com",
       "name": "Juney Lee",
@@ -573,6 +573,15 @@
           }
         }
       }
+    },
+    {
+      "id": "72366e52-8fa5-4acf-97fc-bd43fe7bd0fb",
+      "language": {
+        "id": "*.*.python",
+        "version": "3.*.*"
+      },
+      "title": "RV_form_solve",
+      "uri": "RV_form_solve.py"
     }
   ],
   "libraries": [
@@ -580,6 +589,26 @@
       "type": "uri",
       "library": {
         "base": "file:///Users/vanmelet/Code/compas-RV/src/compas_rv/",
+        "language": {
+          "id": "*.*.python",
+          "version": "3.*.*"
+        }
+      }
+    },
+    {
+      "type": "uri",
+      "library": {
+        "base": "file:///Users/vanmelet/Code/compas_rui/",
+        "language": {
+          "id": "*.*.python",
+          "version": "3.*.*"
+        }
+      }
+    },
+    {
+      "type": "uri",
+      "library": {
+        "base": "file:///Users/vanmelet/Code/compas_session/",
         "language": {
           "id": "*.*.python",
           "version": "3.*.*"

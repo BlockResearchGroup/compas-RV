@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui>=0.3.2, compas_session>=0.4.1, compas_tna>=0.5
+# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -31,7 +31,6 @@ def RunCommand():
     # =============================================================================
 
     forcediagram: ForceDiagram = ForceDiagram.from_formdiagram(form.diagram)
-    forcediagram.update_default_edge_attributes(lmin=0.1)
 
     bbox_form = Box.from_bounding_box(bounding_box(form.diagram.vertices_attributes("xyz")))
     bbox_force = Box.from_bounding_box(bounding_box(forcediagram.vertices_attributes("xyz")))

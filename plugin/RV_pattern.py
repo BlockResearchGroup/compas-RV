@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui>=0.3.2, compas_session>=0.4.1, compas_tna>=0.5
+# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -17,16 +17,16 @@ def RunCommand():
     patternobj = session.find_pattern(warn=False)
 
     if patternobj:
-        print("Pattern already exists in the scene.")
-        return
+        if not session.confirm("This will remove all current RhinoVAULT data and objects. Do you wish to proceed?"):
+            return
 
-    session.clear_all_patterns()
+    session.scene.clear()
 
     # =============================================================================
     # Make a Force "Pattern"
     # =============================================================================
 
-    option = rs.GetString(message="CableMesh From", strings=["RhinoLines", "RhinoMesh", "RhinoSurface", "MeshGrid", "Triangulation"])
+    option = rs.GetString(message="Pattern From", strings=["RhinoLines", "RhinoMesh", "RhinoSurface", "MeshGrid", "Triangulation"])
 
     if option == "RhinoLines":
         guids = compas_rhino.objects.select_lines("Select lines")

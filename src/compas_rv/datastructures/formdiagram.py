@@ -1,3 +1,4 @@
+from compas_fd.solvers import fd_numpy
 from compas_tna.diagrams import FormDiagram
 
 from .diagram import Diagram
@@ -29,8 +30,17 @@ class FormDiagram(Diagram, FormDiagram):
         form.update_boundaries()
         return form
 
+    # not sure if this is a good idea
     # because it might clash with the parent function
-    def edges_on_boundaries(self):
+
+    def edges_on_boundaries(self) -> list[list[tuple[int, int]]]:
+        """Compute and return the edges on the perceived boundary of the diagram.
+
+        Returns
+        -------
+        list[list[tuple[int, int]]]
+
+        """
         boundaries = []
         for face in self.faces_where(_is_loaded=False):
             boundary = []
@@ -39,3 +49,40 @@ class FormDiagram(Diagram, FormDiagram):
                     boundary.append(edge)
             boundaries.append(boundary)
         return boundaries
+
+    def is_vertex_internal(self, vertex: int) -> bool:
+        """Indicate that a vertex is on perceived inside of the diagram.
+
+        Parameters
+        ----------
+        vertex : int
+            The identifier of the vertex.
+
+        Returns
+        -------
+        bool
+
+        """
+        return not any(self.is_face_on_boundary(face) for face in self.vertex_faces(vertex))
+
+    def solve_fd(self) -> None:
+        """
+        Relax the mesh using the force density method with the curent edge force densities.
+
+        Returns
+        -------
+        None
+
+        """
+        vertex_index = self.vertex_index()
+        xyz = self.vertices_attributes("xyz")
+        loads = [[0.0, 0.0, 0.0] for _ in xyz]
+        fixed = [vertex_index[key] for key in self.vertices_where(is_support=True)]
+        fixed += [vertex_index[key] for key in self.vertices_where(is_fixed=True)]
+        edges = list(self.edges_where(_is_edge=True))
+        q = self.edges_attribute("q", keys=edges)
+        edges = [(vertex_index[u], vertex_index[v]) for u, v in edges]
+        result = fd_numpy(vertices=xyz, fixed=fixed, edges=edges, forcedensities=q, loads=loads)
+        for key in self.vertices():
+            index = vertex_index[key]
+            self.vertex_attributes(key, "xyz", result.vertices[index])

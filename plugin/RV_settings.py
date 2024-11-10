@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui>=0.3.2, compas_session>=0.4.1, compas_tna>=0.5
+# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
 
 import rhinoscriptsyntax as rs  # type: ignore
 from pydantic import BaseModel
@@ -33,15 +33,15 @@ def update_settings(model, title):
 def RunCommand():
     session = RVSession()
 
-    options = ["RhinoVAULT", "TNA", "Drawing"]
+    options = ["RhinoVault", "ThrustNetworkAnalysis", "Drawing"]
     option = rs.GetString(message="Settings Section", strings=options)
     if not option:
         return
 
-    if option == "RhinoVAULT":
+    if option == "RhinoVault":
         update_settings(session.settings, title=option)
 
-    elif option == "TNA":
+    elif option == "ThrustNetworkAnalysis":
         update_settings(session.settings.tna, title=option)
 
     elif option == "Drawing":

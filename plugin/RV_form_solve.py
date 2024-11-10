@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui>=0.3.2, compas_session>=0.4.1, compas_tna>=0.5
+# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -12,7 +12,6 @@ def RunCommand():
 
     form = session.find_formdiagram()
     if not form:
-        print("There is no FormDiagram in the scene.")
         return
 
     # =============================================================================
@@ -21,7 +20,7 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    form.mesh.relax()
+    form.diagram.solve_fd()
 
     # =============================================================================
     # Update scene

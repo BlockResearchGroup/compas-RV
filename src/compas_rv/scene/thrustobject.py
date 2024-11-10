@@ -179,7 +179,7 @@ class RhinoThrustObject(RUIMeshObject):
                 vector = Vector(*load) * scale
                 if vector.length > tol:
                     name = "{}.vertex.{}.load".format(self.mesh.name, vertex)
-                    attr = self.compile_attributes(name=name, color=color, arrow="end")
+                    attr = self.compile_attributes(name=name, color=color, arrow="start")
                     point = self.mesh.vertex_point(vertex)
                     line = Line.from_point_and_vector(point, vector)
                     guid = sc.doc.Objects.AddLine(compas_rhino.conversions.line_to_rhino(line), attr)

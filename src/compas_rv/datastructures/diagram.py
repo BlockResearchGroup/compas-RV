@@ -1,6 +1,5 @@
 from compas.datastructures import Mesh
 from compas.geometry import angle_vectors
-from compas_fd.solvers import fd_numpy
 
 
 class Diagram(Mesh):
@@ -93,26 +92,6 @@ class Diagram(Mesh):
 
         """
         self.smooth_area(self, fixed=fixed, kmax=kmax)
-
-    def relax(self):
-        """
-        Relax the mesh using the force density method with the curent edge force densities.
-
-        Returns
-        -------
-        None
-
-        """
-        vertex_index = self.vertex_index()
-        xyz = self.vertices_attributes("xyz")
-        loads = [[0.0, 0.0, 0.0] for _ in xyz]
-        fixed = [vertex_index[key] for key in self.vertices_where(is_fixed=True)]
-        edges = [(vertex_index[u], vertex_index[v]) for u, v in self.edges()]
-        q = self.edges_attribute("q")
-        result = fd_numpy(vertices=xyz, fixed=fixed, edges=edges, forcedensities=q, loads=loads)
-        for key in self.vertices():
-            index = vertex_index[key]
-            self.vertex_attributes(key, "xyz", result.vertices[index])
 
     def corner_vertices(self, tol=160):
         """

@@ -126,6 +126,9 @@ class RVSession(Session):
             self.scene.redraw()
             rs.Redraw()
 
-    def confirm(message):
+    def confirm(self, message):
         result = rs.MessageBox(message, buttons=4 | 32 | 256 | 0, title="Confirmation")
         return result == 6
+
+    def warn(self, message):
+        return rs.MessageBox(message, title="Warning")
