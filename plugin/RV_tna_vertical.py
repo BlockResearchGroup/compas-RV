@@ -1,6 +1,6 @@
 #! python3
 # venv: rhinovault
-# r: compas>=2.5, compas_rui==0.4.1, compas_session==0.4.4, compas_tna==0.5.1, compas_fd==0.5.3
+# r: compas_session==0.4.5, compas_tna==0.5.2
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -48,14 +48,13 @@ def RunCommand():
         z = thrust.diagram.vertex_attribute(vertex, "z")
         form.diagram.vertex_attribute(vertex, "z", z)
 
-    # can we not use the thrust diagram here
     _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax)
 
-    if not _:
+    if not _:  # this makes no sense
         print("Vertical equilibrium failed!")
         return
 
-    # store scale in force diagram
+    force.diagram.attributes["scale"] = scale
 
     thrustdiagram: ThrustDiagram = form.diagram.copy(cls=ThrustDiagram)
     thrustdiagram.name = "ThrustDiagram"
@@ -75,8 +74,8 @@ def RunCommand():
     thrust.diagram = thrustdiagram
     thrust.redraw()
 
-    print('Vertical equilibrium found!')
-    print('ThrustDiagram object successfully created with target height of {}.'.format(zmax))
+    print("Vertical equilibrium found!")
+    print("ThrustDiagram object successfully created with target height of {}.".format(zmax))
 
     if session.settings.autosave:
         session.record(name="TNA Vertical")
