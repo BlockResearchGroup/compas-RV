@@ -1,7 +1,5 @@
 # 8. Settings
 
-## Settings
-
 |                                                                                |                                                                           |                                                                                                                 |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | <img src="../.gitbook/assets/RV_settings (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_settings</code></p> | <p><strong>source file</strong></p><p><a href="../../plugin/RV_settings.py"><code>RV_settings.py</code></a></p> |
@@ -38,14 +36,14 @@ These are the visualization parameters for various RhinoVAULT elements.
 * **show\_forces** - If set to `True`, the corresponding edges of the `FormDiagram` and `ForceDiagram` are displayed in matching colors. The color gradient is determined based on the relative magnitudes of the internal horizontal forces (Red is higher, blue is lower; the color is independent of whether or not the force is in compression or tension). This is set to `False` by default.
 * **show\_reactions** - If set to `True`,  reaction forces at the supports will be displayed as vectors. This is set to `True` by default.
 * **show\_residuals** - If set to `True`,  residual forces present at every vertex will be displayed as vectors. This is set to `False` by default.
-* **show\_pipes** - This is set to `False` by default.
-* **show\_loads** - This is set to `False` by default.
-* **show\_selfweight** - This is set to `False` by default.
-* **show\_thickness** - This is set to `False` by default.
-* **scale\_reactions** - This value is set to 0.1 by default.
-* **scale\_residuals** - This value is set to 1.0 by default.
-* **scale\_pipes** - This is value is set to 0.01 by default.
-* **scale\_loads** - This value is set to 1.0 by default.
-* **scale\_selfweight** - This value is set to 1.0 by default.
-* **tol\_vectors** - This value is set to 0.001 by default.
-* **tol\_pipes** - This value is set to 0.01 by default.
+* **show\_pipes** - If set to `True`,  pipes will be displayed for the edges of the `ThrustDiagram`. The radius of the pipes are relative to the edge's internal force, subject to `scale_pipes`. This is set to `False` by default.
+* **show\_loads** - If set to `True`,  any additional loads applied to the `ThrustDiagram` will be displayed. This is set to `False` by default.
+* **show\_selfweight** - If set to `True`,  self-weight of the `ThrustDiagram` will be displayed at the vertices. This is set to `False` by default.
+* **show\_thickness** - Not implemented.
+* **scale\_reactions** - This value scales all reaction forces. This value is set to 0.1 by default.
+* **scale\_residuals** - This value scales all residual forces. This value is set to 1.0 by default.
+* **scale\_pipes** - This value scales the radius of all pipes. This is value is set to 0.01 by default.
+* **scale\_loads** - This value scales all applied loads on the `ThrustDiagam`. This value is set to 1.0 by default.
+* **scale\_selfweight** - This value scales the vectors representing the self-weight of the `ThrustDiagram`. This value is set to 1.0 by default.
+* **tol\_vectors** - This value is the minimum length for all vectors. This value is set to 0.001 by default.
+* **tol\_pipes** - This value is the minimum radius for all pipes. This value is set to 0.01 by default.
