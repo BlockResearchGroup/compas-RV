@@ -16,11 +16,21 @@ from compas_rv.session import RVSession
 def RunCommand():
     session = RVSession()
 
-    pattern = session.find_pattern()
+    pattern = session.find_pattern(warn=False)
     if not pattern:
+        print("There is no Pattern in the scene.")
         return
 
-    session.clear_all_diagrams()
+    if not list(pattern.mesh.vertices_where(is_support=True)):
+        print("Pattern has no supports! Please define supports vertices.")
+        return
+
+    form = session.find_formdiagram(warn=False)
+    if form:
+        print("FormDiagram already exists in the scene.")
+        return
+
+    session.clear_all_formdiagrams()
 
     # =============================================================================
     # Init the form diagram
@@ -71,6 +81,8 @@ def RunCommand():
     session.scene.redraw()
 
     rs.Redraw()
+
+    print('FormDiagram successfully created.')
 
     if session.settings.autosave:
         session.record(name="Init Form Diagram")

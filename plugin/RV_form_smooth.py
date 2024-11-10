@@ -13,6 +13,7 @@ def RunCommand():
 
     form = session.find_formdiagram()
     if not form:
+        print("There is no FormDiagram in the scene.")
         return
 
     # =============================================================================

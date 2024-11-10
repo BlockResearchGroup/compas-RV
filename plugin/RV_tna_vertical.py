@@ -15,14 +15,17 @@ def RunCommand():
 
     form = session.find_formdiagram()
     if not form:
+        print("There is no FormDiagram in the scene.")
         return
 
     force = session.find_forcediagram()
     if not force:
+        print("There is no ForceDiagram in the scene.")
         return
 
     thrust = session.find_thrustdiagram()
     if not thrust:
+        print("There is no ThrustDiagram in the scene.")
         return
 
     # =============================================================================
@@ -48,8 +51,11 @@ def RunCommand():
     # can we not use the thrust diagram here
     _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax)
 
+    if not _:
+        print("Vertical equilibrium failed!")
+        return
+
     # store scale in force diagram
-    print(scale)
 
     thrustdiagram: ThrustDiagram = form.diagram.copy(cls=ThrustDiagram)
     thrustdiagram.name = "ThrustDiagram"
@@ -68,6 +74,9 @@ def RunCommand():
 
     thrust.diagram = thrustdiagram
     thrust.redraw()
+
+    print('Vertical equilibrium found!')
+    print('ThrustDiagram object successfully created with target height of {}.'.format(zmax))
 
     if session.settings.autosave:
         session.record(name="TNA Vertical")

@@ -12,10 +12,12 @@ def RunCommand():
 
     form = session.find_formdiagram()
     if not form:
+        print("There is no FormDiagram in the scene.")
         return
 
     force = session.find_forcediagram()
     if not force:
+        print("There is no ForceDiagram in the scene.")
         return
 
     # =============================================================================

@@ -17,13 +17,10 @@ def RunCommand():
     patternobj = session.find_pattern(warn=False)
 
     if patternobj:
-        if session.confirm("This will remove all current RhinoVAULT data and objects. Do you wish to proceed?"):
-            session.scene.clear()
-        else:
-            return
+        print("Pattern already exists in the scene.")
+        return
 
-    else:
-        session.scene.clear()
+    session.clear_all_patterns()
 
     # =============================================================================
     # Make a Force "Pattern"
@@ -110,6 +107,8 @@ def RunCommand():
 
     session.scene.add(pattern, name=pattern.name)
     session.scene.draw()
+
+    print('Pattern successfully created.')
 
     if session.settings.autosave:
         session.record(name="Make Pattern")

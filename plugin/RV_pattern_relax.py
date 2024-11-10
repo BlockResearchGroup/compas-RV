@@ -12,6 +12,7 @@ def RunCommand():
 
     pattern = session.find_pattern()
     if not pattern:
+        print("There is no Pattern in the scene.")
         return
 
     # =============================================================================
