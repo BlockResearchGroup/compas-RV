@@ -20,8 +20,6 @@ Initially, the Force Diagram is created as the "centroidal dual" of the Form Dia
 
 ***
 
-## Horizontal Forces
+## Deviation Angles
 
-Once the Form and Force Diagram are reciprocal they describe the horizontal equilibrium of the corresponding three-dimensional force network. The edges of the Form Diagram define the directions and points of application of the forces, whereas the edges of the Force Diagram define the distribution of force magnitudes along those directions.
-
-The magnitudes of horizontal forces are equal to the lengths of the edges in the Force Diagram, multiplied with a scaling factor.&#x20;
+Description

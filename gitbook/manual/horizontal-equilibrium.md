@@ -16,8 +16,6 @@ Two diagrams are reciprocal if they are dual, and if their corresponding edges a
 
 In RhinoVAULT, the Form and Force Diagram are considered reciprocal if corresponding edges are perpendicular.
 
-
-
 <figure><img src="../.gitbook/assets/forcediagram-reciprocal.jpg" alt=""><figcaption><p>After horizontal equilibrium has been found, the form and force diagrams are now reciprocal.</p></figcaption></figure>
 
 ***
@@ -66,9 +64,7 @@ For large diagrams the dynamic visualisation slows down the calculations a littl
 
 ***
 
-## Deviation Angles
-
-Description
+##
 
 
 
