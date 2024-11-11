@@ -50,11 +50,4 @@ Although being developed and tested thoroughly, RhinoVAULT may contains errors â
 
 ***
 
-The development of RhinoVAULT is led by:
-
-* Dr. Tom Van Mele - ETH Zurich
-* Dr. Juney Lee - Carnegie Mellon University
-
-***
-
 ## [<mark style="color:blue;">Let's get started!</mark>](introduction/getting-started.md)&#x20;
