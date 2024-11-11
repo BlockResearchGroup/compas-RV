@@ -43,12 +43,18 @@ To check the installation, simply press the left-most button on the toolbar. Thi
 
 <figure><img src="../.gitbook/assets/RV_popup.png" alt=""><figcaption><p>RhinoVAULT splash screen</p></figcaption></figure>
 
+RhinoVAULT uses the following COMPAS packages. After installing RhinoVAULT with Yak, these requirements will be installed automatically if they are not yet available. Note that the tool ,ight be unresponsive for a few seconds while this happens. The packages are installed in a separate virtual environment named `rhinovault`.
+
+* [compas](https://github.com/compas-dev/compas)
+* [compas\_fd](https://github.com/blockresearchgroup/compas\_fd)
+* [compas\_rui](https://github.com/blockresearchgroup/compas\_rui)
+* [compas\_session](https://github.com/blockresearchgroup/compas\_session)
+* [compas\_tna](https://github.com/blockresearchgroup/compas\_dr)
+
 {% hint style="info" %}
-Note that installing the packages (and the dependencies of the packages) may take some time, so don't worry if the the dialog doesn't pop up immediately.
+Note that installing the packages (and the dependencies of the packages) may take some time, so don't worry if the the dialog doesn't pop up immediately. Be patient!
 {% endhint %}
 
 ***
 
-## Issue Tracker
-
-If you have any issues with the installation, please submit an issue or question on the RhinoVAULT [Issue Tracker](https://github.com/blockresearchgroup/compas-RV/issues).
+##
