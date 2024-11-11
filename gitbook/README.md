@@ -1,14 +1,11 @@
 ---
 description: The official guide to using RhinoVAULT
+layout: landing
 ---
 
 # About
 
 <figure><img src=".gitbook/assets/RV_splash.jpg" alt=""><figcaption></figcaption></figure>
-
-RhinoAULT is an interactive form-finding plug-in for Rhinoceros®s
-
-
 
 The Rhinoceros® plug-in [RhinoVAULT](https://www.food4rhino.com/en/app/rhinovault), originally developed by Dr. Matthias Rippmann at the Block Research Group at ETH Zurich, emerged from research on structural form finding using the _Thrust Network Analysis (TNA)_ approach to intuitively create and explore compression-only structures.
 
