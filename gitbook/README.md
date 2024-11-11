@@ -24,6 +24,8 @@ The Rhinoceros® plug-in [RhinoVAULT](https://www.food4rhino.com/en/app/rhinovau
 
 Using reciprocal diagrams, RhinoVAULT provides an intuitive, fast funicular form-finding method, adopting the same advantages of techniques such as _Graphic Statics_, but offering a viable extension to three-dimensional problems. Our goal is to share a transparent setup to let you not only create beautiful shapes but also to give you an understanding of the underlying structural principles.
 
+
+
 <figure><img src=".gitbook/assets/RV_early-application-examples.jpg" alt=""><figcaption><p>Early examples of RhinoVAULT ca. 2010s.</p></figcaption></figure>
 
 ***
@@ -46,13 +48,13 @@ The development of RhinoVAULT is hosted on Github and is entirely open source, a
 
 Although being developed and tested thoroughly, RhinoVAULT may contains errors – therefore no guarantee can be given that RhinoVAULT always computes correct results. Use of RhinoVAULT is entirely at your own risk, and please read the [legal terms](additional/legal.md) carefully before using RhinoVAULT.
 
-
+***
 
 The development of RhinoVAULT is led by:
 
 * Dr. Tom Van Mele - ETH Zurich
 * Dr. Juney Lee - Carnegie Mellon University
 
-
+***
 
 ## [<mark style="color:blue;">Let's get started!</mark>](introduction/getting-started.md)&#x20;
