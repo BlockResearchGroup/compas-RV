@@ -6,8 +6,8 @@ If you use RhinoVAULT for projects, publications or other applications, please c
 
 ```
 @misc{compas-RV,
-    title = {{RhinoVAULT}: Funicular Form Finding for Rhinoceros},
-    author = {Tom Van Mele, Juney Lee, Li Chen},
+    title = {{COMPAS RhinoVAULT}: Funicular Form Finding for Rhinoceros},
+    author = {Tom Van Mele and Juney Lee},
     year = {2024},
     doi = {},
     url = {https://github.com/BlockResearchGroup/compas-RV},

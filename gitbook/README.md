@@ -40,9 +40,18 @@ RhinoVAULT is a plugin that is specifically developed for Rhino 8 and above, bui
 
 The development of RhinoVAULT is hosted on Github and is entirely open source, and we very much welcome your feedback. Please use the [issue tracker](https://github.com/BlockResearchGroup/compas-RV/issues) of the RhinoVAULT [GitHub repository](https://github.com/BlockResearchGroup/compas-RV) or the [COMPAS forum](https://forum.compas-framework.org/) to submit information about bugs, technical problems, or feature requests.
 
+***
+
 ### Disclaimer
 
 Although being developed and tested thoroughly, RhinoVAULT may contains errors – therefore no guarantee can be given that RhinoVAULT always computes correct results. Use of RhinoVAULT is entirely at your own risk, and please read the [legal terms](additional/legal.md) carefully before using RhinoVAULT.
+
+
+
+The development of RhinoVAULT is led by:
+
+* Dr. Tom Van Mele - ETH Zurich
+* Dr. Juney Lee - Carnegie Mellon University
 
 
 
