@@ -1,4 +1,4 @@
-# 5. Horizontal equilibrium
+# 5. Horizontal Equilibrium
 
 |                                                                                     |                                                                                 |                                                                                                                             |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
@@ -6,7 +6,13 @@
 
 `RV_tna_horizontal` geometrically reconfigures the the edges of the `ForceDiagram`, such that the corresponding edges of the `FormDiagram` and `ForceDiagram` become parallel to each another (in the conventional graphic statics sense), or perpendicular (the 90° rotated, RhinoVAULT convention). The resulting `ForceDiagram` and `FormDiagram` are _reciprocal_ when the two diagrams are topological duals of the other and all pairs of corresponding edges are parallel (within tolerance).
 
-<figure><img src="../.gitbook/assets/forcediagram-reciprocal.jpg" alt=""><figcaption><p>After horizontal equilibrium has been found, the form and force diagrams are now reciprocal.</p></figcaption></figure>
+
+
+<figure><img src="../.gitbook/assets/RV2_sequence-04.png" alt=""><figcaption><p>Dual <code>FormDiagram</code> and ForceDiagram</p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/RV2_sequence-05_angles.png" alt=""><figcaption><p>After horizontal equilibrium has been found, the form and force diagrams are now reciprocal. The perpendicular representation of the force diagram is the convention used in RhinoVAULT. This convention is also known as the Maxwell convention.</p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/RV_dual-diagram_edges_rotated.png" alt=""><figcaption><p>The same force diagram can be rotated 90 degrees, after which the corresponding edges are now parallel to each other. This is the standard convention used in most graphic statics literature and applications, and is also knowns as the Cremona convention or diagrams.</p></figcaption></figure>
 
 ***
 
