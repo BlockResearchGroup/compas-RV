@@ -4,4 +4,18 @@
 
 A `Pattern` object is a mesh datastructure that describes the topology of the structure. Several additional layers of information regarding the boundary conditions need to be added in order to give the `Pattern` a structural meaning: identification of the supports, and treatment of the openings and open edges.
 
+
+
+***
+
+## Sub-commands
+
 In RhinoVAULT, a _support_ is defined as a vertex of the structure that is fixed, and can have external horizontal reactions. `RV_pattern_supports` allows user to _Add_ ore _Remove_ supports from the `Pattern`.&#x20;
+
+### Add
+
+Add support vertices to the `Pattern`. Support vertices are displayed as red points.
+
+### Remove
+
+Remove support vertices from the `Pattern`.&#x20;
