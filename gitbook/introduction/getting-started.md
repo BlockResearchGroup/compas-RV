@@ -21,7 +21,7 @@ COMPAS Masonry is **only available for Rhino 8.**
 * Select "COMPAS RhinoVAULT" from the list.
 * Install.
 
-<figure><img src="../.gitbook/assets/RV_package-manager.jpg" alt=""><figcaption><p>Rhino package manager</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/RV_package-manager.png" alt=""><figcaption><p>Rhino package manager</p></figcaption></figure>
 
 ***
 
@@ -37,11 +37,9 @@ If the toolbar is not visible after installing RhinoVAULT, you can load it from 
 
 ## Check the Installation
 
-To check the installation, simply press the left-most button on the toolbar. This will install any missing COMPAS packages and display a "Splash" screen when the installation is completed. Close the screen by agreeing to the [legal terms](../additional-information/legal-terms.md) of using COMPAS-RhinoVAULT.
+To check the installation, simply press the left-most button on the toolbar, or run the `RV` in the Rhino command prompt. This will install any missing COMPAS packages and display a "Splash" screen when the installation is completed. Close the screen by agreeing to the [legal terms](../additional-information/legal-terms.md) of using COMPAS-RhinoVAULT.
 
-
-
-<figure><img src="../.gitbook/assets/RV_popup.png" alt=""><figcaption><p>RhinoVAULT splash screen</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/RV_splash-window.png" alt=""><figcaption><p>RhinoVAULT splash screen</p></figcaption></figure>
 
 RhinoVAULT uses the following COMPAS packages. After installing RhinoVAULT with Yak, these requirements will be installed automatically if they are not yet available. Note that the tool ,ight be unresponsive for a few seconds while this happens. The packages are installed in a separate virtual environment named `rhinovault`.
 
