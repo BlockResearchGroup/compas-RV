@@ -1,5 +1,6 @@
 ---
 description: The official guide to using RhinoVAULT
+hidden: true
 layout:
   title:
     visible: false
