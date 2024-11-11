@@ -60,15 +60,15 @@ Once the vertical equilibrium has been computed, the three diagrams can be inter
 {% endstep %}
 
 {% step %}
-### Utilities
-
-There are several utility functions provided by RhinoVAULT: opening and saving RhinoVAULT session files; redo and undo; redraw scene; and clear scene.
-{% endstep %}
-
-{% step %}
 ### Settings
 
 Settings allows you to modify various parameters for the solving algorithms and display options.
+{% endstep %}
+
+{% step %}
+### Utilities
+
+There are several utility functions provided by RhinoVAULT: opening and saving RhinoVAULT session files; redo and undo; redraw scene; and clear scene.
 {% endstep %}
 {% endstepper %}
 
