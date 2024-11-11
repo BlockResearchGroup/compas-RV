@@ -1,14 +1,12 @@
 # 1a. Create Pattern
 
-The first step of the workflow is to generate the topology of the `FormDiagram`, which is called the `Pattern` in RhinoVAULT. A `Pattern` is a collection of vertices interconnected by lines, represented by the COMPAS [mesh datastructure](https://compas-dev.github.io/main/api/compas.datastructures.html#meshes).
-
-RhinoVAULT offers several methods for generating a `Pattern`. Each method has a direct influence not only on the topology of the eventual shell structure, but also the type of application and interaction that is desired during the design process.&#x20;
-
-## 1a. Create Pattern
-
 |                                                                              |                                                                          |                                                                                                                  |
 | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
 | <img src="../../.gitbook/assets/RV_pattern.svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_pattern</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_pattern.py"><code>RV_pattern.py</code></a></p> |
+
+The first step of the workflow is to generate the topology of the `FormDiagram`, which is called the `Pattern` in RhinoVAULT. A `Pattern` is a collection of vertices interconnected by lines, represented by the COMPAS [mesh datastructure](https://compas-dev.github.io/main/api/compas.datastructures.html#meshes).
+
+RhinoVAULT offers several methods for generating a `Pattern`. Each method has a direct influence not only on the topology of the eventual shell structure, but also the type of application and interaction that is desired during the design process.&#x20;
 
 There are many ways to generate a topological pattern. Each method has pros and cons, and the desired design or workflow will help determine which method is more appropriate.
 
@@ -30,9 +28,11 @@ Photographs and diagrams of different rose windows with complex mullion geometri
 
 {% hint style="warning" %}
 `Pattern` is a COMPAS [mesh](https://compas-dev.github.io/main/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh) object. A mesh datastructure is network of faces, where the connectivities of the faces are defined by halfedge adjacencies.&#x20;
-
-
 {% endhint %}
+
+***
+
+## Sub-commands
 
 ### RhinoLines
 
