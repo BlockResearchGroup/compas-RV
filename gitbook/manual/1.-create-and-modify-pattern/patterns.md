@@ -25,7 +25,7 @@ Photographs and diagrams of different rose windows with complex mullion geometri
 <figure><img src="../../.gitbook/assets/rose-windows.png" alt=""><figcaption><p> (a) Notre Dame de Mantes, France; (b) Notre Dame de Chartres, France (Photo by Holly Hayes); (c) Durham Cathedral, England (Photo by Carcharoth on Wikipedia); (d) Notre Dame de Paris, France (Photo by Ellen Brown); (e) Bisshop’s Eye of Lincoln Cathedral, England (Photo from Cornell University Library); (f) Sainte-Chapelle Paris, France.</p></figcaption></figure>
 
 {% hint style="warning" %}
-`Pattern` is a COMPAS [mesh](https://compas-dev.github.io/main/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh) object. A mesh datastructure is network of faces, where the connectivity of the faces are defined by halfedge adjacencies.&#x20;
+`Pattern` is a [COMPAS mesh](https://compas.dev/compas/latest/api/compas.datastructures.Mesh.html) object. A mesh datastructure is network of faces, where the connectivity of the faces are defined by halfedge adjacencies.&#x20;
 {% endhint %}
 
 ***
