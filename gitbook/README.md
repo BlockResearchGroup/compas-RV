@@ -1,9 +1,26 @@
 ---
 description: The official guide to using RhinoVAULT
-layout: landing
+cover: .gitbook/assets/RV_splash.jpg
+coverY: 0
+layout:
+  cover:
+    visible: true
+    size: full
+  title:
+    visible: false
+  description:
+    visible: false
+  tableOfContents:
+    visible: false
+  outline:
+    visible: false
+  pagination:
+    visible: true
 ---
 
 # About
+
+
 
 <figure><img src=".gitbook/assets/RV_splash.jpg" alt=""><figcaption></figcaption></figure>
 
