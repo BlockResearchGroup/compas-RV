@@ -44,7 +44,11 @@ If the toolbar is not visible after installing RhinoVAULT, you can load it from 
 
 ## 3. Check the Installation
 
-To check the installation, simply press the left-most button on the toolbar, or run the command `RV` in the Rhino command prompt. A splash screen will pop up, where you will need to read and agree to the [legal terms](../additional-information/legal-terms.md) of using RhinoVAULT.
+To check the installation, simply press the left-most button on the toolbar, or run the command `RV` in the Rhino command prompt.&#x20;
+
+<table data-full-width="false"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><img src="../.gitbook/assets/RV_info (1).svg" alt="" data-size="original"></td><td><p><strong>Rhino command name</strong></p><p><code>rv</code></p></td><td><p><strong>source fil</strong>e</p><p><a href="../../plugin/RV.py"><code>RV.py</code></a></p></td></tr></tbody></table>
+
+Formerly known as "initialisation," this function simply displays the RhinoVAULT splash screen. It provides URLs to the RhinoVAULT GitHub repository and the GitBook manual. You will also need to read and agree to the [legal terms](../additional-information/legal-terms.md) of using RhinoVAULT.
 
 RhinoVAULT uses the following COMPAS packages, which will be installed automatically when `RV` command is triggered, if they are not yet available. The packages are installed in a separate virtual environment named `rhinovault`.
 
