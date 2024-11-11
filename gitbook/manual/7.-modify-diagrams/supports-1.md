@@ -4,7 +4,7 @@
 | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | <img src="../../.gitbook/assets/RV_ForceDiagram-modify (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_force_modify</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_force_modify.py"><code>RV_force_modify.py</code></a></p> |
 
-`RV_force_modify` allows users to make the following modifications to the ForceDiagram.
+`RV_force_modify` allows users to make the following modifications to the `ForceDiagram`.
 
 ***
 
@@ -29,6 +29,8 @@ The following edge attributes of the `ForceDiagram` can be modified.
 ***
 
 ## Sub-commands
+
+The following sub-commands are built into `RV_force_modify` to enable geometric modifications to the `ForceDiagram`.&#x20;
 
 ### MoveVertices
 

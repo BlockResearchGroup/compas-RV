@@ -4,7 +4,7 @@
 | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | <img src="../../.gitbook/assets/RV_ThrustDiagram-modify.svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_thrust_modify</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_thrust_modify.py"><code>RV_thrust_modify.py</code></a></p> |
 
-`RV_thrust_modify` allows users to make the following modifications to the ThrustDiagram.
+`RV_thrust_modify` allows users to make the following modifications to the `ThrustDiagram`.
 
 ***
 
@@ -43,7 +43,7 @@ Not implemented.
 
 ## Sub-commands
 
-The following sub-commands are built into `RV_thrust_modify` to enable geometric modificiations to the `ThrustDiagram`.&#x20;
+The following sub-commands are built into `RV_thrust_modify` to enable geometric modifications to the `ThrustDiagram`.&#x20;
 
 ### MoveSupports
 
