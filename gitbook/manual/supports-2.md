@@ -10,7 +10,7 @@
 
 ***
 
-## Sub commands
+## Sub-commands
 
 The following sub-commands are built into `RV_thrust_modify` .&#x20;
 
@@ -39,15 +39,12 @@ The following edge attributes of the `ThrustDiagram` can be modified.
 
 ### FaceAttributes
 
-
+Not implemented.
 
 ### MoveSupports
 
-
+This sub-command enables users to move supports of the `ThrustDiagram`. This transformation is constrained to the z-axis.&#x20;
 
 ### ScaleForces
 
-
-
-
-
+This sub-command enables interactive scaling of the target height, and visualize the resulting geometry of the `ThrustDiagram` in real time.
