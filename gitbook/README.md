@@ -10,7 +10,7 @@ layout:
   outline:
     visible: false
   pagination:
-    visible: true
+    visible: false
 ---
 
 # About
@@ -42,3 +42,7 @@ The development of RhinoVAULT is hosted on Github and is entirely open source, a
 ### Disclaimer
 
 Although being developed and tested thoroughly, RhinoVAULT may contains errors – therefore no guarantee can be given that RhinoVAULT always computes correct results. Use of RhinoVAULT is entirely at your own risk, and please read the [legal terms](additional/legal.md) carefully before using RhinoVAULT.
+
+
+
+## [<mark style="color:blue;">Let's get started!</mark>](introduction/getting-started.md)&#x20;
