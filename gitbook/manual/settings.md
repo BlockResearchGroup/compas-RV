@@ -14,7 +14,7 @@ Under `Settings`, global parameters (`RhinoVAULT`, `ThrustNetworkAnalysis`) and 
 
 These are the global parameters for RhinoVAULT.
 
-* **autosave** - If set to `True`, session files are saved every time a change has been made in the scene. Set to `True` by default.
+* **autosave** - If set to `True`, temporary session files are saved every time a change has been made in the scene. This feature is necessary for enabling RhinoVAULT-specific undo/redo, so it is recommended to not turn this off. Set to `True` by default.
 * **autoupdate**  - If set to `True`, any modifications made in the scene will automatically update the `ThrustDiagram`. Set to `False` by default.
 
 ### ThrustNetworkAnalysis
