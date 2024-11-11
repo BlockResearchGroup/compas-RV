@@ -59,12 +59,3 @@ Furthermore, resolving all angle deviations is not an absolute requirement, and 
 The iterations of the horizontal equilibrium calculation process is dynamically visualised. The rate at which the diagrams are updated is controlled by the refreshrate. The default value is `10`, which means that the diagrams are updated every 10 iterations.
 
 For large diagrams the dynamic visualisation slows down the calculations a little bit. In these cases, and/or for high numbers of iterations (`> 1000`), it is therefore advisable to set the refreshrate to a higher value. For example, if the number of iterations is `1000`, then a refresh rate of `100` seems more appropriate.
-
-
-
-***
-
-##
-
-
-

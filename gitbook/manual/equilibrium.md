@@ -17,9 +17,3 @@ The Force Diagram is the dual of the Form Diagram, in the sense that both diagra
 Initially, the Force Diagram is created as the "centroidal dual" of the Form Diagram. This means that the geometry of the Force Diagram is defined by placing its vertices at the centroids of their corresponding faces in the Form Diagram.
 
 <figure><img src="../.gitbook/assets/forcediagram-dual.jpg" alt=""><figcaption><p>The initial form and force diagrams are topologically dual, but not yet reciprocal</p></figcaption></figure>
-
-***
-
-## Deviation Angles
-
-Description
