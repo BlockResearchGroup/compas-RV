@@ -4,10 +4,14 @@
 
 An opening is a chain of edges at the boundary of a `Pattern`, in between two support vertices. In general, openings in shell structures cannot be straight in plan, unless there are no internal forces in the non-boundary edges at the openings (e.g. barrel vault or cross vault).
 
-`RV_pattern_relax` relaxes the entire `Pattern` to introduce curvature to the openings and boundaries. The relaxation is done based on the _force density method (FDM)_ ([Schek, 1974](https://www.sciencedirect.com/science/article/pii/0045782574900450)), which calculates the equilibrium shape by assigning a ratio of force to length (force density, **q**) to each element or edge in the structure, which allows for the efficient computation of form-finding solutions.&#x20;
+`RV_pattern_relax` relaxes the entire `Pattern` to introduce curvature to the openings and boundaries. The relaxation is done based on the _force density method (FDM)_ ([Schek, 1974](https://www.sciencedirect.com/science/article/pii/0045782574900450)), which calculates the equilibrium shape by assigning a ratio of axial force magnitude **F** to length **L** (force density, **q=F/L**) to each element or edge in the structure, which allows for the efficient computation of form-finding solutions.&#x20;
 
-Force density, is the ratio of the force in an element to its length. Mathematically, q=F/L, where F is the force in the element, andL is its length. Instead of solving directly for lengths and forces, FDM assigns these force densities as fixed parameters, simplifying the equations. The method then solves for equilibrium by ensuring that forces at each node balance in three-dimensional space. This involves setting up equilibrium equations for each node in terms of force densities rather than individual force magnitudes and lengths.
+Instead of solving directly for lengths and forces, FDM assigns these force densities as fixed parameters, simplifying the equations. The method then solves for equilibrium by ensuring that forces at each node balance in three-dimensional space. This involves setting up equilibrium equations for each node in terms of force densities rather than individual force magnitudes and lengths.
 
 Because the force densities are constants, the equilibrium equations become linear, which makes FDM computationally efficient and stable. This linearity allows FDM to handle complex shapes and materials without iterative, nonlinear solutions required by some other methods.
 
-The default value for **q** for all edges are 1. When `RV_pattern_relax` is triggered, FDM is applied to the Pattern using the **q** values of all the edges. [`Identify supports`](../boundary-conditions.md) is a crucial step to complete before relaxing the `Pattern`, as the number and location of the supports will impact the geometry of the resulting relaxed `Pattern`.&#x20;
+The default value for **q** for all edges are 1. When `RV_pattern_relax` is triggered, FDM is applied to the `Pattern` using the **q** values of all the edges. [`Identify supports`](../boundary-conditions.md) is a crucial step to complete before relaxing the `Pattern`, as the number and location of the supports will impact the geometry of the resulting relaxed `Pattern`. &#x20;
+
+{% hint style="danger" %}
+Make sure to have supports defined before relaxing the `Pattern`!
+{% endhint %}
