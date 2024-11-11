@@ -1,4 +1,4 @@
-# 6. Vertical equilibrium
+# 6. Vertical Equilibrium
 
 |                                                                               |                                                                               |                                                                                                                         |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
@@ -18,6 +18,4 @@ Once the Form and Force Diagrams have been created and horizontal equilibrium ha
 
 The meaning of the scale factor and the magnitude of horizontal forces is related to the magnitude of the loads, which in turn are related to the self-weight of the resulting three-dimensional geometry. Rather than asking you to "guess" the scale factor to get the three-dimensional shape you want, RhinoVAULT will determine the scale for you based on the desired height of the final solution. The default value for the target height is 25% of the length of the diagonal of the bounding box of the Form Diagram (essentially of the bounding box of the footprint of your shell). This value tends to produce well-proportioned geometries.
 
-
-
-note on max heigh
+<figure><img src="../.gitbook/assets/RV_vertical-equilibrium_cropped.gif" alt=""><figcaption></figcaption></figure>
