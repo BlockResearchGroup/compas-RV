@@ -30,7 +30,12 @@ The following vertex attributes of the `ThrustDiagram` can be modified.
 
 ### EdgeAttributes
 
+The following edge attributes of the `ThrustDiagram` can be modified.
 
+* **hmax** - This is the upper limit of the allowable internal horizontal force of the edge. This value is set to 10000000.0 by default.
+* **hmin** - This is the lower limit of the allowable internal horizontal force of the edge. This value is set to 0 by default.
+* **lmax** - This is the upper limit of the allowable length of the edge. This value is set to 10000000.0 by default.
+* **lmin** - This is the lower limit of the allowable length of the edge. This value is set to 0 by default.
 
 ### FaceAttributes
 
