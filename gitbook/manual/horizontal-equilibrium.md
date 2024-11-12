@@ -4,7 +4,7 @@
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | <img src="../.gitbook/assets/RV_horizontal-eq (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_tna_horizontal</code></p> | <p><strong>source file</strong></p><p><a href="../../plugin/RV_tna_horizontal.py"><code>RV_tna_horizontal.py</code></a></p> |
 
-`RV_tna_horizontal` geometrically reconfigures the the edges of the `ForceDiagram`, such that the corresponding edges of the `FormDiagram` and `ForceDiagram` become parallel to each another (in the conventional graphic statics sense), or perpendicular (the 90° rotated, RhinoVAULT convention). The resulting `ForceDiagram` and `FormDiagram` are _reciprocal_ when the two diagrams are topological duals of the other and all pairs of corresponding edges are parallel (within tolerance).
+`RV_tna_horizontal` geometrically reconfigures the the edges of the `ForceDiagram`, such that the corresponding edges of the `FormDiagram` and `ForceDiagram` become parallel to each another (in the conventional graphic statics sense), or perpendicular (the 90° rotated, RhinoVAULT convention). The resulting `ForceDiagram` and `FormDiagram` are _reciprocal_ when the two diagrams are topological duals of the other and all pairs of corresponding edges are perpendicular (within tolerance).
 
 
 
@@ -26,7 +26,7 @@ Once the `FormDiagram` and `ForceDiagram` are reciprocal, they describe the hori
 
 ### Alpha
 
-In RhinoVAULT, horizontal equilibrium is computed by parallelising the edges of the Form and Force Diagram to corresponding target vectors. These target vectors are defined as the weighted average of the vectors of corresponding edge pairs. Therefore, the most important parameter for the calculation of horizontal equilibrium in RhinoVAULT is `alpha`, which is the weighting factor for the calculation of the target vectors.
+In RhinoVAULT, horizontal equilibrium is computed by paralleli-izing or perpendicular-izing the edges of the Form and Force Diagram to corresponding target vectors. These target vectors are defined as the weighted average of the vectors of corresponding edge pairs. Therefore, the most important parameter for the calculation of horizontal equilibrium in RhinoVAULT is `alpha`, which is the weighting factor for the calculation of the target vectors.
 
 If `alpha = 100`, the target vectors are completely defined by the vectors of the edges of the `FormDiagram`. This means that only the geometry of the `ForceDiagram` will be updated to achieve horizontal equilibrium. This is the default. If `alpha = 0`, the target vectors are completely defined by the edges of the `ForceDiagram`. Therefore only the `FormDiagram` will be updated. For all other values, the target vectors are calculated using the following formula:
 
