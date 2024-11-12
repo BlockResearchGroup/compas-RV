@@ -97,43 +97,46 @@ Once the `FormDiagram` and `ForceDiagram` have been created, the horizontal equi
 
 Under “Alpha” option, the user will be able to select a value that determine which of the two diagrams will have more weight during the perpendicular-isation process. Default is “form100,” which only allows the `ForceDiagram` to update in its geometry. User can also enter the number of iterations as well as the display refreshrate for the algorithm. Default number of iterations is 100. For this tutorial, we will change the iteration number to 300.&#x20;
 
-<figure><img src="../.gitbook/assets/RV_tutorial10_horizontal-animation.gif" alt=""><figcaption><p>Animation of <code>RV_tna_horizontal</code></p></figcaption></figure>
+Upon completion, the `ForceDiagram` will be automatically relocated to a new position (for clarity and to avoid overlapping with the `FormDiagram`) in the workspace.&#x20;
+
+<figure><img src="../.gitbook/assets/RV_tutorial10_horizontal-animation_no-color.gif" alt=""><figcaption></figcaption></figure>
 
 ***
 
-## 6. Boundary conditions
+## 6. Vertical Equilibrium
 
+With the `FormDiagram` and `ForceDiagram` now reciprocal, the coordinates of the `ThrustDiagram` can be iteratively computed based on a desired `zmax` (target maximum height) value. In the Rhino toolbar, click <img src="../.gitbook/assets/RV_vertical-eq.svg" alt="" data-size="line"> or type `RV_tna_vertical` in the command line.&#x20;
 
+The user can manually enter a desired value for the target height of the vault. Default height is calculated as 25% of the longest diagonal distance of the bounding box of the current `FormDiagram`. For this tutorial, we will use the default, automatically calculated `zmax`.
 
-
-
-
+<figure><img src="../.gitbook/assets/RV_tutorial_11_vertical.png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## 7. Modify Diagrams (skip)
 
-
-
-
-
-
+In this tutorial, we will skip the Modify Diagram functionalities.&#x20;
 
 ***
 
 ## 8. Settings
 
+RhinoVAULT provides several settings options to modify various parameters for the plugin, the solving algorithms and viusalization. In the Rhino toolbar, click <img src="../.gitbook/assets/RV_settings.svg" alt="" data-size="line"> or type `RV_settings` in the command line. In this tutorial, we will explore a few options under `Display` settings.
 
+In `Display` settings, set `show_forces` attribute to `True`. The corresponding edges of the `FormDiagram` and `ForceDiagram` will be displayed in matching colors. The color gradient is determined based on the relative magnitudes of the internal horizontal forces (Red is higher, blue is lower; the color is independent of whether or not the force is in compression or tension).&#x20;
 
+<figure><img src="../.gitbook/assets/RV_tutorial_12_settings.png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/RV_tutorial_13_settings_show-forces.png" alt=""><figcaption></figcaption></figure>
 
+If `show_pipes` is set to `True`,  pipes will be displayed for the edges of the `ThrustDiagram`. The radius of the pipes are proportional to the magnitude of the internal force in the edge.&#x20;
 
+<figure><img src="../.gitbook/assets/RV_tutorial_14_pipes.png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## 9. Utilities
 
+During the RhinoVAULT workflow, there may have been unintended modifications to the geometry of the diagrams, such as accidentally moving the vertices. In such cases, running the `RV_scene_redraw` <img src="../.gitbook/assets/RV_redraw.svg" alt="" data-size="line"> command will simply redraw the three diagrams without executing any command. When a work session has ended, and the user wishes to start a new file/design, `RV_scene_clear` command will delete all existing diagrams in the work session.&#x20;
 
-
-
-
+At any point during the workflow, the RhinoVAULT session can be saved as a JSON file. These files can be opened in the future, and the user can resume working with existing diagrams and resuming work where the user left off during the last session.&#x20;

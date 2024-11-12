@@ -1,8 +1,8 @@
 # 6. Vertical Equilibrium
 
-|                                                                               |                                                                               |                                                                                                                         |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| <img src="../.gitbook/assets/RV_vertical-eq.svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_tna_vertical</code></p> | <p><strong>source file</strong></p><p><a href="../../plugin/RV_tna_vertical.py"><code>RV_tna_vertical.py</code></a></p> |
+|                                                                                   |                                                                               |                                                                                                                         |
+| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| <img src="../.gitbook/assets/RV_vertical-eq (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_tna_vertical</code></p> | <p><strong>source file</strong></p><p><a href="../../plugin/RV_tna_vertical.py"><code>RV_tna_vertical.py</code></a></p> |
 
 In RhinoVAULT, the `ThrustDiagram` representing the thrust network, is an instance of the `FormDiagram`, with the only difference being the $$z$$ coordinates. A `ThrustDiagram` is simply an alternate visualisation of the `FormDiagram` with updated $$z$$ coordinates. When a `FormDiagram` is successfully created, the `ThrustDiagram` is automatically created.&#x20;
 
