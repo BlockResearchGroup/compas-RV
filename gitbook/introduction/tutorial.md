@@ -73,31 +73,31 @@ If the `Pattern` has not been relaxed in the previous step, `RV_pattern_bnoundar
 
 ## 3. Form Diagram
 
+Once the boundary conditions have been defined, the `Pattern` can now be converted into a `FormDiagram`. In the RhinoVAULT toolbar, click <img src="../.gitbook/assets/RV_FormDiagram (2).svg" alt="" data-size="line"> or type `RV_form` in the command line. If the creation of `FormDiagram` is successful, the Pattern will no longer be displayed and the FormDiagram will be displayed with green edges. The support vertices will still be displayed as red points.
 
-
-
-
-
+<figure><img src="../.gitbook/assets/RV_tutorial_08_form.png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## 4. Force Diagram
 
+Once the `FormDiagram` has been created, the `ForceDiagram` can now be created. In the RhinoVAULT toolbar, click <img src="../.gitbook/assets/RV_ForceDiagram (2).svg" alt="" data-size="line"> or type `RV_force` in the command line. The `ForceDiagram` will be automatically drawn with blue edges to the right (+x) of the `FormDiagram`. The initial `ForceDiagram` is the topological dual of the `FormDiagram`. The two diagrams are not yet reciprocal, meaning that the corresponding edges in the diagrams are not perpendicular to the other.
 
+When the diagrams are not yet reciprocal (in other words, not perpendicular-ised or “equilibrated”), the edges with angle deviations above the defined angle tolerance will be displayed. The dots displaying the angle deviations are visual cues for the user, indicating that horizontal equilibrium has not yet been resolved.
 
-
-
-
+<figure><img src="../.gitbook/assets/RV_tutorial_09_force.png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## 5. Horizontal Equilibrium&#x20;
 
+Once the `FormDiagram` and `ForceDiagram` have been created, the horizontal equilibrium algorithm perpendicular-ises either or both diagrams, which converts them from dual to reciprocal diagrams. In the Rhino toolbar, click <img src="../.gitbook/assets/RV_horizontal-eq (2).svg" alt="" data-size="line"> or type `RV_tna_horizontal` in the command line.&#x20;
 
+<figure><img src="../.gitbook/assets/RV_tutorial_10_horizontal.png" alt=""><figcaption></figcaption></figure>
 
+Under “Alpha” option, the user will be able to select a value that determine which of the two diagrams will have more weight during the perpendicular-isation process. Default is “form100,” which only allows the `ForceDiagram` to update in its geometry. User can also enter the number of iterations as well as the display refreshrate for the algorithm. Default number of iterations is 100. For this tutorial, we will change the iteration number to 300.&#x20;
 
-
-
+<figure><img src="../.gitbook/assets/RV_tutorial10_horizontal-animation.gif" alt=""><figcaption><p>Animation of <code>RV_tna_horizontal</code></p></figcaption></figure>
 
 ***
 
