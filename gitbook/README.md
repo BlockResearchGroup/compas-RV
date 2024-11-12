@@ -34,7 +34,7 @@ Happy form finding!
 
 ### Open-source Research Platform <a href="#research-platform" id="research-platform"></a>
 
-RhinoVAULT is a plugin that is specifically developed for Rhino 8 and above, built entirely with open-source packages from the rich COMPAS ecosystem. The [source codes of RhinoVAULT](https://github.com/BlockResearchGroup/compas-RV) is hosted on and accessible via GitHub, and we very much welcome your feedback. Please use the RhinoVAULT [issue tracker](https://github.com/BlockResearchGroup/compas-RV/issues) or the [COMPAS forum](https://forum.compas-framework.org/) to submit information about any bugs, technical problems, or feature requests. You can also contribute to the source code by following the [developer guide](https://github.com/BlockResearchGroup/compas-RV/wiki/Developer-Guide).
+RhinoVAULT is a plugin that is specifically developed for Rhino 8 and above, built entirely with open-source packages from the rich COMPAS ecosystem. The [source codes of RhinoVAULT](https://github.com/BlockResearchGroup/compas-RV) is hosted on and accessible via GitHub, and we very much welcome your feedback. Please use the RhinoVAULT [issue tracker](https://github.com/BlockResearchGroup/compas-RV/issues) or the [COMPAS forum](https://forum.compas-framework.org/c/rhinovault/47) to submit information about any bugs, technical problems, or feature requests. You can also contribute to the source code by following the [developer guide](https://github.com/BlockResearchGroup/compas-RV/wiki/Developer-Guide).
 
 RhinoVAULT uses the following COMPAS packages:
 
