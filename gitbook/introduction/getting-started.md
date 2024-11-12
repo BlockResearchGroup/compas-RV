@@ -14,7 +14,7 @@ The following are the prerequisites for installing RhinoVAULT.
 In case you do not possess [Rhino](https://www.rhino3d.com/), download a fully featured, free trial version.
 
 {% hint style="warning" %}
-RhinoVAULTLT is available for Rhino 8 **only.**
+RhinoVAULT is available for Rhino 8 **only.**
 {% endhint %}
 
 ***
@@ -57,6 +57,12 @@ RhinoVAULT uses the following COMPAS packages, which will be installed automatic
 * [compas\_rui](https://github.com/blockresearchgroup/compas\_rui)
 * [compas\_session](https://github.com/blockresearchgroup/compas\_session)
 * [compas\_tna](https://github.com/blockresearchgroup/compas\_dr)
+
+
+
+adfad
+
+
 
 <figure><img src="../.gitbook/assets/RV_splash-window.png" alt=""><figcaption><p>RhinoVAULT splash screen</p></figcaption></figure>
 

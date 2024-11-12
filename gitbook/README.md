@@ -18,29 +18,49 @@ layout:
 
 <figure><img src=".gitbook/assets/RV_splash.jpg" alt=""><figcaption></figcaption></figure>
 
-## Welcome to RhinoVAULT!
+## Welcome to RhinoVAULT
 
-The Rhinoceros® plug-in [RhinoVAULT](https://www.food4rhino.com/en/app/rhinovault), originally developed by Dr. Matthias Rippmann at the Block Research Group at ETH Zurich, emerged from research on structural form finding using the _Thrust Network Analysis (TNA)_ approach to intuitively create and explore compression-only structures.
+RhinoVAULT is a Rhino plugin for the form-finding of funicular shell structures using the _Thrust Network Analysis_ (TNA) method. Integrating principles of _graphic statics_, RhinoVAULT provides an intuitive and uniquely interactive approach to funicular form-finding, enabling the creation of structurally efficient and expressive shapes while offering insights into the underlying structural behavior.
 
-Using reciprocal diagrams, RhinoVAULT provides an intuitive, fast funicular form-finding method, adopting the same advantages of techniques such as _Graphic Statics_, but offering a viable extension to three-dimensional problems. Our goal is to share a transparent setup to let you not only create beautiful shapes but also to give you an understanding of the underlying structural principles.
+Originally developed by Dr. Matthias Rippmann at the Block Research Group at ETH Zurich, RhinoVAULT’s current development leverages [COMPAS](https://compas-dev.github.io/), a Python-based framework for computational research and collaboration in architecture, engineering, and digital fabrication. Built with open-source packages from the COMPAS ecosystem, the core functionalities of RhinoVAULT is available not only for Rhino but also any other CAD software or browser with a Python scripting interface.
 
+As a fully open-source tool, RhinoVAULT is accessible to all, supporting students, researchers and design professionals globally in realizing innovative projects. Learning about your projects is invaluable for software development and serves as an inspiration to the structural design community. We invite you to connect with us to share projects created with RhinoVAULT or to explore opportunities for collaborations and workshops.
 
+Happy form finding!
 
-<figure><img src=".gitbook/assets/RV_early-application-examples.jpg" alt=""><figcaption><p>Early examples of RhinoVAULT ca. 2010s.</p></figcaption></figure>
+<figure><img src=".gitbook/assets/RV_early-application-examples.jpg" alt=""><figcaption><p>Early examples of RhinoVAULT (Rippmann, ca. 2010s.)</p></figcaption></figure>
 
 ***
 
-### Research Platform <a href="#research-platform" id="research-platform"></a>
+### Open-source Research Platform <a href="#research-platform" id="research-platform"></a>
 
-‌The current version of RhinoVAULT is an open-source research and development platform for funicular form-finding built with [COMPAS](https://compas-dev.github.io/), a Python-based framework for computational research and collaboration in Architecture, Engineering, and Digital Fabrication.
+RhinoVAULT is a plugin that is specifically developed for Rhino 8 and above, built entirely with open-source packages from the rich COMPAS ecosystem. The [source codes of RhinoVAULT](https://github.com/BlockResearchGroup/compas-RV) is hosted on and accessible via GitHub, and we very much welcome your feedback. Please use the RhinoVAULT [issue tracker](https://github.com/BlockResearchGroup/compas-RV/issues) or the [COMPAS forum](https://forum.compas-framework.org/) to submit information about any bugs, technical problems, or feature requests. You can also contribute to the source code by following the [developer guide](https://github.com/BlockResearchGroup/compas-RV/wiki/Developer-Guide).
 
-RhinoVAULT is a plugin that is specifically developed for Rhino 8 and above, built entirely with open source packages from the COMPAS ecosystem and will, therefore, be available not only for Rhino and Grasshopper, but also for Blender and other tools with a Python scripting interface, and ultimately even in the browser.
+RhinoVAULT uses the following COMPAS packages:
+
+* [compas](https://github.com/compas-dev/compas)
+* [compas\_fd](https://github.com/blockresearchgroup/compas\_fd)
+* [compas\_rui](https://github.com/blockresearchgroup/compas\_rui)
+* [compas\_session](https://github.com/blockresearchgroup/compas\_session)
+* [compas\_tna](https://github.com/blockresearchgroup/compas\_dr)
 
 <figure><img src=".gitbook/assets/compas_cluster-diagram.png" alt=""><figcaption><p>The COMPAS ecosystem</p></figcaption></figure>
 
-### Open Source
+***
 
-The development of RhinoVAULT is hosted on Github and is entirely open source, and we very much welcome your feedback. Please use the [issue tracker](https://github.com/BlockResearchGroup/compas-RV/issues) of the RhinoVAULT [GitHub repository](https://github.com/BlockResearchGroup/compas-RV) or the [COMPAS forum](https://forum.compas-framework.org/) to submit information about bugs, technical problems, or feature requests.
+### Citing RhinoVAULT
+
+RhinoVAULT is freely available under the MIT License in the hope that you will enjoy it and use it for original and creative work. It can be shared and used for academic and commercial purposes, but with proper attribution. If you use RhinoVAULT for any projects, publications or other applications, please cite:
+
+```
+@misc{compas-RV,
+    title = {{COMPAS RhinoVAULT}: Funicular Form Finding for Rhinoceros},
+    author = {Tom Van Mele and Juney Lee},
+    year = {2024},
+    doi = {},
+    url = {https://github.com/BlockResearchGroup/compas-RV},
+}
+```
 
 ***
 
