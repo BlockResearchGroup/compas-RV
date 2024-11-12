@@ -10,7 +10,7 @@ In this tutorial, we will use all of the basic RhinoVAULT features to find the e
 4. Force Diagram
 5. Horizontal Equilibrium
 6. Vertical Equilibrium
-7. Modify Diagrams (skip)
+7. Modify Diagrams
 8. Settings
 9. Utilities
 
@@ -39,6 +39,27 @@ RhinoVAULT provides various mechanisms for modifying the geometry of the `Patter
 ***
 
 ## 2. Define  Boundary Conditions
+
+Once a `Pattern` object has been generated, the boundary conditions will need to be defined. In RhinoVAULT, the boundary conditions include:&#x20;
+
+1. identifying the supports (vertices of the structure where reactions are allowed); and
+2. updating the geometry of the openings.
+
+### 2a. Identify Supports
+
+From the RhinoVAULT toolbar, click on <img src="../.gitbook/assets/RV_supports (3).svg" alt="" data-size="line"> or type `RV_pattern_supports` in the command line. Two sub-commands are available, one for adding new supports or removing existing supports. Select `Add`. The following prompt will provide various methods of selecting vertices. For this tutorial, we will use `Degree`. Then enter 2, which means that any vertices in the `Pattern` with a vertex degree of 2 (vertices that have two edges, therefore the four corner vertices in this particular `Pattern`) will be selected and defined as supports.
+
+<figure><img src="../.gitbook/assets/RV_tutorial_03_supports.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/RV_tutorial_04_corners.png" alt=""><figcaption><p>The four corners (vertices with degree 2), should now be displayed as red points.</p></figcaption></figure>
+
+### 2b. Relax Pattern
+
+
+
+
+
+### 2c. Update Boundaries
 
 
 
