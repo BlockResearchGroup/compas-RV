@@ -35,10 +35,24 @@
 
 ## Examples
 
-* [Barrel Vault](examples/barrel-vault.md)
-* [Cross Vault](examples/cross-vault.md)
-* [Pillow Vault](examples/pillow-vault.md)
-* [Fan Vault](examples/fan-vault.md)
+* [Basic Design](examples/basic-design/README.md)
+  * [Creases](examples/basic-design/creases.md)
+  * [Lips](examples/basic-design/lips.md)
+  * [Holes](examples/basic-design/holes.md)
+  * [Dropdowns](examples/basic-design/dropdowns.md)
+  * [Funnel Shells](examples/basic-design/funnel-shells.md)
+* [Case Studies](examples/case-studies/README.md)
+  * [British Museum](examples/case-studies/british-museum.md)
+  * [Armadillo Vault](examples/case-studies/armadillo-vault.md)
+  * [Free-form Tile Vault](examples/case-studies/free-form-tile-vault.md)
+* [Historical Typologies](examples/historical-typologies/README.md)
+  * [Barrel Vault](examples/historical-typologies/barrel-vault.md)
+  * [Cross Vault](examples/historical-typologies/cross-vault.md)
+  * [Pillow Vault](examples/historical-typologies/pillow-vault.md)
+  * [Fan Vault](examples/historical-typologies/fan-vault.md)
+* [Advanced](examples/advanced/README.md)
+  * [COMPAS Integration](examples/advanced/compas-integration.md)
+  * [Materialization](examples/advanced/materialization.md)
 
 ## Additional information
 
@@ -51,5 +65,4 @@
 ## Links
 
 * [Github](https://github.com/BlockResearchGroup/compas-RV)
-* [Block Research Group](https://brg.ethz.ch)
 * [COMPAS](https://compas.dev)
