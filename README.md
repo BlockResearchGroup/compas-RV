@@ -1,16 +1,16 @@
-# COMPAS RhinoVAULT
+# RhinoVAULT
 
 > [!NOTE]
-> The current version of COMPAS-RhinoVAULT on the Yak package server is `0.4.12`.
+> The current version of RhinoVAULT on the Rhino Yak package server is `0.5.34.9081`.
 > Note that this is still a pre-release!
 
 ![RhinoVAULT](compas-RV.jpg)
 
-RhinoVAULT is a plugin for Rhino for form finding of funicular force networks with vertical loads using Thurst Network Analysis. The current version of this plugin is based on COMPAS 2 and is available for Rhino 8.
+RhinoVAULT is a plugin for Rhino for form finding of funicular force networks with vertical loads using Thurst Network Analysis. The current version of this plugin is based on COMPAS 2 and is available for Rhino 8 only.
 
 ## User Guide
 
-The RhinoVAULT user guide is available as a Gitbook: [RhinoVAULT Gitbook](https://blockresearchgroup.gitbook.io/compas-rv)
+The RhinoVAULT user guide is available as a Gitbook: [RhinoVAULT Gitbook]([https://blockresearchgroup.gitbook.io/compas-rv](https://blockresearchgroup.gitbook.io/rhinovault))
 
 ## Issue Tracker
 
