@@ -55,17 +55,19 @@ From the RhinoVAULT toolbar, click on <img src="../.gitbook/assets/RV_supports (
 
 ### 2b. Relax Pattern
 
+The second step of defining boundary conditions involves updating the geometry of the openings. In this particular Pattern, there are four boundaries, one on each side of the `Pattern`. Clicking <img src="../.gitbook/assets/RV_relax (1).svg" alt="" data-size="line"> or typing `RV_pattern_relax` in the command line will relax or smoothen the `Pattern` using the _force density method_ (FDM). This function uses default force density values of 1 for all edges, unless they have been manually overridden by the user.
 
-
-
+<figure><img src="../.gitbook/assets/RV_tutorial_05_relax.png" alt=""><figcaption></figcaption></figure>
 
 ### 2c. Update Boundaries
 
+RhinoVAULT also provides a function for smoothing the Pattern by controlling the `sag` or curvature of each boundary. From the RhinoVAULT toolbar, click <img src="../.gitbook/assets/RV_boundaries (2).svg" alt="" data-size="line"> or type `RV_pattern_bnoundaries` in the command line, then each boundary will be labeled with a number.&#x20;
 
+If the `Pattern` has not been relaxed in the previous step, `RV_pattern_bnoundaries` will add a default sag (depth to span ratio) of 10%. If the `Pattern` has already been relaxed, as in this case, the boundaries will not be automatically updated. The user can iteratively select a boundary, and impose different sag values until a desired geometry of the `Pattern` is obtained.
 
+<figure><img src="../.gitbook/assets/RV_tutorial_06_boundaries.png" alt=""><figcaption></figcaption></figure>
 
-
-
+<figure><img src="../.gitbook/assets/RV_tutorial_07_boundaries.png" alt=""><figcaption><p>Different sag values applied to each of the four boundaries.</p></figcaption></figure>
 
 ***
 
