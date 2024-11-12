@@ -52,18 +52,6 @@ Formerly known as "initialisation," this function simply displays the RhinoVAULT
 
 RhinoVAULT uses the following COMPAS packages, which will be installed automatically when `RV` command is triggered, if they are not yet available. The packages are installed in a separate virtual environment named `rhinovault`.
 
-* [compas](https://github.com/compas-dev/compas)
-* [compas\_fd](https://github.com/blockresearchgroup/compas\_fd)
-* [compas\_rui](https://github.com/blockresearchgroup/compas\_rui)
-* [compas\_session](https://github.com/blockresearchgroup/compas\_session)
-* [compas\_tna](https://github.com/blockresearchgroup/compas\_dr)
-
-
-
-adfad
-
-
-
 <figure><img src="../.gitbook/assets/RV_splash-window.png" alt=""><figcaption><p>RhinoVAULT splash screen</p></figcaption></figure>
 
 {% hint style="info" %}

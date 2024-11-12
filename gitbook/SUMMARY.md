@@ -42,7 +42,8 @@
 
 ## Additional information
 
-* [Release notes](additional-information/release-notes.md)
+* [Release notes](additional-information/release-notes/README.md)
+  * [0.5.34.9081 WIP](additional-information/release-notes/0.5.34.9081-wip.md)
 * [Legal Terms](additional/legal.md)
 * [Citing RhinoVAULT](additional/citing.md)
 * [FAQ](additional/faq.md)
