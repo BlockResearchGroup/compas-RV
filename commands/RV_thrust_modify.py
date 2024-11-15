@@ -4,14 +4,8 @@
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-from numpy import array
-
-from compas_fd.solvers.fd_numerical_data import FDNumericalData
 from compas_rv.session import RVSession
 from compas_rv.solvers import InteractiveScaleHorizontal
-from compas_tna.equilibrium import vertical_from_q
-from compas_tna.equilibrium.diagrams import update_z
-from compas_tna.loads import LoadUpdater
 
 
 def RunCommand():
@@ -79,8 +73,9 @@ def RunCommand():
                 thrust.diagram.vertex_attribute(vertex, "z", scalehorizontal.numdata.xyz[index, 2])
 
             for index, edge in enumerate(thrust.diagram.edges_where(_is_edge=True)):
-                form.diagram.edge_attribute(edge, "q", scalehorizontal.numdata.q[index, 0])
-                thrust.diagram.edge_attribute(edge, "q", scalehorizontal.numdata.q[index, 0])
+                q = scalehorizontal.scale * scalehorizontal.numdata.q[index, 0]
+                form.diagram.edge_attribute(edge, "q", q)
+                thrust.diagram.edge_attribute(edge, "q", q)
 
     else:
         raise NotImplementedError
