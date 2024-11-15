@@ -27,6 +27,12 @@ def draw_labels(pattern, openings):
 def RunCommand():
     session = RVSession()
 
+    form = session.find_formdiagram(warn=False)
+    force = session.find_forcediagram(warn=False)
+
+    if form or force:
+        return session.warn("Please remove all form and force diagrams before using pattern commands.")
+
     pattern = session.find_pattern()
     if not pattern:
         return

@@ -14,6 +14,12 @@ from compas_rv.session import RVSession
 def RunCommand():
     session = RVSession()
 
+    form = session.find_formdiagram(warn=False)
+    force = session.find_forcediagram(warn=False)
+
+    if form or force:
+        return session.warn("Please remove all form and force diagrams before using pattern commands.")
+
     patternobj = session.find_pattern(warn=False)
 
     if patternobj:
