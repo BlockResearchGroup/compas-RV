@@ -16,6 +16,13 @@ def RunCommand():
     session.scene.clear()
     session.load(filepath)
 
+    form = session.find_formdiagram(warn=False)
+    force = session.find_forcediagram(warn=False)
+
+    if form and force:
+        form.diagram.dual = force.diagram
+        force.diagram.primal = form.diagram
+
     session.scene.draw()
 
     if session.settings.autosave:

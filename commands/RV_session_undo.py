@@ -13,6 +13,13 @@ def RunCommand():
     if not session.undo():
         return
 
+    form = session.find_formdiagram(warn=False)
+    force = session.find_forcediagram(warn=False)
+
+    if form and force:
+        form.diagram.dual = force.diagram
+        force.diagram.primal = form.diagram
+
     oldscene.clear()
     session.scene.draw()
 
