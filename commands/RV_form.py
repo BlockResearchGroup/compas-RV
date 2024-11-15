@@ -40,17 +40,6 @@ def RunCommand():
     formdiagram.vertices_attribute(name="z", value=0)
     formdiagram.flip_cycles_if_normal_down()
 
-    # i find this part very messy
-    # fixed should either stay fixed
-    # or simply not exist
-    # but it should not be auto-converted into supports
-    formdiagram.vertices_attribute("is_fixed", False)
-    fixed = list(pattern.mesh.vertices_where(is_fixed=True))
-    if fixed:
-        for vertex in fixed:
-            if formdiagram.has_vertex(vertex):
-                formdiagram.vertex_attribute(vertex, "is_support", True)
-
     thrustdiagram: ThrustDiagram = formdiagram.copy(cls=ThrustDiagram)
     thrustdiagram.name = "ThrustDiagram"
 
