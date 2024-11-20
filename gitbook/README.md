@@ -1,16 +1,5 @@
 ---
 description: The official guide to using RhinoVAULT
-layout:
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
 ---
 
 # About
