@@ -1,15 +1,14 @@
 ---
 description: The official guide to using RhinoVAULT
-hidden: true
 layout:
   title:
     visible: false
   description:
     visible: false
   tableOfContents:
-    visible: false
+    visible: true
   outline:
-    visible: false
+    visible: true
   pagination:
     visible: false
 ---
