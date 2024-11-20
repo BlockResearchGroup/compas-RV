@@ -1,5 +1,15 @@
 ---
-description: The official guide to using RhinoVAULT
+layout:
+  title:
+    visible: false
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
 # About
@@ -55,7 +65,3 @@ RhinoVAULT is freely available under the MIT License in the hope that you will e
 ### Disclaimer
 
 Although being developed and tested thoroughly, RhinoVAULT may contains errors – therefore no guarantee can be given that RhinoVAULT always computes correct results. Use of RhinoVAULT is entirely at your own risk, and please read the [legal terms](additional/legal.md) carefully before using RhinoVAULT.
-
-***
-
-## [<mark style="color:blue;">Let's get started!</mark>](introduction/getting-started.md)&#x20;
