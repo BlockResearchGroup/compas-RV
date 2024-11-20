@@ -3,6 +3,7 @@
 ## Introduction
 
 * [About](README.md)
+* [About](introduction/about.md)
 * [Getting Started](introduction/getting-started.md)
 * [Tutorial](introduction/tutorial.md)
 
