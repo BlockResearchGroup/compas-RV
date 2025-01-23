@@ -1,4 +1,4 @@
-# Barrel Vault
+# Cross Vault
 
 
 
@@ -26,7 +26,7 @@ Download Rhino3D File:
 
 **Command:** `RV_pattern_supports` > `Add`> `Manual`> `Select Vertices`> `Enter`
 
-<figure><img src="../../.gitbook/assets/0_creases_2.jpg" alt=""><figcaption><p>Select the strips of vertices on the two opposite sides of the Mesh.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/cross_vault_1.jpg" alt=""><figcaption><p>Select the four corner vertices of the Mesh.</p></figcaption></figure>
 
 
 
@@ -39,7 +39,7 @@ Download Rhino3D File:
 **Command:** `RV_form`\
 
 
-<figure><img src="../../.gitbook/assets/0_creases_3.jpg" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/barrel_vault_3 (1).jpg" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
 
 ## Modify Form Diagram
 
@@ -50,7 +50,7 @@ Download Rhino3D File:
 **Command:** `RV_form_modify`> `Edge Constraints` > `Manual`\
 
 
-<figure><img src="../../.gitbook/assets/0_creases_4.jpg" alt=""><figcaption><p>Select the edges, marked in black rectangles, and set the horizontal components (h_min and h_max) to: a) 0.00001, b) 2, and c) 1. This is done because horizontal edges ideally carry no load, and boundary arches have a tributary area twice as large as the outer ones.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/barrel_vault_4.jpg" alt=""><figcaption><p>Select the edges according to the image from left to right, and set the horizontal components (h_min and h_max) to: a) 0.00001, b) 2, and c) 1. Perpendicular edges carry no load, outer edges carry half of the load. The middle 4 diagonal edges are set 1 to avoid collapse of the diagram.</p></figcaption></figure>
 
 ## Force Diagram
 
@@ -60,7 +60,7 @@ Download Rhino3D File:
 
 **Command:** `RV_force`
 
-<figure><img src="../../.gitbook/assets/0_creases_5.jpg" alt=""><figcaption><p>On the right side the force diagram is created with forces distribution show in TextDots.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/barrel_vault_5.jpg" alt=""><figcaption><p>On the right side the force diagram is created with forces distribution shown in TextDots.</p></figcaption></figure>
 
 ## Horizontal Equilibrium
 
@@ -70,7 +70,7 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_horizontal` > `Iterations` > `1000`
 
-<figure><img src="../../.gitbook/assets/0_creases_6.jpg" alt=""><figcaption><p>Since horizontal segments has almost no forces the force diagram collapses to a line. Nice!</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/barrel_vault_6.jpg" alt=""><figcaption><p>After horizontal equilibrium is compute the force diagram collapses to the pattern on the left side.</p></figcaption></figure>
 
 |                                                                                      |                                                                               |                                                                                                                            |
 | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -78,4 +78,4 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_vertical`&#x20;
 
-<figure><img src="../../.gitbook/assets/0_creases_7.jpg" alt=""><figcaption><p>Vertical projection to get 3D geometry.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/barrel_vault_7.jpg" alt=""><figcaption><p>Vertical projection to get 3D geometry.</p></figcaption></figure>

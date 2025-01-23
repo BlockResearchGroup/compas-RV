@@ -47,7 +47,7 @@
   * [Free-form Tile Vault](examples/case-studies/free-form-tile-vault.md)
 * [Historical Typologies](examples/historical-typologies/README.md)
   * [Barrel Vault](examples/historical-typologies/barrel-vault.md)
-  * [Cross Vault](examples/historical-typologies/cross-vault.md)
+  * [Cross Vault](examples/historical-typologies/barrel-vault-1.md)
   * [Pillow Vault](examples/historical-typologies/pillow-vault.md)
   * [Fan Vault](examples/historical-typologies/fan-vault.md)
 * [Advanced](examples/advanced/README.md)
