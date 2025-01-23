@@ -60,7 +60,7 @@ Download Rhino3D File:
 
 **Command:** `RV_force`
 
-<figure><img src="../../.gitbook/assets/barrel_vault_5.jpg" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/barrel_vault_5 (1).jpg" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
 
 ## Horizontal Equilibrium
 
@@ -70,7 +70,7 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_horizontal` > `Iterations` > `1000`
 
-<figure><img src="../../.gitbook/assets/barrel_vault_6.jpg" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/barrel_vault_6 (1).jpg" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
 
 |                                                                                      |                                                                               |                                                                                                                            |
 | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
