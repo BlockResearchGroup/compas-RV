@@ -60,7 +60,7 @@ Download Rhino3D File:
 
 **Command:** `RV_force`
 
-<figure><img src="../../.gitbook/assets/0_creases_5.jpg" alt=""><figcaption><p>On the right side the force diagram is created with forces distribution show in TextDots.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/0_creases_5.jpg" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
 
 ## Horizontal Equilibrium
 

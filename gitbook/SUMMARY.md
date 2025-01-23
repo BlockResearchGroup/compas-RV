@@ -48,7 +48,7 @@
 * [Historical Typologies](examples/historical-typologies/README.md)
   * [Barrel Vault](examples/historical-typologies/barrel-vault.md)
   * [Cross Vault](examples/historical-typologies/barrel-vault-1.md)
-  * [Pillow Vault](examples/historical-typologies/pillow-vault.md)
+  * [Pillow Vault](examples/historical-typologies/barrel-vault-2.md)
   * [Fan Vault](examples/historical-typologies/fan-vault.md)
 * [Advanced](examples/advanced/README.md)
   * [COMPAS Integration](examples/advanced/compas-integration.md)
