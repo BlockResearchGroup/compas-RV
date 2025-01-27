@@ -30,6 +30,14 @@ Download Rhino3D File:
 
 
 
+## Pattern Relax
+
+<table><thead><tr><th></th><th width="237"></th><th></th></tr></thead><tbody><tr><td><img src="../../.gitbook/assets/RV_relax.svg" alt="" data-size="original"></td><td><p><strong>Rhino command name</strong></p><p><code>RV_pattern_relax</code></p></td><td><p><strong>source file</strong></p><p><a href="../../../plugin/RV_pattern_relax.py"><code>RV_pattern_relax.py</code></a></p></td></tr></tbody></table>
+
+**Command:** `RV_pattern_relax`
+
+<figure><img src="../../.gitbook/assets/fan_vault_2.png" alt=""><figcaption></figcaption></figure>
+
 ## Form Diagram
 
 |                                                                                      |                                                                       |                                                                                                            |
