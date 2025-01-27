@@ -36,7 +36,7 @@ Download Rhino3D File:
 
 **Command:** `RV_pattern_relax`
 
-<figure><img src="../../.gitbook/assets/fan_vault_2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/fan_vault_2.png" alt=""><figcaption><p>To avoid straight edges, the patter is relax using fd solver, with default value q=1.</p></figcaption></figure>
 
 ## Form Diagram
 
