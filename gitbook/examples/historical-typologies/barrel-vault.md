@@ -14,7 +14,7 @@ Download Rhino3D File:
 | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
 | <img src="../../.gitbook/assets/RV_pattern (2).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_pattern</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_pattern.py"><code>RV_pattern.py</code></a></p> |
 
-**Command:** `RV_pattern` > `RhinoMesh` > `Select a mesh`
+**Command:** `RV_pattern` > `RhinoLines` > `Select lines`
 
 <figure><img src="../../.gitbook/assets/cross_vault_0.jpg" alt=""><figcaption><p>The display of the Mesh input changes when the <code>RV_pattern</code> command is initiated.</p></figcaption></figure>
 
