@@ -89,4 +89,4 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_vertical`&#x20;
 
-<figure><img src="../../.gitbook/assets/funnel_shell_5.png" alt=""><figcaption><p>Vertical projection to get 3D geometry.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/funnel_shell_7.png" alt=""><figcaption><p>Vertical projection to get 3D geometry.</p></figcaption></figure>
