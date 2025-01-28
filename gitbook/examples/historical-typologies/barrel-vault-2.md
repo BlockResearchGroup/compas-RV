@@ -6,7 +6,7 @@
 
 Download Rhino3D File:
 
-{% file src="../../.gitbook/assets/pillow_vault.zip" %}
+{% file src="../../.gitbook/assets/lips.zip" %}
 
 ## Create Pattern
 
@@ -14,9 +14,9 @@ Download Rhino3D File:
 | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
 | <img src="../../.gitbook/assets/RV_pattern (2).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_pattern</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_pattern.py"><code>RV_pattern.py</code></a></p> |
 
-**Command:** `RV_pattern` > `RhinoLines` > `Select lines`
+**Command:** `RV_pattern` > `RhinoMesh` > `Select a mesh`
 
-<figure><img src="../../.gitbook/assets/pillow_vault_0.jpg" alt=""><figcaption><p>The display of the Mesh input changes when the <code>RV_pattern</code> command is initiated.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/lips_0.png" alt=""><figcaption><p>The display of the Mesh input changes when the <code>RV_pattern</code> command is initiated.</p></figcaption></figure>
 
 
 
@@ -26,7 +26,7 @@ Download Rhino3D File:
 
 **Command:** `RV_pattern_supports` > `Add`> `Manual`> `Select Vertices`> `Enter`
 
-<figure><img src="../../.gitbook/assets/pillow_vault_1.jpg" alt=""><figcaption><p>Select the strips of vertices on the two opposite sides of the Mesh.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/lips_1.png" alt=""><figcaption><p>Select the strips of vertices on the two opposite sides of the Mesh.</p></figcaption></figure>
 
 
 
@@ -39,7 +39,7 @@ Download Rhino3D File:
 **Command:** `RV_form`\
 
 
-<figure><img src="../../.gitbook/assets/pillow_vault_2.jpg" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/lips_2.png" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
 
 ## Force Diagram
 
@@ -49,7 +49,7 @@ Download Rhino3D File:
 
 **Command:** `RV_force`
 
-<figure><img src="../../.gitbook/assets/pillow_vault_3.jpg" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/lips_3.png" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
 
 ## Horizontal Equilibrium
 
@@ -59,7 +59,7 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_horizontal` > `Iterations` > `1000`
 
-<figure><img src="../../.gitbook/assets/crpillow_vault_5.jpg" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/lips_4.png" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
 
 |                                                                                      |                                                                               |                                                                                                                            |
 | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
