@@ -2,7 +2,7 @@
 
 <figure><img src="../../.gitbook/assets/barrel_0.png" alt=""><figcaption></figcaption></figure>
 
-In this tutorial, we will explore the basic features of RhinoVAULT to determine the equilibrium shape of a barrel vault with two boundary supports. To form-find the barrel vault, we will adjust the form diagram parameters for the allowable internal horizontal force limits: [**hmax** ](../../manual/7.-modify-diagrams/supports.md)(upper limit) and [**hmin** ](../../manual/7.-modify-diagrams/supports.md)(lower limit).
+In this tutorial, we will explore the basic features of RhinoVAULT to determine the equilibrium shape of a barrel vault with two boundary supports. To form-find the barrel vault, we will adjust the form diagram parameters for the allowable internal horizontal force limits: [**hmax**](../../manual/7.-modify-diagrams/supports.md) (upper limit) and [**hmin**](../../manual/7.-modify-diagrams/supports.md) (lower limit).
 
 A barrel vault is unique because its edges orthogonal to the arches carry almost no load (e.g., **1e-5**), while the edges along the arches share the same internal horizontal force (e.g., **2**). The exception occurs at the boundary, where half of the horizontal force is used (e.g., **1**) for the small tributary area. Due to this special force distribution, the force diagram collapses into a single line.\
 \
@@ -20,7 +20,7 @@ Table of Contents:
 
 **Command:** `RV_pattern` > `RhinoMesh`
 
-Create a pattern from the Rhino mesh. You can open either of the session file at each individual step or start from the attached Rhino file.
+Create a pattern from a mesh. You can open either start from the attached Rhino file or the session file at each individual step.
 
 {% file src="../../.gitbook/assets/rhinovault_barrel (1).3dm" %}
 
