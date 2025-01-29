@@ -1,12 +1,27 @@
 # Barrel Vault
 
+<figure><img src="../../.gitbook/assets/barrel_0.png" alt=""><figcaption></figcaption></figure>
 
+In this tutorial, we will explore the basic features of RhinoVAULT to determine the equilibrium shape of a barrel vault with two boundary supports. To form-find the barrel vault, we will adjust the form diagram parameters for the allowable internal horizontal force limits: [**hmax** ](barrel-vault.md#modify-form-diagram)(upper limit) and [**hmin** ](barrel-vault.md#modify-form-diagram)(lower limit).
+
+A barrel vault is unique because its edges orthogonal to the arches carry almost no load (e.g., **1e-5**), while the edges along the arches share the same internal horizontal force (e.g., **2**). The exception occurs at the boundary, where half of the horizontal force is used (e.g., **1**) for the small tributary area. Due to this special force distribution, the force diagram collapses into a single line.\
+
+
+1. Pattern
+2. Boundary Conditions
+3. Form Diagram
+4. Modify Form Diagram
+5. Force Diagram
+6. Horizontal Equilibrium
+7. Vertical Equilibrium
+
+For preview, we use `RV_settings > Drawing > show_pipes` and `show_forces` options.
 
 ## Rhino Geometry
 
 Download Rhino3D File:
 
-{% file src="../../.gitbook/assets/0_creases.zip" %}
+{% file src="../../.gitbook/assets/barrel.3dm" %}
 
 ## Create Pattern
 
