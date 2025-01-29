@@ -20,7 +20,7 @@ Table of Contents:
 
 **Command:** `RV_pattern` > `RhinoMesh`
 
-Create a pattern from a mesh. You can open either start from the attached Rhino file or the session file at each individual step.
+Create a pattern from a mesh. You can start from the attached Rhino file or the session file.
 
 {% file src="../../.gitbook/assets/rhinovault_barrel (1).3dm" %}
 
