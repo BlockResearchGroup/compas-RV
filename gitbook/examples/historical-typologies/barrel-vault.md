@@ -2,19 +2,19 @@
 
 <figure><img src="../../.gitbook/assets/barrel_0.png" alt=""><figcaption></figcaption></figure>
 
-In this tutorial, we will explore the basic features of RhinoVAULT to determine the equilibrium shape of a barrel vault with two boundary supports. To form-find the barrel vault, we will adjust the form diagram parameters for the allowable internal horizontal force limits: [**hmax** ](barrel-vault.md#modify-form-diagram)(upper limit) and [**hmin** ](barrel-vault.md#modify-form-diagram)(lower limit).
+In this tutorial, we will explore the basic features of RhinoVAULT to determine the equilibrium shape of a barrel vault with two boundary supports. To form-find the barrel vault, we will adjust the form diagram parameters for the allowable internal horizontal force limits: [**hmax** ](../../manual/7.-modify-diagrams/supports.md)(upper limit) and [**hmin** ](../../manual/7.-modify-diagrams/supports.md)(lower limit).
 
 A barrel vault is unique because its edges orthogonal to the arches carry almost no load (e.g., **1e-5**), while the edges along the arches share the same internal horizontal force (e.g., **2**). The exception occurs at the boundary, where half of the horizontal force is used (e.g., **1**) for the small tributary area. Due to this special force distribution, the force diagram collapses into a single line.\
 \
 Table of Contents:
 
-1. Create Pattern
-2. Identify Supports
-3. Form Diagram
-4. Modify Form Diagram
-5. Force Diagram
-6. Horizontal Equilibrium
-7. Vertical Equilibrium
+1. [Create Pattern](barrel-vault.md#create-pattern)
+2. [Identify Supports](barrel-vault.md#identify-supports)
+3. [Form Diagram](barrel-vault.md#form-diagram)
+4. [Modify Form Diagram](barrel-vault.md#modify-form-diagram)
+5. [Force Diagram](barrel-vault.md#force-diagram)
+6. [Horizontal Equilibrium](barrel-vault.md#horizontal-equilibrium)
+7. [Vertical Equilibrium](barrel-vault.md#vertical-equilibrium)
 
 ## Create Pattern
 
