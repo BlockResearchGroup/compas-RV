@@ -14,7 +14,7 @@ layout:
 
 # Barrel Vault
 
-<figure><img src="../../.gitbook/assets/barrel_10.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/barrel_10 (1).png" alt=""><figcaption></figcaption></figure>
 
 In this tutorial, we will explore the basic features of RhinoVAULT to determine the equilibrium shape of a barrel vault with two boundary supports. To form-find the barrel vault, we will adjust the form diagram parameters for the allowable internal horizontal force limits: [**hmax**](../../manual/7.-modify-diagrams/supports.md) (upper limit) and [**hmin**](../../manual/7.-modify-diagrams/supports.md) (lower limit).
 
