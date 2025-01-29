@@ -69,7 +69,7 @@ Set the horizontal edge constraints (h\_min and h\_max) to: a) 0.00001, b) verti
 
 <figure><img src="../../.gitbook/assets/barrel_4 (3).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/barrel_5 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/barrel_5 (3).png" alt=""><figcaption></figcaption></figure>
 
 {% file src="../../.gitbook/assets/rhinovault_barrel_3.json" %}
 
