@@ -73,7 +73,7 @@ On the right side, the force diagram is created with TextDots marking the angle 
 
 **Command:** `RV_tna_horizontal` > `Iterations` > `1000`
 
-Since horizontal segments have almost no force, the force diagram collapses to a line.
+Set the iteration to 1000 to reach the horizontal equilibrium. Since horizontal segments have almost no force, the force diagram collapses to a line.
 
 {% file src="../../.gitbook/assets/rhinovault_barrel_5.json" %}
 
