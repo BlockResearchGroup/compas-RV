@@ -40,6 +40,7 @@
   * [Holes](examples/basic-design/holes.md)
   * [Drop downs](examples/basic-design/drop-downs.md)
   * [\*Funnel Shell](examples/basic-design/barrel-vault-3.md)
+  * [Lips](examples/basic-design/lips.md)
 * [Case Studies](examples/case-studies/README.md)
   * [\* British Museum](examples/case-studies/british-museum.md)
   * [\* Armadillo Vault](examples/case-studies/armadillo-vault.md)
@@ -48,6 +49,7 @@
   * [\*Cross Vault](examples/historical-typologies/barrel-vault-1.md)
   * [\*Fan Vault](examples/historical-typologies/barrel-vault-3.md)
   * [Pillow Vault](examples/historical-typologies/pillow-vault.md)
+  * [Barrel Vault](examples/historical-typologies/barrel-vault.md)
 
 ## NEXT STEPS
 
