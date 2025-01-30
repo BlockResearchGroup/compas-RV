@@ -96,7 +96,7 @@ Run the command as is wihthout changing default parameters. Horizontal equilibri
 
 ## 7. Modify Force Diagram
 
-**Command:** `RV_force_modify`> `MoveVertices` > `Manual`
+**Command:** `RV_force_modify`> `MoveVertices` > `Manual` > `X`
 
 Move half of the force diagram vertices on X axis to increase the length of the edges.
 
