@@ -36,7 +36,7 @@
 ## Examples
 
 * [Basic Design](examples/basic-design/README.md)
-  * [\*Creases](examples/basic-design/creases.md)
+  * [Creases](examples/basic-design/creases.md)
   * [Lips](examples/basic-design/lips.md)
   * [\*Holes](examples/basic-design/barrel-vault-1.md)
   * [\*Dropdowns](examples/basic-design/barrel-vault-2.md)
