@@ -37,7 +37,6 @@
 
 * [Basic Design](examples/basic-design/README.md)
   * [Creases](examples/basic-design/creases.md)
-  * [Lips](examples/basic-design/lips.md)
   * [Holes](examples/basic-design/holes.md)
   * [Drop downs](examples/basic-design/drop-downs.md)
   * [\*Funnel Shell](examples/basic-design/barrel-vault-3.md)
@@ -46,7 +45,6 @@
   * [\* Armadillo Vault](examples/case-studies/armadillo-vault.md)
   * [\* Free-form Tile Vault](examples/case-studies/free-form-tile-vault.md)
 * [Historical Typologies](examples/historical-typologies/README.md)
-  * [Barrel Vault](examples/historical-typologies/barrel-vault.md)
   * [\*Cross Vault](examples/historical-typologies/barrel-vault-1.md)
   * [\*Fan Vault](examples/historical-typologies/barrel-vault-3.md)
   * [Pillow Vault](examples/historical-typologies/pillow-vault.md)
