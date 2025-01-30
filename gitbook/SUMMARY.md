@@ -51,11 +51,10 @@
   * [\*Pillow Vault](examples/historical-typologies/barrel-vault-2.md)
   * [\*Fan Vault](examples/historical-typologies/barrel-vault-3.md)
 
-***
+## NEXT STEPS
 
-* [NEXT STEPS](next-steps/README.md)
-  * [COMPAS Integration](next-steps/compas-integration.md)
-  * [Materialization](next-steps/materialization.md)
+* [COMPAS Integration](next-steps/compas-integration.md)
+* [Materialization](next-steps/materialization.md)
 
 ## Additional information
 
