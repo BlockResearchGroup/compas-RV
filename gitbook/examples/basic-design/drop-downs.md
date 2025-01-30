@@ -54,7 +54,7 @@ The mesh geometry is converted into a line preview, marked with green lines.
 
 <figure><img src="../../.gitbook/assets/examples_dropdowns_2.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_dropdowns_2.png" %}
+{% file src="../../.gitbook/assets/examples_dropdowns_2.json" %}
 
 ***
 
@@ -66,7 +66,7 @@ On the right side, the force diagram is created with TextDots marking the angle 
 
 <figure><img src="../../.gitbook/assets/examples_dropdowns_3.png" alt=""><figcaption><p>.</p></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_dropdowns_3.png" %}
+{% file src="../../.gitbook/assets/examples_dropdowns_3.json" %}
 
 ***
 
@@ -78,7 +78,7 @@ Leave default parameters as is to reach the horizontal equilibrium. Since horizo
 
 <figure><img src="../../.gitbook/assets/examples_dropdowns_4.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_dropdowns_4.png" %}
+{% file src="../../.gitbook/assets/examples_dropdowns_4.json" %}
 
 ***
 
@@ -90,4 +90,4 @@ The final geometry is computed by running the vertical equilibrium command, chan
 
 <figure><img src="../../.gitbook/assets/examples_dropdowns_5.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_dropdowns_5.png" %}
+{% file src="../../.gitbook/assets/examples_dropdowns_5.json" %}
