@@ -32,9 +32,9 @@ To accomplish this, we will set the force diagram edge length parameters [**lmin
 
 Create a pattern from a mesh. You can start with the attached Rhino file or a session file.
 
-<figure><img src="../../.gitbook/assets/barrel_0.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_lips_0.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/0_rhinovault_lips_pattern (1).json" %}
+{% file src="../../.gitbook/assets/examples_lips_0.json" %}
 
 ***
 
@@ -44,9 +44,9 @@ Create a pattern from a mesh. You can start with the attached Rhino file or a se
 
 Manually set the boundary points from the three boundary arches.
 
-<figure><img src="../../.gitbook/assets/lips_1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_lips_1.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/1_rhinovault_lips_boundary (1).json" %}
+{% file src="../../.gitbook/assets/examples_lips_1.json" %}
 
 ***
 
@@ -56,9 +56,9 @@ Manually set the boundary points from the three boundary arches.
 
 The mesh geometry is converted into a line preview, marked with green lines.
 
-<figure><img src="../../.gitbook/assets/lips_2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_lips_2.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/2_rhinovault_lips_form (2).json" %}
+{% file src="../../.gitbook/assets/examples_lips_2.json" %}
 
 ***
 
@@ -68,9 +68,9 @@ The mesh geometry is converted into a line preview, marked with green lines.
 
 Create a force diagram that shows the angle differences between the form and force diagrams. Ideally, they should become orthogonal to each other to achieve a compression-only shell.
 
-<figure><img src="../../.gitbook/assets/lips_3.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_lips_3.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/3_rhinovault_lips_force.json" %}
+{% file src="../../.gitbook/assets/examples_lips_3.json" %}
 
 ***
 
@@ -80,9 +80,9 @@ Create a force diagram that shows the angle differences between the form and for
 
 Set the iteration to 1000 to achieve horizontal equilibrium. Horizontal equilibrium is reached when no TextDot is visible, indicating that the angles between the force and form diagrams are orthogonal within the defined tolerance.
 
-<figure><img src="../../.gitbook/assets/lips_4 (1).png" alt=""><figcaption><p>.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_lips_4.png" alt=""><figcaption><p>.</p></figcaption></figure>
 
-{% file src="../../.gitbook/assets/4_rhinovault_lips_horizontal_thrust.json" %}
+{% file src="../../.gitbook/assets/examples_lips_4.json" %}
 
 ***
 
@@ -92,11 +92,11 @@ Set the iteration to 1000 to achieve horizontal equilibrium. Horizontal equilibr
 
 Set the boundary edge length range ([lmin](../../manual/7.-modify-diagrams/supports-1.md) and [lmax](../../manual/7.-modify-diagrams/supports-1.md)) to \[1, 3], and the mesh edges representing the lip to \[10, 15].
 
-<figure><img src="../../.gitbook/assets/lips_5.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_lips_5_0.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/lips_6 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_lips_5_1.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/5_rhinovault_lips_modify_horizontal_forces.json" %}
+{% file src="../../.gitbook/assets/examples_lips_5.json" %}
 
 ***
 
@@ -106,9 +106,9 @@ Set the boundary edge length range ([lmin](../../manual/7.-modify-diagrams/suppo
 
 Rerun the horizontal equilibrium.
 
-<figure><img src="../../.gitbook/assets/lips_7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_lips_6.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/6_rhinovault_lips_horizontal_thrust (2).json" %}
+{% file src="../../.gitbook/assets/examples_lips_6.json" %}
 
 ***
 
@@ -120,4 +120,4 @@ The final geometry is computed by running the vertical equilibrium command, keep
 
 <figure><img src="../../.gitbook/assets/examples_lips_7.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/7_rhinovault_vertical_thrust.json" %}
+{% file src="../../.gitbook/assets/examples_lips_7.json" %}
