@@ -1,93 +1,125 @@
+---
+layout:
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
 # Lips
 
+<figure><img src="../../.gitbook/assets/lips_0_1.png" alt=""><figcaption></figcaption></figure>
 
+In this tutorial, we modify the force diagram to create a lip at the edge of the shell. By "lip," we refer to historical examples such as Heinz Isler's _Wyss Garten Haus_. These folds at the boundary play a key structural role in stiffening the edges of a shell.
 
-## Rhino Geometry
+To achieve this modification, we must redirect the flow of the greatest forces. Typically, in our shell form-finding process, the greatest forces have been concentrated along the outermost edge of the shell, flowing down to the support points at the corners. However, in this case, we aim to direct these forces through an edge that is not at the very perimeter of the shell.
 
-Download Rhino3D File:
-
-{% file src="../../.gitbook/assets/lips.zip" %}
-
-## Create Pattern
-
-|                                                                                  |                                                                          |                                                                                                                  |
-| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| <img src="../../.gitbook/assets/RV_pattern (2).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_pattern</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_pattern.py"><code>RV_pattern.py</code></a></p> |
-
-**Command:** `RV_pattern` > `RhinoMesh` > `Select a Mesh`
-
-<figure><img src="../../.gitbook/assets/lips_0.png" alt=""><figcaption><p>The display of the Mesh input changes when the <code>RV_pattern</code> command is initiated.</p></figcaption></figure>
+To accomplish this, we will set the force diagram edge length parameters [**lmin**](../../manual/7.-modify-diagrams/supports-1.md) and [**lmax**](../../manual/7.-modify-diagrams/supports-1.md) to 1 and 3, respectively, for all boundary edges. For the inner loop of edges, we will use a range of 10–15. These values are arbitrary and serve to illustrate the principle.
 
 
 
-## Identify Supports
+{% file src="../../.gitbook/assets/lips.3dm" %}
 
-<table><thead><tr><th></th><th width="228"></th><th></th></tr></thead><tbody><tr><td> <img src="../../.gitbook/assets/RV_supports (2).svg" alt=""></td><td><p><strong>Rhino command name</strong></p><p><code>RV_pattern_supports</code></p></td><td><p><strong>source file</strong></p><p><a href="../../../plugin/RV_pattern_supports.py"><code>RV_pattern_supports.py</code></a></p></td></tr></tbody></table>
+***
 
-**Command:** `RV_pattern_supports` > `Add`> `Manual`> `Select Vertices`> `Enter`
+## 1. Create Pattern
 
-<figure><img src="../../.gitbook/assets/lips_1.png" alt=""><figcaption><p>Select the four corner vertices of the Mesh.</p></figcaption></figure>
+**Command:** `RV_pattern` > `RhinoMesh`
 
+Create a pattern from a mesh. You can start with the attached Rhino file or a session file.
 
+<figure><img src="../../.gitbook/assets/barrel_0.png" alt=""><figcaption></figcaption></figure>
 
-## Form Diagram
+{% file src="../../.gitbook/assets/0_rhinovault_lips_pattern (1).json" %}
 
-|                                                                                      |                                                                       |                                                                                                            |
-| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| <img src="../../.gitbook/assets/RV_FormDiagram (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_form</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_form.py"><code>RV_form.py</code></a></p> |
+***
 
-**Command:** `RV_form`\
+## 2. Identify Supports
 
+**Command:** `RV_pattern_supports` > `Add`> `Manual`> `Select Vertices`
 
-<figure><img src="../../.gitbook/assets/lips_2.png" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
+Manually set the boundary points from the three boundary arches.
 
-## Form Diagram
+<figure><img src="../../.gitbook/assets/lips_1.png" alt=""><figcaption></figcaption></figure>
 
-|                                                                                       |                                                                        |                                                                                                              |
-| ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| <img src="../../.gitbook/assets/RV_ForceDiagram (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_force</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_force.py"><code>RV_force.py</code></a></p> |
+{% file src="../../.gitbook/assets/1_rhinovault_lips_boundary (1).json" %}
+
+***
+
+## 3. Form Diagram
+
+**Command:** `RV_form`
+
+The mesh geometry is converted into a line preview, marked with green lines.
+
+<figure><img src="../../.gitbook/assets/lips_2.png" alt=""><figcaption></figcaption></figure>
+
+{% file src="../../.gitbook/assets/2_rhinovault_lips_form (2).json" %}
+
+***
+
+## 4. Force Diagram
 
 **Command:** `RV_force`
 
-<figure><img src="../../.gitbook/assets/lips_3 (1).png" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
+Create a force diagram that shows the angle differences between the form and force diagrams. Ideally, they should become orthogonal to each other to achieve a compression-only shell.
 
-## Horizontal Equilibrium
+<figure><img src="../../.gitbook/assets/lips_3.png" alt=""><figcaption></figcaption></figure>
 
-|                                                                                        |                                                                                 |                                                                                                                                |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| <img src="../../.gitbook/assets/RV_horizontal-eq (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_tna_horizontal</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_tna_horizontal.py"><code>RV_tna_horizontal.py</code></a></p> |
+{% file src="../../.gitbook/assets/3_rhinovault_lips_force.json" %}
+
+***
+
+## 5. Horizontal Equilibrium
+
+**Command:** `RV_tna_horizontal` > `Iterations` > `1000`\
+\
+Set the iteration to 1000 to achieve horizontal equilibrium. Horizontal equilibrium is reached when no TextDot is visible, indicating that the angles between the force and form diagrams are orthogonal within the defined tolerance.
+
+<figure><img src="../../.gitbook/assets/lips_4 (1).png" alt=""><figcaption><p>.</p></figcaption></figure>
+
+{% file src="../../.gitbook/assets/4_rhinovault_lips_horizontal_thrust.json" %}
+
+***
+
+## 6. Modify Force Diagram
+
+**Command:** `RV_force_modify`> `EdgeAttributes` > `Manual`
+
+Set the boundary edge length range ([lmin](../../manual/7.-modify-diagrams/supports-1.md) and [lmax](../../manual/7.-modify-diagrams/supports-1.md)) to \[1, 3], and the mesh edges representing the lip to \[10, 15].
+
+<figure><img src="../../.gitbook/assets/lips_5.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/lips_6 (2).png" alt=""><figcaption></figcaption></figure>
+
+{% file src="../../.gitbook/assets/5_rhinovault_lips_modify_horizontal_forces.json" %}
+
+***
+
+## 7. Horizontal Equilibrium
 
 **Command:** `RV_tna_horizontal` > `Iterations` > `1000`
 
-<figure><img src="../../.gitbook/assets/lips_4 (2).png" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
+Rerun the horizontal equilibrium.
 
-## Modify Form Diagram
+<figure><img src="../../.gitbook/assets/lips_7 (1).png" alt=""><figcaption></figcaption></figure>
 
-|                                                                                              |                                                                               |                                                                                                                            |
-| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| <img src="../../.gitbook/assets/RV_ForceDiagram-modify (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_force_modify</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_force_modify.py"><code>RV_force_modify.py</code></a></p> |
+{% file src="../../.gitbook/assets/6_rhinovault_lips_horizontal_thrust (2).json" %}
 
-**Command:** `RV_force_modify`> `Edge Attributes` > `Manual`\
+***
 
-
-<figure><img src="../../.gitbook/assets/lips_5.png" alt=""><figcaption><p>Select the edges according to the image from left to right, and set edge length (l_min and l_max) to: a) 15 and 10, b) 3, and 1.</p></figcaption></figure>
-
-## Horizontal Equilibrium
-
-|                                                                                        |                                                                                 |                                                                                                                                |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| <img src="../../.gitbook/assets/RV_horizontal-eq (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_tna_horizontal</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_tna_horizontal.py"><code>RV_tna_horizontal.py</code></a></p> |
-
-**Command:** `RV_tna_horizontal` > `Iterations` > `1000`
-
-<figure><img src="../../.gitbook/assets/lips_6.png" alt=""><figcaption><p>The horizontal equilibrium is recomputed to obtain minimal forces at the corners.</p></figcaption></figure>
-
-## Vertical Equilibrium
-
-|                                                                                      |                                                                               |                                                                                                                            |
-| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| <img src="../../.gitbook/assets/RV_vertical-eq (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_tna_vertical</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_tna_vertical.py"><code>RV_tna_vertical.py</code></a></p> |
+## 8. Vertical Equilibrium
 
 **Command:** `RV_tna_vertical`&#x20;
 
-<figure><img src="../../.gitbook/assets/lips_7.png" alt=""><figcaption><p>Vertical projection to get 3D geometry.<br>The pipes as colors can be turned on RV_settings > Drawing > show_pipes and show_forces.</p></figcaption></figure>
+The final geometry is computed by running the vertical equilibrium command, keeping the z-height unchanged. For preview, we use the following options:`RV_settings > Drawing > show_pipes` and `show_forces`.
+
+<figure><img src="../../.gitbook/assets/lips_7.png" alt=""><figcaption></figcaption></figure>
+
+{% file src="../../.gitbook/assets/7_rhinovault_vertical_thrust (1).json" %}
