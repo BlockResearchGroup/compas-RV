@@ -49,6 +49,7 @@
   * [Barrel Vault](examples/historical-typologies/barrel-vault.md)
   * [\*Cross Vault](examples/historical-typologies/barrel-vault-1.md)
   * [\*Fan Vault](examples/historical-typologies/barrel-vault-3.md)
+* [Pillow Vault](examples/pillow-vault.md)
 
 ## NEXT STEPS
 
