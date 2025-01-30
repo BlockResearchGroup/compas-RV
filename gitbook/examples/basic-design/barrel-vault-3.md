@@ -1,4 +1,4 @@
-# Funnel Shell
+# \*Funnel Shell
 
 
 
@@ -6,7 +6,7 @@
 
 Download Rhino3D File:
 
-{% file src="../../.gitbook/assets/funnel_shell.zip" %}
+{% file src="broken-reference" %}
 
 ## Create Pattern
 
@@ -16,7 +16,7 @@ Download Rhino3D File:
 
 **Command:** `RV_pattern` > `RhinoMesh` > `Select a mesh`
 
-<figure><img src="../../.gitbook/assets/funnel_shell_0.png" alt=""><figcaption><p>The display of the Mesh input changes when the <code>RV_pattern</code> command is initiated.</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>The display of the Mesh input changes when the <code>RV_pattern</code> command is initiated.</p></figcaption></figure>
 
 
 
@@ -26,7 +26,7 @@ Download Rhino3D File:
 
 **Command:** `RV_pattern_supports` > `Add`> `Manual`> `Select Vertices`> `Enter`
 
-<figure><img src="../../.gitbook/assets/funnel_shell_1.png" alt=""><figcaption><p>Select the strips of vertices on the two opposite sides of the Mesh.</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>Select the strips of vertices on the two opposite sides of the Mesh.</p></figcaption></figure>
 
 
 
@@ -39,7 +39,7 @@ Download Rhino3D File:
 **Command:** `RV_form`\
 
 
-<figure><img src="../../.gitbook/assets/funnel_shell_2.png" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
 
 ## Force Diagram
 
@@ -49,7 +49,7 @@ Download Rhino3D File:
 
 **Command:** `RV_force`
 
-<figure><img src="../../.gitbook/assets/funnel_shell_3.png" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
 
 ## Horizontal Equilibrium
 
@@ -59,7 +59,7 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_horizontal` > `Iterations` > `1000`
 
-<figure><img src="../../.gitbook/assets/funnel_shell_4.png" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
 
 ## Vertical Equilibrium
 
@@ -69,7 +69,7 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_vertical`&#x20;
 
-<figure><img src="../../.gitbook/assets/funnel_shell_5.png" alt=""><figcaption><p>Vertical projection to get 3D geometry.</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>Vertical projection to get 3D geometry.</p></figcaption></figure>
 
 ## Modify Vertical Thrust
 
@@ -79,7 +79,7 @@ Download Rhino3D File:
 
 `RV_thrust_modify > VertexAttributes > Manual > Select Boundary Vertices > Enter > z=3`
 
-<figure><img src="../../.gitbook/assets/funnel_shell_6.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
 ## Vertical Equilibrium
 
@@ -89,5 +89,5 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_vertical`&#x20;
 
-<figure><img src="../../.gitbook/assets/funnel_shell_7.png" alt=""><figcaption><p>Vertical projection to get 3D geometry. In RV_Settings > Drawing > set show_forces and show_pipes to True.</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>Vertical projection to get 3D geometry. In RV_Settings > Drawing > set show_forces and show_pipes to True.</p></figcaption></figure>
 

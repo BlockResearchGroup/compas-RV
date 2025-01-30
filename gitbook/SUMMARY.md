@@ -19,7 +19,7 @@
   * [1a. Create Pattern](manual/1.-create-and-modify-pattern/patterns.md)
   * [1b. Modify Pattern](manual/1.-create-and-modify-pattern/patterns-1.md)
 * [2. Define Boundary Conditions](manual/2.-define-boundary-conditions/README.md)
-  * [2a. Identify Supports](manual/boundary-conditions.md)
+  * [2a. Identify Supports](manual/2.-define-boundary-conditions/boundary-conditions.md)
   * [2b. Relax Pattern](manual/2.-define-boundary-conditions/boundary-conditions-1.md)
   * [2c. Update Boundaries](manual/2.-define-boundary-conditions/boundary-conditions-2.md)
 * [3. Form Diagram](manual/diagrams.md)
@@ -36,7 +36,7 @@
 ## Examples
 
 * [Basic Design](examples/basic-design/README.md)
-  * [\*Creases](examples/basic-design/barrel-vault.md)
+  * [\*Creases](examples/basic-design/creases.md)
   * [Lips](examples/basic-design/lips.md)
   * [\*Holes](examples/basic-design/barrel-vault-1.md)
   * [\*Dropdowns](examples/basic-design/barrel-vault-2.md)
@@ -60,9 +60,9 @@
 
 * [Release notes](additional-information/release-notes/README.md)
   * [0.5.34.9081 WIP](additional-information/release-notes/0.5.34.9081-wip.md)
-* [Legal Terms](additional/legal.md)
-* [Citing RhinoVAULT](additional/citing.md)
-* [FAQ](additional/faq.md)
+* [Legal Terms](additional-information/legal.md)
+* [Citing RhinoVAULT](additional-information/citing.md)
+* [FAQ](additional-information/faq.md)
 
 ## Links
 

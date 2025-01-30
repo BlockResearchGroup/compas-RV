@@ -37,10 +37,10 @@ RhinoVAULT is a plugin that is specifically developed for Rhino 8 and above, bui
 RhinoVAULT uses the following COMPAS packages:
 
 * [compas](https://github.com/compas-dev/compas)
-* [compas\_fd](https://github.com/blockresearchgroup/compas\_fd)
-* [compas\_rui](https://github.com/blockresearchgroup/compas\_rui)
-* [compas\_session](https://github.com/blockresearchgroup/compas\_session)
-* [compas\_tna](https://github.com/blockresearchgroup/compas\_dr)
+* [compas\_fd](https://github.com/blockresearchgroup/compas_fd)
+* [compas\_rui](https://github.com/blockresearchgroup/compas_rui)
+* [compas\_session](https://github.com/blockresearchgroup/compas_session)
+* [compas\_tna](https://github.com/blockresearchgroup/compas_dr)
 
 <figure><img src=".gitbook/assets/compas_cluster-diagram.png" alt=""><figcaption><p>The COMPAS ecosystem</p></figcaption></figure>
 
@@ -64,4 +64,4 @@ RhinoVAULT is freely available under the MIT License in the hope that you will e
 
 ### Disclaimer
 
-Although being developed and tested thoroughly, RhinoVAULT may contains errors – therefore no guarantee can be given that RhinoVAULT always computes correct results. Use of RhinoVAULT is entirely at your own risk, and please read the [legal terms](additional/legal.md) carefully before using RhinoVAULT.
+Although being developed and tested thoroughly, RhinoVAULT may contains errors – therefore no guarantee can be given that RhinoVAULT always computes correct results. Use of RhinoVAULT is entirely at your own risk, and please read the [legal terms](additional-information/legal.md) carefully before using RhinoVAULT.
