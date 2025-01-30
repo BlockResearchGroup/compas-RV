@@ -107,4 +107,4 @@ The final geometry is computed by running the vertical equilibrium command, keep
 
 <figure><img src="../../.gitbook/assets/examples_barrel_6.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_barrel_6.png" %}
+{% file src="../../.gitbook/assets/examples_barrel_6.json" %}
