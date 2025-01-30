@@ -38,7 +38,6 @@
 * [Basic Design](examples/basic-design/README.md)
   * [Creases](examples/basic-design/creases.md)
   * [Lips](examples/basic-design/lips.md)
-  * [\*Holes](examples/basic-design/barrel-vault-1.md)
   * [\*Funnel Shell](examples/basic-design/barrel-vault-3.md)
   * [Drop downs](examples/basic-design/drop-downs.md)
 * [Case Studies](examples/case-studies/README.md)
