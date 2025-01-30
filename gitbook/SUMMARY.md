@@ -50,9 +50,12 @@
   * [\*Cross Vault](examples/historical-typologies/barrel-vault-1.md)
   * [\*Pillow Vault](examples/historical-typologies/barrel-vault-2.md)
   * [\*Fan Vault](examples/historical-typologies/barrel-vault-3.md)
-* [Advanced](examples/advanced/README.md)
-  * [COMPAS Integration](examples/advanced/compas-integration.md)
-  * [Materialization](examples/advanced/materialization.md)
+
+***
+
+* [NEXT STEPS](next-steps/README.md)
+  * [COMPAS Integration](next-steps/compas-integration.md)
+  * [Materialization](next-steps/materialization.md)
 
 ## Additional information
 
