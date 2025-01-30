@@ -12,7 +12,7 @@ layout:
     visible: true
 ---
 
-# Barrel Vault
+# Pillow Vault
 
 <figure><img src="../../.gitbook/assets/examples_pillow_vault.png" alt=""><figcaption></figcaption></figure>
 
