@@ -78,8 +78,8 @@ Create a force diagram that shows the angle differences between the form and for
 
 ## 5. Horizontal Equilibrium
 
-**Command:** `RV_tna_horizontal` > `Iterations` > `1000`\
-\
+**Command:** `RV_tna_horizontal` > `Iterations` > `1000`
+
 Set the iteration to 1000 to achieve horizontal equilibrium. Horizontal equilibrium is reached when no TextDot is visible, indicating that the angles between the force and form diagrams are orthogonal within the defined tolerance.
 
 <figure><img src="../../.gitbook/assets/lips_4 (1).png" alt=""><figcaption><p>.</p></figcaption></figure>
