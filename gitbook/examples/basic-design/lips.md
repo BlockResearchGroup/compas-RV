@@ -16,7 +16,7 @@ layout:
 
 <figure><img src="../../.gitbook/assets/examples_lips.png" alt=""><figcaption></figcaption></figure>
 
-In this tutorial, we modify the force diagram to create a lip at the edge of the shell. By "lip," we refer to historical examples such as Heinz Isler's _Wyss Garten Haus_. These folds at the boundary play a key structural role in stiffening the edges of a shell.
+In this tutorial, we will modify the force diagram to create a lip at the edge of the shell. By "lip," we refer to historical examples such as Heinz Isler's _Wyss Garten Haus_. These folds at the boundary play a key structural role in stiffening the edges of a shell.
 
 To achieve this modification, we must redirect the flow of the greatest forces. Typically, in our shell form-finding process, the greatest forces have been concentrated along the outermost edge of the shell, flowing down to the support points at the corners. However, in this case, we aim to direct these forces through an edge that is not at the very perimeter of the shell.
 
