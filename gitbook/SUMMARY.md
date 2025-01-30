@@ -39,7 +39,6 @@
   * [Creases](examples/basic-design/creases.md)
   * [Lips](examples/basic-design/lips.md)
   * [\*Holes](examples/basic-design/barrel-vault-1.md)
-  * [\*Dropdowns](examples/basic-design/barrel-vault-2.md)
   * [\*Funnel Shell](examples/basic-design/barrel-vault-3.md)
 * [Case Studies](examples/case-studies/README.md)
   * [\* British Museum](examples/case-studies/british-museum.md)
