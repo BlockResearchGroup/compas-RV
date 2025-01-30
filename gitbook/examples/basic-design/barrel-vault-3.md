@@ -1,4 +1,4 @@
-# Dropdowns
+# Funnel Shell
 
 
 
@@ -6,7 +6,7 @@
 
 Download Rhino3D File:
 
-{% file src="../../.gitbook/assets/dropdown.zip" %}
+{% file src="../../.gitbook/assets/funnel_shell.zip" %}
 
 ## Create Pattern
 
@@ -16,7 +16,7 @@ Download Rhino3D File:
 
 **Command:** `RV_pattern` > `RhinoMesh` > `Select a mesh`
 
-<figure><img src="../../.gitbook/assets/dropdowns_0.png" alt=""><figcaption><p>The display of the Mesh input changes when the <code>RV_pattern</code> command is initiated.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/funnel_shell_0.png" alt=""><figcaption><p>The display of the Mesh input changes when the <code>RV_pattern</code> command is initiated.</p></figcaption></figure>
 
 
 
@@ -26,17 +26,9 @@ Download Rhino3D File:
 
 **Command:** `RV_pattern_supports` > `Add`> `Manual`> `Select Vertices`> `Enter`
 
-<figure><img src="../../.gitbook/assets/dropdowns_1.png" alt=""><figcaption><p>Select the strips of vertices on the two opposite sides of the Mesh.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/funnel_shell_1.png" alt=""><figcaption><p>Select the strips of vertices on the two opposite sides of the Mesh.</p></figcaption></figure>
 
 
-
-## Pattern Relax
-
-<table><thead><tr><th width="221"></th><th width="253"></th><th></th></tr></thead><tbody><tr><td><img src="../../.gitbook/assets/RV_boundaries (1).svg" alt="" data-size="original"></td><td><p><strong>Rhino command name</strong></p><p><code>RV_pattern_boundaries</code></p></td><td><p><strong>source file</strong></p><p><a href="../../../plugin/RV_pattern_boundaries.py"><code>RV_pattern_boundaries.py</code></a></p></td></tr></tbody></table>
-
-**Command:** `RV_pattern_boundaries > Enter`
-
-<figure><img src="../../.gitbook/assets/dropdowns_2.png" alt=""><figcaption><p>To avoid straight edges, the patter is relax using fd solver, with default value q=1.</p></figcaption></figure>
 
 ## Form Diagram
 
@@ -47,7 +39,7 @@ Download Rhino3D File:
 **Command:** `RV_form`\
 
 
-<figure><img src="../../.gitbook/assets/dropdowns_3.png" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/funnel_shell_2.png" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
 
 ## Force Diagram
 
@@ -57,7 +49,7 @@ Download Rhino3D File:
 
 **Command:** `RV_force`
 
-<figure><img src="../../.gitbook/assets/dropdowns_4.png" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/funnel_shell_3.png" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
 
 ## Horizontal Equilibrium
 
@@ -67,7 +59,7 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_horizontal` > `Iterations` > `1000`
 
-<figure><img src="../../.gitbook/assets/dropdowns_5.png" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/funnel_shell_4.png" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
 
 ## Vertical Equilibrium
 
@@ -77,4 +69,25 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_vertical`&#x20;
 
-<figure><img src="../../.gitbook/assets/dropdowns_6.png" alt=""><figcaption><p>Vertical projection to get 3D geometry.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/funnel_shell_5.png" alt=""><figcaption><p>Vertical projection to get 3D geometry.</p></figcaption></figure>
+
+## Modify Vertical Thrust
+
+|                                                                                           |                                                                                |                                                                                                                              |
+| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| <img src="../../.gitbook/assets/RV_ThrustDiagram-modify.svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_thrust_modify</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_thrust_modify.py"><code>RV_thrust_modify.py</code></a></p> |
+
+`RV_thrust_modify > VertexAttributes > Manual > Select Boundary Vertices > Enter > z=3`
+
+<figure><img src="../../.gitbook/assets/funnel_shell_6.png" alt=""><figcaption></figcaption></figure>
+
+## Vertical Equilibrium
+
+|                                                                                      |                                                                               |                                                                                                                            |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| <img src="../../.gitbook/assets/RV_vertical-eq (1).svg" alt="" data-size="original"> | <p><strong>Rhino command name</strong></p><p><code>RV_tna_vertical</code></p> | <p><strong>source file</strong></p><p><a href="../../../plugin/RV_tna_vertical.py"><code>RV_tna_vertical.py</code></a></p> |
+
+**Command:** `RV_tna_vertical`&#x20;
+
+<figure><img src="../../.gitbook/assets/funnel_shell_7.png" alt=""><figcaption><p>Vertical projection to get 3D geometry. In RV_Settings > Drawing > set show_forces and show_pipes to True.</p></figcaption></figure>
+

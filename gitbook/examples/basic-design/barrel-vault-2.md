@@ -1,4 +1,4 @@
-# Holes
+# Dropdowns
 
 
 
@@ -6,7 +6,7 @@
 
 Download Rhino3D File:
 
-{% file src="../../.gitbook/assets/holes.zip" %}
+{% file src="../../.gitbook/assets/dropdown.zip" %}
 
 ## Create Pattern
 
@@ -16,7 +16,7 @@ Download Rhino3D File:
 
 **Command:** `RV_pattern` > `RhinoMesh` > `Select a mesh`
 
-<figure><img src="../../.gitbook/assets/holes_0.png" alt=""><figcaption><p>The display of the Mesh input changes when the <code>RV_pattern</code> command is initiated.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/dropdowns_0.png" alt=""><figcaption><p>The display of the Mesh input changes when the <code>RV_pattern</code> command is initiated.</p></figcaption></figure>
 
 
 
@@ -26,7 +26,7 @@ Download Rhino3D File:
 
 **Command:** `RV_pattern_supports` > `Add`> `Manual`> `Select Vertices`> `Enter`
 
-<figure><img src="../../.gitbook/assets/holes_1.png" alt=""><figcaption><p>Select the strips of vertices on the two opposite sides of the Mesh.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/dropdowns_1.png" alt=""><figcaption><p>Select the strips of vertices on the two opposite sides of the Mesh.</p></figcaption></figure>
 
 
 
@@ -36,7 +36,7 @@ Download Rhino3D File:
 
 **Command:** `RV_pattern_boundaries > Enter`
 
-<figure><img src="../../.gitbook/assets/holes_2.png" alt=""><figcaption><p>To avoid straight edges, the patter is relax using fd solver, with default value q=1.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/dropdowns_2.png" alt=""><figcaption><p>To avoid straight edges, the patter is relax using fd solver, with default value q=1.</p></figcaption></figure>
 
 ## Form Diagram
 
@@ -47,7 +47,7 @@ Download Rhino3D File:
 **Command:** `RV_form`\
 
 
-<figure><img src="../../.gitbook/assets/holes_3.png" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/dropdowns_3.png" alt=""><figcaption><p>The mesh geometry is converted to a line preview.</p></figcaption></figure>
 
 ## Force Diagram
 
@@ -57,7 +57,7 @@ Download Rhino3D File:
 
 **Command:** `RV_force`
 
-<figure><img src="../../.gitbook/assets/holes_4.png" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/dropdowns_4.png" alt=""><figcaption><p>On the right side, the force diagram is created with TextDots marking the angle deviation between the form edge and its 90-degree rotated force edge. The next step, horizontal equilibrium, will aim to reduce this deviation to zero.</p></figcaption></figure>
 
 ## Horizontal Equilibrium
 
@@ -67,7 +67,7 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_horizontal` > `Iterations` > `1000`
 
-<figure><img src="../../.gitbook/assets/holes_5.png" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/dropdowns_5.png" alt=""><figcaption><p>The horizontal equilibrium minimizes the angles as much as possible, aiming to bring them close to zero.</p></figcaption></figure>
 
 ## Vertical Equilibrium
 
@@ -77,4 +77,4 @@ Download Rhino3D File:
 
 **Command:** `RV_tna_vertical`&#x20;
 
-<figure><img src="../../.gitbook/assets/holes_6.png" alt=""><figcaption><p>Vertical projection to get 3D geometry.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/dropdowns_6.png" alt=""><figcaption><p>Vertical projection to get 3D geometry.</p></figcaption></figure>
