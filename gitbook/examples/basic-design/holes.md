@@ -30,7 +30,7 @@ Create a pattern from a mesh. You can start with the attached Rhino file or a se
 
 <figure><img src="../../.gitbook/assets/examples_holes_0.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assetsexamples_holes_0.json" %}
+{% file src="../../.gitbook/assets/examples_holes_0.json" %}
 
 ***
 
