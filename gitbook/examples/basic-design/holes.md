@@ -16,7 +16,7 @@ layout:
 
 <figure><img src="../../.gitbook/assets/examples_holes.png" alt=""><figcaption></figcaption></figure>
 
-This feature is also commonly found in historical shell structures to introduce skylights or other functional or structural elements. This example demonstrates the detection of holes within user-provided input, such as a mesh. In this case, we will use boundary supports for both inner and outer loops.
+This feature is also commonly found in historical shell structures to introduce skylights or other functional or structural elements. RhinoVault treats mesh openings as part of the overall network as you would see there is often a central node interconnected to the boundary hole vertices. This example demonstrates the detection of holes within user-provided input, such as a mesh. In this case, we will use boundary supports for both inner and outer loops.
 
 {% file src="../../.gitbook/assets/examples_holes.3dm" %}
 

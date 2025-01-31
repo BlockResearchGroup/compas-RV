@@ -22,7 +22,6 @@ To achieve this modification, we must redirect the flow of the greatest forces. 
 
 To accomplish this, we will set the force diagram edge length parameters [**lmin**](../../manual/7.-modify-diagrams/supports-1.md) and [**lmax**](../../manual/7.-modify-diagrams/supports-1.md) to 1 and 3, respectively, for all boundary edges. For the inner loop of edges, we will use a range of 10–15. These values are arbitrary and serve to illustrate the principle.
 
-{% file src="../../.gitbook/assets/examples_lips.3dm" %}
 
 ***
 
