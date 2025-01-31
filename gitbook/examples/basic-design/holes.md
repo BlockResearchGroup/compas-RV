@@ -16,7 +16,7 @@ layout:
 
 <figure><img src="../../.gitbook/assets/examples_holes.png" alt=""><figcaption></figcaption></figure>
 
-This feature is also commonly found in historical shell structures to introduce skylights or other functional or structural elements. RhinoVault treats mesh openings as part of the overall network as you would see there is often a central node interconnected to the boundary hole vertices. This example demonstrates the detection of holes within user-provided input, such as a mesh. In this case, we will use boundary supports for both inner and outer loops.
+This feature is also commonly found in historical shell structures, where it is used to introduce skylights or other functional and structural elements. RhinoVault treats mesh openings as part of the overall network, often featuring a central node interconnected with the boundary hole vertices. This example demonstrates the detection of holes within user-provided input, such as a mesh. 
 
 {% file src="../../.gitbook/assets/examples_holes.3dm" %}
 
@@ -38,7 +38,7 @@ Create a pattern from a mesh. You can start with the attached Rhino file or a se
 
 **Command:** `RV_pattern_supports` > `Add`> `Boundary`
 
-Manually set the boundary for the full outer ring of the mesh a few points inside the hole.
+Manually set the boundary for the full outer ring of the mesh.
 
 <figure><img src="../../.gitbook/assets/examples_holes_1.png" alt=""><figcaption></figcaption></figure>
 

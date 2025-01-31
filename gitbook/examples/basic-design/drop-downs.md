@@ -38,7 +38,7 @@ Create a pattern from a mesh. You can start with the attached Rhino file or a se
 
 **Command:** `RV_pattern_supports` > `Add`> `Manual`> `Select Vertices`
 
-Manually set the boundary for the full outer ring of the mesh a few points inside the hole.
+Manually set the boundary for the full outer ring of the mesh and a few points inside the hole.
 
 <figure><img src="../../.gitbook/assets/examples_dropdowns_1.png" alt=""><figcaption></figcaption></figure>
 
