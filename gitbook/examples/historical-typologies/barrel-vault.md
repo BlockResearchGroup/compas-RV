@@ -14,13 +14,13 @@ layout:
 
 # Barrel Vault
 
-<figure><img src="../../.gitbook/assets/examples_barrel.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_barrel (1).png" alt=""><figcaption></figcaption></figure>
 
 In this tutorial, we will explore the basic features of RhinoVAULT to determine the equilibrium shape of a barrel vault with two boundary supports. To form-find the barrel vault, we will adjust the form diagram parameters for the allowable internal horizontal force limits: [**hmax**](../../manual/7.-modify-diagrams/supports.md) (upper limit) and [**hmin**](../../manual/7.-modify-diagrams/supports.md) (lower limit).
 
 A barrel vault is unique because its edges orthogonal to the arches carry almost no load (e.g., **1e-5**), while the edges along the arches share the same internal horizontal force (e.g., **2**). The exception occurs at the boundary, where half of the horizontal force is used (e.g., **1**) for the small tributary area. Due to this special force distribution, the force diagram collapses into a single line.
 
-{% file src="../../.gitbook/assets/examples_barrel.3dm" %}
+{% file src="../../.gitbook/assets/examples_barrel (1).3dm" %}
 
 ***
 
@@ -32,7 +32,7 @@ Create a pattern from a mesh. You can start with the attached Rhino file or a se
 
 <figure><img src="../../.gitbook/assets/examples_barrel_0.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_barrel_0.json" %}
+{% file src="../../.gitbook/assets/examples_barrel_0 (1).json" %}
 
 ***
 
@@ -44,7 +44,7 @@ Manually set the boundary points on the top and bottom edges of the mesh.
 
 <figure><img src="../../.gitbook/assets/examples_barrel_1.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_barrel_1.json" %}
+{% file src="../../.gitbook/assets/examples_barrel_1 (1).json" %}
 
 ***
 
@@ -71,7 +71,7 @@ Set the horizontal edge constraints (h\_min and h\_max) to: a) 0.00001, b) verti
 
 <figure><img src="../../.gitbook/assets/examples_barrel_3_2.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_barrel_3.json" %}
+{% file src="../../.gitbook/assets/examples_barrel_3 (1).json" %}
 
 ***
 
@@ -83,7 +83,7 @@ On the right side, the force diagram is created with TextDots marking the angle 
 
 <figure><img src="../../.gitbook/assets/examples_barrel_4.png" alt=""><figcaption><p>.</p></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_barrel_4.json" %}
+{% file src="../../.gitbook/assets/examples_barrel_4 (1).json" %}
 
 ***
 
@@ -95,7 +95,7 @@ Set the iteration to 1000 to reach the horizontal equilibrium. Since horizontal 
 
 <figure><img src="../../.gitbook/assets/examples_barrel_5.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_barrel_5.json" %}
+{% file src="../../.gitbook/assets/examples_barrel_5 (1).json" %}
 
 ***
 
@@ -107,4 +107,4 @@ The final geometry is computed by running the vertical equilibrium command, keep
 
 <figure><img src="../../.gitbook/assets/examples_barrel_6.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/examples_barrel_6.json" %}
+{% file src="../../.gitbook/assets/examples_barrel_6 (1).json" %}

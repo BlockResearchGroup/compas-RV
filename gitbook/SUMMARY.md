@@ -6,10 +6,10 @@
 * [Getting Started](introduction/getting-started.md)
 * [Tutorial](introduction/tutorial.md)
 
-## Theoretical Background
+## Background
 
-* [Thrust Network Analysis](theoretical-background/tna.md)
-* [RhinoVAULT](theoretical-background/rhinovault.md)
+* [Thrust Network Analysis](background/tna.md)
+* [RhinoVAULT](background/rhinovault.md)
 
 ## Manual
 

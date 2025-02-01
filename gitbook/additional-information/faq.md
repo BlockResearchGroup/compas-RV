@@ -10,7 +10,7 @@ RhinoVAULT is compatible with both Rhino for Windows and Mac. While there may be
 
 ## Where can I learn more about the theoretical framework of RhinoVAULT?
 
-RhinoVAULT is developed based on the theory of Thrust Network Analysis (TNA). Please check out the [Thrust Network Analysis](../theoretical-background/tna.md) page to find out more about TNA and related areas research.
+RhinoVAULT is developed based on the theory of Thrust Network Analysis (TNA). Please check out the [Thrust Network Analysis](../background/tna.md) page to find out more about TNA and related areas research.
 
 ## Is there a "suggestion box" for RhinoVAULT?
 
