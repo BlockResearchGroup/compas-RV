@@ -10,6 +10,8 @@ Since its release in 2014, RhinoVAULT has been downloaded by more than 30.000 pe
 
 [Link to the original RhinoVAULT page on food4rhino](https://www.food4rhino.com/en/app/rhinovault).
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>RhinoVAULT examples from <a href="https://www.research-collection.ethz.ch/handle/20.500.11850/116926">Funicular Shell Design</a> (Rippmann, 2016) </p></figcaption></figure>
+
 ***
 
 ### References
