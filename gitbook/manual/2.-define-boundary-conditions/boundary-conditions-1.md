@@ -10,7 +10,7 @@ Instead of solving directly for lengths and forces, FDM assigns these force dens
 
 Because the force densities are constants, the equilibrium equations become linear, which makes FDM computationally efficient and stable. This linearity allows FDM to handle complex shapes and materials without iterative, nonlinear solutions required by some other methods.
 
-The default value for **q** for all edges are 1. When `RV_pattern_relax` is triggered, FDM is applied to the `Pattern` using the **q** values of all the edges. [`Identify supports`](../boundary-conditions.md) is a crucial step to complete before relaxing the `Pattern`, as the number and location of the supports will impact the geometry of the resulting relaxed `Pattern`. &#x20;
+The default value for **q** for all edges are 1. When `RV_pattern_relax` is triggered, FDM is applied to the `Pattern` using the **q** values of all the edges. [`Identify supports`](boundary-conditions.md) is a crucial step to complete before relaxing the `Pattern`, as the number and location of the supports will impact the geometry of the resulting relaxed `Pattern`. &#x20;
 
 {% hint style="danger" %}
 Make sure to have supports defined before relaxing the `Pattern`!

@@ -6,10 +6,10 @@
 * [Getting Started](introduction/getting-started.md)
 * [Tutorial](introduction/tutorial.md)
 
-## Theoretical Background
+## Background
 
-* [Thrust Network Analysis](theoretical-background/tna.md)
-* [RhinoVAULT](theoretical-background/rhinovault.md)
+* [Thrust Network Analysis](background/tna.md)
+* [RhinoVAULT](background/rhinovault.md)
 
 ## Manual
 
@@ -19,7 +19,7 @@
   * [1a. Create Pattern](manual/1.-create-and-modify-pattern/patterns.md)
   * [1b. Modify Pattern](manual/1.-create-and-modify-pattern/patterns-1.md)
 * [2. Define Boundary Conditions](manual/2.-define-boundary-conditions/README.md)
-  * [2a. Identify Supports](manual/boundary-conditions.md)
+  * [2a. Identify Supports](manual/2.-define-boundary-conditions/boundary-conditions.md)
   * [2b. Relax Pattern](manual/2.-define-boundary-conditions/boundary-conditions-1.md)
   * [2c. Update Boundaries](manual/2.-define-boundary-conditions/boundary-conditions-2.md)
 * [3. Form Diagram](manual/diagrams.md)
@@ -37,30 +37,32 @@
 
 * [Basic Design](examples/basic-design/README.md)
   * [Creases](examples/basic-design/creases.md)
-  * [Lips](examples/basic-design/lips.md)
   * [Holes](examples/basic-design/holes.md)
-  * [Dropdowns](examples/basic-design/dropdowns.md)
-  * [Funnel Shells](examples/basic-design/funnel-shells.md)
+  * [Drop downs](examples/basic-design/drop-downs.md)
+  * [\*Funnel Shell](examples/basic-design/barrel-vault-3.md)
+  * [Lips](examples/basic-design/lips.md)
 * [Case Studies](examples/case-studies/README.md)
-  * [British Museum](examples/case-studies/british-museum.md)
-  * [Armadillo Vault](examples/case-studies/armadillo-vault.md)
-  * [Free-form Tile Vault](examples/case-studies/free-form-tile-vault.md)
+  * [\* British Museum](examples/case-studies/british-museum.md)
+  * [\* Armadillo Vault](examples/case-studies/armadillo-vault.md)
+  * [\* Free-form Tile Vault](examples/case-studies/free-form-tile-vault.md)
 * [Historical Typologies](examples/historical-typologies/README.md)
-  * [Barrel Vault](examples/historical-typologies/barrel-vault.md)
-  * [Cross Vault](examples/historical-typologies/cross-vault.md)
+  * [\*Cross Vault](examples/historical-typologies/barrel-vault-1.md)
+  * [\*Fan Vault](examples/historical-typologies/barrel-vault-3.md)
   * [Pillow Vault](examples/historical-typologies/pillow-vault.md)
-  * [Fan Vault](examples/historical-typologies/fan-vault.md)
-* [Advanced](examples/advanced/README.md)
-  * [COMPAS Integration](examples/advanced/compas-integration.md)
-  * [Materialization](examples/advanced/materialization.md)
+  * [Barrel Vault](examples/historical-typologies/barrel-vault.md)
+
+## NEXT STEPS
+
+* [COMPAS Integration](next-steps/compas-integration.md)
+* [Materialization](next-steps/materialization.md)
 
 ## Additional information
 
 * [Release notes](additional-information/release-notes/README.md)
   * [0.5.34.9081 WIP](additional-information/release-notes/0.5.34.9081-wip.md)
-* [Legal Terms](additional/legal.md)
-* [Citing RhinoVAULT](additional/citing.md)
-* [FAQ](additional/faq.md)
+* [Legal Terms](additional-information/legal.md)
+* [Citing RhinoVAULT](additional-information/citing.md)
+* [FAQ](additional-information/faq.md)
 
 ## Links
 
