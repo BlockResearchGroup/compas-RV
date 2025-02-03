@@ -1,7 +1,6 @@
 import Rhino  # type: ignore
 from numpy import array
 from numpy import float64
-from scipy.sparse import diags
 
 import compas_rhino.conversions
 from compas_fd.solvers.fd_numerical_data import FDNumericalData
