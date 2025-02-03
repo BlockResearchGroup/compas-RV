@@ -610,28 +610,7 @@
       }
     }
   ],
-  "libraries": [
-    {
-      "type": "uri",
-      "library": {
-        "base": "file:///Users/vanmelet/Code/compas_rui/src/compas_rui/",
-        "language": {
-          "id": "*.*.python",
-          "version": "3.*.*"
-        }
-      }
-    },
-    {
-      "type": "uri",
-      "library": {
-        "base": "src/compas_rv/",
-        "language": {
-          "id": "*.*.python",
-          "version": "3.*.*"
-        }
-      }
-    }
-  ],
+  "libraries": [],
   "resources": [
     {
       "id": "0475d743-2539-4543-b579-a5d20301277c",
