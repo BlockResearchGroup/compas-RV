@@ -1,6 +1,6 @@
 compas >=2.9
 compas_dem
-compas_rui >=0.4.2
+compas_rui >=0.5.0
 compas_session >=0.4.5
 compas_skeleton
 compas_tna >=0.5
