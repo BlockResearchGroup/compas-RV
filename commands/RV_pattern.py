@@ -3,6 +3,7 @@
 # r: compas_rv>=0.6.0
 
 import rhinoscriptsyntax as rs  # type: ignore
+from compas_skeleton.datastructures import Skeleton
 from compas_triangle.delaunay import conforming_delaunay_triangulation
 from compas_triangle.rhino import discretise_boundary
 from compas_triangle.rhino import discretise_constraints
@@ -37,7 +38,17 @@ def RunCommand():
     # Make a Force "Pattern"
     # =============================================================================
 
-    option = rs.GetString(message="Pattern From", strings=["RhinoLines", "RhinoMesh", "RhinoSurface", "MeshGrid", "Triangulation"])
+    option = rs.GetString(
+        message="Pattern From",
+        strings=[
+            "RhinoLines",
+            "RhinoMesh",
+            "RhinoSurface",
+            "MeshGrid",
+            "Triangulation",
+            "Skeleton",
+        ],
+    )
 
     if option == "RhinoLines":
         guids = compas_rhino.objects.select_lines("Select lines")
@@ -154,7 +165,33 @@ def RunCommand():
         pattern.smooth_area(fixed=fixed)
 
     elif option == "Skeleton":
-        raise NotImplementedError
+        guids = compas_rhino.objects.select_lines("Select skeleton lines.")
+        if not guids:
+            return
+
+        rs.UnselectAllObjects()
+
+        width = rs.GetReal("Specifiy skeleton width.", 1.0)
+        if not width:
+            return
+
+        angle = rs.GetReal("Specifiy skeleton leaf angle (degrees).", 30)
+        if not angle:
+            return
+
+        density = rs.GetInteger("Specifiy skeleton density.", 2)
+        if not density:
+            return
+
+        objects = [compas_rhino.objects.find_object(guid) for guid in guids]
+        curves = [obj.Geometry for obj in objects]
+        lines = [compas_rhino.conversions.curve_to_compas_line(curve) for curve in curves]
+
+        skeleton = Skeleton(lines)
+        skeleton.node_width = width
+        skeleton.leaf_angle = angle
+        skeleton.density = density
+        pattern = skeleton.pattern.copy(cls=Pattern)
 
     else:
         return

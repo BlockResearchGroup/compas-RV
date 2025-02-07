@@ -9,9 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* Added "Pattern from Skeleton".
+
 ### Changed
 
 * Changed `compas_rui` minimal requirements.
+* Fixed bug in selection by edge loop of pattern vertices.
 
 ### Removed
 

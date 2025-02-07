@@ -34,14 +34,18 @@ def RunCommand():
 
     if option == "VertexAttributes":
         pattern.show_vertices = list(pattern.mesh.vertices())
-        pattern.redraw_vertices()
+        pattern.show_edges = list(pattern.mesh.edges())
+        pattern.redraw()
+
         selected = pattern.select_vertices()
         if selected:
             pattern.update_vertex_attributes(selected)
 
     elif option == "EdgeAttributes":
+        pattern.show_vertices = False
         pattern.show_edges = list(pattern.mesh.edges())
-        pattern.redraw_edges()
+        pattern.redraw()
+
         selected = pattern.select_edges()
         if selected:
             pattern.update_edge_attributes(selected)

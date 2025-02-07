@@ -57,7 +57,8 @@ def RunCommand():
 
     if option == "Add":
         pattern.show_vertices = list(pattern.mesh.vertices())
-        pattern.redraw_vertices()
+        pattern.show_edges = list(pattern.mesh.edges())
+        pattern.redraw()
 
         selected = pattern.select_vertices()
 
@@ -65,8 +66,9 @@ def RunCommand():
             pattern.mesh.vertices_attribute(name="is_support", value=True, keys=selected)
 
     elif option == "Remove":
-        pattern.show_vertices = list(pattern.mesh.vertices_where(is_support=True))
-        pattern.redraw_vertices()
+        pattern.show_vertices = list(pattern.mesh.vertices())
+        pattern.show_edges = list(pattern.mesh.edges())
+        pattern.redraw()
 
         selected = pattern.select_vertices()
 
