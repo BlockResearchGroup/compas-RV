@@ -1,12 +1,17 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.5.0
+# r: compas_rv>=0.6.0
 
 import rhinoscriptsyntax as rs  # type: ignore
+from compas_triangle.delaunay import conforming_delaunay_triangulation
+from compas_triangle.rhino import discretise_boundary
+from compas_triangle.rhino import discretise_constraints
 
 import compas_rhino
 import compas_rhino.conversions
 import compas_rhino.objects
+from compas.geometry import NurbsCurve
+from compas.geometry import Point
 from compas_rv.datastructures import Pattern
 from compas_rv.session import RVSession
 
@@ -102,6 +107,53 @@ def RunCommand():
         pattern = Pattern.from_meshgrid(dx=DX, nx=NX, dy=DY, ny=NY)
 
     elif option == "Triangulation":
+        boundary_guids = compas_rhino.objects.select_curves("Select outer boundary.")
+        if not boundary_guids:
+            return
+
+        rs.UnselectAllObjects()
+        hole_guids = compas_rhino.objects.select_curves("Select inner boundaries.")
+
+        rs.UnselectAllObjects()
+        segments_guids = compas_rhino.objects.select_curves("Select constraint curves.")
+
+        rs.UnselectAllObjects()
+
+        target_length = rs.GetReal("Specifiy target edge length.", 1.0)
+        if not target_length:
+            return
+
+        boundary = discretise_boundary(boundary_guids, target_length)
+        holes = None
+        segments = None
+        curves = None
+
+        if hole_guids:
+            holes = discretise_constraints(hole_guids, target_length)
+
+        if segments_guids:
+            segments = discretise_constraints(segments_guids, target_length)
+            curves: list[NurbsCurve] = [NurbsCurve.from_interpolation(segment) for segment in segments]
+
+        points, triangles = conforming_delaunay_triangulation(
+            boundary,
+            polylines=segments,
+            polygons=holes,
+            area=target_length**2 / 2,
+        )
+        pattern = Pattern.from_vertices_and_faces(points, triangles)
+
+        fixed = [vertex for boundary in pattern.vertices_on_boundaries() for vertex in boundary]
+        if curves:
+            for index, point in enumerate(points):
+                for curve in curves:
+                    closest: Point = curve.closest_point(point)
+                    if closest.distance_to_point(point) < 0.1 * target_length:
+                        fixed.append(index)
+
+        pattern.smooth_area(fixed=fixed)
+
+    elif option == "Skeleton":
         raise NotImplementedError
 
     else:

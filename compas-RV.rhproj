@@ -8,11 +8,12 @@
   "id": "a6dc4669-0e8e-40ea-8d71-b9b0f4764ec1",
   "identity": {
     "name": "COMPAS-RhinoVAULT",
-    "version": "0.5.34-beta",
+    "version": "0.6.4",
     "publisher": {
-      "email": "juney@cmu.com",
-      "name": "Juney Lee",
-      "company": "Carnegie Mellon University"
+      "email": "tom.v.mele@gmail.com",
+      "name": "Tom Van Mele",
+      "company": "COMPAS Association",
+      "url": "https://compas.dev/"
     },
     "description": "Rhino plugin for form finding of compression-only structures using Thrust Network Analysis.",
     "copyright": "ETH Zurich - Block Research Group",
@@ -610,7 +611,6 @@
       }
     }
   ],
-  "libraries": [],
   "resources": [
     {
       "id": "0475d743-2539-4543-b579-a5d20301277c",
