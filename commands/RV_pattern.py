@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.6.0
+# r: compas_rv>=0.7.0
 
 import rhinoscriptsyntax as rs  # type: ignore
 from compas_skeleton.datastructures import Skeleton
