@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.8.0
+# r: compas_rv>=0.8.1
 
 from compas_rui.forms import FileForm
 from compas_rv.session import RVSession
