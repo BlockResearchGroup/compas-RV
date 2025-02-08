@@ -30,24 +30,29 @@ class RhinoThrustObject(RUIMeshObject):
     compressioncolor = ColorAttribute(default=Color.blue())
     tensioncolor = ColorAttribute(default=Color.red())
 
-    vertexgroup = "RV::ThrustDiagram::Vertices"
-    edgegroup = "RV::ThrustDiagram::Edges"
-    facegroup = "RV::ThrustDiagram::Faces"
-
     def __init__(
         self,
         disjoint=True,
         show_supports=True,
         show_fixed=True,
         show_free=False,
-        loadgroup=None,
-        selfweightgroup=None,
-        forcegroup=None,
-        reactiongroup=None,
-        residualgroup=None,
+        vertexgroup="RV::ThrustDiagram::Vertices",
+        edgegroup="RV::ThrustDiagram::Edges",
+        facegroup="RV::ThrustDiagram::Faces",
+        loadgroup="RV::ThrustDiagram::Loads",
+        selfweightgroup="RV::ThrustDiagram::Selfweight",
+        forcegroup="RV::ThrustDiagram::Forces",
+        reactiongroup="RV::ThrustDiagram::Reactions",
+        residualgroup="RV::ThrustDiagram::Residuals",
         **kwargs,
     ):
-        super().__init__(disjoint=disjoint, **kwargs)
+        super().__init__(
+            disjoint=disjoint,
+            vertexgroup=vertexgroup,
+            edgegroup=edgegroup,
+            facegroup=facegroup,
+            **kwargs,
+        )
 
         self.show_faces = True
         self.show_edges = False

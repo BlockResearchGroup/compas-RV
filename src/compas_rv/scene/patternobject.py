@@ -15,16 +15,21 @@ class RhinoPatternObject(RUIMeshObject):
     anchorcolor = ColorAttribute(default=Color.red())
     fixedcolor = ColorAttribute(default=Color.blue())
 
-    vertexgroup = "RV::Pattern::Vertices"
-    edgegroup = "RV::Pattern::Edges"
-    facegroup = "RV::Pattern::Faces"
-
     def __init__(
         self,
         disjoint=True,
+        vertexgroup="RV::FormDiagram::Vertices",
+        edgegroup="RV::FormDiagram::Edges",
+        facegroup="RV::FormDiagram::Faces",
         **kwargs,
     ):
-        super().__init__(disjoint=disjoint, **kwargs)
+        super().__init__(
+            disjoint=disjoint,
+            vertexgroup=vertexgroup,
+            edgegroup=edgegroup,
+            facegroup=facegroup,
+            **kwargs,
+        )
 
     # =============================================================================
     # Clear

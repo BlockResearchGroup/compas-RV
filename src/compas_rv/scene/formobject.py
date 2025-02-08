@@ -14,9 +14,19 @@ class RhinoFormObject(RhinoDiagramObject):
     edgecolor = ColorDictAttribute(default=Color.green().darkened(50))
     facecolor = ColorDictAttribute(default=Color.green().lightened(25))
 
-    vertexgroup = "RV::FormDiagram::Vertices"
-    edgegroup = "RV::FormDiagram::Edges"
-    facegroup = "RV::FormDiagram::Faces"
+    def __init__(
+        self,
+        vertexgroup="RV::FormDiagram::Vertices",
+        edgegroup="RV::FormDiagram::Edges",
+        facegroup="RV::FormDiagram::Faces",
+        **kwargs,
+    ):
+        super().__init__(
+            vertexgroup=vertexgroup,
+            edgegroup=edgegroup,
+            facegroup=facegroup,
+            **kwargs,
+        )
 
     # =============================================================================
     # Properties

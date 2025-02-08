@@ -15,9 +15,19 @@ class RhinoForceObject(RhinoDiagramObject):
     edgecolor = ColorDictAttribute(default=Color.blue().darkened(50))
     facecolor = ColorDictAttribute(default=Color.blue().lightened(25))
 
-    vertexgroup = "RV::ForceDiagram::Vertices"
-    edgegroup = "RV::ForceDiagram::Edges"
-    facegroup = "RV::ForceDiagram::Faces"
+    def __init__(
+        self,
+        vertexgroup="RV::ForceDiagram::Vertices",
+        edgegroup="RV::ForceDiagram::Edges",
+        facegroup="RV::ForceDiagram::Faces",
+        **kwargs,
+    ):
+        super().__init__(
+            vertexgroup=vertexgroup,
+            edgegroup=edgegroup,
+            facegroup=facegroup,
+            **kwargs,
+        )
 
     # =============================================================================
     # Properties
