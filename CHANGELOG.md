@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* Added `vertexgroup`, `edgegroup`, `facegroup` to `RhinoPatternObject`.
+* Added `vertexgroup`, `edgegroup`, `facegroup` to `RhinoFormObject`.
+* Added `vertexgroup`, `edgegroup`, `facegroup` to `RhinoForceObject`.
+* Added `vertexgroup`, `edgegroup`, `facegroup` to `RhinoThrustObject`.
+
 ### Changed
 
 ### Removed

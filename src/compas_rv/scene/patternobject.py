@@ -15,6 +15,10 @@ class RhinoPatternObject(RUIMeshObject):
     anchorcolor = ColorAttribute(default=Color.red())
     fixedcolor = ColorAttribute(default=Color.blue())
 
+    vertexgroup = "RV::Pattern::Vertices"
+    edgegroup = "RV::Pattern::Edges"
+    facegroup = "RV::Pattern::Faces"
+
     def __init__(
         self,
         disjoint=True,
