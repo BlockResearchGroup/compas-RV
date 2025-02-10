@@ -63,7 +63,7 @@ The mesh geometry is converted into a line preview, marked with green lines.
 ## 4. Modify Form Diagram
 
 **Command:** `RV_form_modify`> `Edge Constraints` > `Manual`\
-Set the horizontal edge constraints (h\_min and h\_max) to: a) 0.00001, b) main load transvering arch edges to 2, and c) vertical boundary edges and the four central diagonals to 1. This is done because horizontal edges ideally carry no load, and boundary arches have a tributary area twice as large as the outer ones.
+Set the horizontal edge constraints (h\_min and h\_max) to: a) 0.00001, b) perpendicular to boundary edges to 2, and c) vertical boundary edges and the four central diagonals to 1. This is done because perpendicular to boundary edges carry no load, and boundary arches have a tributary area twice as large as the outer ones.
 
 <figure><img src="../../.gitbook/assets/examples_cross_vault_3_0.png" alt=""><figcaption></figcaption></figure>
 
@@ -91,7 +91,7 @@ On the right side, the force diagram is created with TextDots marking the angle 
 
 **Command:** `RV_tna_horizontal` > `Iterations` > `3000`
 
-Set the iteration to 3000 to reach the horizontal equilibrium. Traversal edges collapses and only diagonal and perpendicular to the squares edges are visible.
+Set the iteration to 3000 to reach the horizontal equilibrium. Traversal edges collapses and only diagonal and perpendicular to the square edges are visible.
 
 <figure><img src="../../.gitbook/assets/examples_cross_vault_5.png" alt=""><figcaption></figcaption></figure>
 
