@@ -65,11 +65,11 @@ The mesh geometry is converted into a line preview, marked with green lines.
 **Command:** `RV_form_modify`> `Edge Constraints` > `Manual`\
 Set the horizontal edge constraints (h\_min and h\_max) to: a) 0.00001, b) main load transvering arch edges to 2, and c) vertical boundary edges and the four central diagonals to 1. This is done because horizontal edges ideally carry no load, and boundary arches have a tributary area twice as large as the outer ones.
 
-<figure><img src="../../.gitbook/assets/examples_barrel_3_0.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_cross_vault_3_0.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/examples_barrel_3_1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_cross_vault_3_1.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/examples_barrel_3_2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/examples_cross_vault_3_2.png" alt=""><figcaption></figcaption></figure>
 
 {% file src="../../.gitbook/assets/examples_cross_vault_3.json" %}
 
