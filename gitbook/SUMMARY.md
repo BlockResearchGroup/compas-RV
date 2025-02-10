@@ -46,10 +46,10 @@
   * [\* Armadillo Vault](examples/case-studies/armadillo-vault.md)
   * [\* Free-form Tile Vault](examples/case-studies/free-form-tile-vault.md)
 * [Historical Typologies](examples/historical-typologies/README.md)
-  * [\*Cross Vault](examples/historical-typologies/barrel-vault-1.md)
   * [\*Fan Vault](examples/historical-typologies/barrel-vault-3.md)
   * [Pillow Vault](examples/historical-typologies/pillow-vault.md)
   * [Barrel Vault](examples/historical-typologies/barrel-vault.md)
+  * [Cross Vault](examples/historical-typologies/cross-vault.md)
 
 ## NEXT STEPS
 
