@@ -8,7 +8,7 @@ The aim of this tutorial is to convert a RhinoVault session (a JSON file with a 
 
 {% file src="../.gitbook/assets/rhinovault_session.json" %}
 
-## Pattern from RhinoVault Session
+## Rhino Script Editor and RhinoVault Session 
 
 <figure><img src="../.gitbook/assets/materialization_pattern.gif" alt=""><figcaption></figcaption></figure>
 
@@ -45,7 +45,7 @@ scene.add(rv_scene.find_by_name("Pattern").mesh)
 scene.draw()
 ```
 
-## Mesh from Thrust Diagram in Rhino Script Editor
+## Mesh from Thrust Diagram
 
 <figure><img src="../.gitbook/assets/materialization_thrust_diagram.png" alt=""><figcaption></figcaption></figure>
 
