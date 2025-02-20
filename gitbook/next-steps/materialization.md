@@ -12,7 +12,7 @@ The aim of this tutorial is to convert a RhinoVault session (a JSON file with a 
 
 <figure><img src="../.gitbook/assets/materialization_pattern.gif" alt=""><figcaption></figcaption></figure>
 
-Before you start create a folder on your computer where you will store the `rhinovault_session.json` file as well as python example files. Then open Rhino Script Editor by command `ScriptEditor`. Add a new python file by clicking on the plus sign named `000.pattern.py`. Then copy-paste the code below that extracts the mesh pattern from the session file.
+Create a folder where you will store the `rhinovault_session.json` file as well as python example files. Then open Rhino Script Editor. Add a new python file named `000.pattern.py`. Then run the code below that extracts the 2D mesh pattern from the session file.
 
 The session file employs the compas.scene data structure for storing: Pattern, FormDiagram, ThrustDiagram, and ForceDiagram. It also stores general settings for drawing and thrust-network analysis. We will use two attributes: Pattern and ThrustDiagram for mesh transformation into solid blocks. The scene also helps to visualize COMPAS items (geometry & data structures).
 
@@ -45,7 +45,7 @@ scene.add(rv_scene.find_by_name("Pattern").mesh)
 scene.draw()
 ```
 
-## Mesh from Thrust Diagram
+## Mesh from Thrust Diagram in Rhino Script Editor
 
 <figure><img src="../.gitbook/assets/materialization_thrust_diagram.png" alt=""><figcaption></figcaption></figure>
 
@@ -71,19 +71,17 @@ from compas.itertools import pairwise
 def break_boundary(mesh: Mesh, breakpoints: list[int]) -> tuple[list[list[int]], list[int]]:
 
     # Get the list of vertices on the boundary (first boundary from the mesh)
+    # If the first and last vertices in the boundary are the same, remove the last vertex (close loop)
     boundary: list[int] = mesh.vertices_on_boundaries()[0]
     
-    # If the first and last vertices in the boundary are the same, remove the last vertex (close loop)
     if boundary[0] == boundary[-1]:
         del boundary[-1]
 
     # Sort the breakpoints based on their index in the boundary
-    breakpoints = sorted(breakpoints, key=lambda s: boundary.index(s))
-
     # Find the starting point in the boundary for the first breakpoint
-    start = boundary.index(breakpoints[0])
-    
     # Rearrange the boundary to start from the first breakpoint
+    breakpoints = sorted(breakpoints, key=lambda s: boundary.index(s))
+    start = boundary.index(breakpoints[0])
     boundary = boundary[start:] + boundary[:start]
 
     # Iterate over pairs of breakpoints and create sub-boundaries from the main boundary
@@ -123,8 +121,8 @@ thrustdiagram: FormDiagram = thrustobject.mesh
 
 mesh: Mesh = thrustdiagram.copy(cls=Mesh)
 
-# for face in list(mesh.faces_where(_is_loaded=False)):
-#     mesh.delete_face(face)
+for face in list(mesh.faces_where(_is_loaded=False)):
+    mesh.delete_face(face)
 
 # =============================================================================
 # Mesh: Borders
