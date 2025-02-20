@@ -1,7 +1,5 @@
 # Materialization
 
-## Aim
-
 <figure><img src="../.gitbook/assets/materialization_model_photo.png" alt=""><figcaption></figcaption></figure>
 
 The aim of this tutorial is to convert a RhinoVault session (a JSON file with a scene data structure) into solid geometry to facilitate the creation of simple physical models. This step is often used for teaching purposes when building models or small prototypes. The tutorial uses the Rhino ScriptEditor Python interface to extract data from a RhinoVault session file, attached below. Multiple mesh-based operations are then used to transform the geometry into solid blocks with shear keys and indices.
