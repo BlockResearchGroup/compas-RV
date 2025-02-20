@@ -4,18 +4,20 @@
 
 <figure><img src="../.gitbook/assets/materialization_model_photo.png" alt=""><figcaption></figcaption></figure>
 
-The aim of this tutorial is to convert RhinoVault session (JSON file with scene data-structure) into solid geometry to facilitate the creation of simple physical models. Most often, this step is used for teaching purposes when models or small prototypes are built. The tutorial uses the Rhino ScriptEditor Python interface to extract data from a RhinoVault session file. Multiple mesh-based operations are then used to transform the geometry into solid blocks with shear keys and indices. Run the code below sequentially one-by-one because each step is serialized into a JSON file that is used as a starting point in the consecutive step.
+The aim of this tutorial is to convert a RhinoVault session (a JSON file with a scene data structure) into solid geometry to facilitate the creation of simple physical models. This step is often used for teaching purposes when building models or small prototypes. The tutorial uses the Rhino ScriptEditor Python interface to extract data from a RhinoVault session file, attached below. Multiple mesh-based operations are then used to transform the geometry into solid blocks with shear keys and indices.
 
 {% file src="../.gitbook/assets/rhinovault_session.json" %}
 
-## RhinoVault Session
+## RhinoVault Session - Pattern
 
-The session file is a JSON file of compas.scene with the following items: `Pattern`, `FormDiagram`, `ThrustDiagram`, `ForceDiagram`. It also stores general settings for drawing and thrust-network-analysis. We will use two attributes: `Pattern` and `ThrustDiagram` for mesh transformation into solid blocks. The `scene` is used both for storing and visualising COMPAS items (geometry & datastructures).
+The session file employs the compas.scene data structure for storing: Pattern, FormDiagram, ThrustDiagram, and ForceDiagram. It also stores general settings for drawing and thrust-network analysis. We will use two attributes: Pattern and ThrustDiagram for mesh transformation into solid blocks. The scene also helps to visualize COMPAS items (geometry & data structures).
 
-There first three comments are specific to Python in Rhino indication a) `python3` indicates the language is used, b) code is written in `brg-csd` environment, and c) `compas_rv` is library requirement that must be installable from the python package index (PyPI).
+The first three comments are specific to Python in Rhino, indicating: a) python3 specifies the language used, b) the code is written in the brg-csd environment, and c) compas_rv is a library requirement that must be installable from the Python Package Index (PyPI).
+
+The code extracts the pattern attribute as a mesh and adds it to Rhino canvas:
 
 
-<figure><img src="../.gitbook/assets/materialization_pattern.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/materialization_pattern.gif" alt=""><figcaption></figcaption></figure>
 
 
 ```python
@@ -42,5 +44,8 @@ scene = Scene()
 scene.clear_context()
 scene.add(rv_scene.find_by_name("Pattern").mesh)
 scene.draw()
+```
 
-## RhinoVault Session
+## RhinoVault Session - ThrustDiagram
+
+In this step we will extract thrust-diagram.
