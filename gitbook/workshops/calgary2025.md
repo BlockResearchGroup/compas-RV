@@ -9,17 +9,31 @@ In total, there were seven students divided into three groups. Below is the fina
 <figure><img src="../.gitbook/assets/workshops_calgary2025_student_posters.jpg" alt=""><figcaption></figcaption></figure>
 
 {% gallery %}
-![](assets/workshops_calgary2025_photos_0.jpg)
-![](assets/workshops_calgary2025_photos_1.jpg)
-![](assets/workshops_calgary2025_photos_2.jpg)
-![](assets/workshops_calgary2025_photos_3.jpg)
-![](assets/workshops_calgary2025_photos_4.jpg)
-![](assets/workshops_calgary2025_photos_5.jpg)
-![](assets/workshops_calgary2025_photos_6.jpg)
-![](assets/workshops_calgary2025_photos_7.jpg)
-![](assets/workshops_calgary2025_photos_8.jpg)
-![](assets/workshops_calgary2025_photos_9.jpg)
-![](assets/workshops_calgary2025_photos_10.jpg)
-![](assets/workshops_calgary2025_photos_11.jpg)
-![](assets/workshops_calgary2025_photos_12.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_0.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_1.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_2.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_3.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_4.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_5.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_6.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_7.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_8.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_9.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_10.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_11.jpg)
+![](../.gitbook/assets/workshops_calgary2025_photos_12.jpg)
 {% endgallery %}
+
+![Slide 1](../.gitbook/assets/workshops_calgary2025_photos_0.jpg)
+
+[Next →](#slide2)
+
+## Slide 2 <a name="slide2"></a>
+![Slide 2](../.gitbook/assets/workshops_calgary2025_photos_1.jpg)
+
+[← Previous](#slide1) | [Next →](#slide3)
+
+## Slide 3 <a name="slide3"></a>
+![Slide 3](../.gitbook/assets/workshops_calgary2025_photos_2.jpg)
+
+[← Previous](#slide2)
