@@ -12,14 +12,13 @@ If you want to directly run all scripts of this page, you can download them from
 
 ## Rhino Script Editor and RhinoVault Session 
 
-<figure><img src="../.gitbook/assets/materialization_pattern.gif" alt=""><figcaption></figcaption></figure>
-
 Create a folder where you will store the `rhinovault_session.json` file as well as python example files. Then open Rhino Script Editor. Add a new python file named `000.pattern.py`. Then run the code below that extracts the 2D mesh pattern from the session file.
 
 The session file employs the compas.scene data structure for storing: Pattern, FormDiagram, ThrustDiagram, and ForceDiagram. It also stores general settings for drawing and thrust-network analysis. We will use two attributes: Pattern and ThrustDiagram for mesh transformation into solid blocks. The scene also helps to visualize COMPAS items (geometry & data structures).
 
 The first three comments are specific to Python in Rhino, indicating: a) `python3` specifies the language used, b) the code is written in the `brg-csd` environment, and c) `compas_rv` is a library requirement that must be installable from the Python Package Index (PyPI).
 
+<figure><img src="../.gitbook/assets/materialization_pattern.gif" alt=""><figcaption></figcaption></figure>
 
 ```python
 #! python3
@@ -156,10 +155,9 @@ scene.draw()
 
 ## 2. Remesh
 
-<figure><img src="../.gitbook/assets/materialization_remesh.png" alt=""><figcaption></figcaption></figure>
-
 The thrust mesh is remeshed to achieve a uniform triangulated topology and obtain a 3-valence mesh for the dual. If we were to create a dual mesh from the original quad mesh, the result would be a quad mesh, which is unsuitable for our chosen fabrication method. Three-valence meshes are easier to assemble and may have fewer tolerance issues when multiple blocks meet at the same edge or corner. Originally the mesh was remeshed using CGAL library in Visual Studio Code, but for the purpose of demonstration we are using COMPAS remesh method in Rhino ScripEditor.
 
+<figure><img src="../.gitbook/assets/materialization_remesh.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 #! python3
@@ -250,9 +248,9 @@ scene.draw()
 
 ## 3. Dual
 
-<figure><img src="../.gitbook/assets/materialization_dual.png" alt=""><figcaption></figcaption></figure>
-
 The dual is created from a triangular mesh. Note the boundary faces with an additional 2-valence boundary vertex. This vertex is removed in the next step to achieve cleaner polygonal blocks.
+
+<figure><img src="../.gitbook/assets/materialization_dual.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 #! python3
@@ -381,10 +379,9 @@ scene.draw()
 
 ## 5. Dual Simplification
 
-<figure><img src="../.gitbook/assets/materialization_dual_simplification.png" alt=""><figcaption></figcaption></figure>
-
 This script processes a dual mesh by identifying and collapsing unnecessary 2-valent boundary edges. It iterates through the boundary vertices, checking if they have exactly two neighbors. If the angle between the two edges is close to 180°, the vertex is removed, merging the edges while ensuring that any "corner" attributes are preserved. 
 
+<figure><img src="../.gitbook/assets/materialization_dual_simplification.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 
@@ -454,10 +451,9 @@ scene.draw()
 
 ## 6. Dual Boundary Smoothing
 
-<figure><img src="../.gitbook/assets/materialization_boundary_smoothing.png" alt=""><figcaption></figcaption></figure>
-
 This script performs boundary smoothing on a dual mesh. It begins by loading the original (001_mesh.json) and dual (005_mesh.json) meshes. It then identifies corner vertices and segments the boundary into separate borders. For each border, a NURBS curve is generated using interpolation to create a smoother boundary shape. The script then adjusts the positions of boundary vertices by snapping them to the closest points on their respective curves.
 
+<figure><img src="../.gitbook/assets/materialization_boundary_smoothing.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 
@@ -552,10 +548,9 @@ scene.draw()
 
 ## 7. Dual Edge Collapse
 
-<figure><img src="../.gitbook/assets/materialization_dual_edge_collapse.png" alt=""><figcaption></figcaption></figure>
-
 This script performs edge collapse operations on a dual mesh to simplify its boundary. It identifies boundary edges that are not connected to corner vertices and checks if they belong to quadrilateral faces. If so, it selects pairs of opposite edges for collapse. The selected edges are collapsed, reducing the number of boundary edges while maintaining the mesh structure. 
 
+<figure><img src="../.gitbook/assets/materialization_dual_edge_collapse.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 
@@ -645,10 +640,9 @@ scene.draw()
 
 ## 8. Dual Borders
 
-<figure><img src="../.gitbook/assets/materialization_dual_borders.png" alt=""><figcaption></figcaption></figure>
-
 This script processes the borders of a dual mesh by identifying and marking support edges. It detects corner vertices to segment the boundary into smaller borders. If a border has fewer than five vertices, its vertices and edges are marked as "supports." The identified support edges are visualized as green cylinders in the scene.
 
+<figure><img src="../.gitbook/assets/materialization_dual_borders.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 
@@ -735,10 +729,9 @@ scene.draw()
 
 ## 9. Dual Thickness Data
 
-<figure><img src="../.gitbook/assets/materialization_dual_thickness_data.png" alt=""><figcaption></figcaption></figure>
-
 This script interpolates and assigns thickness values to a dual mesh using a grid-based method. It starts by loading the original (001_mesh.json) and dual (008_mesh.json) meshes. Key support points and midspan vertices are identified based on height, with predefined thickness values assigned to them. Using SciPy's griddata, thickness values are interpolated for all dual mesh vertices. The updated thickness values are stored in the mesh, and the result is visualized with red spheres representing the assigned thickness at each vertex.
 
+<figure><img src="../.gitbook/assets/materialization_dual_thickness_data.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 
@@ -832,10 +825,9 @@ scene.draw()
 
 ## 10. Blocks
 
-<figure><img src="../.gitbook/assets/materialization_blocks.png" alt=""><figcaption></figcaption></figure>
-
 This script generates 3D block representations of a dual mesh by extruding its faces based on thickness values. It iterates through its faces to construct block geometries. For each face, vertex normals and thickness values are used to create bottom and top surfaces, with the top surface adjusted to fit a best-fit plane. The sides of the block are then generated to enclose the volume. Support attributes are assigned to relevant faces, and top and bottom frames are computed for each block. The blocks are visualized with color-coded support faces and frame markers.
 
+<figure><img src="../.gitbook/assets/materialization_blocks.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 
@@ -938,10 +930,9 @@ scene.draw()
 
 ## 11. Chamfer
 
-<figure><img src="../.gitbook/assets/materialization_chamfer.png" alt=""><figcaption></figcaption></figure>
-
 This script applies chamfering to the edges of a dual mesh to refine its geometry. It iterates through internal vertices, identifying neighboring edges and checking their angles. If the angle between adjacent edges is below a set threshold (145°), a chamfering operation is applied using a cutting plane offset by 2 units. The modified blocks replace the original ones. The final result is visualized, displaying the adjusted blocks.
 
+<figure><img src="../.gitbook/assets/materialization_chamfer.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 
@@ -1022,12 +1013,11 @@ scene.draw()
 
 ```
 
-
 ## 12. Shear Keys
 
-<figure><img src="../.gitbook/assets/materialization_shear_keys.png" alt=""><figcaption></figcaption></figure>
-
 This script modifies a dual mesh by adding spherical joinery at edge intersections between adjacent blocks. It first converts each face block into a Brep for more stable Boolean operations. Then, for each edge shared by two faces, it creates two spheres along the edge at 30% and 70% of its length. The first set of spheres (2.5 radius) is subtracted from one block, while a slightly smaller set (2.3 radius) is added to the other, forming a complementary joinery system. Finally, the updated blocks are visualized along with the dual mesh.
+
+<figure><img src="../.gitbook/assets/materialization_shear_keys.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 
@@ -1102,9 +1092,9 @@ scene.draw()
 
 ## 13. Index and Packing
 
-<figure><img src="../.gitbook/assets/materialization_index_and_packing.png" alt=""><figcaption></figcaption></figure>
-
 This script generates 3D index labels for each block, displaying their positions directly in Rhino. Additionally, it packs the blocks into a grid layout, making them easier to visualize, organize, and manufacture. The result is a structured, fabrication-ready representation of the geometry. The joinery is regenerated in this script because serialization to a JSON file is not currently supported for BRep—only the STEP format allows it.
+
+<figure><img src="../.gitbook/assets/materialization_index_and_packing.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 
@@ -1276,9 +1266,9 @@ scene.draw()
 
 ## 14. Scaffolding Mesh
 
-<figure><img src="../.gitbook/assets/materialization_scaffolding_mesh.png" alt=""><figcaption></figcaption></figure>
-
 This script demonstrates how to extract the bottom mesh using the mesh vertex thickness attribute. The extracted bottom mesh can then be used to generate scaffolding for assembling the structure.
+
+<figure><img src="../.gitbook/assets/materialization_scaffolding_mesh.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 
