@@ -48,11 +48,9 @@ scene.draw()
 
 ## 1. Mesh from Thrust Diagram
 
-<figure><img src="../.gitbook/assets/materialization_thrust_diagram.png" alt=""><figcaption></figcaption></figure>
-
 Let's create file called `001_thrust_diagram.py` in the script editor. The thrust diagram's mesh attribute is used as the base mesh for materialization. We need to delete mesh faces with the attribute `_is_loaded==False`, marked in red. After deletion, we will split the list of boundary vertices by support vertices and store them in the `borders` attribute. We will also store support points in the `supports` attribute. Be aware that the script does not handle multiple boundaries, and you may need to make your own modifications for other cases if the mesh topology is different. Finally, the mesh is serialized into JSON file called `001_mesh.json`.
 
-In this step we will extract thrust-diagram.
+<figure><img src="../.gitbook/assets/materialization_thrust_diagram.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 #! python3
