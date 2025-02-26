@@ -8,7 +8,7 @@ The aim of this tutorial is to convert a RhinoVault session (a JSON file with a 
 
 If you want to directly run all scripts of this page, you can download them from here:
 
-% file src="../.gitbook/assets/materialization.zip" %}
+{% file src="../.gitbook/assets/materialization.zip" %}
 
 ## Rhino Script Editor and RhinoVault Session 
 
@@ -1296,7 +1296,6 @@ from compas.scene import Scene
 # =============================================================================
 # Load data
 # =============================================================================
-
 
 IFILE = pathlib.Path(__file__).parent / "009_mesh.json"
 dual = compas.json_load(IFILE)
