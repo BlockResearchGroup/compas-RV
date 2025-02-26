@@ -58,7 +58,7 @@
 
 ## Workshops
 
-* [Calgary 2025](workshops/calgary2025.md)
+* [Calgary 2025](workshops/calgary-2025.md)
 
 ## Additional information
 
