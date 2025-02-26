@@ -56,6 +56,10 @@
 * [COMPAS Integration](next-steps/compas-integration.md)
 * [Materialization](next-steps/materialization.md)
 
+## Workshops
+
+* [calgary2025](workshops/calgary2025.md)
+
 ## Additional information
 
 * [Release notes](additional-information/release-notes/README.md)
