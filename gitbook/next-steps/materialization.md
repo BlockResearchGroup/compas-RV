@@ -1100,7 +1100,7 @@ scene.draw()
 
 <figure><img src="../.gitbook/assets/materialization_index_and_packing.png" alt=""><figcaption></figcaption></figure>
 
-This script generates 3D index labels for each block, displaying their positions directly in Rhino. Additionally, it packs the blocks into a grid layout, making them easier to visualize, organize, and manufacture. The result is a structured, fabrication-ready representation of the geometry. The joinery is regenerated at this script again, because serialization to JSON file are currently not supported for BRep only if STEP format.
+This script generates 3D index labels for each block, displaying their positions directly in Rhino. Additionally, it packs the blocks into a grid layout, making them easier to visualize, organize, and manufacture. The result is a structured, fabrication-ready representation of the geometry. The joinery is regenerated in this script because serialization to a JSON file is not currently supported for BRep—only the STEP format allows it.
 
 ```python
 
