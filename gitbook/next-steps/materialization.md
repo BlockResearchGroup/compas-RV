@@ -1276,7 +1276,7 @@ scene.draw()
 
 ## 14. Scaffolding Mesh
 
-<figure><img src="../.gitbook/assets/materialization_014_scaffolding_mesh.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/materialization_scaffolding_mesh.png" alt=""><figcaption></figcaption></figure>
 
 This script demonstrates how to extract the bottom mesh using the mesh vertex thickness attribute. The extracted bottom mesh can then be used to generate scaffolding for assembling the structure.
 
