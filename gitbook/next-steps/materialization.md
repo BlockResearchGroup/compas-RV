@@ -6,6 +6,10 @@ The aim of this tutorial is to convert a RhinoVault session (a JSON file with a 
 
 {% file src="../.gitbook/assets/rhinovault_session.json" %}
 
+If you want to directly run all scripts of this page, you can download them from here:
+
+% file src="../.gitbook/assets/materialization.zip" %}
+
 ## Rhino Script Editor and RhinoVault Session 
 
 <figure><img src="../.gitbook/assets/materialization_pattern.gif" alt=""><figcaption></figcaption></figure>
@@ -43,7 +47,7 @@ scene.add(rv_scene.find_by_name("Pattern").mesh)
 scene.draw()
 ```
 
-## Mesh from Thrust Diagram
+## 1. Mesh from Thrust Diagram
 
 <figure><img src="../.gitbook/assets/materialization_thrust_diagram.png" alt=""><figcaption></figcaption></figure>
 
@@ -150,7 +154,7 @@ scene.add(mesh)
 scene.draw()
 ```
 
-## Remesh
+## 2. Remesh
 
 <figure><img src="../.gitbook/assets/materialization_remesh.png" alt=""><figcaption></figcaption></figure>
 
@@ -244,7 +248,7 @@ scene.draw()
 
 ```
 
-## Dual
+## 3. Dual
 
 <figure><img src="../.gitbook/assets/materialization_dual.png" alt=""><figcaption></figcaption></figure>
 
@@ -302,7 +306,7 @@ scene.add(dual, show_vertices=True)
 scene.draw()
 ```
 
-## Dual Corners
+## 4. Dual Corners
 
 <figure><img src="../.gitbook/assets/materialization_dual_corners.png" alt=""><figcaption></figcaption></figure>
 
@@ -375,7 +379,7 @@ scene.draw()
 
 ```
 
-## Dual Simplification
+## 5. Dual Simplification
 
 <figure><img src="../.gitbook/assets/materialization_dual_simplification.png" alt=""><figcaption></figcaption></figure>
 
@@ -448,7 +452,7 @@ scene.draw()
 
 ```
 
-## Dual Boundary Smoothing
+## 6. Dual Boundary Smoothing
 
 <figure><img src="../.gitbook/assets/materialization_boundary_smoothing.png" alt=""><figcaption></figcaption></figure>
 
@@ -546,7 +550,7 @@ scene.draw()
 ```
 
 
-## Dual Edge Collapse
+## 7. Dual Edge Collapse
 
 <figure><img src="../.gitbook/assets/materialization_dual_edge_collapse.png" alt=""><figcaption></figcaption></figure>
 
@@ -639,7 +643,7 @@ scene.draw()
 
 ```
 
-## Dual Borders
+## 8. Dual Borders
 
 <figure><img src="../.gitbook/assets/materialization_dual_borders.png" alt=""><figcaption></figcaption></figure>
 
@@ -729,7 +733,7 @@ scene.draw()
 
 ```
 
-## Dual Thickness Data
+## 9. Dual Thickness Data
 
 <figure><img src="../.gitbook/assets/materialization_dual_thickness_data.png" alt=""><figcaption></figcaption></figure>
 
@@ -826,7 +830,7 @@ scene.draw()
 
 ```
 
-## Blocks
+## 10. Blocks
 
 <figure><img src="../.gitbook/assets/materialization_blocks.png" alt=""><figcaption></figcaption></figure>
 
@@ -932,7 +936,7 @@ scene.draw()
 
 ```
 
-## Chamfer
+## 11. Chamfer
 
 <figure><img src="../.gitbook/assets/materialization_chamfer.png" alt=""><figcaption></figcaption></figure>
 
@@ -1019,7 +1023,7 @@ scene.draw()
 ```
 
 
-## Shear Keys
+## 12. Shear Keys
 
 <figure><img src="../.gitbook/assets/materialization_shear_keys.png" alt=""><figcaption></figcaption></figure>
 
@@ -1096,7 +1100,7 @@ scene.draw()
 
 ```
 
-## Index and Packing
+## 13. Index and Packing
 
 <figure><img src="../.gitbook/assets/materialization_index_and_packing.png" alt=""><figcaption></figcaption></figure>
 
@@ -1266,5 +1270,59 @@ for block in blocks_transformed:
 
 scene.draw()
 
+
+```
+
+
+## 14. Scaffolding Mesh
+
+<figure><img src="../.gitbook/assets/materialization_014_scaffolding_mesh.png" alt=""><figcaption></figcaption></figure>
+
+This script demonstrates how to extract the bottom mesh using the mesh vertex thickness attribute. The extracted bottom mesh can then be used to generate scaffolding for assembling the structure.
+
+```python
+
+#! python3
+# venv: brg-csd
+# r: compas_rv
+
+import pathlib
+
+import compas
+from compas.datastructures import Mesh
+from compas.geometry import Vector
+from compas.scene import Scene
+
+# =============================================================================
+# Load data
+# =============================================================================
+
+
+IFILE = pathlib.Path(__file__).parent / "009_mesh.json"
+dual = compas.json_load(IFILE)
+
+# =============================================================================
+# Bottom mesh for scaffolding.
+# =============================================================================
+
+vertices, faces = dual.to_vertices_and_faces()
+
+bottom_points = []
+for vertex in dual.vertices():
+    point = dual.vertex_point(vertex)
+    thickness = dual.vertex_attribute(vertex, "thickness") * 0.5
+    normal = Vector(*dual.vertex_normal(vertex))
+    bottom_point  = point -  thickness * normal
+    bottom_points.append(bottom_point)
+
+bottom_mesh = Mesh.from_vertices_and_faces(bottom_points, faces)
+
+# =============================================================================
+# Visualisation
+# =============================================================================
+
+scene = Scene()
+scene.add(bottom_mesh, color=(255,0,0))
+scene.draw()
 
 ```
