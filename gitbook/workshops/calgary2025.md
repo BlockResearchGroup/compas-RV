@@ -17,11 +17,12 @@ In total, seven students were divided into three groups. Below is the final deli
 
 ## Scaffolding
 
-<figure><img src="../.gitbook/assets/workshop_calgary2025_scaffolding.jpg" alt=""><figcaption></figcaption></figure>
-
 In this workshop, we used scaffolding made from cardboard to assemble the shells. The script for generating the scaffolding is attached below. The script requires the following inputs:
 a) the lower mesh of the shell,
 b) a closed 2D polyline defining the area where the scaffolding is generated, and
 c) a line that provides the direction of the grid.
 
 {% file src="../.gitbook/assets/workshop_calgary2025_scaffolding.py" %}
+
+<figure><img src="../.gitbook/assets/workshop_calgary2025_scaffolding.jpg" alt=""><figcaption></figcaption></figure>
+
