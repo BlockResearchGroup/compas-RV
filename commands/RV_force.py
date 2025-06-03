@@ -2,11 +2,11 @@
 # venv: brg-csd
 # r: compas_rv>=0.8.1
 
-
 import rhinoscriptsyntax as rs  # type: ignore
 
 from compas_rv.datastructures import ForceDiagram
 from compas_rv.session import RVSession
+from compas_rv.solvers import update_force_from_form
 
 
 def RunCommand():
@@ -30,6 +30,8 @@ def RunCommand():
 
     forcediagram: ForceDiagram = ForceDiagram.from_formdiagram(form.diagram)
 
+    update_force_from_form(forcediagram, form.diagram)
+
     forcediagram.update_position()
     forcediagram.update_angle_deviations()
 
@@ -39,7 +41,7 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    session.scene.add(forcediagram, name=forcediagram.name)
+    session.scene.add(forcediagram, name=forcediagram.name)  # type: ignore
     session.scene.redraw()
 
     rs.Redraw()
