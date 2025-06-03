@@ -1,5 +1,7 @@
-compas >=2.9
+compas >=2.12
+compas_cgal
 compas_dem
+compas_libigl
 compas_rui >=0.5.0
 compas_session >=0.4.5
 compas_skeleton

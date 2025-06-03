@@ -9,7 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* Added `compas_cgal`.
+* Added `compas_libigl`.
+
 ### Changed
+
+* Changed minimal version of `compas` to `2.12`.
 
 ### Removed
 
