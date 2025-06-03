@@ -64,5 +64,14 @@ This function automatically generates a mesh grid using number and size of the g
 
 ### Triangulation
 
-Not implemented.
+Curves with holes can be triangulated by defining the outer and inner boundaries of the mesh edges, as well as specifying the edge length. Before performing the Vertical Thrust Analysis, modify the force diagram and set the minimum edge length (lmin) to 0.5.\
+\
 
+
+<figure><img src="../../.gitbook/assets/triangulation.png" alt=""><figcaption></figcaption></figure>
+
+### Skeleton
+
+The skeleton pattern creates a line graph that is used to generate a mesh around it. The density parameter subdivides the mesh. The leaf angle parameter changes the angle of the boundary nodes, and the width controls the offset of the mesh.&#x20;
+
+<figure><img src="../../.gitbook/assets/skeleton.png" alt=""><figcaption></figcaption></figure>
