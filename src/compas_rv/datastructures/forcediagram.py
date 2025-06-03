@@ -34,7 +34,7 @@ class ForceDiagram(Diagram, ForceDiagram):
             If the dual edge does not exist.
 
         """
-        primal = self.primal  # type: FormDiagram
+        primal: FormDiagram = self.primal
 
         f1, f2 = edge
         for u, v in primal.face_halfedges(f1):
@@ -51,7 +51,7 @@ class ForceDiagram(Diagram, ForceDiagram):
         None
 
         """
-        primal = self.primal  # type: FormDiagram
+        primal: FormDiagram = self.primal
 
         for edge in self.edges():
             edge_ = self.primal_edge(edge)
