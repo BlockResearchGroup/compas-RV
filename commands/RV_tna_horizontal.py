@@ -3,7 +3,7 @@
 # r: compas_rv>=0.8.1
 
 
-import rhinoscriptsyntax as rs  # type: ignore
+import rhinoscriptsyntax as rs  # type: ignore  # type: ignore
 
 from compas_rv.conduits import HorizontalConduit
 from compas_rv.session import RVSession
@@ -87,6 +87,9 @@ def RunCommand():
     # =============================================================================
     # Compute horizontal
     # =============================================================================
+
+    # if alpha == 100:
+    #     update_force_from_form(force.diagram, form.diagram)
 
     if refresh > 0:
         # overlapping conduits and dots look messy
