@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Added `compas_cgal`.
 * Added `compas_libigl`.
+* Added `compas_rv.solvers.update_force_from_form`.
 
 ### Changed
 
