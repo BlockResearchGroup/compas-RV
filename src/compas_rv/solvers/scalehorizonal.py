@@ -9,9 +9,6 @@ from compas_rv.datastructures import ThrustDiagram
 from compas_tna.equilibrium.diagrams import update_z
 from compas_tna.loads import LoadUpdater
 
-# Make common numerical data object for all structural packages.
-#
-
 
 class InteractiveScaleHorizontal:
     def __init__(
