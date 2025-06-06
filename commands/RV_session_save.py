@@ -1,6 +1,8 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.9.0
+# r: compas_rv>=0.9.1
+
+import pathlib
 
 from compas_rui.forms import FileForm
 from compas_rv.session import RVSession
@@ -9,7 +11,8 @@ from compas_rv.session import RVSession
 def RunCommand():
     session = RVSession()
 
-    filepath = FileForm.save(str(session.basedir), "RhinoVAULT.json")
+    basedir = session.basedir or pathlib.Path().home()
+    filepath = FileForm.save(str(basedir), "RhinoVAULT.json")
     if not filepath:
         return
 
