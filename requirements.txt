@@ -1,9 +1,9 @@
-compas >=2.12
+compas >=2.13
 compas_cgal
 compas_dem
 compas_libigl
 compas_rui >=0.5.0
-compas_session >=0.4.5
+compas_session >=0.5.5
 compas_skeleton
 compas_tna >=0.5
 compas_triangle>=1.2.1
