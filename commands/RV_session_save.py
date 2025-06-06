@@ -9,7 +9,7 @@ from compas_rv.session import RVSession
 def RunCommand():
     session = RVSession()
 
-    filepath = FileForm.save(session.basedir, "RhinoVAULT.json")
+    filepath = FileForm.save(str(session.basedir), "RhinoVAULT.json")
     if not filepath:
         return
 

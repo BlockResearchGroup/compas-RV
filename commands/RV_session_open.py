@@ -9,7 +9,7 @@ from compas_rv.session import RVSession
 def RunCommand():
     session = RVSession()
 
-    filepath = FileForm.open(session.basedir)
+    filepath = FileForm.open(str(session.basedir))
     if not filepath:
         return
 
