@@ -8,7 +8,7 @@
   "id": "a6dc4669-0e8e-40ea-8d71-b9b0f4764ec1",
   "identity": {
     "name": "COMPAS-RhinoVAULT",
-    "version": "0.6.22",
+    "version": "0.6.27",
     "publisher": {
       "email": "tom.v.mele@gmail.com",
       "name": "Tom Van Mele",
@@ -609,6 +609,24 @@
           }
         }
       }
+    },
+    {
+      "id": "82655369-f673-4500-9cae-0395ad799563",
+      "language": {
+        "id": "*.*.python",
+        "version": "3.*.*"
+      },
+      "title": "RV_session_export",
+      "uri": "commands/RV_session_export.py"
+    },
+    {
+      "id": "04e977e4-9c76-46a1-8378-a7d5eb00a25a",
+      "language": {
+        "id": "*.*.python",
+        "version": "3.*.*"
+      },
+      "title": "RV_thrust_info",
+      "uri": "commands/RV_thrust_info.py"
     }
   ],
   "resources": [
