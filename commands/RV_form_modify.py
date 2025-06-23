@@ -43,7 +43,7 @@ def RunCommand():
             return
 
         if thrust:
-            thrust.show_vertices = False
+            thrust.show_vertices = False  # type: ignore
             thrust.redraw_vertices()
 
         if action == "Add":
@@ -74,7 +74,7 @@ def RunCommand():
 
     elif option == "BoundarySupports":
         if thrust:
-            thrust.show_vertices = False
+            thrust.show_vertices = False  # type: ignore
             thrust.redraw_vertices()
 
         form.show_vertices = list(form.diagram.vertices_where(is_support=True, is_vertex_internal=False))
@@ -161,7 +161,7 @@ def RunCommand():
         forcediagram.update_angle_deviations()
         # forcediagram.solve_fd()  # this is very experimental
 
-        force.diagram = forcediagram
+        force.diagram = forcediagram  # type: ignore
 
     # =============================================================================
     # Update scene
@@ -177,9 +177,9 @@ def RunCommand():
     form.show_faces = False
 
     if RECREATE_FORCE:
-        force.show_edges = True
-        force.show_faces = False
-        force.show_vertices = True
+        force.show_edges = True  # type: ignore
+        force.show_faces = False  # type: ignore
+        force.show_vertices = True  # type: ignore
 
     session.scene.redraw()
 

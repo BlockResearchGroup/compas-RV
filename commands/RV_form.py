@@ -54,8 +54,8 @@ def RunCommand():
 
     pattern.show = False
 
-    session.scene.add(formdiagram, name=formdiagram.name)
-    session.scene.add(thrustdiagram, name=thrustdiagram.name, show=False)
+    session.scene.add(formdiagram, name=formdiagram.name)  # type: ignore
+    session.scene.add(thrustdiagram, name=thrustdiagram.name, show=False)  # type: ignore
     session.scene.redraw()
     rs.Redraw()
 
