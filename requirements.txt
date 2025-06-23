@@ -6,4 +6,4 @@ compas_rui >=0.5.0
 compas_session >=0.5.5
 compas_skeleton
 compas_tna >=0.5
-compas_triangle>=1.2.1
+compas_triangle >=1.2.1
