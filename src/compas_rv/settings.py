@@ -38,6 +38,7 @@ class DrawingSettings(BaseModel):
 
 class RVSettings(Settings):
     autoupdate: bool = False
+    autosave: bool = True
 
     tna: TNASettings = TNASettings()
     drawing: DrawingSettings = DrawingSettings()
