@@ -7,3 +7,4 @@ compas_session >=0.5.5
 compas_skeleton
 compas_tna >=0.5
 compas_triangle >=1.2.1
+tessagon

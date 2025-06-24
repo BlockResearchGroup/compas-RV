@@ -1,12 +1,14 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.9.2
+# r: compas_rv>=0.9.2, tessagon
 
 import rhinoscriptsyntax as rs  # type: ignore
 from compas_dem.models import BlockModel
 from compas_libigl.mapping import TESSAGON_TYPES
 
+import compas_rhino.layers
 from compas.datastructures import Mesh
+from compas.scene import Scene
 from compas_rv.session import RVSession
 
 
@@ -42,10 +44,16 @@ def RunCommand():
     # Scene
     # =============================================================================
 
-    for block in model.blocks():
-        session.scene.add(block.modelgeometry)
+    compas_rhino.layers.clear_layer("RV::DEM")
 
-    session.scene.redraw()
+    scene = Scene()
+
+    for block in model.blocks():
+        scene.add(block.modelgeometry, layer="RV::DEM", disjoint=True)
+
+    scene.draw()
+
+    del scene
 
     # =============================================================================
     # Autosave

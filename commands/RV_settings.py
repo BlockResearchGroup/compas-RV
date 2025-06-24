@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.9.2
+# r: compas_rv>=0.9.2, tessagon
 
 import rhinoscriptsyntax as rs  # type: ignore
 from pydantic import BaseModel
