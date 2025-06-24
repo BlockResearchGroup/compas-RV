@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.9.1
+# r: compas_rv>=0.9.2
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -70,10 +70,10 @@ def RunCommand():
             force.diagram.attributes["scale"] = scalehorizontal.scale
 
             for index, vertex in enumerate(thrust.diagram.vertices()):
-                thrust.diagram.vertex_attribute(vertex, "z", scalehorizontal.numdata.xyz[index, 2])
+                thrust.diagram.vertex_attribute(vertex, "z", scalehorizontal.numdata.xyz[index, 2])  # type: ignore
 
             for index, edge in enumerate(thrust.diagram.edges_where(_is_edge=True)):
-                q = scalehorizontal.scale * scalehorizontal.numdata.q[index, 0]
+                q = scalehorizontal.scale * scalehorizontal.numdata.q[index, 0]  # type: ignore
                 form.diagram.edge_attribute(edge, "q", q)
                 thrust.diagram.edge_attribute(edge, "q", q)
 
@@ -92,7 +92,7 @@ def RunCommand():
     form.show_vertices = True
     form.redraw_vertices()
 
-    thrust.show_vertices = True
+    thrust.show_vertices = True  # type: ignore
     thrust.show_free = False
     thrust.show_fixed = True
     thrust.show_supports = True
