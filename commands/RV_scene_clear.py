@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.9.2, tessagon
+# r: compas_rv>=0.9.3, tessagon
 
 from compas_rv.session import RVSession
 
