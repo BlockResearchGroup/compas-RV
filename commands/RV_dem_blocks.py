@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.9.3, tessagon
+# r: compas_rv>=0.9.4
 
 import rhinoscriptsyntax as rs  # type: ignore
 from compas_dem.models import BlockModel
@@ -49,7 +49,7 @@ def RunCommand():
     scene = Scene()
 
     for block in model.blocks():
-        scene.add(block.modelgeometry, layer="RV::DEM", disjoint=True)
+        scene.add(block.modelgeometry, layer="RV::DEM", disjoint=True)  # type: ignore
 
     scene.draw()
 

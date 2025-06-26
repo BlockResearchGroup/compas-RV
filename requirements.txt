@@ -1,7 +1,7 @@
 compas >=2.13
-compas_cgal
+compas_cgal >=0.9.1
 compas_dem >=0.3.1
-compas_libigl >=0.7.3
+compas_libigl >=0.7.4
 compas_rui >=0.5.1
 compas_session >=0.5.5
 compas_skeleton
