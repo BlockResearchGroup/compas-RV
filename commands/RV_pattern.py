@@ -111,7 +111,7 @@ def RunCommand():
     # Update scene
     # =============================================================================
 
-    session.scene.add(pattern, name=pattern.name)  # type: ignore
+    session.scene.add(pattern, name=pattern.name, layer="RhinoVAULT::Pattern")  # type: ignore
     session.scene.draw()
 
     print("Pattern successfully created.")

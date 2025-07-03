@@ -5,7 +5,8 @@
 import rhinoscriptsyntax as rs  # type: ignore
 
 from compas_rv.session import RVSession
-from compas_rv.solvers import InteractiveScaleHorizontal
+from compas_rv.solvers import update_force_from_form
+from compas_tna.equilibrium import vertical_from_zmax
 
 
 def RunCommand():
@@ -30,9 +31,12 @@ def RunCommand():
     # Modify pattern vertices
     # =============================================================================
 
+    kmax = session.settings.tna.vertical_kmax
+    zmax = session.settings.tna.vertical_zmax
+
     rs.UnselectAllObjects()
 
-    options = ["VertexAttributes", "EdgeAttributes", "FaceAttributes", "MoveSupports", "ScaleForces"]
+    options = ["VertexAttributes", "EdgeAttributes", "FaceAttributes", "MoveSupports", "ScaleForceDensities"]
     option = rs.GetString("Modify the Thrust Diagram", strings=options)
     if not option:
         return
@@ -60,22 +64,37 @@ def RunCommand():
         if selected:
             thrust.move_vertices_direction(selected, direction="Z")
 
-    # interactively change the scale of the force diagram
-    # recompute vertical equilibrium accordingly
-    # use vertical_from_q
+    elif option == "ScaleForceDensities":
+        thrust.show_edges = list(thrust.diagram.edges_where(_is_edge=True))
+        thrust.redraw_edges()
+        selected = thrust.select_edges()
+        if selected:
+            selected = list(set(selected))
+            factor = rs.GetReal("Scale factor", number=1.0, minimum=0)
+            if not factor:
+                return
+            for edge in selected:
+                q = factor * thrust.diagram.edge_attribute(edge, "q")
 
-    elif option == "ScaleForces":
-        scalehorizontal = InteractiveScaleHorizontal(thrust.diagram)
-        if scalehorizontal():
-            force.diagram.attributes["scale"] = scalehorizontal.scale
-
-            for index, vertex in enumerate(thrust.diagram.vertices()):
-                thrust.diagram.vertex_attribute(vertex, "z", scalehorizontal.numdata.xyz[index, 2])  # type: ignore
-
-            for index, edge in enumerate(thrust.diagram.edges_where(_is_edge=True)):
-                q = scalehorizontal.scale * scalehorizontal.numdata.q[index, 0]  # type: ignore
                 form.diagram.edge_attribute(edge, "q", q)
-                thrust.diagram.edge_attribute(edge, "q", q)
+
+                form.diagram.solve_fd()
+                update_force_from_form(force.diagram, form.diagram)
+                _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax)
+                force.diagram.attributes["scale"] = scale
+                force.diagram.update_position()
+
+                for vertex in form.diagram.vertices():
+                    form_attr = form.diagram.vertex_attributes(vertex)
+                    thrust_attr = thrust.diagram.vertex_attributes(vertex)
+                    thrust_attr.update(form_attr)  # type: ignore
+
+                for edge in form.diagram.edges():
+                    form_attr = form.diagram.edge_attributes(edge)
+                    thrust_attr = thrust.diagram.edge_attributes(edge)
+                    thrust_attr.update(form_attr)  # type: ignore
+
+                form.diagram.vertices_attribute(name="z", value=0)
 
     else:
         raise NotImplementedError
@@ -90,7 +109,16 @@ def RunCommand():
     rs.UnselectAllObjects()
 
     form.show_vertices = True
-    form.redraw_vertices()
+    form.show_free = False
+    form.show_fixed = True
+    form.show_supports = True
+    form.show_edges = True
+
+    force.show_vertices = True
+    force.show_free = False
+    force.show_fixed = True
+    force.show_supports = True
+    force.show_edges = True
 
     thrust.show_vertices = True  # type: ignore
     thrust.show_free = False
@@ -98,7 +126,7 @@ def RunCommand():
     thrust.show_supports = True
     thrust.show_edges = False
 
-    thrust.redraw()
+    session.scene.redraw()
 
     if session.settings.autosave:
         session.record(name="Modify Thrust Diagram")

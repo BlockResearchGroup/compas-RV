@@ -8,7 +8,7 @@
   "id": "a6dc4669-0e8e-40ea-8d71-b9b0f4764ec1",
   "identity": {
     "name": "COMPAS-RhinoVAULT",
-    "version": "0.6.35",
+    "version": "0.6.44",
     "publisher": {
       "email": "tom.v.mele@gmail.com",
       "name": "Tom Van Mele",
@@ -636,6 +636,15 @@
       },
       "title": "RV_dem_blocks",
       "uri": "commands/RV_dem_blocks.py"
+    },
+    {
+      "id": "f2ffb9b6-2616-48a2-818b-9d512ac0a3f3",
+      "language": {
+        "id": "*.*.python",
+        "version": "3.*.*"
+      },
+      "title": "RV_form_solve",
+      "uri": "commands/RV_form_solve.py"
     }
   ],
   "resources": [

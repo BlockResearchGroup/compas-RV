@@ -54,8 +54,15 @@ def RunCommand():
 
     force.diagram.attributes["scale"] = scale
 
-    thrustdiagram: ThrustDiagram = form.diagram.copy(cls=ThrustDiagram)
-    thrustdiagram.name = "ThrustDiagram"
+    for vertex in form.diagram.vertices():
+        form_attr = form.diagram.vertex_attributes(vertex)
+        thrust_attr = thrust.diagram.vertex_attributes(vertex)
+        thrust_attr.update(form_attr)  # type: ignore
+
+    for edge in form.diagram.edges():
+        form_attr = form.diagram.edge_attributes(edge)
+        thrust_attr = thrust.diagram.edge_attributes(edge)
+        thrust_attr.update(form_attr)  # type: ignore
 
     # flatten the formdiagram again
     form.diagram.vertices_attribute(name="z", value=0)
@@ -69,7 +76,6 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    thrust.diagram = thrustdiagram
     thrust.redraw()
 
     print("Vertical equilibrium found!")

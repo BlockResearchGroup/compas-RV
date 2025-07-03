@@ -44,12 +44,12 @@ def RunCommand():
     # Scene
     # =============================================================================
 
-    compas_rhino.layers.clear_layer("RV::DEM")
+    compas_rhino.layers.clear_layer("RhinoVAULT::DEM")
 
     scene = Scene()
 
     for block in model.blocks():
-        scene.add(block.modelgeometry, layer="RV::DEM", disjoint=True)  # type: ignore
+        scene.add(block.modelgeometry, layer="RhinoVAULT::DEM", disjoint=True)  # type: ignore
 
     scene.draw()
 

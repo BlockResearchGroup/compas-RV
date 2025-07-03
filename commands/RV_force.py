@@ -41,7 +41,7 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    session.scene.add(forcediagram, name=forcediagram.name)  # type: ignore
+    session.scene.add(forcediagram, name=forcediagram.name, layer="RhinoVAULT::ForceDiagram")  # type: ignore
     session.scene.redraw()
 
     rs.Redraw()

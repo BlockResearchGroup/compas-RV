@@ -98,9 +98,9 @@ def RunCommand():
 
         conduit = HorizontalConduit([], refreshrate=refresh)
         with conduit.enabled():
-            horizontal_nodal(form.diagram, force.diagram, kmax=kmax, alpha=alpha, callback=redraw)
+            horizontal_nodal(form.diagram, force.diagram, kmax=kmax, alpha=alpha, callback=redraw)  # type: ignore
     else:
-        horizontal_nodal(form.diagram, force.diagram, kmax=kmax, alpha=alpha)
+        horizontal_nodal(form.diagram, force.diagram, kmax=kmax, alpha=alpha)  # type: ignore
 
     force.diagram.update_position()
 
@@ -108,7 +108,8 @@ def RunCommand():
     # Update scene
     # =============================================================================
 
-    max_angle = max(form.diagram.edges_attribute("_a"))
+    angles: list[float] = form.diagram.edges_attribute("_a")  # type: ignore
+    max_angle = max(angles)
     tol_angles = session.settings.tna.horizontal_max_angle
 
     if max_angle < tol_angles:

@@ -54,8 +54,8 @@ def RunCommand():
 
     pattern.show = False
 
-    session.scene.add(formdiagram, name=formdiagram.name)  # type: ignore
-    session.scene.add(thrustdiagram, name=thrustdiagram.name, show=False)  # type: ignore
+    session.scene.add(formdiagram, name=formdiagram.name, layer="RhinoVAULT::FormDiagram")  # type: ignore
+    session.scene.add(thrustdiagram, name=thrustdiagram.name, show=False, layer="RhinoVAULT::ThrustDiagram")  # type: ignore
     session.scene.redraw()
     rs.Redraw()
 
