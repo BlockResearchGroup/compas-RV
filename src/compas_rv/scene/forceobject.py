@@ -9,7 +9,7 @@ from .diagramobject import RhinoDiagramObject
 
 class RhinoForceObject(RhinoDiagramObject):
     session = RVSession()
-    diagram: ForceDiagram
+    diagram: ForceDiagram  # type: ignore
 
     vertexcolor = ColorDictAttribute(default=Color.blue())
     edgecolor = ColorDictAttribute(default=Color.blue().darkened(50))
@@ -17,9 +17,9 @@ class RhinoForceObject(RhinoDiagramObject):
 
     def __init__(
         self,
-        vertexgroup="RV::ForceDiagram::Vertices",
-        edgegroup="RV::ForceDiagram::Edges",
-        facegroup="RV::ForceDiagram::Faces",
+        vertexgroup="RhinoVAULT::ForceDiagram::Vertices",
+        edgegroup="RhinoVAULT::ForceDiagram::Edges",
+        facegroup="RhinoVAULT::ForceDiagram::Faces",
         **kwargs,
     ):
         super().__init__(

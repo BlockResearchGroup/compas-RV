@@ -1,3 +1,5 @@
+from typing import Optional
+
 import Rhino  # type: ignore
 import rhinoscriptsyntax as rs  # type: ignore
 import scriptcontext as sc  # type: ignore
@@ -51,39 +53,37 @@ class RhinoDiagramObject(RUIMeshObject):
 
     @property
     def diagram(self) -> Diagram:
-        return self.mesh
+        return self.mesh  # type: ignore
 
     @diagram.setter
     def diagram(self, diagram: Diagram) -> None:
         self.mesh = diagram
 
-    def edges(self, **kwargs):
-        return self.diagram.edges(**kwargs)
+    def edges(self, **kwargs) -> list[tuple[int, int]]:
+        return self.diagram.edges(**kwargs)  # type: ignore
 
-    def faces(self, **kwargs):
-        return self.diagram.faces(**kwargs)
+    def faces(self, **kwargs) -> list[int]:
+        return self.diagram.faces(**kwargs)  # type: ignore
 
-    def forces(self):
-        return self.diagram.edges_attribute("_f", keys=self.edges())
+    def forces(self) -> list[float]:
+        return self.diagram.edges_attribute("_f", keys=self.edges())  # type: ignore
 
-    def compute_edge_colors(self, tol=1e-3) -> None:
+    def compute_edge_colors(self, tol=1e-3) -> list[Color]:
         forces = self.forces()
         magnitudes = [abs(f) for f in forces]
         fmin = min(magnitudes)
         fmax = max(magnitudes)
 
-        if fmax - fmin < tol:
-            # size of the range of forces is already checked here
-            # no need to check again in the loop
-            return
-
         colors = []
 
-        for force, magnitude in zip(forces, magnitudes):
-            # this will need to be updated once we allow for tension forces
-            # or we have to exclude tension forces from the calculation
-            # and give tension edges their own style
-            colors.append(Color.from_i((magnitude - fmin) / (fmax - fmin)))
+        if fmax - fmin >= tol:
+            # size of the range of forces is already checked here
+            # no need to check again in the loop
+            for magnitude in magnitudes:
+                # this will need to be updated once we allow for tension forces
+                # or we have to exclude tension forces from the calculation
+                # and give tension edges their own style
+                colors.append(Color.from_i((magnitude - fmin) / (fmax - fmin)))
 
         return colors
 

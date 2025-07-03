@@ -14,7 +14,7 @@ def update_force_from_form(force: ForceDiagram, form: FormDiagram):
     xy = np.array(form.vertices_attributes("xy"), dtype=np.float64)
     edges = [[vertex_index[u], vertex_index[v]] for u, v in form.edges_where(_is_edge=True)]
     C: sps.csr_matrix = connectivity_matrix(edges, "csr")
-    Q = sps.diags([form.edges_attribute("q", keys=list(form.edges_where(_is_edge=True)))], [0])
+    Q = sps.diags([form.edges_attribute("q", keys=list(form.edges_where(_is_edge=True)))], [0])  # type: ignore
     uv = C.dot(xy)
 
     _vertex_index = force.vertex_index()
@@ -35,5 +35,5 @@ def update_force_from_form(force: ForceDiagram, form: FormDiagram):
 
     for vertex, attr in force.vertices(True):
         index = _vertex_index[vertex]
-        attr["x"] = _xy[index, 0]
-        attr["y"] = _xy[index, 1]
+        attr["x"] = _xy[index, 0]  # type: ignore
+        attr["y"] = _xy[index, 1]  # type: ignore

@@ -7,7 +7,7 @@ class Diagram(Mesh):
     Base data structure for form, force and thrust diagrams.
     """
 
-    def edge_loop(self, uv):
+    def edge_loop(self, edge):
         """
         Identify all edges on the same loop as a given edge.
         This implementation is different than the base implmentation in the mesh data structure,
@@ -15,7 +15,7 @@ class Diagram(Mesh):
 
         Parameters
         ----------
-        uv : tuple[int, int]
+        edge : tuple[int, int]
             The identifier of the edge.
 
         Returns
@@ -24,8 +24,8 @@ class Diagram(Mesh):
             A list of edge identifiers.
 
         """
-        u, v = uv
-        f1, f2 = self.edge_faces(uv)
+        u, v = edge
+        f1, f2 = self.edge_faces(edge)
 
         if f1 is not None and not self.face_attribute(f1, "_is_loaded"):
             loop = []
@@ -91,7 +91,7 @@ class Diagram(Mesh):
         None
 
         """
-        self.smooth_area(self, fixed=fixed, kmax=kmax)
+        self.smooth_area(fixed=fixed, kmax=kmax)
 
     def corner_vertices(self, tol=160):
         """
@@ -116,10 +116,10 @@ class Diagram(Mesh):
             else:
                 nbrs = []
                 for nkey in self.vertex_neighbors(key):
-                    if self.is_edge_on_boundary(key, nkey):
+                    if self.is_edge_on_boundary((key, nkey)):
                         nbrs.append(nkey)
-                u = self.edge_vector(key, nbrs[0])
-                v = self.edge_vector(key, nbrs[1])
+                u = self.edge_vector((key, nbrs[0]))
+                v = self.edge_vector((key, nbrs[1]))
                 if angle_vectors(u, v, deg=True) < tol:
                     vkeys.append(key)
         return vkeys

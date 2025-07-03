@@ -1,13 +1,13 @@
 from compas.geometry import scale_vector
 from compas.geometry import sum_vectors
 from compas_fd.solvers import fd_numpy
-from compas_tna.diagrams import FormDiagram
+from compas_tna.diagrams import FormDiagram as BaseFormDiagram
 
 from .diagram import Diagram
 from .pattern import Pattern
 
 
-class FormDiagram(Diagram, FormDiagram):
+class FormDiagram(Diagram, BaseFormDiagram):
     """
     Data structure for form diagrams.
     """
@@ -77,17 +77,18 @@ class FormDiagram(Diagram, FormDiagram):
 
         """
         vertex_index = self.vertex_index()
-        xyz = self.vertices_attributes("xyz")
+        xyz: list[list[float]] = self.vertices_attributes("xyz")  # type: ignore
         loads = [[0.0, 0.0, 0.0] for _ in xyz]
         fixed = [vertex_index[key] for key in self.vertices_where(is_support=True)]
         fixed += [vertex_index[key] for key in self.vertices_where(is_fixed=True)]
         edges = list(self.edges_where(_is_edge=True))
-        q = self.edges_attribute("q", keys=edges)
+        q: list[float] = self.edges_attribute("q", keys=edges)  # type: ignore
         edges = [(vertex_index[u], vertex_index[v]) for u, v in edges]
         result = fd_numpy(vertices=xyz, fixed=fixed, edges=edges, forcedensities=q, loads=loads)
-        for key in self.vertices():
-            index = vertex_index[key]
-            self.vertex_attributes(key, "xyz", result.vertices[index])
+        for vertex in self.vertices():
+            index = vertex_index[vertex]
+            self.vertex_attributes(vertex, "xyz", result.vertices[index])
+            self.vertex_attributes(vertex, ["_rx", "_ry", "_rz"], result.residuals[index])
 
     def flip_cycles_if_normal_down(self):
         """Flip the cycles of the diagram if the average normal points downward."""

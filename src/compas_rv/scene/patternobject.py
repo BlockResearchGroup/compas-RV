@@ -18,9 +18,9 @@ class RhinoPatternObject(RUIMeshObject):
     def __init__(
         self,
         disjoint=True,
-        vertexgroup="RV::FormDiagram::Vertices",
-        edgegroup="RV::FormDiagram::Edges",
-        facegroup="RV::FormDiagram::Faces",
+        vertexgroup="RhinoVAULT::FormDiagram::Vertices",
+        edgegroup="RhinoVAULT::FormDiagram::Edges",
+        facegroup="RhinoVAULT::FormDiagram::Faces",
         **kwargs,
     ):
         super().__init__(

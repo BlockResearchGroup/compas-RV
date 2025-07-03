@@ -8,7 +8,7 @@ from .diagramobject import RhinoDiagramObject
 
 class RhinoFormObject(RhinoDiagramObject):
     session = RVSession()
-    diagram: FormDiagram
+    diagram: FormDiagram  # type: ignore
 
     vertexcolor = ColorDictAttribute(default=Color.green())
     edgecolor = ColorDictAttribute(default=Color.green().darkened(50))
@@ -16,15 +16,17 @@ class RhinoFormObject(RhinoDiagramObject):
 
     def __init__(
         self,
-        vertexgroup="RV::FormDiagram::Vertices",
-        edgegroup="RV::FormDiagram::Edges",
-        facegroup="RV::FormDiagram::Faces",
+        vertexgroup="RhinoVAULT::FormDiagram::Vertices",
+        edgegroup="RhinoVAULT::FormDiagram::Edges",
+        facegroup="RhinoVAULT::FormDiagram::Faces",
+        layer="RhinoVAULT::FormDiagram",
         **kwargs,
     ):
         super().__init__(
             vertexgroup=vertexgroup,
             edgegroup=edgegroup,
             facegroup=facegroup,
+            layer=layer,
             **kwargs,
         )
 
@@ -32,7 +34,7 @@ class RhinoFormObject(RhinoDiagramObject):
     # Properties
     # =============================================================================
 
-    def edges(self):
+    def edges(self, **kwargs):
         return self.diagram.edges_where(_is_edge=True)
 
     def faces(self, **kwargs):
