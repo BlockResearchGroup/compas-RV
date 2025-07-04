@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.9.4
+# r: compas_rv>=0.9.5
 
 import rhinoscriptsyntax as rs  # type: ignore
 from compas_dem.models import BlockModel
