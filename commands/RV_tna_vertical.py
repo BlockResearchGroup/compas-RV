@@ -5,7 +5,6 @@
 
 import rhinoscriptsyntax as rs  # type: ignore
 
-from compas_rv.datastructures import ThrustDiagram
 from compas_rv.session import RVSession
 from compas_tna.equilibrium import vertical_from_zmax
 

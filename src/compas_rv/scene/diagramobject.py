@@ -1,5 +1,3 @@
-from typing import Optional
-
 import Rhino  # type: ignore
 import rhinoscriptsyntax as rs  # type: ignore
 import scriptcontext as sc  # type: ignore

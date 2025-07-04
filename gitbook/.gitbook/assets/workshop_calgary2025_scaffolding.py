@@ -1,32 +1,28 @@
 #! python3
 # venv: brg-csd
 
-import compas_rhino.objects
-import compas_rhino.conversions
-from compas.datastructures import Mesh
-from compas.scene import Scene
-from compas.geometry import (
-    Translation,
-    Point,
-    Polyline,
-    Vector,
-    Line,
-    distance_point_point,
-    Polygon,
-    Frame,
-    Transformation,
-    bounding_box,
-    Box,
-    Plane,
-    intersection_polyline_plane,
-    midpoint_point_point,
-)
-from compas import json_dump
-import pathlib
-import Rhino
-import rhinoscriptsyntax as rs
 from math import ceil
+
+import rhinoscriptsyntax as rs
+
+import compas_rhino.conversions
+import compas_rhino.objects
+from compas.datastructures import Mesh
+from compas.geometry import Box
+from compas.geometry import Frame
+from compas.geometry import Line
+from compas.geometry import Plane
+from compas.geometry import Point
+from compas.geometry import Polygon
+from compas.geometry import Polyline
+from compas.geometry import Transformation
+from compas.geometry import Translation
+from compas.geometry import Vector
+from compas.geometry import bounding_box
+from compas.geometry import intersection_polyline_plane
+from compas.geometry import midpoint_point_point
 from compas.geometry import trimesh_slice
+from compas.scene import Scene
 
 DIVISION_DISTANCE_U = 50
 DIVISION_DISTANCE_V = 50
