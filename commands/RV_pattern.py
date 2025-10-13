@@ -11,11 +11,6 @@ from compas_rv.commands import make_pattern_from_rhinosurface
 from compas_rv.commands import make_pattern_from_skeleton
 from compas_rv.commands import make_pattern_from_triangulation
 from compas_rv.commands import make_pattern_from_template
-from compas_rv.patterns.circular import create_circular_radial_pattern
-from compas_rv.patterns.circular import create_circular_radial_spaced_pattern
-from compas_rv.patterns.circular import create_circular_spiral_pattern
-from compas_rv.patterns.rectangular import create_cross_pattern
-from compas_rv.patterns.rectangular import create_fan_pattern
 from compas_rv.session import RVSession
 
 

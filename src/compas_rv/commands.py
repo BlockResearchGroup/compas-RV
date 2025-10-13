@@ -9,7 +9,6 @@ from compas_triangle.rhino import discretise_constraints
 import compas_rhino
 import compas_rhino.conversions
 import compas_rhino.objects
-from compas.datastructures import Mesh
 from compas.geometry import NurbsCurve
 from compas.geometry import Point
 from compas_rv.datastructures import Pattern
@@ -268,7 +267,7 @@ def make_pattern_radial() -> Optional[Pattern]:
         n_hoops=rings,
         n_parallels=radials,
         r_oculus=oculus,
-    ).copy(cls=Pattern)  # type: ignore
+    ).copy(cls=Pattern)
 
     return pattern
 
@@ -300,7 +299,7 @@ def make_pattern_radial_spaced() -> Optional[Pattern]:
         n_hoops=rings,
         n_parallels=radials,
         r_oculus=oculus,
-    ).copy(cls=Pattern)  # type: ignore
+    ).copy(cls=Pattern)
 
     return pattern
 
@@ -332,7 +331,7 @@ def make_pattern_spiral() -> Optional[Pattern]:
         n_hoops=rings,
         n_parallels=radials,
         r_oculus=oculus,
-    ).copy(cls=Pattern)  # type: ignore
+    ).copy(cls=Pattern)
 
     return pattern
 
@@ -361,7 +360,7 @@ def make_pattern_cross() -> Optional[Pattern]:
         x_span=x_span,
         y_span=y_span,
         n=n,
-    ).copy(cls=Pattern)  # type: ignore
+    ).copy(cls=Pattern)
 
     return pattern
 
@@ -395,7 +394,7 @@ def make_pattern_fan() -> Optional[Pattern]:
         y_span=y_span,
         n_fans=n_fans,
         n_hoops=n_hoops,
-    ).copy(cls=Pattern)  # type: ignore
+    ).copy(cls=Pattern)
 
     return pattern
 
@@ -429,7 +428,7 @@ def make_pattern_ortho() -> Optional[Pattern]:
         y_span=y_span,
         nx=nx,
         ny=ny,
-    ).copy(cls=Pattern)  # type: ignore
+    ).copy(cls=Pattern)
 
     return pattern
 
@@ -463,6 +462,6 @@ def make_pattern_parametric() -> Optional[Pattern]:
         y_span=y_span,
         n=n,
         lambd=lambd,
-    ).copy(cls=Pattern)  # type: ignore
+    ).copy(cls=Pattern)
 
     return pattern
