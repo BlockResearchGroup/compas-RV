@@ -22,8 +22,8 @@ from compas_tna.diagrams.diagram_rectangular import create_ortho_mesh
 from compas_tna.diagrams.diagram_rectangular import create_parametric_fan_mesh
 
 
-def get_location():
-    option = rs.GetString("Pattern Location", strings=["Origin", "Coordinates", "Point"])
+def get_location(message="Select location for pattern corner"):
+    option = rs.GetString(message, strings=["Origin", "Coordinates", "Point"])
     if not option:
         return
 
@@ -242,7 +242,7 @@ def make_pattern_from_template() -> Optional[Pattern]:
 
 
 def make_pattern_radial() -> Optional[Pattern]:
-    center = get_location()
+    center = get_location(message="Select location for pattern center")
     if not center:
         return
 
@@ -250,11 +250,11 @@ def make_pattern_radial() -> Optional[Pattern]:
     if not radius:
         return
 
-    rings = rs.GetInteger("Rings", 8, 4, 32)
+    rings = rs.GetInteger("Rings", 12, 4, 100)
     if not rings:
         return
 
-    radials = rs.GetInteger("Radials", 24, 12, 64)
+    radials = rs.GetInteger("Radials", 24, 12, 100)
     if not radials:
         return
 
@@ -274,19 +274,19 @@ def make_pattern_radial() -> Optional[Pattern]:
 
 
 def make_pattern_radial_spaced() -> Optional[Pattern]:
-    center = get_location()
+    center = get_location(message="Select location for pattern center")
     if not center:
         return
 
-    radius = rs.GetReal("Radius", number=1.0, minimum=0.0)
+    radius = rs.GetReal("Radius", number=5.0, minimum=0.0)
     if not radius:
         return
 
-    rings = rs.GetInteger("Rings", 8, 4, 32)
+    rings = rs.GetInteger("Rings", 12, 4, 100)
     if not rings:
         return
 
-    radials = rs.GetInteger("Radials", 24, 12, 64)
+    radials = rs.GetInteger("Radials", 24, 12, 100)
     if not radials:
         return
 
@@ -306,19 +306,19 @@ def make_pattern_radial_spaced() -> Optional[Pattern]:
 
 
 def make_pattern_spiral() -> Optional[Pattern]:
-    center = get_location()
+    center = get_location(message="Select location for pattern center")
     if not center:
         return
 
-    radius = rs.GetReal("Radius", number=1.0, minimum=0.0)
+    radius = rs.GetReal("Radius", number=5.0, minimum=0.0)
     if not radius:
         return
 
-    rings = rs.GetInteger("Rings", 8, 4, 32)
+    rings = rs.GetInteger("Rings", 12, 4, 100)
     if not rings:
         return
 
-    radials = rs.GetInteger("Radials", 24, 12, 64)
+    radials = rs.GetInteger("Radials", 24, 12, 100)
     if not radials:
         return
 
