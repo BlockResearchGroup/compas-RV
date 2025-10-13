@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* Added new functions to make patterns that import from compas_tna
+
 ### Changed
 
 ### Removed

@@ -10,6 +10,7 @@ from compas_rv.commands import make_pattern_from_rhinomesh
 from compas_rv.commands import make_pattern_from_rhinosurface
 from compas_rv.commands import make_pattern_from_skeleton
 from compas_rv.commands import make_pattern_from_triangulation
+from compas_rv.commands import make_pattern_from_template
 from compas_rv.patterns.circular import create_circular_radial_pattern
 from compas_rv.patterns.circular import create_circular_radial_spaced_pattern
 from compas_rv.patterns.circular import create_circular_spiral_pattern
@@ -75,34 +76,7 @@ def RunCommand():
         raise NotImplementedError
 
     elif option == "Template":
-        option2 = rs.GetString(
-            message="Template Name",
-            strings=[
-                "Radial",
-                "RadialSpaced",
-                "Spiral",
-                "Cross",
-                "Fan",
-            ],
-        )
-
-        if option2 == "Radial":
-            pattern = create_circular_radial_pattern()
-
-        elif option2 == "RadialSpaced":
-            pattern = create_circular_radial_spaced_pattern()
-
-        elif option2 == "Spiral":
-            pattern = create_circular_spiral_pattern()
-
-        elif option2 == "Cross":
-            pattern = create_cross_pattern()
-
-        elif option2 == "Fan":
-            pattern = create_fan_pattern()
-
-        else:
-            raise NotImplementedError
+        pattern = make_pattern_from_template()
 
     else:
         return

@@ -9,9 +9,47 @@ from compas_triangle.rhino import discretise_constraints
 import compas_rhino
 import compas_rhino.conversions
 import compas_rhino.objects
+from compas.datastructures import Mesh
 from compas.geometry import NurbsCurve
 from compas.geometry import Point
 from compas_rv.datastructures import Pattern
+from compas_tna.diagrams.diagram_circular import create_circular_radial_mesh
+from compas_tna.diagrams.diagram_circular import create_circular_radial_spaced_mesh
+from compas_tna.diagrams.diagram_circular import create_circular_spiral_mesh
+from compas_tna.diagrams.diagram_rectangular import create_cross_mesh
+from compas_tna.diagrams.diagram_rectangular import create_fan_mesh
+from compas_tna.diagrams.diagram_rectangular import create_ortho_mesh
+from compas_tna.diagrams.diagram_rectangular import create_parametric_fan_mesh
+
+
+def get_location():
+    option = rs.GetString("Pattern Location", strings=["Origin", "Coordinates", "Point"])
+    if not option:
+        return
+
+    if option == "Origin":
+        point = (0, 0)
+
+    elif option == "Coordinates":
+        x = rs.GetReal("X", 0.0, -1000.0, 1000.0)
+        if x is None:
+            return
+
+        y = rs.GetReal("Y", 0.0, -1000.0, 1000.0)
+        if y is None:
+            return
+
+        point = (x, y)
+
+    elif option == "Point":
+        point = rs.GetPoint("Point")
+        if not point:
+            return
+
+    else:
+        raise NotImplementedError
+
+    return point[0], point[1]
 
 
 def make_pattern_from_rhinolines() -> Optional[Pattern]:
@@ -163,5 +201,268 @@ def make_pattern_from_skeleton() -> Optional[Pattern]:
     skeleton.leaf_angle = angle
     skeleton.density = density
     pattern = skeleton.pattern.copy(cls=Pattern)
+
+    return pattern
+
+
+def make_pattern_from_template() -> Optional[Pattern]:
+    option = rs.GetString(
+        message="Template Name",
+        strings=[
+            "Radial",
+            "RadialSpaced",
+            "Spiral",
+            "Cross",
+            "Fan",
+            "Ortho",
+            "Parametric",
+        ],
+    )
+    if not option:
+        return
+
+    if option == "Radial":
+        pattern = make_pattern_radial()
+    elif option == "RadialSpaced":
+        pattern = make_pattern_radial_spaced()
+    elif option == "Spiral":
+        pattern = make_pattern_spiral()
+    elif option == "Cross":
+        pattern = make_pattern_cross()
+    elif option == "Fan":
+        pattern = make_pattern_fan()
+    elif option == "Ortho":
+        pattern = make_pattern_ortho()
+    elif option == "Parametric":
+        pattern = make_pattern_parametric()
+    else:
+        NotImplementedError
+
+    return pattern
+
+
+def make_pattern_radial() -> Optional[Pattern]:
+    center = get_location()
+    if not center:
+        return
+
+    radius = rs.GetReal("Radius", number=1.0, minimum=0.0)
+    if not radius:
+        return
+
+    rings = rs.GetInteger("Rings", 8, 4, 32)
+    if not rings:
+        return
+
+    radials = rs.GetInteger("Radials", 24, 12, 64)
+    if not radials:
+        return
+
+    oculus = rs.GetReal("Oculus", number=0.3, minimum=0.0)
+    if not oculus:
+        return
+
+    pattern = create_circular_radial_mesh(
+        center=center,
+        radius=radius,
+        n_hoops=rings,
+        n_parallels=radials,
+        r_oculus=oculus,
+    ).copy(cls=Pattern)  # type: ignore
+
+    return pattern
+
+
+def make_pattern_radial_spaced() -> Optional[Pattern]:
+    center = get_location()
+    if not center:
+        return
+
+    radius = rs.GetReal("Radius", number=1.0, minimum=0.0)
+    if not radius:
+        return
+
+    rings = rs.GetInteger("Rings", 8, 4, 32)
+    if not rings:
+        return
+
+    radials = rs.GetInteger("Radials", 24, 12, 64)
+    if not radials:
+        return
+
+    oculus = rs.GetReal("Oculus", number=0.3, minimum=0.0)
+    if not oculus:
+        return
+
+    pattern = create_circular_radial_spaced_mesh(
+        center=center,
+        radius=radius,
+        n_hoops=rings,
+        n_parallels=radials,
+        r_oculus=oculus,
+    ).copy(cls=Pattern)  # type: ignore
+
+    return pattern
+
+
+def make_pattern_spiral() -> Optional[Pattern]:
+    center = get_location()
+    if not center:
+        return
+
+    radius = rs.GetReal("Radius", number=1.0, minimum=0.0)
+    if not radius:
+        return
+
+    rings = rs.GetInteger("Rings", 8, 4, 32)
+    if not rings:
+        return
+
+    radials = rs.GetInteger("Radials", 24, 12, 64)
+    if not radials:
+        return
+
+    oculus = rs.GetReal("Oculus", number=0.3, minimum=0.0)
+    if not oculus:
+        return
+
+    pattern = create_circular_spiral_mesh(
+        center=center,
+        radius=radius,
+        n_hoops=rings,
+        n_parallels=radials,
+        r_oculus=oculus,
+    ).copy(cls=Pattern)  # type: ignore
+
+    return pattern
+
+
+def make_pattern_cross() -> Optional[Pattern]:
+    point = get_location()
+    if not point:
+        return
+
+    x_size = rs.GetReal("X Size", 10, 0.0, 1000)
+    if not x_size:
+        return
+
+    y_size = rs.GetReal("Y Size", 10, 0.0, 1000)
+    if not y_size:
+        return
+
+    n = rs.GetInteger("Resolution", 10, 0)
+    if not n:
+        return
+
+    x_span = (point[0], point[0] + x_size)
+    y_span = (point[1], point[1] + y_size)
+
+    pattern = create_cross_mesh(
+        x_span=x_span,
+        y_span=y_span,
+        n=n,
+    ).copy(cls=Pattern)  # type: ignore
+
+    return pattern
+
+
+def make_pattern_fan() -> Optional[Pattern]:
+    point = get_location()
+    if not point:
+        return
+
+    x_size = rs.GetReal("X Size", 10, 0.0, 1000)
+    if not x_size:
+        return
+
+    y_size = rs.GetReal("Y Size", 10, 0.0, 1000)
+    if not y_size:
+        return
+
+    n_fans = rs.GetInteger("Number of Fans", 10, 2)
+    if not n_fans:
+        return
+
+    n_hoops = rs.GetInteger("Number of Hoops", n_fans, 2)
+    if not n_hoops:
+        return
+
+    x_span = (point[0], point[0] + x_size)
+    y_span = (point[1], point[1] + y_size)
+
+    pattern = create_fan_mesh(
+        x_span=x_span,
+        y_span=y_span,
+        n_fans=n_fans,
+        n_hoops=n_hoops,
+    ).copy(cls=Pattern)  # type: ignore
+
+    return pattern
+
+
+def make_pattern_ortho() -> Optional[Pattern]:
+    point = get_location()
+    if not point:
+        return
+
+    x_size = rs.GetReal("X Size", 10, 0.0, 1000)
+    if not x_size:
+        return
+
+    y_size = rs.GetReal("Y Size", 10, 0.0, 1000)
+    if not y_size:
+        return
+
+    nx = rs.GetInteger("Number of X Faces", 10, 2)
+    if not nx:
+        return
+
+    ny = rs.GetInteger("Number of Y Faces", nx, 2)
+    if not ny:
+        return
+
+    x_span = (point[0], point[0] + x_size)
+    y_span = (point[1], point[1] + y_size)
+
+    pattern = create_ortho_mesh(
+        x_span=x_span,
+        y_span=y_span,
+        nx=nx,
+        ny=ny,
+    ).copy(cls=Pattern)  # type: ignore
+
+    return pattern
+
+
+def make_pattern_parametric() -> Optional[Pattern]:
+    point = get_location()
+    if not point:
+        return
+
+    x_size = rs.GetReal("X Size", 10, 0.0, 1000)
+    if not x_size:
+        return
+
+    y_size = rs.GetReal("Y Size", 10, 0.0, 1000)
+    if not y_size:
+        return
+
+    n = rs.GetInteger("Resolution", 10, 2)
+    if not n:
+        return
+
+    lambd = rs.GetReal("Lambda Inclination [0-1]", number=0.5, minimum=0.0, maximum=1.0)
+    if lambd is None:
+        return
+
+    x_span = (point[0], point[0] + x_size)
+    y_span = (point[1], point[1] + y_size)
+
+    pattern = create_parametric_fan_mesh(
+        x_span=x_span,
+        y_span=y_span,
+        n=n,
+        lambd=lambd,
+    ).copy(cls=Pattern)  # type: ignore
 
     return pattern
