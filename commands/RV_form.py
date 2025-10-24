@@ -5,7 +5,6 @@
 import rhinoscriptsyntax as rs  # type: ignore
 
 from compas_rv.datastructures import FormDiagram
-from compas_rv.datastructures import ThrustDiagram
 from compas_rv.session import RVSession
 
 
@@ -40,11 +39,8 @@ def RunCommand():
     formdiagram.vertices_attribute(name="z", value=0)
     formdiagram.flip_cycles_if_normal_down()
 
-    thrustdiagram: ThrustDiagram = formdiagram.copy(cls=ThrustDiagram)
-    thrustdiagram.name = "ThrustDiagram"
-
-    # set an initial value for zmax
-    session.settings.tna.vertical_zmax = thrustdiagram.compute_zmax()
+    # set an initial value for zmax using the form diagram
+    session.settings.tna.vertical_zmax = formdiagram.compute_zmax()
 
     # =============================================================================
     # Update scene
@@ -55,7 +51,6 @@ def RunCommand():
     pattern.show = False
 
     session.scene.add(formdiagram, name=formdiagram.name, layer="RhinoVAULT::FormDiagram")  # type: ignore
-    session.scene.add(thrustdiagram, name=thrustdiagram.name, show=False, layer="RhinoVAULT::ThrustDiagram")  # type: ignore
     session.scene.redraw()
     rs.Redraw()
 

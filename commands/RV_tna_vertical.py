@@ -22,13 +22,8 @@ def RunCommand():
         print("There is no ForceDiagram in the scene.")
         return
 
-    thrust = session.find_thrustdiagram()
-    if not thrust:
-        print("There is no ThrustDiagram in the scene.")
-        return
-
     # =============================================================================
-    # Compute horizontal
+    # Compute vertical
     # =============================================================================
 
     kmax = session.settings.tna.vertical_kmax
@@ -40,34 +35,13 @@ def RunCommand():
 
     session.settings.tna.vertical_zmax = zmax
 
-    # copy the vertical coordinates of the thrust diagram onto the form diagram
-    for vertex in thrust.diagram.vertices_where(is_support=True):
-        z = thrust.diagram.vertex_attribute(vertex, "z")
-        form.diagram.vertex_attribute(vertex, "z", z)
-
+    # Compute vertical equilibrium directly on the form diagram
     _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax)
-
-    if not _:  # this makes no sense
-        print("Vertical equilibrium failed!")
-        return
 
     force.diagram.attributes["scale"] = scale
 
-    for vertex in form.diagram.vertices():
-        form_attr = form.diagram.vertex_attributes(vertex)
-        thrust_attr = thrust.diagram.vertex_attributes(vertex)
-        thrust_attr.update(form_attr)  # type: ignore
-
-    for edge in form.diagram.edges():
-        form_attr = form.diagram.edge_attributes(edge)
-        thrust_attr = thrust.diagram.edge_attributes(edge)
-        thrust_attr.update(form_attr)  # type: ignore
-
-    # flatten the formdiagram again
-    form.diagram.vertices_attribute(name="z", value=0)
-
-    # show the thrust diagram
-    thrust.show = True
+    # Enable 3D mode for the form diagram to show the thrust surface
+    form.show_thrust = True
 
     # =============================================================================
     # Update scene
@@ -75,10 +49,11 @@ def RunCommand():
 
     rs.UnselectAllObjects()
 
-    thrust.redraw()
+    # Redraw the form diagram to show the updated 3D geometry
+    form.redraw()
 
     print("Vertical equilibrium found!")
-    print("ThrustDiagram object successfully created with target height of {}.".format(zmax))
+    print("FormDiagram object updated with target height of {}.".format(zmax))
 
     if session.settings.autosave:
         session.record(name="TNA Vertical")

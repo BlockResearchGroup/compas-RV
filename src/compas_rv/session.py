@@ -68,16 +68,6 @@ class RVSession(Session):
         if warn:
             rs.MessageBox("There is no ForceDiagram.", title="Warning")
 
-    def find_thrustdiagram(self, warn=True):
-        from compas_rv.datastructures import ThrustDiagram
-        from compas_rv.scene import RhinoThrustObject
-
-        thrust: RhinoThrustObject = self.scene.find_by_itemtype(ThrustDiagram)  # type: ignore
-        if thrust:
-            return thrust
-        if warn:
-            rs.MessageBox("There is no ThrustDiagram.", title="Warning")
-
     def clear_all_patterns(self, redraw=True):
         from compas_rv.datastructures import Pattern
 
@@ -91,7 +81,6 @@ class RVSession(Session):
     def clear_all_diagrams(self, redraw=True):
         self.clear_all_formdiagrams(redraw=False)
         self.clear_all_forcediagrams(redraw=False)
-        self.clear_all_thrustdiagrams(redraw=False)
         if redraw:
             self.scene.redraw()
             rs.Redraw()
@@ -110,16 +99,6 @@ class RVSession(Session):
         from compas_rv.datastructures import ForceDiagram
 
         for obj in find_all_by_itemtype(self.scene, ForceDiagram):
-            obj.clear()
-            self.scene.remove(obj)
-        if redraw:
-            self.scene.redraw()
-            rs.Redraw()
-
-    def clear_all_thrustdiagrams(self, redraw=True):
-        from compas_rv.datastructures import ThrustDiagram
-
-        for obj in find_all_by_itemtype(self.scene, ThrustDiagram):
             obj.clear()
             self.scene.remove(obj)
         if redraw:
