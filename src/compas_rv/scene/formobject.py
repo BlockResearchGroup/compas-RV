@@ -8,6 +8,7 @@ from compas.geometry import Line
 from compas.geometry import Vector
 from compas.scene.descriptors.color import ColorAttribute
 from compas.scene.descriptors.colordict import ColorDictAttribute
+from compas_rui.scene import RUIMeshObject
 from compas_rv.datastructures import FormDiagram
 from compas_rv.session import RVSession
 
@@ -55,6 +56,13 @@ class RhinoFormObject(RhinoDiagramObject):
         forcegroup="RhinoVAULT::ThrustDiagram::Forces",
         reactiongroup="RhinoVAULT::ThrustDiagram::Reactions",
         residualgroup="RhinoVAULT::ThrustDiagram::Residuals",
+        show_thrust=False,
+        show_thrust_vertices=True,
+        show_thrust_edges=False,
+        show_thrust_faces=True,
+        show_thrust_supports=True,
+        show_thrust_fixed=True,
+        show_thrust_free=False,
         **kwargs,
     ):
         super().__init__(
@@ -79,12 +87,29 @@ class RhinoFormObject(RhinoDiagramObject):
         self.show_fixed = True
         self.show_free = False
 
-        # 3D mode toggle - starts as False (2D mode)
-        self.show_thrust = False
+        self.show_thrust = show_thrust
+        self.show_thrust_vertices = show_thrust_vertices
+        self.show_thrust_edges = show_thrust_edges
+        self.show_thrust_faces = show_thrust_faces
+        self.show_thrust_supports = show_thrust_supports
+        self.show_thrust_fixed = show_thrust_fixed
+        self.show_thrust_free = show_thrust_free
 
     # =============================================================================
     # Properties
     # =============================================================================
+
+    @property
+    def settings(self):
+        settings = super().settings
+        settings["show_thrust"] = self.show_thrust
+        settings["show_thrust_vertices"] = self.show_thrust_vertices
+        settings["show_thrust_edges"] = self.show_thrust_edges
+        settings["show_thrust_faces"] = self.show_thrust_faces
+        settings["show_thrust_supports"] = self.show_thrust_supports
+        settings["show_thrust_fixed"] = self.show_thrust_fixed
+        settings["show_thrust_free"] = self.show_thrust_free
+        return settings
 
     def edges(self, **kwargs):
         return self.diagram.edges_where(_is_edge=True)
@@ -168,19 +193,25 @@ class RhinoFormObject(RhinoDiagramObject):
         return self.guids
 
     def draw_thrust_vertices(self):
-        if self.show_vertices:
-            vertices = list(self.diagram.vertices())
-            if vertices:
-                self.show_vertices = vertices
-                for vertex in vertices:
-                    if self.diagram.vertex_attribute(vertex, "is_support"):
-                        self.vertexcolor[vertex] = self.thrust_anchorcolor
-                    elif self.diagram.vertex_attribute(vertex, "is_fixed"):
-                        self.vertexcolor[vertex] = self.thrust_fixedcolor
-                    else:
-                        self.vertexcolor[vertex] = self.thrust_freecolor
+        vertices = []
+        if self.show_thrust_vertices:
+            if self.show_thrust_free:
+                vertices += list(self.diagram.vertices_where(is_support=False, is_fixed=False))
+            if self.show_thrust_fixed:
+                vertices += list(self.diagram.vertices_where(is_fixed=True))
+            if self.show_thrust_supports:
+                vertices += list(self.diagram.vertices_where(is_support=True))
 
-        guids = super().draw_vertices()
+        show_vertices = self.show_vertices
+        self.show_vertices = vertices
+        try:
+            guids = super().draw_vertices(
+                anchorcolor=self.thrust_anchorcolor,
+                fixedcolor=self.thrust_fixedcolor,
+                freecolor=self.thrust_freecolor,
+            )
+        finally:
+            self.show_vertices = show_vertices
 
         if guids:
             if self.thrust_vertexgroup:
@@ -192,14 +223,18 @@ class RhinoFormObject(RhinoDiagramObject):
         return guids
 
     def draw_thrust_edges(self):
-        if self.show_edges:
+        edges = []
+        if self.show_thrust_edges:
             edges = list(self.diagram.edges_where(_is_edge=True))
-            if edges:
-                self.show_edges = edges
-                for edge in edges:
-                    self.edgecolor[edge] = self.thrust_edgecolor
+            for edge in edges:
+                self.edgecolor[edge] = self.thrust_edgecolor
 
-        guids = super().draw_edges()
+        show_edges = self.show_edges
+        self.show_edges = edges
+        try:
+            guids = RUIMeshObject.draw_edges(self)
+        finally:
+            self.show_edges = show_edges
 
         if guids:
             if self.thrust_edgegroup:
@@ -212,14 +247,17 @@ class RhinoFormObject(RhinoDiagramObject):
 
     def draw_thrust_faces(self):
         faces = []
-        if self.show_faces:
+        if self.show_thrust_faces:
             faces += list(self.diagram.faces_where(_is_loaded=True))
-        if faces:
-            self.show_faces = faces
-            for face in faces:
-                self.facecolor[face] = self.thrust_facecolor
+        for face in faces:
+            self.facecolor[face] = self.thrust_facecolor
 
-        guids = super().draw_faces()
+        show_faces = self.show_faces
+        self.show_faces = faces
+        try:
+            guids = RUIMeshObject.draw_faces(self)
+        finally:
+            self.show_faces = show_faces
 
         if guids:
             if self.thrust_facegroup:
@@ -358,10 +396,9 @@ class RhinoFormObject(RhinoDiagramObject):
 
     def draw(self):
         """Draw method shows 2D and 3D if enabled, otherwise shows 2D only."""
-        guids = self.draw_formdiagram()
+        self.draw_formdiagram()
         if self.show_thrust:
-            guids += self.draw_thrustdiagram()
-        self._guids = guids
+            self.draw_thrustdiagram()
         return self.guids
 
     # =============================================================================
@@ -379,7 +416,8 @@ class RhinoFormObject(RhinoDiagramObject):
         rs.EnableRedraw(False)
         self.clear_vertices()
         self.draw_vertices()
-        self.draw_thrust_vertices()
+        if self.show_thrust:
+            self.draw_thrust_vertices()
         rs.EnableRedraw(True)
         rs.Redraw()
 
@@ -387,7 +425,8 @@ class RhinoFormObject(RhinoDiagramObject):
         rs.EnableRedraw(False)
         self.clear_edges()
         self.draw_edges()
-        self.draw_thrust_edges()
+        if self.show_thrust:
+            self.draw_thrust_edges()
         rs.EnableRedraw(True)
         rs.Redraw()
 
@@ -395,6 +434,7 @@ class RhinoFormObject(RhinoDiagramObject):
         rs.EnableRedraw(False)
         self.clear_faces()
         self.draw_faces()
-        self.draw_thrust_faces()
+        if self.show_thrust:
+            self.draw_thrust_faces()
         rs.EnableRedraw(True)
         rs.Redraw()

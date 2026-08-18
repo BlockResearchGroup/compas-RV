@@ -22,9 +22,6 @@ def RunCommand():
         print("There is no ForceDiagram in the scene.")
         return
 
-    # Note: ThrustDiagram functionality is now integrated into FormDiagram
-    # The form diagram now contains the 3D thrust surface information
-
     # =============================================================================
     # Modify pattern vertices
     # =============================================================================
@@ -80,9 +77,6 @@ def RunCommand():
                 force.diagram.attributes["scale"] = scale
                 force.diagram.update_position()
 
-                # The form diagram now contains the 3D thrust surface information
-                # No need to sync between separate diagrams
-
     else:
         raise NotImplementedError
 
@@ -107,12 +101,12 @@ def RunCommand():
     force.show_supports = True
     force.show_edges = True
 
-    # Set 3D display parameters for thrust surface visualization
-    form.show_vertices_3d = True
-    form.show_free_3d = False
-    form.show_fixed_3d = True
-    form.show_supports_3d = True
-    form.show_edges_3d = False
+    form.show_thrust = True
+    form.show_thrust_vertices = True
+    form.show_thrust_free = False
+    form.show_thrust_fixed = True
+    form.show_thrust_supports = True
+    form.show_thrust_edges = False
 
     session.scene.redraw()
 

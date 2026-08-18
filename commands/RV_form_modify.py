@@ -17,7 +17,6 @@ def RunCommand():
         return
 
     force = session.find_forcediagram(warn=False)
-    thrust = session.find_thrustdiagram(warn=False)
 
     RECREATE_FORCE = False
 
@@ -41,10 +40,6 @@ def RunCommand():
 
         if not action:
             return
-
-        if thrust:
-            thrust.show_vertices = False  # type: ignore
-            thrust.redraw_vertices()
 
         if action == "Add":
             form.show_vertices = list(form.diagram.vertices_where(is_support=False, is_vertex_internal=True))
@@ -73,10 +68,6 @@ def RunCommand():
     # movement on the formdiagram is only permitted in XY
 
     elif option == "BoundarySupports":
-        if thrust:
-            thrust.show_vertices = False  # type: ignore
-            thrust.redraw_vertices()
-
         form.show_vertices = list(form.diagram.vertices_where(is_support=True, is_vertex_internal=False))
         form.redraw_vertices()
         selected = form.select_vertices()
@@ -119,9 +110,6 @@ def RunCommand():
                 for face in selected:
                     if form.diagram.has_face(face):
                         form.diagram.delete_face(face)
-                    if thrust:
-                        if thrust.diagram.has_face(face):
-                            thrust.diagram.delete_face(face)
                 if force:
                     RECREATE_FORCE = True
 
@@ -151,9 +139,6 @@ def RunCommand():
 
     if RECREATE_FORCE:
         form.diagram.update_boundaries()
-
-        if thrust:
-            thrust.diagram.update_boundaries()
 
         forcediagram: ForceDiagram = ForceDiagram.from_formdiagram(form.diagram)
 

@@ -16,7 +16,6 @@ def RunCommand():
     pattern = session.find_pattern(warn=False)
     form = session.find_formdiagram(warn=False)
     force = session.find_forcediagram(warn=False)
-    thrust = session.find_thrustdiagram(warn=False)
 
     if pattern:
         pattern.layer = "RhinoVAULT::Pattern"
@@ -26,9 +25,6 @@ def RunCommand():
 
     if force:
         force.layer = "RhinoVAULT::ForceDiagram"
-
-    if thrust:
-        thrust.layer = "RhinoVAULT::ThrustDiagram"
 
     if form and force:
         form.diagram.dual = force.diagram
