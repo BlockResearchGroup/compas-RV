@@ -14,6 +14,14 @@ def find_all_by_itemtype(scene: Scene, itemtype) -> list[RhinoSceneObject]:
     return sceneobjects
 
 
+def find_all_by_items(scene: Scene, items) -> list[RhinoSceneObject]:
+    sceneobjects = []
+    for obj in scene.objects:
+        if any(obj.item is item for item in items):
+            sceneobjects.append(obj)
+    return sceneobjects
+
+
 class RVSession(Session):
     settings: RVSettings  # type: ignore
 
@@ -68,6 +76,13 @@ class RVSession(Session):
         if warn:
             rs.MessageBox("There is no ForceDiagram.", title="Warning")
 
+    def find_envelope(self, warn=True):
+        envelope = self.get("envelope")
+        if envelope:
+            return envelope
+        if warn:
+            rs.MessageBox("There is no Envelope.", title="Warning")
+
     def clear_all_patterns(self, redraw=True):
         from compas_rv.datastructures import Pattern
 
@@ -101,6 +116,23 @@ class RVSession(Session):
         for obj in find_all_by_itemtype(self.scene, ForceDiagram):
             obj.clear()
             self.scene.remove(obj)
+        if redraw:
+            self.scene.redraw()
+            rs.Redraw()
+
+    def clear_envelope(self, redraw=True):
+        envelope = self.get("envelope")
+        if not envelope:
+            return
+
+        items = [mesh for mesh in [envelope.intrados, envelope.middle, envelope.extrados, getattr(envelope, "fill", None)] if mesh]
+        for obj in find_all_by_items(self.scene, items):
+            obj.clear()
+            self.scene.remove(obj)
+
+        if "envelope" in self:
+            del self.data["envelope"]
+
         if redraw:
             self.scene.redraw()
             rs.Redraw()

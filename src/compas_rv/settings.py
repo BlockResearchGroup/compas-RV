@@ -14,6 +14,25 @@ class TNASettings(BaseModel):
     vertical_zmax: float = 4.0
 
 
+class TNOSettings(BaseModel):
+    objective: str = "MinimumThrust"
+    solver: str = "SLSQP"
+    max_iter: int = 500
+    starting_point: str = "loadpath"
+    printout: bool = True
+    max_lambd: float = 9999.0
+
+
+class EnvelopeSettings(BaseModel):
+    show_intrados: bool = True
+    show_middle: bool = False
+    show_extrados: bool = True
+    show_fill: bool = True
+    show_bounds: bool = True
+    show_cracks: bool = True
+    crack_radius: float = 0.05
+
+
 class DrawingSettings(BaseModel):
     show_angles: bool = True
     show_forces: bool = False
@@ -41,4 +60,6 @@ class RVSettings(Settings):
     autosave: bool = True
 
     tna: TNASettings = TNASettings()
+    tno: TNOSettings = TNOSettings()
+    envelope: EnvelopeSettings = EnvelopeSettings()
     drawing: DrawingSettings = DrawingSettings()

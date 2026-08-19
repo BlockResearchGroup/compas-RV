@@ -33,7 +33,7 @@ def update_settings(model, title):
 def RunCommand():
     session = RVSession()
 
-    options = ["RhinoVault", "ThrustNetworkAnalysis", "Drawing"]
+    options = ["RhinoVault", "ThrustNetworkAnalysis", "ThrustNetworkOptimisation", "Envelope", "Drawing"]
 
     while True:
         option = rs.GetString(message="Choose a settings section, or escape/cancel to exit.", strings=options)
@@ -45,6 +45,12 @@ def RunCommand():
 
         elif option == "ThrustNetworkAnalysis":
             update_settings(session.settings.tna, title=option)
+
+        elif option == "ThrustNetworkOptimisation":
+            update_settings(session.settings.tno, title=option)
+
+        elif option == "Envelope":
+            update_settings(session.settings.envelope, title=option)
 
         elif option == "Drawing":
             update_settings(session.settings.drawing, title=option)

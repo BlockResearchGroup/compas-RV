@@ -5,6 +5,7 @@ import compas_rhino.conversions
 from compas.colors import Color
 from compas.geometry import Cylinder
 from compas.geometry import Line
+from compas.geometry import Sphere
 from compas.geometry import Vector
 from compas.scene.descriptors.color import ColorAttribute
 from compas.scene.descriptors.colordict import ColorDictAttribute
@@ -38,6 +39,9 @@ class RhinoFormObject(RhinoDiagramObject):
     selfweightcolor = ColorAttribute(default=Color.white())
     compressioncolor = ColorAttribute(default=Color.blue())
     tensioncolor = ColorAttribute(default=Color.red())
+    ecrackcolor = ColorAttribute(default=Color.green())
+    icrackcolor = ColorAttribute(default=Color.blue())
+    boundscolor = ColorAttribute(default=Color.magenta())
 
     form_layer = "RhinoVAULT::FormDiagram"
     thrust_layer = "RhinoVAULT::ThrustDiagram"
@@ -56,6 +60,8 @@ class RhinoFormObject(RhinoDiagramObject):
         forcegroup="RhinoVAULT::ThrustDiagram::Forces",
         reactiongroup="RhinoVAULT::ThrustDiagram::Reactions",
         residualgroup="RhinoVAULT::ThrustDiagram::Residuals",
+        crackgroup="RhinoVAULT::ThrustDiagram::Cracks",
+        boundsgroup="RhinoVAULT::ThrustDiagram::Bounds",
         show_thrust=False,
         show_thrust_vertices=True,
         show_thrust_edges=False,
@@ -82,6 +88,8 @@ class RhinoFormObject(RhinoDiagramObject):
         self.forcegroup = forcegroup
         self.reactiongroup = reactiongroup
         self.residualgroup = residualgroup
+        self.crackgroup = crackgroup
+        self.boundsgroup = boundsgroup
 
         self.show_supports = True
         self.show_fixed = True
@@ -110,6 +118,45 @@ class RhinoFormObject(RhinoDiagramObject):
         settings["show_thrust_fixed"] = self.show_thrust_fixed
         settings["show_thrust_free"] = self.show_thrust_free
         return settings
+
+    # =============================================================================
+    # Envelope helpers
+    # =============================================================================
+
+    def envelope(self):
+        return self.session.find_envelope(warn=False)
+
+    def vertex_bound(self, vertex):
+        ub = self.diagram.vertex_attribute(vertex, "ub")
+        lb = self.diagram.vertex_attribute(vertex, "lb")
+        if ub is None or lb is None:
+            return
+        point = self.diagram.vertex_point(vertex)
+        a = point.copy()
+        a.z = ub
+        b = point.copy()
+        b.z = lb
+        return Line(a, b)
+
+    def vertex_is_on_upper_bound(self, vertex, tol=1e-6):
+        ub = self.diagram.vertex_attribute(vertex, "ub")
+        if ub is None:
+            return False
+        point = self.diagram.vertex_point(vertex)
+        return abs(point.z - ub) < tol
+
+    def vertex_is_on_lower_bound(self, vertex, tol=1e-6):
+        lb = self.diagram.vertex_attribute(vertex, "lb")
+        if lb is None:
+            return False
+        point = self.diagram.vertex_point(vertex)
+        return abs(point.z - lb) < tol
+
+    def vertex_bound_name(self, vertex):
+        return f"{self.diagram.name}.vertex.{vertex}.bound"
+
+    def vertex_crack_name(self, vertex):
+        return f"{self.diagram.name}.vertex.{vertex}.crack"
 
     def edges(self, **kwargs):
         return self.diagram.edges_where(_is_edge=True)
@@ -189,6 +236,10 @@ class RhinoFormObject(RhinoDiagramObject):
             self.draw_thrust_selfweight()
         if self.session.settings.drawing.show_pipes:
             self.draw_thrust_pipes()
+        if self.envelope() and self.session.settings.envelope.show_bounds:
+            self.draw_bounds()
+        if self.envelope() and self.session.settings.envelope.show_cracks:
+            self.draw_cracks()
 
         return self.guids
 
@@ -384,6 +435,58 @@ class RhinoFormObject(RhinoDiagramObject):
         if guids:
             if self.forcegroup:
                 self.add_to_group(self.forcegroup, guids)
+            elif self.group:
+                self.add_to_group(self.group, guids)
+
+        self._guids += guids
+        return guids
+
+    def draw_bounds(self):
+        guids = []
+
+        for vertex in self.diagram.vertices():
+            bound = self.vertex_bound(vertex)
+            if bound:
+                name = self.vertex_bound_name(vertex)
+                attr = self.compile_attributes(name=name, color=self.boundscolor)
+                guid = sc.doc.Objects.AddLine(compas_rhino.conversions.line_to_rhino(bound), attr)
+                guids.append(guid)
+                guid = sc.doc.Objects.AddPoint(compas_rhino.conversions.point_to_rhino(bound.start), attr)
+                guids.append(guid)
+                guid = sc.doc.Objects.AddPoint(compas_rhino.conversions.point_to_rhino(bound.end), attr)
+                guids.append(guid)
+
+        if guids:
+            if self.boundsgroup:
+                self.add_to_group(self.boundsgroup, guids)
+            elif self.group:
+                self.add_to_group(self.group, guids)
+
+        self._guids += guids
+        return guids
+
+    def draw_cracks(self):
+        guids = []
+
+        for vertex in self.diagram.vertices():
+            if self.vertex_is_on_lower_bound(vertex):
+                name = self.vertex_crack_name(vertex)
+                attr = self.compile_attributes(name=name, color=self.icrackcolor)
+            elif self.vertex_is_on_upper_bound(vertex):
+                name = self.vertex_crack_name(vertex)
+                attr = self.compile_attributes(name=name, color=self.ecrackcolor)
+            else:
+                continue
+
+            point = self.diagram.vertex_point(vertex)
+            radius = self.session.settings.envelope.crack_radius
+            sphere = Sphere(radius, point=point)
+            guid = sc.doc.Objects.AddSphere(compas_rhino.conversions.sphere_to_rhino(sphere), attr)
+            guids.append(guid)
+
+        if guids:
+            if self.crackgroup:
+                self.add_to_group(self.crackgroup, guids)
             elif self.group:
                 self.add_to_group(self.group, guids)
 
