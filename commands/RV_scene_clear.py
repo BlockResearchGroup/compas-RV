@@ -9,7 +9,7 @@ def RunCommand():
     session = RVSession()
 
     if session.confirm("Note that this will remove all RhinoVAULT data and objects. Do you wish to proceed?"):
-        session.scene.clear()
+        session.clear()
 
         if session.settings.autosave:
             session.record(name="Clear")

@@ -37,30 +37,26 @@ def RunCommand():
         return
 
     if option == "VertexAttributes":
-        form.show_vertices = list(form.diagram.vertices())
-        form.redraw_vertices()
-        selected = form.select_vertices()
+        vertices = list(form.diagram.vertices())
+        selected = form.select_thrust_vertices(vertices=vertices)
         if selected:
             form.update_vertex_attributes(selected)
 
     elif option == "EdgeAttributes":
-        form.show_edges = list(form.diagram.edges_where(_is_edge=True))
-        form.redraw_edges()
-        selected = form.select_edges()
+        edges = list(form.diagram.edges_where(_is_edge=True))
+        selected = form.select_thrust_edges(edges=edges)
         if selected:
             form.update_edge_attributes(selected)
 
     elif option == "MoveSupports":
-        form.show_vertices = list(form.diagram.vertices_where(is_support=True))
-        form.redraw_vertices()
-        selected = form.select_vertices()
+        vertices = list(form.diagram.vertices_where(is_support=True))
+        selected = form.select_thrust_vertices(vertices=vertices)
         if selected:
             form.move_vertices_direction(selected, direction="Z")
 
     elif option == "ScaleForceDensities":
-        form.show_edges = list(form.diagram.edges_where(_is_edge=True))
-        form.redraw_edges()
-        selected = form.select_edges()
+        edges = list(form.diagram.edges_where(_is_edge=True))
+        selected = form.select_thrust_edges(edges=edges)
         if selected:
             selected = list(set(selected))
             factor = rs.GetReal("Scale factor", number=1.0, minimum=0)
@@ -73,7 +69,8 @@ def RunCommand():
 
                 form.diagram.solve_fd()
                 update_force_from_form(force.diagram, form.diagram)
-                _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax)
+                density = 0.0 if form.diagram.attributes.get("loads_from_envelope") else 1.0
+                _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax, density=density)
                 force.diagram.attributes["scale"] = scale
                 force.diagram.update_position()
 
@@ -102,11 +99,16 @@ def RunCommand():
     force.show_edges = True
 
     form.show_thrust = True
-    form.show_thrust_vertices = True
-    form.show_thrust_free = False
-    form.show_thrust_fixed = True
-    form.show_thrust_supports = True
-    form.show_thrust_edges = False
+    session.settings.drawing.show_thrust_vertices = True
+    session.settings.drawing.show_thrust_free = False
+    session.settings.drawing.show_thrust_fixed = True
+    session.settings.drawing.show_thrust_supports = True
+    session.settings.drawing.show_thrust_edges = False
+    session.settings.drawing.show_thrust_faces = True
+    session.settings.drawing.show_reactions = True
+    session.settings.drawing.show_pipes = False
+    session.settings.drawing.show_force_labels = False
+    session.settings.drawing.show_reaction_labels = False
 
     session.scene.redraw()
 

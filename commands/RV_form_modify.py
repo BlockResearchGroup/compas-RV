@@ -42,9 +42,8 @@ def RunCommand():
             return
 
         if action == "Add":
-            form.show_vertices = list(form.diagram.vertices_where(is_support=False, is_vertex_internal=True))
-            form.redraw_vertices()
-            selected = form.select_vertices()
+            vertices = list(form.diagram.vertices_where(is_support=False, is_vertex_internal=True))
+            selected = form.select_form_vertices(vertices=vertices)
 
             if selected:
                 form.diagram.vertices_attribute(name="is_support", value=True, keys=selected)
@@ -55,9 +54,7 @@ def RunCommand():
             if not selectable:
                 return session.warn("There are no internal supports.")
 
-            form.show_vertices = selectable
-            form.redraw_vertices()
-            selected = form.select_vertices()
+            selected = form.select_form_vertices(vertices=selectable)
 
             if selected:
                 form.diagram.vertices_attribute(name="is_support", value=False, keys=selected)
@@ -67,10 +64,9 @@ def RunCommand():
     # they can't be removed or added
     # movement on the formdiagram is only permitted in XY
 
-    elif option == "BoundarySupports":
-        form.show_vertices = list(form.diagram.vertices_where(is_support=True, is_vertex_internal=False))
-        form.redraw_vertices()
-        selected = form.select_vertices()
+    elif option == "Supports":
+        vertices = list(form.diagram.vertices_where(is_support=True, is_vertex_internal=False))
+        selected = form.select_form_vertices(vertices=vertices)
 
         if selected:
             directions = ["X", "Y", "XY"]
@@ -84,9 +80,10 @@ def RunCommand():
     # positive values are in the negative z-direction
 
     elif option == "Loads":
-        form.show_vertices = list(form.diagram.vertices_where(is_support=False))
-        form.redraw_vertices()
-        selected = form.select_vertices()
+        vertices = list(form.diagram.vertices_where(is_support=False))
+        selected = form.select_form_vertices(vertices=vertices)
+
+        print("Selected vertices: {}".format(selected))
 
         if selected:
             form.update_vertex_attributes(selected, names=["pz", "t"])
@@ -103,9 +100,8 @@ def RunCommand():
             return
 
         if action == "DeleteFaces":
-            form.show_faces = list(form.diagram.faces_where(_is_loaded=True))
-            form.redraw_faces()
-            selected = form.select_faces_manual()
+            faces = list(form.diagram.faces_where(_is_loaded=True))
+            selected = form.select_form_faces(faces=faces)
             if selected:
                 for face in selected:
                     if form.diagram.has_face(face):
@@ -121,9 +117,8 @@ def RunCommand():
     # min/max dual length
 
     elif option == "EdgeConstraints":
-        form.show_edges = list(form.diagram.edges_where(_is_edge=True))
-        form.redraw_edges()
-        selected = form.select_edges()
+        edges = list(form.diagram.edges_where(_is_edge=True))
+        selected = form.select_form_edges(edges=edges)
         if selected:
             form.update_edge_attributes(selected, names=["lmin", "lmax", "hmin", "hmax"])
 

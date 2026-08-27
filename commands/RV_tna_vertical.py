@@ -36,7 +36,8 @@ def RunCommand():
     session.settings.tna.vertical_zmax = zmax
 
     # Compute vertical equilibrium directly on the form diagram
-    _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax)
+    density = 0.0 if form.diagram.attributes.get("loads_from_envelope") else 1.0
+    _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax, density=density)
 
     force.diagram.attributes["scale"] = scale
 

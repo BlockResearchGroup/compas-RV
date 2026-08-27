@@ -56,11 +56,12 @@ class InteractiveScaleHorizontal:
     @property
     def loadupdater(self) -> LoadUpdater:
         if self._loadupdater is None:
+            density = 0.0 if self.form.attributes.get("loads_from_envelope") else 1.0
             self._loadupdater = LoadUpdater(
                 self.form,
                 array(self.numdata.p, copy=True),
                 array(self.form.vertices_attribute("t"), dtype=float64).reshape((-1, 1)),  # type: ignore
-                1.0,
+                density,
             )
         return self._loadupdater
 

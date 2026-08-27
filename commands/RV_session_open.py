@@ -16,7 +16,7 @@ def RunCommand():
     if not filepath:
         return
 
-    session.scene.clear()
+    session.clear()
     session.load(filepath)
 
     pattern = session.find_pattern(warn=False)

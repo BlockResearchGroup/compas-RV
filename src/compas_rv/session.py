@@ -40,6 +40,7 @@ class RVSession(Session):
             if hasattr(sceneobject, "clear_conduits"):
                 sceneobject.clear_conduits()  # type: ignore
         self.scene.clear(clear_scene=clear_scene, clear_context=clear_context)
+        self.data.clear()
 
     def clear_conduits(self):
         for sceneobject in self.scene.objects:
@@ -121,6 +122,10 @@ class RVSession(Session):
             rs.Redraw()
 
     def clear_envelope(self, redraw=True):
+        formobject = self.find_formdiagram(warn=False)
+        if formobject:
+            formobject.diagram.attributes["loads_from_envelope"] = False
+
         envelope = self.get("envelope")
         if not envelope:
             return
