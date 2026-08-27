@@ -17,6 +17,9 @@ from compas_tna.envelope import PavillionVaultEnvelope
 from compas_tna.envelope import PointedVaultEnvelope
 
 
+ENVELOPE_LAYER = "RhinoVAULT::Envelope"
+
+
 def get_location():
     option = rs.GetString("Envelope location", "Origin", ["Origin", "Coordinates", "Point"])
     if not option:
@@ -90,7 +93,9 @@ def get_pointedvault():
     size = get_size()
     if size is None:
         return
-    rise = rs.GetReal("Rise", 3.0, minimum=0.0)
+    minimum_rise = 0.5 * max(size)
+    message = "Rise must be greater than or equal to {0:.3f}".format(minimum_rise)
+    rise = rs.GetReal(message, minimum_rise, minimum=minimum_rise)
     if rise is None:
         return
     thickness = get_thickness()
@@ -125,20 +130,14 @@ def get_dome():
     thickness = get_thickness()
     if thickness is None:
         return
-    n_hoops = rs.GetInteger("Hoops", 10, minimum=1, maximum=100)
-    if n_hoops is None:
-        return
-    n_parallels = rs.GetInteger("Parallels", 5, minimum=1, maximum=100)
-    if n_parallels is None:
-        return
     r_oculus = rs.GetReal("Oculus radius", 0.5, minimum=0.0)
     if r_oculus is None or r_oculus >= radius:
         return
-    return DomeEnvelope(center=center, radius=radius, thickness=thickness, n_hoops=n_hoops, n_parallels=n_parallels, r_oculus=r_oculus)
+    return DomeEnvelope(center=center, radius=radius, thickness=thickness, n_hoops=40, n_parallels=40, r_oculus=r_oculus)
 
 
 def get_from_middle():
-    guid = compas_rhino.objects.select_mesh("Select middle surface")
+    guid = compas_rhino.objects.select_mesh("Select middle mesh")
     if not guid:
         return
     obj = compas_rhino.objects.find_object(guid)
@@ -207,8 +206,6 @@ LIBRARY = {
 def RunCommand():
     session = RVSession()
 
-    session.clear_envelope(redraw=False)
-
     option = rs.GetString("Envelope from", "FromLibrary", ["FromLibrary", "FromMiddle", "FromBounds"])
     if not option:
         return
@@ -239,25 +236,18 @@ def RunCommand():
             return
         envelope.rho_fill = rho_fill
 
-    formobject = session.find_formdiagram(warn=False)
-    if formobject:
-        envelope.apply_bounds_to_formdiagram(formobject.diagram)
-        envelope.apply_selfweight_to_formdiagram(formobject.diagram)
-        if envelope.fill:
-            envelope.apply_fill_weight_to_formdiagram(formobject.diagram)
-        formobject.show_thrust = True
-
+    session.clear_envelope(redraw=False)
     session["envelope"] = envelope
 
     settings = session.settings.envelope
     if envelope.intrados:
-        session.scene.add(envelope.intrados, disjoint=True, show=settings.show_intrados, name="Intrados", layer="RhinoVAULT::Envelope")
+        session.scene.add(envelope.intrados, disjoint=True, show=settings.show_intrados, name="Intrados", layer=ENVELOPE_LAYER)
     if envelope.middle:
-        session.scene.add(envelope.middle, disjoint=True, show=settings.show_middle, name="Middle", layer="RhinoVAULT::Envelope")
+        session.scene.add(envelope.middle, disjoint=True, show=settings.show_middle, name="Middle", layer=ENVELOPE_LAYER)
     if envelope.extrados:
-        session.scene.add(envelope.extrados, disjoint=True, show=settings.show_extrados, name="Extrados", layer="RhinoVAULT::Envelope")
+        session.scene.add(envelope.extrados, disjoint=True, show=settings.show_extrados, name="Extrados", layer=ENVELOPE_LAYER)
     if envelope.fill:
-        session.scene.add(envelope.fill, disjoint=True, show=settings.show_fill, name="Fill", layer="RhinoVAULT::Envelope")
+        session.scene.add(envelope.fill, disjoint=True, show=settings.show_fill, name="Fill", layer=ENVELOPE_LAYER)
 
     session.scene.redraw()
     rs.Redraw()
