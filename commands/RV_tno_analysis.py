@@ -112,11 +112,49 @@ def get_displacement_vector(defaults):
         rs.MessageBox("Ux, Uy and Uz must be numbers.", title="Invalid Support Displacement")
 
 
+DISPLACEMENT_DIRECTIONS = ["Outward", "Inward", "Downward", "Manual"]
+
+
+def get_displacement_values(formobject, vertices, manual_defaults, magnitude_default):
+    """Prompt for the displacement to apply to a batch of selected supports.
+
+    Returns
+    -------
+    tuple[dict[int, list[float]], list[float], float] or None
+        A mapping from vertex to ``[ux, uy, uz]``, together with the updated
+        manual-entry and magnitude defaults to reuse for the next prompt, or
+        None if the user cancelled.
+    """
+    direction = rs.GetString("Support displacement direction", "Manual", DISPLACEMENT_DIRECTIONS)
+    if not direction:
+        return None
+
+    if direction == "Manual":
+        values = get_displacement_vector(manual_defaults)
+        if values is None:
+            return None
+        return {vertex: values for vertex in vertices}, values, magnitude_default
+
+    magnitude = rs.GetReal("{0} displacement magnitude".format(direction), magnitude_default, minimum=0.0)
+    if magnitude is None:
+        return None
+
+    if direction == "Downward":
+        vectors = {vertex: [0.0, 0.0, -magnitude] for vertex in vertices}
+    else:
+        outward = formobject.diagram.find_outward_displacement(vertices)
+        sign = -1.0 if direction == "Inward" else 1.0
+        vectors = {vertex: [sign * magnitude * ux, sign * magnitude * uy, 0.0] for vertex, (ux, uy, _) in outward.items()}
+
+    return vectors, manual_defaults, magnitude
+
+
 def get_support_displacement(formobject):
     supports = list(formobject.diagram.supports())
     displacement = np.zeros((len(supports), 3))
     assignments = {}
-    defaults = [-1.0, -1.0, 0.0]
+    manual_defaults = [-1.0, -1.0, 0.0]
+    magnitude_default = 1.0
 
     while True:
         vertices = formobject.select_thrust_vertices(
@@ -127,12 +165,13 @@ def get_support_displacement(formobject):
         if not vertices:
             break
 
-        values = get_displacement_vector(defaults)
-        if values is None:
+        result = get_displacement_values(formobject, vertices, manual_defaults, magnitude_default)
+        if result is None:
             return
-        defaults = values
+        vectors, manual_defaults, magnitude_default = result
 
         for vertex in vertices:
+            values = vectors[vertex]
             displacement[supports.index(vertex)] = np.array(values)
             assignments[vertex] = values
             print("Applied displacement {0} to support {1}".format(values, vertex))

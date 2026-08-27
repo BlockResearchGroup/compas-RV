@@ -1,5 +1,6 @@
 from compas.geometry import Box
 from compas.geometry import bounding_box
+from compas.geometry import centroid_points
 from compas.geometry import cross_vectors
 from compas.geometry import length_vector
 from compas.geometry import scale_vector
@@ -16,6 +17,17 @@ class FormDiagram(Diagram, BaseFormDiagram):
     """
     Data structure for form diagrams.
     """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.default_vertex_attributes.update(
+            {
+                "pzext": None,
+                "ux": 0.0,
+                "uy": 0.0,
+                "uz": 0.0,
+            }
+        )
 
     @classmethod
     def from_pattern(cls, pattern: Pattern) -> "FormDiagram":
@@ -183,6 +195,34 @@ class FormDiagram(Diagram, BaseFormDiagram):
                 count += 1
 
         return stress / count
+
+    def find_outward_displacement(self, vertices: list[int]) -> dict[int, list[float]]:
+        """Compute unit horizontal displacement vectors pointing away from the centroid of the supports.
+
+        Parameters
+        ----------
+        vertices : list[int]
+            The vertices for which to compute an outward displacement direction.
+
+        Returns
+        -------
+        dict[int, list[float]]
+            Mapping from vertex identifier to a unit ``[ux, uy, 0.0]`` vector pointing
+            away from the centroid of the diagram's supports, in the XY plane.
+
+        """
+        supports = list(self.supports())
+        centroid = centroid_points(self.vertices_attributes("xyz", keys=supports))
+
+        directions = {}
+        for vertex in vertices:
+            x, y, _ = self.vertex_attributes(vertex, "xyz")  # type: ignore
+            vector = [x - centroid[0], y - centroid[1], 0.0]
+            length = length_vector(vector)
+            if length > 1e-9:
+                vector = scale_vector(vector, 1.0 / length)
+            directions[vertex] = vector
+        return directions
 
     def compute_zmax(self) -> float:
         """Compute a suitable value for zmax based on the length of the diagonal of the bounding box of the projection of the diagram in XY.
