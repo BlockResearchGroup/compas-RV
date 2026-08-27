@@ -1,0 +1,64 @@
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 32 32">
+  <!-- Generator: Adobe Illustrator 29.8.10, SVG Export Plug-In . SVG Version: 2.1.1 Build 2)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: url(#linear-gradient);
+        stroke-miterlimit: 10;
+      }
+
+      .st0, .st1 {
+        stroke: #000;
+      }
+
+      .st0, .st2 {
+        fill-rule: evenodd;
+      }
+
+      .st3 {
+        fill: #22b14c;
+        stroke: #178a3a;
+        stroke-width: .84px;
+      }
+
+      .st3, .st1 {
+        stroke-linejoin: round;
+      }
+
+      .st1 {
+        fill: none;
+      }
+
+      .st2 {
+        fill: url(#linear-gradient1);
+        isolation: isolate;
+        opacity: .75;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="12.02" y1="8.04" x2="11.94" y2="19.69" gradientTransform="translate(0 34) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e88a0d"/>
+      <stop offset="0" stop-color="#e88d10"/>
+      <stop offset=".09" stop-color="#eea926"/>
+      <stop offset=".18" stop-color="#f3c037"/>
+      <stop offset=".29" stop-color="#f7d245"/>
+      <stop offset=".42" stop-color="#fade4f"/>
+      <stop offset=".59" stop-color="#fbe555"/>
+      <stop offset="1" stop-color="#fce857"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient1" x1="14.84" y1="6.83" x2="14.84" y2="15.5" gradientTransform="translate(0 34) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffc924"/>
+      <stop offset="1" stop-color="#faf5c4"/>
+    </linearGradient>
+  </defs>
+  <g id="RV-logo">
+    <polygon class="st0" points="1.5 30.5 1.5 15 4 12.5 11 12.5 13 14.5 21.5 14.5 22.5 15.5 22.5 30.5 1.5 30.5"/>
+    <g>
+      <polygon class="st2" points="1.5 30.5 6.83 18.5 28.17 18.5 22.83 30.5 1.5 30.5"/>
+      <polygon class="st1" points="1.5 30.5 6.83 18.5 28.17 18.5 22.83 30.5 1.5 30.5"/>
+    </g>
+    <g>
+      <polygon class="st3" points="20.75 1.02 26.92 1.02 26.92 10.09 20.75 10.09 20.75 1.02"/>
+      <polygon class="st3" points="16.8 10.09 30.87 10.09 23.84 18.46 16.8 10.09"/>
+    </g>
+  </g>
+</svg>
