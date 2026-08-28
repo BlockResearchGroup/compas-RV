@@ -11,6 +11,7 @@ from compas_rv.conventions import invert_formdiagram_signs
 from compas_rv.session import RVSession
 from compas_rv.solvers import update_force_from_form
 from compas_tna.envelope import MeshEnvelope
+from compas_tna.envelope import ParametricEnvelope
 
 OBJECTIVES = [
     "MinimumThrust",
@@ -22,12 +23,13 @@ OBJECTIVES = [
 ]
 
 
-def get_optimisation_options(objective):
+def get_optimisation_options(objective, envelope):
     constraint_options = [
         ("Funicular", True),
         ("Envelope", objective != "Bestfit"),
-        ("ReactionDirections", False),
     ]
+    if isinstance(envelope, ParametricEnvelope):
+        constraint_options.append(("ReactionDirections", False))
     constraint_options = rs.CheckListBox(constraint_options, "Validate the constraints of the optimisation.", "TNO Constraints")
     if constraint_options is None:
         return
@@ -265,12 +267,7 @@ def RunCommand():
     if not objective:
         return
 
-    solver = rs.GetString("Solver", session.settings.tno.solver, ["SLSQP", "IPOPT"])
-    if not solver:
-        return
-    session.settings.tno.solver = solver
-
-    options = get_optimisation_options(objective)
+    options = get_optimisation_options(objective, envelope)
     if not options:
         return
     constraints, variables = options
@@ -286,6 +283,8 @@ def RunCommand():
     try:
         # Apply the envelope bounds and use the loads prepared on the FormDiagram.
         envelope.apply_bounds_to_formdiagram(formobject.diagram)
+        if "reac_bounds" in constraints:
+            analysis.apply_reaction_bounds()
 
         if abs(sum(formobject.diagram.vertices_attribute("pz"))) < 0.001:
             return session.warn("There are no loads applied to the FormDiagram. Use RV_loads before running TNO analysis.")
