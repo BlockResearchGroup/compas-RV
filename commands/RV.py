@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.9.5
+# r: compas_rv>=0.10.0
 
 import pathlib
 
