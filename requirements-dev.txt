@@ -1,3 +1,4 @@
+build
 bump-my-version
 compas_invocations2
 invoke >=0.14
