@@ -14,6 +14,14 @@ def find_all_by_itemtype(scene: Scene, itemtype) -> list[RhinoSceneObject]:
     return sceneobjects
 
 
+def find_all_by_items(scene: Scene, items) -> list[RhinoSceneObject]:
+    sceneobjects = []
+    for obj in scene.objects:
+        if any(obj.item is item for item in items):
+            sceneobjects.append(obj)
+    return sceneobjects
+
+
 class RVSession(Session):
     settings: RVSettings  # type: ignore
 
@@ -32,6 +40,7 @@ class RVSession(Session):
             if hasattr(sceneobject, "clear_conduits"):
                 sceneobject.clear_conduits()  # type: ignore
         self.scene.clear(clear_scene=clear_scene, clear_context=clear_context)
+        self.data.clear()
 
     def clear_conduits(self):
         for sceneobject in self.scene.objects:
@@ -68,15 +77,12 @@ class RVSession(Session):
         if warn:
             rs.MessageBox("There is no ForceDiagram.", title="Warning")
 
-    def find_thrustdiagram(self, warn=True):
-        from compas_rv.datastructures import ThrustDiagram
-        from compas_rv.scene import RhinoThrustObject
-
-        thrust: RhinoThrustObject = self.scene.find_by_itemtype(ThrustDiagram)  # type: ignore
-        if thrust:
-            return thrust
+    def find_envelope(self, warn=True):
+        envelope = self.get("envelope")
+        if envelope:
+            return envelope
         if warn:
-            rs.MessageBox("There is no ThrustDiagram.", title="Warning")
+            rs.MessageBox("There is no Envelope.", title="Warning")
 
     def clear_all_patterns(self, redraw=True):
         from compas_rv.datastructures import Pattern
@@ -91,7 +97,6 @@ class RVSession(Session):
     def clear_all_diagrams(self, redraw=True):
         self.clear_all_formdiagrams(redraw=False)
         self.clear_all_forcediagrams(redraw=False)
-        self.clear_all_thrustdiagrams(redraw=False)
         if redraw:
             self.scene.redraw()
             rs.Redraw()
@@ -116,12 +121,23 @@ class RVSession(Session):
             self.scene.redraw()
             rs.Redraw()
 
-    def clear_all_thrustdiagrams(self, redraw=True):
-        from compas_rv.datastructures import ThrustDiagram
+    def clear_envelope(self, redraw=True):
+        formobject = self.find_formdiagram(warn=False)
+        if formobject:
+            formobject.diagram.attributes["loads_from_envelope"] = False
 
-        for obj in find_all_by_itemtype(self.scene, ThrustDiagram):
+        envelope = self.get("envelope")
+        if not envelope:
+            return
+
+        items = [mesh for mesh in [envelope.intrados, envelope.middle, envelope.extrados, getattr(envelope, "fill", None)] if mesh]
+        for obj in find_all_by_items(self.scene, items):
             obj.clear()
             self.scene.remove(obj)
+
+        if "envelope" in self:
+            del self.data["envelope"]
+
         if redraw:
             self.scene.redraw()
             rs.Redraw()

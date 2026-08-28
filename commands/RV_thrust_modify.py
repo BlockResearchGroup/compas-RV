@@ -22,11 +22,6 @@ def RunCommand():
         print("There is no ForceDiagram in the scene.")
         return
 
-    thrust = session.find_thrustdiagram()
-    if not thrust:
-        print("There is no ThrustDiagram in the scene.")
-        return
-
     # =============================================================================
     # Modify pattern vertices
     # =============================================================================
@@ -42,59 +37,42 @@ def RunCommand():
         return
 
     if option == "VertexAttributes":
-        thrust.show_vertices = list(thrust.diagram.vertices())
-        thrust.redraw_vertices()
-        selected = thrust.select_vertices()
+        vertices = list(form.diagram.vertices())
+        selected = form.select_thrust_vertices(vertices=vertices)
         if selected:
-            thrust.update_vertex_attributes(selected)
+            form.update_vertex_attributes(selected)
 
     elif option == "EdgeAttributes":
-        thrust.show_edges = list(thrust.diagram.edges_where(_is_edge=True))
-        thrust.redraw_edges()
-        selected = thrust.select_edges()
+        edges = list(form.diagram.edges_where(_is_edge=True))
+        selected = form.select_thrust_edges(edges=edges)
         if selected:
-            thrust.update_edge_attributes(selected)
+            form.update_edge_attributes(selected)
 
     elif option == "MoveSupports":
-        form.show_vertices = False
-        form.redraw_vertices()
-        thrust.show_vertices = list(thrust.diagram.vertices_where(is_support=True))
-        thrust.redraw_vertices()
-        selected = thrust.select_vertices()
+        vertices = list(form.diagram.vertices_where(is_support=True))
+        selected = form.select_thrust_vertices(vertices=vertices)
         if selected:
-            thrust.move_vertices_direction(selected, direction="Z")
+            form.move_vertices_direction(selected, direction="Z")
 
     elif option == "ScaleForceDensities":
-        thrust.show_edges = list(thrust.diagram.edges_where(_is_edge=True))
-        thrust.redraw_edges()
-        selected = thrust.select_edges()
+        edges = list(form.diagram.edges_where(_is_edge=True))
+        selected = form.select_thrust_edges(edges=edges)
         if selected:
             selected = list(set(selected))
             factor = rs.GetReal("Scale factor", number=1.0, minimum=0)
             if not factor:
                 return
             for edge in selected:
-                q = factor * thrust.diagram.edge_attribute(edge, "q")
+                q = factor * form.diagram.edge_attribute(edge, "q")
 
                 form.diagram.edge_attribute(edge, "q", q)
 
                 form.diagram.solve_fd()
                 update_force_from_form(force.diagram, form.diagram)
-                _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax)
+                density = 0.0 if form.diagram.attributes.get("loads_from_envelope") else 1.0
+                _, scale = vertical_from_zmax(form.diagram, zmax, kmax=kmax, density=density)
                 force.diagram.attributes["scale"] = scale
                 force.diagram.update_position()
-
-                for vertex in form.diagram.vertices():
-                    form_attr = form.diagram.vertex_attributes(vertex)
-                    thrust_attr = thrust.diagram.vertex_attributes(vertex)
-                    thrust_attr.update(form_attr)  # type: ignore
-
-                for edge in form.diagram.edges():
-                    form_attr = form.diagram.edge_attributes(edge)
-                    thrust_attr = thrust.diagram.edge_attributes(edge)
-                    thrust_attr.update(form_attr)  # type: ignore
-
-                form.diagram.vertices_attribute(name="z", value=0)
 
     else:
         raise NotImplementedError
@@ -120,11 +98,17 @@ def RunCommand():
     force.show_supports = True
     force.show_edges = True
 
-    thrust.show_vertices = True  # type: ignore
-    thrust.show_free = False
-    thrust.show_fixed = True
-    thrust.show_supports = True
-    thrust.show_edges = False
+    form.show_thrust = True
+    session.settings.drawing.show_thrust_vertices = True
+    session.settings.drawing.show_thrust_free = False
+    session.settings.drawing.show_thrust_fixed = True
+    session.settings.drawing.show_thrust_supports = True
+    session.settings.drawing.show_thrust_edges = False
+    session.settings.drawing.show_thrust_faces = True
+    session.settings.drawing.show_reactions = True
+    session.settings.drawing.show_pipes = False
+    session.settings.drawing.show_force_labels = False
+    session.settings.drawing.show_reaction_labels = False
 
     session.scene.redraw()
 

@@ -48,6 +48,7 @@ def RunCommand():
             return
 
         mesh: Mesh = form.diagram.copy()
+        mesh.vertices_attribute(name="z", value=0)
         for face in list(mesh.faces_where(_is_loaded=False)):
             mesh.delete_face(face)
 
@@ -74,11 +75,11 @@ def RunCommand():
         compas.json_dump(mesh, filepath)
 
     elif option == "ThrustDiagram":
-        thrust = session.find_thrustdiagram()
-        if not thrust:
+        form = session.find_formdiagram()
+        if not form:
             return
 
-        mesh: Mesh = thrust.diagram.copy()
+        mesh: Mesh = form.diagram.copy()
         for face in list(mesh.faces_where(_is_loaded=False)):
             mesh.delete_face(face)
 

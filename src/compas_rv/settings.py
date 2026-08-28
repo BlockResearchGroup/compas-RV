@@ -14,14 +14,41 @@ class TNASettings(BaseModel):
     vertical_zmax: float = 4.0
 
 
+class TNOSettings(BaseModel):
+    solver: str = "SLSQP"
+    max_iter: int = 500
+    starting_point: str = "loadpath"
+    printout: bool = True
+
+
+class EnvelopeSettings(BaseModel):
+    show_intrados: bool = True
+    show_middle: bool = False
+    show_extrados: bool = True
+    show_fill: bool = True
+    show_bounds: bool = False
+    show_cracks: bool = True
+    crack_radius: float = 0.05
+
+
 class DrawingSettings(BaseModel):
     show_angles: bool = True
     show_forces: bool = False
 
+    show_thrust_vertices: bool = True
+    show_thrust_edges: bool = True
+    show_thrust_faces: bool = True
+    show_thrust_supports: bool = True
+    show_thrust_fixed: bool = True
+    show_thrust_free: bool = False
+
     show_reactions: bool = True
     show_residuals: bool = False
     show_pipes: bool = False
+    show_force_labels: bool = False
+    show_reaction_labels: bool = False
     show_loads: bool = False
+    show_support_displacements: bool = True
     show_selfweight: bool = False
 
     show_thickness: bool = False
@@ -30,10 +57,12 @@ class DrawingSettings(BaseModel):
     scale_residuals: float = 1.0
     scale_pipes: float = 0.01
     scale_loads: float = 1.0
+    scale_support_displacements: float = 1.0
     scale_selfweight: float = 1.0
 
     tol_vectors: float = 1e-3
     tol_pipes: float = 1e-2
+    tol_labels: float = 0.1
 
 
 class RVSettings(Settings):
@@ -41,4 +70,6 @@ class RVSettings(Settings):
     autosave: bool = True
 
     tna: TNASettings = TNASettings()
+    tno: TNOSettings = TNOSettings()
+    envelope: EnvelopeSettings = EnvelopeSettings()
     drawing: DrawingSettings = DrawingSettings()

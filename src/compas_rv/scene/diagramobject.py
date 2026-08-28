@@ -122,7 +122,12 @@ class RhinoDiagramObject(RUIMeshObject):
 
         return self.guids
 
-    def draw_vertices(self):
+    def draw_vertices(self, anchorcolor=None, fixedcolor=None, freecolor=None):
+        # enable definiting the colors to serve form and thrust diagrams
+        anchorcolor = anchorcolor or self.anchorcolor
+        fixedcolor = fixedcolor or self.fixedcolor
+        freecolor = freecolor or self.freecolor
+
         if self.show_vertices is True:
             vertices = []
             if self.show_free:
@@ -135,11 +140,11 @@ class RhinoDiagramObject(RUIMeshObject):
 
         for vertex in self.diagram.vertices():
             if self.diagram.vertex_attribute(vertex, "is_support"):
-                self.vertexcolor[vertex] = self.anchorcolor
+                self.vertexcolor[vertex] = anchorcolor
             elif self.diagram.vertex_attribute(vertex, "is_fixed"):
-                self.vertexcolor[vertex] = self.fixedcolor
+                self.vertexcolor[vertex] = fixedcolor
             else:
-                self.vertexcolor[vertex] = self.freecolor
+                self.vertexcolor[vertex] = freecolor
 
         return super().draw_vertices()
 

@@ -1,13 +1,10 @@
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import division
+from __future__ import absolute_import, division, print_function
 
-from .subdmesh import SubdMesh
-from .pattern import Pattern
 from .diagram import Diagram
-from .formdiagram import FormDiagram
 from .forcediagram import ForceDiagram
-from .thrustdiagram import ThrustDiagram
+from .formdiagram import FormDiagram
+from .pattern import Pattern
+from .subdmesh import SubdMesh
 
 __all__ = [
     "SubdMesh",
@@ -15,5 +12,4 @@ __all__ = [
     "Diagram",
     "FormDiagram",
     "ForceDiagram",
-    "ThrustDiagram",
 ]

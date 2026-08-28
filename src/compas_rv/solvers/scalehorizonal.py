@@ -5,7 +5,7 @@ from numpy import float64
 import compas_rhino.conversions
 from compas_fd.solvers.fd_numerical_data import FDNumericalData
 from compas_rv.conduits import EdgesConduit
-from compas_rv.datastructures import ThrustDiagram
+from compas_rv.datastructures import FormDiagram
 from compas_tna.equilibrium.diagrams import update_z
 from compas_tna.loads import LoadUpdater
 
@@ -13,9 +13,9 @@ from compas_tna.loads import LoadUpdater
 class InteractiveScaleHorizontal:
     def __init__(
         self,
-        thrust: ThrustDiagram,
+        form: FormDiagram,
     ):
-        self.thrust = thrust
+        self.form = form
         self.scale = 1.0
 
         self._numdata = None
@@ -42,12 +42,12 @@ class InteractiveScaleHorizontal:
     @property
     def numdata(self) -> FDNumericalData:
         if self._numdata is None:
-            vertex_index = self.thrust.vertex_index()
-            vertices: list[list[float]] = self.thrust.vertices_attributes("xyz")  # type: ignore
-            loads: list[list[float]] = [self.thrust.vertex_attributes(vertex, ["px", "py", "pz"]) or [0, 0, 0] for vertex in self.thrust.vertices()]  # type: ignore
-            fixed = [vertex_index[vertex] for vertex in self.thrust.vertices_where(is_support=True)]
-            edges = list(self.thrust.edges_where(_is_edge=True))
-            forcedensities: list[float] = list(self.thrust.edges_attribute(name="q", keys=edges))  # type: ignore
+            vertex_index = self.form.vertex_index()
+            vertices: list[list[float]] = self.form.vertices_attributes("xyz")  # type: ignore
+            loads: list[list[float]] = [self.form.vertex_attributes(vertex, ["px", "py", "pz"]) or [0, 0, 0] for vertex in self.form.vertices()]  # type: ignore
+            fixed = [vertex_index[vertex] for vertex in self.form.vertices_where(is_support=True)]
+            edges = list(self.form.edges_where(_is_edge=True))
+            forcedensities: list[float] = list(self.form.edges_attribute(name="q", keys=edges))  # type: ignore
             edges = [(vertex_index[u], vertex_index[v]) for u, v in edges]
             self._numdata = FDNumericalData.from_params(vertices, fixed, edges, forcedensities, loads)
         return self._numdata
@@ -56,11 +56,12 @@ class InteractiveScaleHorizontal:
     @property
     def loadupdater(self) -> LoadUpdater:
         if self._loadupdater is None:
+            density = 0.0 if self.form.attributes.get("loads_from_envelope") else 1.0
             self._loadupdater = LoadUpdater(
-                self.thrust,
+                self.form,
                 array(self.numdata.p, copy=True),
-                array(self.thrust.vertices_attribute("t"), dtype=float64).reshape((-1, 1)),  # type: ignore
-                1.0,
+                array(self.form.vertices_attribute("t"), dtype=float64).reshape((-1, 1)),  # type: ignore
+                density,
             )
         return self._loadupdater
 

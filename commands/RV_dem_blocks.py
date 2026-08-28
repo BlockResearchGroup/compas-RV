@@ -15,14 +15,14 @@ from compas_rv.session import RVSession
 def RunCommand():
     session = RVSession()
 
-    thrust = session.find_thrustdiagram()
-    if not thrust:
-        print("There is no ThrustDiagram in the scene.")
+    form = session.find_formdiagram()
+    if not form:
+        print("There is no FormDiagram in the scene.")
         return
 
     option = rs.GetString(message="DEM Blocks From", strings=["Dual", "MeshPattern"])
 
-    mesh: Mesh = thrust.diagram.copy()
+    mesh: Mesh = form.diagram.copy()
     for face in list(mesh.faces_where(_is_loaded=False)):
         mesh.delete_face(face)
 
