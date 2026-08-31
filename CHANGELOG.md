@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+* Changed the RhinoCode command requirements to `compas_rv >=0.10.0`.
+
 ### Added
 
 ### Changed
