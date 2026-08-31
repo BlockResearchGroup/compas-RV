@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.10.0
+# r: compas_rv>=0.10.1
 
 from compas_rv.session import RVSession
 

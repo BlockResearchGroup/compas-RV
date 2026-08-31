@@ -1,7 +1,7 @@
 # RhinoVAULT
 
 > [!NOTE]
-> The current version of RhinoVAULT on the Rhino Yak package server is `0.5.34.9081`.
+> The current version of RhinoVAULT can be downloaded through the Rhino Yak package.
 > Note that this is still a pre-release!
 
 ![RhinoVAULT](compas-RV.jpg)
