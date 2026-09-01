@@ -133,7 +133,10 @@ def get_dome():
     r_oculus = rs.GetReal("Oculus radius", 0.5, minimum=0.0)
     if r_oculus is None or r_oculus >= radius:
         return
-    return DomeEnvelope(center=center, radius=radius, thickness=thickness, n_hoops=40, n_parallels=40, r_oculus=r_oculus)
+    min_lb = rs.GetReal("Minimum z range of supports (positive downwards)", 0.5, minimum=0.0)
+    if min_lb is None:
+        return
+    return DomeEnvelope(center=center, radius=radius, thickness=thickness, n_hoops=40, n_parallels=40, r_oculus=r_oculus, min_lb=min_lb)
 
 
 def get_from_middle():
