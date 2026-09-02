@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.10.1
+# r: compas_rv>=0.11.0
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -42,9 +42,10 @@ def RunCommand():
     envelope = None
 
     if option in ("FromEnvelope", "FromFill"):
-        envelope = session.find_envelope()
-        if not envelope:
+        envelopeobject = session.find_envelope()
+        if not envelopeobject:
             return
+        envelope = envelopeobject.envelope
 
     if option == "FromEnvelope":
         normalize = rs.GetString("Normalize loads to envelope self-weight", "Yes", ["Yes", "No"])

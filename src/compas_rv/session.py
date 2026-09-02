@@ -14,14 +14,6 @@ def find_all_by_itemtype(scene: Scene, itemtype) -> list[RhinoSceneObject]:
     return sceneobjects
 
 
-def find_all_by_items(scene: Scene, items) -> list[RhinoSceneObject]:
-    sceneobjects = []
-    for obj in scene.objects:
-        if any(obj.item is item for item in items):
-            sceneobjects.append(obj)
-    return sceneobjects
-
-
 class RVSession(Session):
     settings: RVSettings  # type: ignore
 
@@ -78,11 +70,42 @@ class RVSession(Session):
             rs.MessageBox("There is no ForceDiagram.", title="Warning")
 
     def find_envelope(self, warn=True):
+        from compas_tna.envelope import Envelope
+
+        envelopeobject = self.scene.find_by_itemtype(Envelope)
+        if envelopeobject:
+            return envelopeobject
+
+        # Migrate sessions created before envelopes became scene objects.
         envelope = self.get("envelope")
         if envelope:
-            return envelope
+            return self.add_envelope(envelope, remove_legacy=True)
+
         if warn:
             rs.MessageBox("There is no Envelope.", title="Warning")
+
+    def add_envelope(self, envelope, remove_legacy=False):
+        """Add an envelope to the scene using the current drawing settings."""
+        from compas.datastructures import Mesh
+
+        meshes = [envelope.intrados, envelope.middle, envelope.extrados, getattr(envelope, "fill", None)]
+        mesh_guids = {str(mesh.guid) for mesh in meshes if mesh is not None}
+        component_names = {"Intrados", "Middle", "Extrados", "Fill"}
+        for sceneobject in list(self.scene.objects):
+            item = sceneobject.item
+            is_legacy_component = remove_legacy and isinstance(item, Mesh) and sceneobject.name in component_names
+            if item is not None and (str(item.guid) in mesh_guids or is_legacy_component):
+                sceneobject.clear()
+                self.scene.remove(sceneobject)
+
+        if "envelope" in self:
+            del self.data["envelope"]
+
+        return self.scene.add(
+            envelope,
+            name="Envelope",
+            layer="RhinoVAULT::Envelope",
+        )
 
     def clear_all_patterns(self, redraw=True):
         from compas_rv.datastructures import Pattern
@@ -126,17 +149,12 @@ class RVSession(Session):
         if formobject:
             formobject.diagram.attributes["loads_from_envelope"] = False
 
-        envelope = self.get("envelope")
-        if not envelope:
+        envelopeobject = self.find_envelope(warn=False)
+        if not envelopeobject:
             return
 
-        items = [mesh for mesh in [envelope.intrados, envelope.middle, envelope.extrados, getattr(envelope, "fill", None)] if mesh]
-        for obj in find_all_by_items(self.scene, items):
-            obj.clear()
-            self.scene.remove(obj)
-
-        if "envelope" in self:
-            del self.data["envelope"]
+        envelopeobject.clear()
+        self.scene.remove(envelopeobject)
 
         if redraw:
             self.scene.redraw()

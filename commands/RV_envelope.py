@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.10.1
+# r: compas_rv>=0.11.0
 
 import rhinoscriptsyntax as rs  # type: ignore
 
@@ -15,9 +15,6 @@ from compas_tna.envelope import DomeEnvelope
 from compas_tna.envelope import MeshEnvelope
 from compas_tna.envelope import PavillionVaultEnvelope
 from compas_tna.envelope import PointedVaultEnvelope
-
-
-ENVELOPE_LAYER = "RhinoVAULT::Envelope"
 
 
 def get_location():
@@ -133,8 +130,10 @@ def get_dome():
     r_oculus = rs.GetReal("Oculus radius", 0.5, minimum=0.0)
     if r_oculus is None or r_oculus >= radius:
         return
-    return DomeEnvelope(center=center, radius=radius, thickness=thickness, n_hoops=40, n_parallels=40, r_oculus=r_oculus)
-
+    min_lb = rs.GetReal("Minimum z range of supports (positive downwards)", 0.5, minimum=0.0)
+    if min_lb is None:
+        return
+    return DomeEnvelope(center=center, radius=radius, thickness=thickness, n_hoops=40, n_parallels=40, r_oculus=r_oculus, min_lb=min_lb)
 
 def get_from_middle():
     guid = compas_rhino.objects.select_mesh("Select middle mesh")
@@ -237,17 +236,7 @@ def RunCommand():
         envelope.rho_fill = rho_fill
 
     session.clear_envelope(redraw=False)
-    session["envelope"] = envelope
-
-    settings = session.settings.envelope
-    if envelope.intrados:
-        session.scene.add(envelope.intrados, disjoint=True, show=settings.show_intrados, name="Intrados", layer=ENVELOPE_LAYER)
-    if envelope.middle:
-        session.scene.add(envelope.middle, disjoint=True, show=settings.show_middle, name="Middle", layer=ENVELOPE_LAYER)
-    if envelope.extrados:
-        session.scene.add(envelope.extrados, disjoint=True, show=settings.show_extrados, name="Extrados", layer=ENVELOPE_LAYER)
-    if envelope.fill:
-        session.scene.add(envelope.fill, disjoint=True, show=settings.show_fill, name="Fill", layer=ENVELOPE_LAYER)
+    session.add_envelope(envelope)
 
     session.scene.redraw()
     rs.Redraw()

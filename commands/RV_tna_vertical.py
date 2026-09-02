@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.10.1
+# r: compas_rv>=0.11.0
 
 
 import rhinoscriptsyntax as rs  # type: ignore
@@ -52,6 +52,9 @@ def RunCommand():
 
     # Redraw the form diagram to show the updated 3D geometry
     form.redraw()
+    envelope = session.find_envelope(warn=False)
+    if envelope:
+        envelope.redraw()
 
     print("Vertical equilibrium found!")
     print("FormDiagram object updated with target height of {}.".format(zmax))

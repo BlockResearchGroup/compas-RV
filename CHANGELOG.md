@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* Added a proper RhinoEnvelopeObject to treat the Envelope
+* Bumped versions at string req and added option to control min_lb in dome
+
 ### Changed
 
 ### Removed

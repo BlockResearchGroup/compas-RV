@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.10.1
+# r: compas_rv>=0.11.0
 
 import pathlib
 
@@ -22,6 +22,7 @@ def RunCommand():
     pattern = session.find_pattern(warn=False)
     form = session.find_formdiagram(warn=False)
     force = session.find_forcediagram(warn=False)
+    envelope = session.find_envelope(warn=False)
 
     if pattern:
         pattern.layer = "RhinoVAULT::Pattern"
@@ -31,6 +32,9 @@ def RunCommand():
 
     if force:
         force.layer = "RhinoVAULT::ForceDiagram"
+
+    if envelope:
+        envelope.layer = "RhinoVAULT::Envelope"
 
     if form and force:
         form.diagram.dual = force.diagram

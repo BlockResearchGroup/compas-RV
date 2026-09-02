@@ -1,8 +1,10 @@
 from compas.plugins import plugin
 from compas.scene.context import register
+from compas_tna.envelope import Envelope
 
 from compas_rv.datastructures import ForceDiagram, FormDiagram, Pattern
 
+from .envelopeobject import RhinoEnvelopeObject
 from .forceobject import RhinoForceObject
 from .formobject import RhinoFormObject
 from .patternobject import RhinoPatternObject
@@ -13,3 +15,4 @@ def register_scene_objects_rhino():
     register(Pattern, RhinoPatternObject, context="Rhino")
     register(FormDiagram, RhinoFormObject, context="Rhino")
     register(ForceDiagram, RhinoForceObject, context="Rhino")
+    register(Envelope, RhinoEnvelopeObject, context="Rhino")

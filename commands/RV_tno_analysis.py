@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.10.1
+# r: compas_rv>=0.11.0
 
 import numpy as np
 import rhinoscriptsyntax as rs  # type: ignore
@@ -259,9 +259,10 @@ def RunCommand():
     if not formobject:
         return
 
-    envelope = session.find_envelope()
-    if not envelope:
+    envelopeobject = session.find_envelope()
+    if not envelopeobject:
         return
+    envelope = envelopeobject.envelope
 
     objective = rs.GetString("TNO objective", "MinimumThrust", OBJECTIVES)
     if not objective:
@@ -311,6 +312,7 @@ def RunCommand():
 
     rs.UnselectAllObjects()
     formobject.redraw()
+    envelopeobject.redraw()
     if forceobject:
         forceobject.redraw()
 
