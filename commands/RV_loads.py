@@ -42,9 +42,10 @@ def RunCommand():
     envelope = None
 
     if option in ("FromEnvelope", "FromFill"):
-        envelope = session.find_envelope()
-        if not envelope:
+        envelopeobject = session.find_envelope()
+        if not envelopeobject:
             return
+        envelope = envelopeobject.envelope
 
     if option == "FromEnvelope":
         normalize = rs.GetString("Normalize loads to envelope self-weight", "Yes", ["Yes", "No"])

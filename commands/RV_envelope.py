@@ -17,9 +17,6 @@ from compas_tna.envelope import PavillionVaultEnvelope
 from compas_tna.envelope import PointedVaultEnvelope
 
 
-ENVELOPE_LAYER = "RhinoVAULT::Envelope"
-
-
 def get_location():
     option = rs.GetString("Envelope location", "Origin", ["Origin", "Coordinates", "Point"])
     if not option:
@@ -237,17 +234,7 @@ def RunCommand():
         envelope.rho_fill = rho_fill
 
     session.clear_envelope(redraw=False)
-    session["envelope"] = envelope
-
-    settings = session.settings.envelope
-    if envelope.intrados:
-        session.scene.add(envelope.intrados, disjoint=True, show=settings.show_intrados, name="Intrados", layer=ENVELOPE_LAYER)
-    if envelope.middle:
-        session.scene.add(envelope.middle, disjoint=True, show=settings.show_middle, name="Middle", layer=ENVELOPE_LAYER)
-    if envelope.extrados:
-        session.scene.add(envelope.extrados, disjoint=True, show=settings.show_extrados, name="Extrados", layer=ENVELOPE_LAYER)
-    if envelope.fill:
-        session.scene.add(envelope.fill, disjoint=True, show=settings.show_fill, name="Fill", layer=ENVELOPE_LAYER)
+    session.add_envelope(envelope)
 
     session.scene.redraw()
     rs.Redraw()

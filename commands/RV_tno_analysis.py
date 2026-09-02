@@ -257,9 +257,10 @@ def RunCommand():
     if not formobject:
         return
 
-    envelope = session.find_envelope()
-    if not envelope:
+    envelopeobject = session.find_envelope()
+    if not envelopeobject:
         return
+    envelope = envelopeobject.envelope
 
     objective = rs.GetString("TNO objective", "MinimumThrust", OBJECTIVES)
     if not objective:
@@ -312,6 +313,7 @@ def RunCommand():
 
     rs.UnselectAllObjects()
     formobject.redraw()
+    envelopeobject.redraw()
     if forceobject:
         forceobject.redraw()
 

@@ -52,6 +52,9 @@ def RunCommand():
 
     # Redraw the form diagram to show the updated 3D geometry
     form.redraw()
+    envelope = session.find_envelope(warn=False)
+    if envelope:
+        envelope.redraw()
 
     print("Vertical equilibrium found!")
     print("FormDiagram object updated with target height of {}.".format(zmax))
