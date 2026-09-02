@@ -5,7 +5,7 @@ compas_libigl >=0.7.4
 compas_rui >=0.5.1
 compas_session >=0.5.5
 compas_skeleton
-compas_tna >=0.8.0
+compas_tna >=0.9.0
 compas_tno >=0.4.0
 compas_triangle >=1.2.1
 tessagon

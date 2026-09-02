@@ -1,6 +1,6 @@
 #! python3
 # venv: brg-csd
-# r: compas_rv>=0.10.1
+# r: compas_rv>=0.11.0
 
 from compas_rui.forms.meshinfo import MeshInfoForm
 from compas_rv.session import RVSession
